@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "seccion": "Habilidad Lógico-Matemática",
+    "enunciado": "Si el ayer del anteayer del mañana del pasado mañana del subsiguiente día de hace 3 días fue lunes, ¿qué día de la semana será el mañana del pasado mañana de hoy?",
+    "opciones": {
+      "A": "Jueves",
+      "B": "Viernes",
+      "C": "Sábado",
+      "D": "Domingo",
+      "E": "Miércoles"
+    },
+    "correcta": "B",
+    "explicacion": "Planteando algebraicamente los días relativos: (-1) + (-2) + (+1) + (+2) + (+2) - 3 = -1 = lunes. Si ayer (-1) fue lunes, hoy (0) es martes. El mañana del pasado mañana (+1 + 2 = +3) será martes + 3 = viernes."
+  },
+  {
+    "id": 2,
+    "seccion": "Álgebra - Polinomios",
+    "enunciado": "Si el polinomio P(x) = x^3 - 6x^2 + 11x - 6 tiene como raíces a los números reales r1, r2 y r3 con r1 < r2 < r3, halle el valor de (r1)^2 + (r2)^2 + (r3)^2.",
+    "opciones": {
+      "A": "14",
+      "B": "18",
+      "C": "36",
+      "D": "24",
+      "E": "11"
+    },
+    "correcta": "A",
+    "explicacion": "Por Cardano-Vieta: suma de raíces S = 6, suma de productos binarios Q = 11. Suma de cuadrados = S^2 - 2Q = 6^2 - 2(11) = 36 - 22 = 14."
+  },
+  {
+    "id": 3,
+    "seccion": "Física - Mecánica Clásica",
+    "enunciado": "Un bloque de 5 kg se desliza sobre una superficie horizontal lisa impulsado por una fuerza constante F = 20 N paralela al suelo. Partiendo del reposo, ¿qué distancia recorre en los primeros 4 segundos?",
+    "opciones": {
+      "A": "16 m",
+      "B": "32 m",
+      "C": "64 m",
+      "D": "8 m",
+      "E": "40 m"
+    },
+    "correcta": "B",
+    "explicacion": "Aceleración a = F/m = 20/5 = 4 m/s^2. Distancia d = 1/2 * a * t^2 = 0.5 * 4 * (4^2) = 2 * 16 = 32 m."
+  },
+  {
+    "id": 4,
+    "seccion": "Química - Estequiometría",
+    "enunciado": "En la combustión completa de 1 mol de propano (C3H8) según la ecuación: C3H8 + 5 O2 -> 3 CO2 + 4 H2O, ¿cuántos gramos de agua (H2O) se producen? (Masa molar H=1 g/mol, O=16 g/mol)",
+    "opciones": {
+      "A": "18 g",
+      "B": "36 g",
+      "C": "72 g",
+      "D": "54 g",
+      "E": "90 g"
+    },
+    "correcta": "C",
+    "explicacion": "1 mol de C3H8 produce 4 moles de H2O. Masa molar del agua = 18 g/mol. Masa producida = 4 * 18 = 72 g."
+  },
+  {
+    "id": 5,
+    "seccion": "Geometría Analítica",
+    "enunciado": "Halle la ecuación de la recta que pasa por el punto P(2, -3) y es perpendicular a la recta L1: 2x - 3y + 6 = 0.",
+    "opciones": {
+      "A": "3x + 2y = 0",
+      "B": "2x + 3y + 5 = 0",
+      "C": "3x - 2y - 12 = 0",
+      "D": "3x + 2y - 1 = 0",
+      "E": "x - y - 5 = 0"
+    },
+    "correcta": "A",
+    "explicacion": "La pendiente de L1 es m1 = 2/3. La pendiente perpendicular es m2 = -3/2. Ecuación punto-pendiente: y - (-3) = -3/2 (x - 2) => 2(y + 3) = -3(x - 2) => 2y + 6 = -3x + 6 => 3x + 2y = 0."
+  },
+  {
+    "id": 6,
+    "seccion": "Biología - Genética Molecular",
+    "enunciado": "La enzima encargada de desenrollar la doble hélice del ADN durante la replicación celular rompiendo los puentes de hidrógeno entre las bases nitrogenadas complementarias es la:",
+    "opciones": {
+      "A": "ADN Polimerasa III",
+      "B": "Helicasa",
+      "C": "Topoisomerasa",
+      "D": "Ligasa",
+      "E": "Primasa"
+    },
+    "correcta": "B",
+    "explicacion": "La helicasa rompe los puentes de hidrógeno separando las dos hebras del ADN para formar la horquilla de replicación."
+  },
+  {
+    "id": 7,
+    "seccion": "Trigonometría",
+    "enunciado": "Simplifique la siguiente expresión trigonométrica: E = (sen 2x) / (1 + cos 2x).",
+    "opciones": {
+      "A": "tg x",
+      "B": "ctg x",
+      "C": "sec x",
+      "D": "2 sen x",
+      "E": "cos x"
+    },
+    "correcta": "A",
+    "explicacion": "sen 2x = 2 sen x cos x. 1 + cos 2x = 2 cos^2 x. E = (2 sen x cos x) / (2 cos^2 x) = sen x / cos x = tg x."
+  },
+  {
+    "id": 8,
+    "seccion": "Física - Termodinámica",
+    "enunciado": "En un proceso isobárico a una presión constante de 10^5 Pa, un gas ideal se expande pasando de un volumen inicial de 0.02 m^3 a un volumen final de 0.05 m^3. El trabajo W realizado por el gas en joules es:",
+    "opciones": {
+      "A": "1500 J",
+      "B": "3000 J",
+      "C": "5000 J",
+      "D": "2000 J",
+      "E": "7000 J"
+    },
+    "correcta": "B",
+    "explicacion": "En proceso isobárico W = P * ΔV = 10^5 * (0.05 - 0.02) = 10^5 * 0.03 = 3000 J."
+  },
+  {
+    "id": 9,
+    "seccion": "Habilidad Verbal - Conectores Lógicos",
+    "enunciado": "El experimento arrojó resultados contradictorios, _______ los investigadores decidieron repetir el muestreo sistemático _______ deseaban publicar conclusiones plenamente fehacientes.",
+    "opciones": {
+      "A": "por ello - ya que",
+      "B": "aunque - si bien",
+      "C": "mas - dado que",
+      "D": "pero - puesto que no",
+      "E": "en consecuencia - a pesar de que"
+    },
+    "correcta": "A",
+    "explicacion": "La primera relación es consecutiva ('por ello' o 'por tanto') y la segunda es causal ('ya que' / 'porque')."
+  },
+  {
+    "id": 10,
+    "seccion": "Estadística y Probabilidades",
+    "enunciado": "De una baraja inglesa estándar de 52 cartas se extrae una carta al azar. ¿Cuál es la probabilidad de que la carta sea una figura (J, Q, K) o un As?",
+    "opciones": {
+      "A": "4/13",
+      "B": "1/13",
+      "C": "2/13",
+      "D": "5/13",
+      "E": "16/52"
+    },
+    "correcta": "A",
+    "explicacion": "Hay 12 figuras (4 J, 4 Q, 4 K) y 4 Ases, sumando 16 cartas favorables. Probabilidad = 16 / 52 = 4 / 13."
+  }
+]

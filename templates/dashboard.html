@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel Principal{% endblock %}
+
+{% block content %}
+<div style="margin-bottom: 2rem;">
+
+  <!-- Banner de Examen Activo si existe un intento en curso -->
+  {% if intento_activo %}
+  <div class="card" style="background: rgba(146, 105, 27, 0.08); border: 2px solid var(--unmsm-gold); margin-bottom: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <span class="badge badge-gold" style="margin-bottom: 0.4rem;">Simulacro en Curso</span>
+        <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.25rem;">
+          Tienes un intento activo en el Área {{ intento_activo.area }}
+        </h3>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 0;">
+          Tiempo restante aproximado: <strong>{{ (intento_activo.segundos_restantes // 60) }} minutos</strong>. Puedes continuar sin perder respuestas.
+        </p>
+      </div>
+      <div>
+        <a href="{{ url_for('simulacro.rendir_examen', area=intento_activo.area) }}" class="btn btn-primary btn-lg" id="btn-resume-exam">
+          ⚡ Reanudar Examen en Curso
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Banner de Bienvenida del Postulante -->
+  <div class="card" style="background: linear-gradient(135deg, rgba(200, 30, 43, 0.15) 0%, var(--bg-card) 60%); border-color: rgba(200, 30, 43, 0.3); margin-bottom: 2rem;">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+          <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; color: var(--text-main);">
+            Hola, {{ usuario.nombre }} {{ usuario.apellido }}
+          </h2>
+          <span class="badge badge-crimson">Área {{ usuario.area }}</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">
+          DNI: <strong>{{ usuario.dni }}</strong> &nbsp;|&nbsp; Carrera Postulada: <strong>{{ usuario.carrera }}</strong>
+        </p>
+      </div>
+
+      <div>
+        {% if intento_activo %}
+          <a href="{{ url_for('simulacro.rendir_examen', area=intento_activo.area) }}" class="btn btn-primary btn-lg" id="btn-start-my-exam">
+            ⚡ Reanudar Examen Área {{ intento_activo.area }}
+          </a>
+        {% else %}
+          <a href="{{ url_for('simulacro.preparacion_examen', area=usuario.area) }}" class="btn btn-primary btn-lg" id="btn-start-my-exam">
+            🚀 Preparar Simulacro Área {{ usuario.area }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <!-- Métricas del Postulante -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+    
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Simulacros Rendidos</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-top: 0.35rem;">
+        {{ total_examenes }}
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Evaluaciones registradas</div>
+    </div>
+
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Mejor Puntaje</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #34d399; margin-top: 0.35rem;">
+        {{ mejor_puntaje }} <span style="font-size: 1rem; color: var(--text-dim);">pts</span>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Puntaje oficial UNMSM</div>
+    </div>
+
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Promedio General</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--unmsm-gold); margin-top: 0.35rem;">
+        {{ promedio_puntaje }} <span style="font-size: 1rem; color: var(--text-dim);">pts</span>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">Rendimiento acumulado</div>
+    </div>
+
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.8rem; font-weight: 700; text-transform: uppercase;">Supervisión Anti-Trampa</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: {{ '#ef4444' if total_anulados > 0 else '#38bdf8' }}; margin-top: 0.35rem;">
+        {{ total_anulados }} <span style="font-size: 1rem; color: var(--text-dim);">anulaciones</span>
+      </div>
+      <div style="font-size: 0.8rem; color: var(--text-muted); margin-top: 0.25rem;">
+        {{ 'Atención a sanciones' if total_anulados > 0 else 'Historial de conducta limpio' }}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Catálogo de Exámenes por Área -->
+  <div style="margin-bottom: 2.5rem;">
+    <h3 style="font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; color: var(--text-main); margin-bottom: 1.25rem;">
+      Explorar Áreas Académicas UNMSM
+    </h3>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem;">
+      {% for letra, info in areas.items() %}
+      <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border-color: {{ 'rgba(200, 30, 43, 0.4)' if letra == usuario.area else 'var(--border-color)' }};">
+        <div>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.75rem;">
+            <span class="badge {{ 'badge-crimson' if letra == usuario.area else 'badge-info' }}">
+              Área {{ letra }}
+            </span>
+            {% if letra == usuario.area %}
+              <span style="font-size: 0.75rem; color: var(--unmsm-gold); font-weight: 700;">★ Tu Área</span>
+            {% endif %}
+          </div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem;">
+            {{ info.nombre }}
+          </h4>
+          <p style="font-size: 0.82rem; color: var(--text-dim); margin-bottom: 1.25rem;">
+            {{ info.carreras | join(', ') | truncate(85) }}
+          </p>
+        </div>
+
+        <a href="{{ url_for('simulacro.preparacion_examen', area=letra) }}" class="btn {{ 'btn-primary' if letra == usuario.area else 'btn-secondary' }} btn-sm" style="width: 100%;">
+          Preparar Simulacro Área {{ letra }}
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Historial de Simulacros Rendidos -->
+  <div class="card">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+      <div>
+        <h3 class="card-title" style="margin-bottom: 0.25rem;">Historial de Evaluaciones</h3>
+        <p class="card-subtitle" style="margin-bottom: 0;">Registro cronológico con auditoría proctoring</p>
+      </div>
+      <a href="{{ url_for('resultados.ranking_view') }}" class="btn btn-secondary btn-sm">
+        Ver Ranking Oficial
+      </a>
+    </div>
+
+    {% if resultados %}
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Fecha y Hora</th>
+            <th>Área</th>
+            <th>Puntaje</th>
+            <th>Aciertos</th>
+            <th>Errores</th>
+            <th>Blanco</th>
+            <th>Tiempo</th>
+            <th>Estado</th>
+            <th style="text-align: right;">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in resultados %}
+          <tr>
+            <td style="color: var(--text-muted); font-size: 0.85rem;">
+              {{ r.terminado_en.strftime('%d/%m/%Y %H:%M') if r.terminado_en else 'Reciente' }}
+            </td>
+            <td>
+              <span class="badge badge-crimson">Área {{ r.area }}</span>
+            </td>
+            <td>
+              <strong style="font-size: 1.1rem; color: {{ '#ef4444' if r.estado == 'ANULADO' else '#34d399' }};">
+                {{ r.puntaje }}
+              </strong>
+            </td>
+            <td style="color: #34d399; font-weight: 600;">+{{ r.correctas }}</td>
+            <td style="color: #f87171; font-weight: 600;">-{{ r.incorrectas }}</td>
+            <td style="color: var(--text-dim);">{{ r.blanco }}</td>
+            <td style="font-size: 0.85rem; color: var(--text-muted);">
+              {{ formatear_tiempo(r.tiempo_segundos) }}
+            </td>
+            <td>
+              {% if r.estado == 'COMPLETADO' %}
+                <span class="badge badge-success">Válido</span>
+              {% else %}
+                <span class="badge badge-danger" title="{{ r.motivo_anulacion or 'Infracción grave' }}">
+                  Anulado
+                </span>
+              {% endif %}
+            </td>
+            <td style="text-align: right;">
+              <a href="{{ url_for('resultados.ver_resultado', id=r.id) }}" class="btn btn-secondary btn-sm">
+                Ver Informe
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 3rem 1rem;">
+      <p style="color: var(--text-muted); margin-bottom: 1rem;">Aún no has rendido ningún simulacro de admisión.</p>
+      <a href="{{ url_for('simulacro.rendir_examen', area=usuario.area) }}" class="btn btn-primary">
+        Empezar mi primer simulacro ahora
+      </a>
+    </div>
+    {% endif %}
+
+  </div>
+
+</div>
+{% endblock %}

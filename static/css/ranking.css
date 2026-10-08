@@ -1,0 +1,188 @@
+/* ==========================================================================
+   UNMSM PROCTORING PLATFORM - RANKING & PODIUM STYLES
+   ========================================================================== */
+
+.ranking-header {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.ranking-title h2 {
+  font-family: var(--font-heading);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.ranking-title p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* Filter Bar */
+.filter-bar-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.filter-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.filter-field {
+  flex: 1;
+  min-width: 220px;
+}
+
+/* 3-Step Podium */
+.podium-container {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3.5rem;
+  padding-top: 2rem;
+}
+
+.podium-step {
+  flex: 1;
+  max-width: 320px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem 1.25rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+}
+
+.podium-step:hover {
+  transform: translateY(-4px);
+}
+
+/* 1st Place - Gold */
+.podium-step.gold {
+  border-color: rgba(184, 146, 58, 0.38);
+  background: linear-gradient(180deg, rgba(184, 146, 58, 0.08) 0%, var(--bg-card) 60%);
+  box-shadow: 0 0 32px rgba(184, 146, 58, 0.15);
+  order: 2;
+  transform: translateY(-15px);
+}
+
+.podium-step.gold:hover {
+  transform: translateY(-19px);
+}
+
+/* 2nd Place - Silver */
+.podium-step.silver {
+  border-color: rgba(203, 213, 225, 0.3);
+  background: linear-gradient(180deg, rgba(203, 213, 225, 0.06) 0%, var(--bg-card) 60%);
+  order: 1;
+}
+
+/* 3rd Place - Bronze */
+.podium-step.bronze {
+  border-color: rgba(180, 83, 9, 0.3);
+  background: linear-gradient(180deg, rgba(180, 83, 9, 0.06) 0%, var(--bg-card) 60%);
+  order: 3;
+}
+
+.podium-medal {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-top: -40px;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-md);
+}
+
+.gold .podium-medal {
+  background: linear-gradient(135deg, var(--gold), #8a6b25);
+  color: #2d1f05;
+  box-shadow: 0 0 14px rgba(184, 146, 58, 0.45);
+}
+
+.silver .podium-medal {
+  background: linear-gradient(135deg, #f1f5f9, #94a3b8);
+  color: #1e293b;
+  box-shadow: 0 0 15px rgba(148, 163, 184, 0.4);
+}
+
+.bronze .podium-medal {
+  background: linear-gradient(135deg, #d97706, #92400e);
+  color: #fef3c7;
+  box-shadow: 0 0 15px rgba(180, 83, 9, 0.4);
+}
+
+.podium-name {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.podium-carrera {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.podium-score {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.gold .podium-score {
+  color: var(--gold);
+}
+
+.podium-time {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Tie-Breaker Notice Pill */
+.tie-breaker-notice {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1.25rem;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.tie-breaker-notice strong {
+  color: var(--gold);
+}

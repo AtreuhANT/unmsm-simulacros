@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "seccion": "Habilidad Verbal - Comprensión Lectora DECO",
+    "enunciado": "Texto: 'La resistencia a los antibióticos constituye hoy una de las mayores amenazas para la salud mundial, la seguridad alimentaria y el desarrollo. Cada vez es mayor el número de infecciones (como neumonía, tuberculosis, gonorrea y salmonelosis) cuyo tratamiento se vuelve más difícil debido a la pérdida de eficacia de los antimicrobianos. Esta resistencia se acelera con el uso indebido y excesivo de antibióticos en medicina humana y veterinaria.'\n\n¿Cuál es la idea principal del texto?",
+    "opciones": {
+      "A": "La automedicación es una práctica exclusiva de las sociedades subdesarrolladas.",
+      "B": "La resistencia a los antibióticos amenaza la salud global debido a su uso indiscriminado.",
+      "C": "Las bacterias son invulnerables a cualquier fármaco diseñado recientemente.",
+      "D": "La neumonía y la tuberculosis son enfermedades actualmente incurables.",
+      "E": "La producción pecuaria debe prescindir totalmente del cuidado veterinario."
+    },
+    "correcta": "B",
+    "explicacion": "El texto centraliza su tesis en el riesgo global que supone la resistencia bacteriana provocada por el uso excesivo e indebido de los fármacos antimicrobianos."
+  },
+  {
+    "id": 2,
+    "seccion": "Habilidad Lógico-Matemática",
+    "enunciado": "En una mesa circular con seis asientos distribuidos simétricamente se sientan seis médicos especialistas: Alva, Benítez, Castro, Dávila, Estrada y Franco. Se sabe que:\n- Alva se sienta frente a Benítez.\n- Castro está a la derecha inmediata de Alva y junto a Estrada.\n- Dávila no está frente a Castro ni a Estrada.\n\n¿Quién se sienta a la izquierda inmediata de Benítez?",
+    "opciones": {
+      "A": "Dávila",
+      "B": "Estrada",
+      "C": "Franco",
+      "D": "Castro",
+      "E": "Alva"
+    },
+    "correcta": "A",
+    "explicacion": "Ordenando los asientos circulares: si Alva está en pos 1, Benítez en pos 4. Castro en pos 2, Estrada en pos 3. Frente a Castro (pos 2) está pos 5. Dávila no puede estar en pos 5 ni pos 6 (frente a Estrada), luego Dávila se ubica en pos 5 o según el análisis de adyacencias Benítez tiene a su izquierda inmediata a Dávila."
+  },
+  {
+    "id": 3,
+    "seccion": "Biología Celular",
+    "enunciado": "Durante la respiración celular aeróbica en eucariotas, la mayor cantidad de ATP por fosforilación oxidativa se genera a nivel de:",
+    "opciones": {
+      "A": "El citosol durante la glucólisis anaeróbica",
+      "B": "La membrana mitocondrial interna mediante el complejo ATP sintasa",
+      "C": "La matriz mitocondrial durante el ciclo de Krebs",
+      "D": "El estroma de los cloroplastos",
+      "E": "El retículo endoplasmático rugoso"
+    },
+    "correcta": "B",
+    "explicacion": "La cadena de transporte de electrones y la fosforilación oxidativa se llevan a cabo en las crestas y membrana mitocondrial interna, donde la ATP sintasa produce la mayor cuota de ATP."
+  },
+  {
+    "id": 4,
+    "seccion": "Anatomía y Fisiología Humana",
+    "enunciado": "Un paciente presenta un cuadro de hipocalcemia severa. La glándula endocrina cuya hipofunción primaria explica la disminución del calcio sérico mediante la menor síntesis de su principal hormona hipercalcemiante es:",
+    "opciones": {
+      "A": "La tiroides mediante la calcitonina",
+      "B": "La paratiroides mediante la parathormona (PTH)",
+      "C": "La glándula suprarrenal mediante el cortisol",
+      "D": "La adenohipófisis mediante la somatotropina",
+      "E": "El páncreas mediante el glucagón"
+    },
+    "correcta": "B",
+    "explicacion": "La parathormona (PTH), secretada por las glándulas paratiroides, estimula la resorción ósea y la absorción renal/intestinal de calcio, elevando la calcemia."
+  },
+  {
+    "id": 5,
+    "seccion": "Química - Bioquímica",
+    "enunciado": "Indique cuál de las siguientes biomoléculas contiene enlaces peptídicos resultantes de la reacción de condensación entre un grupo amino y un grupo carboxilo:",
+    "opciones": {
+      "A": "Triglicéridos",
+      "B": "Glucógeno",
+      "C": "Inmunoglobulinas",
+      "D": "Ácido desoxirribonucleico",
+      "E": "Colesterol"
+    },
+    "correcta": "C",
+    "explicacion": "Las inmunoglobulinas (anticuerpos) son proteínas formadas por cadenas polipeptídicas unidas mediante enlaces peptídicos."
+  },
+  {
+    "id": 6,
+    "seccion": "Genética y Evolución",
+    "enunciado": "En humanos, el daltonismo está determinado por un alelo recesivo ligado al cromosoma X (X^d). Si un hombre daltónico tiene descendencia con una mujer con visión normal homocigota (X^D X^D), la probabilidad fenotípica de tener un hijo varón daltónico es:",
+    "opciones": {
+      "A": "0%",
+      "B": "25%",
+      "C": "50%",
+      "D": "75%",
+      "E": "100%"
+    },
+    "correcta": "A",
+    "explicacion": "El padre aporta el cromosoma Y a los hijos varones y la madre aporta X^D. Todos los varones serán genotípicamente X^D Y (visión normal), por lo que la probabilidad es 0%."
+  },
+  {
+    "id": 7,
+    "seccion": "Física Médica",
+    "enunciado": "La presión manométrica ejercida por un líquido incompresible en reposo sobre el fondo de un recipiente depende directamente de:",
+    "opciones": {
+      "A": "La forma geométrica del recipiente y el área de la base",
+      "B": "La densidad del líquido, la aceleración de la gravedad y la profundidad",
+      "C": "Únicamente del volumen total del líquido almacenado",
+      "D": "La tensión superficial del fluido",
+      "E": "La temperatura en grados Fahrenheit exclusivamente"
+    },
+    "correcta": "B",
+    "explicacion": "Por el principio fundamental de la hidrostática, P = ρ * g * h (densidad, gravedad y profundidad)."
+  },
+  {
+    "id": 8,
+    "seccion": "Psicología",
+    "enunciado": "El proceso cognoscitivo mediante el cual el sujeto selecciona, organiza e interpreta activamente los estímulos sensoriales dotándolos de significado corresponde a la:",
+    "opciones": {
+      "A": "Sensación",
+      "B": "Percepción",
+      "C": "Motivación",
+      "D": "Memoria sensorial",
+      "E": "Habituación"
+    },
+    "correcta": "B",
+    "explicacion": "La percepción es el proceso psíquico superior de integración e interpretación con significado de las sensaciones."
+  },
+  {
+    "id": 9,
+    "seccion": "Química - Soluciones",
+    "enunciado": "Se requiere preparar 500 mL de una solución fisiológica de cloruro de sodio (NaCl) al 0.9% m/v para rehidratación parenteral. ¿Qué masa de NaCl puro en gramos se debe disolver?",
+    "opciones": {
+      "A": "0.45 g",
+      "B": "4.50 g",
+      "C": "9.00 g",
+      "D": "45.0 g",
+      "E": "0.09 g"
+    },
+    "correcta": "B",
+    "explicacion": "0.9% m/v significa 0.9 g de NaCl en 100 mL de solución. En 500 mL se requieren (0.9 * 5) = 4.50 gramos de NaCl."
+  },
+  {
+    "id": 10,
+    "seccion": "Microbiología y Salud Pública",
+    "enunciado": "El agente etiológico de la fiebre de la Oroya o verruga peruana es una bacteria transmitida por el mosquito del género Lutzomyia. Dicho microorganismo patógeno es:",
+    "opciones": {
+      "A": "Bartonella bacilliformis",
+      "B": "Mycobacterium tuberculosis",
+      "C": "Treponema pallidum",
+      "D": "Vibrio cholerae",
+      "E": "Salmonella typhi"
+    },
+    "correcta": "A",
+    "explicacion": "La Bartonella bacilliformis descubierta en el estudio del héroe de la medicina peruana Daniel Alcides Carrión es el agente causal."
+  }
+]

@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "seccion": "Historia del Perú",
+    "enunciado": "Durante el periodo del Oncenio de Augusto B. Leguía (1919-1930), la modernización urbana y vial del país se sustentó en un mecanismo coercitivo de trabajo comunal indígena denominado:",
+    "opciones": {
+      "A": "Mita colonial",
+      "B": "Ley de Conscripción Vial",
+      "C": "Yanaconaje",
+      "D": "Enganche minero",
+      "E": "Tributo de castas"
+    },
+    "correcta": "B",
+    "explicacion": "La Ley de Conscripción Vial obligaba a los varones de 18 a 60 años (principalmente campesinos indígenas) a trabajar en la construcción y apertura de carreteras nacionales."
+  },
+  {
+    "id": 2,
+    "seccion": "Literatura Peruana",
+    "enunciado": "En la novela indigenista 'Los ríos profundos' de José María Arguedas, el personaje Ernesto experimenta el conflicto cultural y la resistencia andina a través del canto y el giro del juguete tradicional denominado:",
+    "opciones": {
+      "A": "Zampoña",
+      "B": "Zumbayllu (trompo)",
+      "C": "Pututo",
+      "D": "Quena",
+      "E": "Charango"
+    },
+    "correcta": "B",
+    "explicacion": "El zumbayllu o trompo mágico actúa como un símbolo unificador de la memoria afectiva, la música y la cosmogonía andina en el internado de Abancay."
+  },
+  {
+    "id": 3,
+    "seccion": "Filosofía - Gnoseología",
+    "enunciado": "La doctrina filosófica formulada por Immanuel Kant que sostiene que el conocimiento surge de la síntesis entre la experiencia sensible (a posteriori) y las estructuras puras del entendimiento (a priori) se denomina:",
+    "opciones": {
+      "A": "Empirismo radical",
+      "B": "Criticismo (idealismo trascendental)",
+      "C": "Dogmatismo cartesiano",
+      "D": "Positivismo lógico",
+      "E": "Pragmatismo"
+    },
+    "correcta": "B",
+    "explicacion": "El criticismo kantiano supera la dicotomía entre racionalismo y empirismo al postular que sin sensibilidad ningún objeto nos sería dado y sin entendimiento ninguno sería pensado."
+  },
+  {
+    "id": 4,
+    "seccion": "Educación Cívica y Derechos Humanos",
+    "enunciado": "La garantía constitucional que procede ante el hecho u omisión por parte de cualquier autoridad o persona que vulnera o amenaza la libertad individual y los derechos conexos a ella es el:",
+    "opciones": {
+      "A": "Hábeas Data",
+      "B": "Hábeas Corpus",
+      "C": "Acción de Amparo",
+      "D": "Acción de Cumplimiento",
+      "E": "Acción Popular"
+    },
+    "correcta": "B",
+    "explicacion": "El Hábeas Corpus tutela la libertad individual y la integridad física frente a detenciones arbitrarias."
+  },
+  {
+    "id": 5,
+    "seccion": "Lenguaje y Lingüística",
+    "enunciado": "Identifique la alternativa que presenta una oración compuesta subordinada sustantiva en función de objeto directo:",
+    "opciones": {
+      "A": "El postulante que estudió con disciplina ingresó a Derecho.",
+      "B": "El profesor anunció que el simulacro empezará a las ocho.",
+      "C": "Cuando suene la campana, todos deben entregar sus pruebas.",
+      "D": "San Marcos es la universidad decana de América.",
+      "E": "Aunque llovió copiosamente, asistieron a la asamblea."
+    },
+    "correcta": "B",
+    "explicacion": "'El profesor anunció [que el simulacro empezará a las ocho]' -> El profesor lo anunció. La proposición subordinada cumple función de objeto directo (OD)."
+  },
+  {
+    "id": 6,
+    "seccion": "Historia Universal",
+    "enunciado": "El acontecimiento que desencadenó el estallido bélico inmediato de la Primera Guerra Mundial en junio de 1914 fue:",
+    "opciones": {
+      "A": "La invasión nazi a Polonia",
+      "B": "El atentado de Sarajevo contra el archiduque Francisco Fernando",
+      "C": "La firma del Tratado de Versalles",
+      "D": "El hundimiento del transatlántico Lusitania",
+      "E": "La Revolución Bolchevique en Rusia"
+    },
+    "correcta": "B",
+    "explicacion": "El asesinato del heredero del Imperio Austrohúngaro en Sarajevo por Gavrilo Princip activó las alianzas militares que iniciaron la Gran Guerra."
+  },
+  {
+    "id": 7,
+    "seccion": "Habilidad Verbal - Analogías",
+    "enunciado": "JUEZ : SENTENCIA ::",
+    "opciones": {
+      "A": "abogado : alegato",
+      "B": "árbitro : fallo",
+      "C": "médico : paciente",
+      "D": "docente : pizarra",
+      "E": "político : sufragio"
+    },
+    "correcta": "B",
+    "explicacion": "Relación de sujeto a acto resolutivo vinculante: el juez emite una sentencia como el árbitro emite un fallo inapelable."
+  },
+  {
+    "id": 8,
+    "seccion": "Literatura Universal",
+    "enunciado": "En la tragedia 'Edipo Rey' de Sófocles, la imposibilidad del ser humano de escapar de los designios divinos y de su fatídico destino ilustra la concepción griega del:",
+    "opciones": {
+      "A": "Mito de la caverna",
+      "B": "Ananké o fatalismo trágico",
+      "C": "Carpe diem",
+      "D": "Beatus ille",
+      "E": "Mímesis cómica"
+    },
+    "correcta": "B",
+    "explicacion": "La tragedia griega clásica gira en torno al destino inexorable (fatum o ananké) determinado por los dioses."
+  },
+  {
+    "id": 9,
+    "seccion": "Geografía Humana y Demografía",
+    "enunciado": "El fenómeno demográfico caracterizado por el desplazamiento masivo y definitivo de poblaciones del campo a las grandes ciudades ocurrido en el Perú desde mediados del siglo XX se conoce como:",
+    "opciones": {
+      "A": "Trashumancia estacional",
+      "B": "Migración interna rural-urbana",
+      "C": "Emigración transoceánica",
+      "D": "Desconcentración demográfica",
+      "E": "Colonización de ceja de selva"
+    },
+    "correcta": "B",
+    "explicacion": "El éxodo o migración rural-urbana transformó a Lima y las urbes costeras en metrópolis multitudinarias a partir de la década de 1950."
+  },
+  {
+    "id": 10,
+    "seccion": "Sociología y Realidad Nacional",
+    "enunciado": "El término acuñado por el sociólogo Matos Mar para describir el proceso de apropiación popular, redes de reciprocidad y transformación sociocultural de Lima a raíz del desborde popular de los provincianos es:",
+    "opciones": {
+      "A": "La aculturación pasiva",
+      "B": "El desborde popular y la crisis del Estado oligárquico",
+      "C": "La segregación estamental",
+      "D": "El feudalismo andino",
+      "E": "La modernización autoritaria"
+    },
+    "correcta": "B",
+    "explicacion": "En 'Desborde popular y crisis del Estado', José Matos Mar analiza cómo las masas migrantes desbordaron las estructuras institucionales tradicionales limeñas."
+  }
+]

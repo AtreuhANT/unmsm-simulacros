@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.env
+.venv/
+venv/
+ENV/
+*.log
+.vscode/
+.idea/
+*.sqlite3
+
+# Instancia PostgreSQL de pruebas y sus credenciales locales
+/.test-postgres/
+.env.*
+!.env.example
+.env
+*.sql
+*.onnx

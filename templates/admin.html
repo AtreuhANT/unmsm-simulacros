@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block title %}Panel de Control del Administrador{% endblock %}
+
+{% block content %}
+<div>
+
+  <div style="margin-bottom: 2rem; display: flex; align-items: center; justify-content: space-between;">
+    <div>
+      <h2 style="font-family: var(--font-heading); font-size: 1.85rem; font-weight: 800; color: var(--text-main);">
+        Panel de Administración y Supervisión
+      </h2>
+      <p style="color: var(--text-muted); font-size: 0.95rem;">
+        Control global de evaluaciones concurrentes, telemetría y auditoría proctoring
+      </p>
+    </div>
+    <span class="badge badge-gold" style="font-size: 0.85rem; padding: 0.4rem 0.8rem;">
+      ★ Modo Supervisor Activo
+    </span>
+  </div>
+
+  <!-- Métricas Globales del Servidor -->
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 2.5rem;">
+    
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Total Evaluaciones</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--text-main); margin-top: 0.25rem;">
+        {{ estadisticas.totales.total_examenes }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--text-muted);">Pruebas registradas</div>
+    </div>
+
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Completadas Válidas</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #34d399; margin-top: 0.25rem;">
+        {{ estadisticas.totales.total_completados }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--text-muted);">Aprobadas por proctoring</div>
+    </div>
+
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Anuladas por Infracción</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #ef4444; margin-top: 0.25rem;">
+        {{ estadisticas.totales.total_anulados }}
+      </div>
+      <div style="font-size: 0.75rem; color: var(--text-muted);">Descalificaciones por IA</div>
+    </div>
+
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Promedio General</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: var(--unmsm-gold); margin-top: 0.25rem;">
+        {{ "%.2f"|format(estadisticas.totales.promedio_puntaje) }} <span style="font-size: 0.9rem;">pts</span>
+      </div>
+      <div style="font-size: 0.75rem; color: var(--text-muted);">Media de postulantes</div>
+    </div>
+
+    <div class="card" style="padding: 1.25rem;">
+      <div style="color: var(--text-dim); font-size: 0.75rem; font-weight: 700; text-transform: uppercase;">Puntaje Máximo</div>
+      <div style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 800; color: #38bdf8; margin-top: 0.25rem;">
+        {{ estadisticas.totales.puntaje_maximo }} <span style="font-size: 0.9rem;">pts</span>
+      </div>
+      <div style="font-size: 0.75rem; color: var(--text-muted);">Récord del simulacro</div>
+    </div>
+
+  </div>
+
+  <!-- Desglose por Áreas Académicas -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <h3 class="card-title">Rendimiento por Áreas Académicas</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-top: 1rem;">
+      {% for pa in estadisticas.por_area %}
+      <div style="background: var(--bg-surface); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+        <span class="badge badge-crimson">Área {{ pa.area }}</span>
+        <div style="margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);">
+          Exámenes: <strong>{{ pa.cantidad }}</strong>
+        </div>
+        <div style="font-size: 0.85rem; color: var(--text-muted);">
+          Promedio: <strong style="color: var(--unmsm-gold);">{{ "%.2f"|format(pa.promedio) }} pts</strong>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Últimos Simulacros y Auditoría de Faltas -->
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+      <div>
+        <h3 class="card-title" style="margin-bottom: 0.25rem;">Últimas Evaluaciones Enviadas</h3>
+        <p class="card-subtitle" style="margin-bottom: 0;">Monitoreo en vivo con incidentes de conducta registrados</p>
+      </div>
+      <span style="font-size: 0.85rem; color: var(--text-dim);">Top 25 recientes</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>Fecha / Hora</th>
+            <th>Postulante</th>
+            <th>DNI</th>
+            <th>Carrera</th>
+            <th>Área</th>
+            <th>Puntaje</th>
+            <th>Estado</th>
+            <th>Incidentes IA</th>
+            <th style="text-align: right;">Auditoría</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in estadisticas.ultimos %}
+          <tr>
+            <td style="font-size: 0.82rem; color: var(--text-muted);">
+              {{ r.terminado_en.strftime('%d/%m %H:%M:%S') if r.terminado_en else '-' }}
+            </td>
+            <td><strong>{{ r.nombre }} {{ r.apellido }}</strong></td>
+            <td style="font-family: monospace;">{{ r.dni }}</td>
+            <td style="font-size: 0.85rem;">{{ r.carrera }}</td>
+            <td><span class="badge badge-crimson">Área {{ r.area }}</span></td>
+            <td>
+              <strong style="color: {{ '#ef4444' if r.estado == 'ANULADO' else '#34d399' }};">
+                {{ r.puntaje }}
+              </strong>
+            </td>
+            <td>
+              {% if r.estado == 'COMPLETADO' %}
+                <span class="badge badge-success">Válido</span>
+              {% else %}
+                <span class="badge badge-danger">Anulado</span>
+              {% endif %}
+            </td>
+            <td>
+              {% if r.faltas_count > 0 %}
+                <span class="badge badge-danger">⚠️ {{ r.faltas_count }} incidentes</span>
+              {% else %}
+                <span class="badge badge-success">0 incidentes</span>
+              {% endif %}
+            </td>
+            <td style="text-align: right;">
+              <a href="{{ url_for('resultados.ver_resultado', id=r.id) }}" class="btn btn-secondary btn-sm">
+                Ver Informe
+              </a>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Usuarios Registrados -->
+  <div class="card">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+      <div>
+        <h3 class="card-title" style="margin-bottom: 0.25rem;">Postulantes Registrados</h3>
+        <p class="card-subtitle" style="margin-bottom: 0;">Usuarios con enrolamiento facial verificado en PostgreSQL</p>
+      </div>
+      <span style="font-size: 0.85rem; color: var(--text-dim);">Mostrando hasta 50 usuarios</span>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Postulante</th>
+            <th>DNI</th>
+            <th>Carrera</th>
+            <th>Área</th>
+            <th>Rol</th>
+            <th style="text-align: right;">Fecha de Registro</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for u in usuarios %}
+          <tr>
+            <td style="color: var(--text-dim); font-size: 0.8rem;">#{{ u.id }}</td>
+            <td><strong>{{ u.nombre }} {{ u.apellido }}</strong></td>
+            <td style="font-family: monospace;">{{ u.dni }}</td>
+            <td>{{ u.carrera }}</td>
+            <td><span class="badge badge-crimson">Área {{ u.area }}</span></td>
+            <td>
+              {% if u.es_admin %}
+                <span class="badge badge-gold">★ Administrador</span>
+              {% else %}
+                <span class="badge badge-info">Postulante</span>
+              {% endif %}
+            </td>
+            <td style="text-align: right; font-size: 0.82rem; color: var(--text-dim);">
+              {{ u.creado_en.strftime('%d/%m/%Y %H:%M') if u.creado_en else '-' }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

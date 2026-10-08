@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div style="max-width: 440px; margin: 2rem auto;">
+  <div class="card" style="box-shadow: var(--shadow-lg);">
+    
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div class="brand-icon" style="margin: 0 auto 1rem; width: 54px; height: 54px; font-size: 1.5rem;">UN</div>
+      <h2 class="card-title" style="font-size: 1.6rem;">Ingreso a Simulacros</h2>
+      <p class="card-subtitle">Universidad Nacional Mayor de San Marcos</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('auth.login', next=request.args.get('next', '')) }}" id="login-form">
+      <div class="form-group">
+        <label for="dni" class="form-label">Número de DNI</label>
+        <input type="text" name="dni" id="dni" class="form-control" placeholder="Ingresa tus 8 dígitos" 
+               pattern="[0-9]{8,12}" required autofocus value="{{ dni or '' }}" autocomplete="username">
+      </div>
+
+      <div class="form-group">
+        <label for="password" class="form-label">Contraseña</label>
+        <input type="password" name="password" id="password" class="form-control" 
+               placeholder="Ingresa tu contraseña" required autocomplete="current-password">
+        <div class="form-hint">
+          Ingresa la contraseña que definiste al registrar tu cuenta.
+        </div>
+      </div>
+
+      <div style="margin-top: 1.75rem;">
+        <button type="submit" class="btn btn-primary" style="width: 100%;" id="btn-submit-login">
+          Ingresar al Sistema
+        </button>
+      </div>
+    </form>
+
+    <div style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.88rem;">
+      <span style="color: var(--text-muted);">¿Aún no tienes una cuenta?</span>
+      <a href="{{ url_for('auth.register') }}" style="color: var(--unmsm-crimson); font-weight: 600; text-decoration: none; margin-left: 0.35rem;" id="link-register">
+        Regístrate aquí
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

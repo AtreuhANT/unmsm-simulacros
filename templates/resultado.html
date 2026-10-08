@@ -1,0 +1,447 @@
+{% extends 'base.html' %}
+
+{% block title %}Informe de Resultado — Área {{ resultado.area }}{% endblock %}
+
+{% block head_extra %}
+<style>
+  .score-hero-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  .score-badge-main {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 800;
+    line-height: 1;
+    margin: 0.75rem 0;
+  }
+  .kpi-stat-box {
+    background: var(--bg-subtle, #f8fafc);
+    padding: 0.9rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    text-align: center;
+  }
+  .kpi-stat-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .kpi-stat-number {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 0.25rem;
+  }
+
+  /* Revisión Académica */
+  .review-filter-bar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .filter-pill-btn {
+    padding: 0.4rem 0.85rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+    background: var(--bg-surface);
+    color: var(--text-main);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+  }
+  .filter-pill-btn.active {
+    background: var(--wine);
+    color: #ffffff;
+    border-color: var(--wine);
+  }
+
+  .question-review-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.4rem;
+    margin-bottom: 1.25rem;
+    transition: box-shadow var(--transition-fast);
+  }
+  .question-review-card:hover {
+    box-shadow: var(--shadow-sm);
+  }
+  .question-review-card.correct {
+    border-left: 4px solid #10b981;
+  }
+  .question-review-card.incorrect {
+    border-left: 4px solid #ef4444;
+  }
+  .question-review-card.blank {
+    border-left: 4px solid #94a3b8;
+  }
+
+  .review-option-item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.65rem 0.95rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.4rem;
+    font-size: 0.9rem;
+    background: var(--bg-subtle, #f8fafc);
+    border: 1px solid transparent;
+  }
+  .review-option-item.selected-correct {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.4);
+    color: #065f46;
+    font-weight: 600;
+  }
+  .review-option-item.selected-wrong {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: rgba(239, 68, 68, 0.4);
+    color: #991b1b;
+    font-weight: 600;
+  }
+  .review-option-item.official-correct {
+    background: rgba(16, 185, 129, 0.05);
+    border: 1px dashed #10b981;
+    color: #065f46;
+  }
+  .review-letter-badge {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.75rem;
+    background: #e2e8f0;
+    flex-shrink: 0;
+  }
+
+  .explanation-box {
+    background: rgba(146, 105, 27, 0.07);
+    border-left: 3px solid var(--unmsm-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 0.85rem 1.15rem;
+    margin-top: 1rem;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    color: var(--text-main);
+  }
+
+  @media (max-width: 768px) {
+    .score-hero-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div style="max-width: 1040px; margin: 1.5rem auto 3rem;">
+
+  <!-- Banner de Estado: Completado vs Anulado -->
+  {% if resultado.estado == 'ANULADO' %}
+  <div class="card" style="background: rgba(239, 68, 68, 0.08); border: 2px solid #ef4444; margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center; gap: 1.25rem;">
+      <div style="font-size: 2.75rem; color: #ef4444; line-height: 1;">🚨</div>
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <h2 style="font-family: var(--font-heading); font-size: 1.45rem; color: #dc2626; font-weight: 800; margin-bottom: 0;">
+            Examen Anulado por Infracción de Conducta
+          </h2>
+          <span class="badge badge-danger">Anulado</span>
+        </div>
+        <p style="color: #b91c1c; font-size: 0.92rem; margin: 0.35rem 0 0;">
+          <strong>Motivo Oficial:</strong> {{ resultado.motivo_anulacion or 'Infracción grave a las normas de supervisión.' }}
+        </p>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="card" style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.35); margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+      <div>
+        <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <h2 style="font-family: var(--font-heading); font-size: 1.55rem; color: #059669; font-weight: 800; margin-bottom: 0;">
+            ¡Simulacro Completado Exitosamente!
+          </h2>
+          <span class="badge badge-success">Válido</span>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.92rem; margin: 0.35rem 0 0;">
+          Tu evaluación fue procesada y clasificada en el ranking oficial de la UNMSM.
+        </p>
+      </div>
+      <div>
+        <a href="{{ url_for('resultados.ranking_view', area=resultado.area) }}" class="btn btn-secondary btn-sm">
+          🏆 Ver mi Posición en Ranking
+        </a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Resumen de Puntuación Oficial UNMSM -->
+  <div class="score-hero-grid">
+    
+    <!-- Puntaje Final -->
+    <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+      <span class="kpi-stat-label">Puntaje Oficial UNMSM</span>
+      <div class="score-badge-main" style="color: {{ '#ef4444' if resultado.estado == 'ANULADO' else 'var(--wine)' }};">
+        {{ resultado.puntaje }}
+      </div>
+      <span style="font-size: 0.85rem; color: var(--text-muted);">
+        {{ 'Calificación anulada (0.0 pts)' if resultado.estado == 'ANULADO' else 'Escala oficial de admisión' }}
+      </span>
+    </div>
+
+    <!-- Desglose de Respuestas y Tiempos -->
+    <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+      <div>
+        <h4 style="font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 1rem;">
+          Desglose Académico de Rendimiento
+        </h4>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.85rem;">
+          
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-label">Aciertos (+20.0)</div>
+            <div class="kpi-stat-number" style="color: #059669;">
+              {{ resultado.correctas }}
+            </div>
+          </div>
+
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-label">Errores (-1.125)</div>
+            <div class="kpi-stat-number" style="color: #dc2626;">
+              {{ resultado.incorrectas }}
+            </div>
+          </div>
+
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-label">En Blanco (0.0)</div>
+            <div class="kpi-stat-number" style="color: var(--text-dim);">
+              {{ resultado.blanco }}
+            </div>
+          </div>
+
+          <div class="kpi-stat-box">
+            <div class="kpi-stat-label">Tiempo Total</div>
+            <div class="kpi-stat-number" style="color: var(--wine);">
+              {{ formatear_tiempo(resultado.tiempo_segundos) }}
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div style="margin-top: 1.25rem; padding-top: 0.85rem; border-top: 1px solid var(--border-color); font-size: 0.85rem; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem;">
+        <span>Postulante: <strong>{{ resultado.nombre }} {{ resultado.apellido }}</strong> (DNI: {{ resultado.dni[:2] }}****{{ resultado.dni[-2:] }})</span>
+        <span>Carrera: <strong>{{ resultado.carrera }}</strong> (Área {{ resultado.area }})</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SECCIÓN: REVISIÓN ACADÉMICA DE PREGUNTAS Y EXPLICACIONES DECO -->
+  {% if detalles_preguntas %}
+  <div class="card" style="margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; margin-bottom: 1.25rem;">
+      <div>
+        <h3 class="card-title" style="margin-bottom: 0.25rem;">Revisión Académica de Preguntas</h3>
+        <p class="card-subtitle" style="margin-bottom: 0;">Retroalimentación pedagógica y justificación de respuestas tipo DECO</p>
+      </div>
+      
+      <!-- Filtros por tipo de resultado -->
+      <div class="review-filter-bar" style="margin-bottom: 0;">
+        <button type="button" class="filter-pill-btn active" onclick="filterQuestions('all', this)">
+          Todas ({{ detalles_preguntas|length }})
+        </button>
+        <button type="button" class="filter-pill-btn" onclick="filterQuestions('correct', this)">
+          ✓ Correctas ({{ resultado.correctas }})
+        </button>
+        <button type="button" class="filter-pill-btn" onclick="filterQuestions('incorrect', this)">
+          ✕ Incorrectas ({{ resultado.incorrectas }})
+        </button>
+        <button type="button" class="filter-pill-btn" onclick="filterQuestions('blank', this)">
+          — En Blanco ({{ resultado.blanco }})
+        </button>
+      </div>
+    </div>
+
+    <div id="questions-review-list">
+      {% for q in detalles_preguntas %}
+      <div class="question-review-card {{ 'correct' if q.es_correcta else ('blank' if q.es_blanco else 'incorrect') }}" 
+           data-status="{{ 'correct' if q.es_correcta else ('blank' if q.es_blanco else 'incorrect') }}">
+        
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+          <div style="display: flex; align-items: center; gap: 0.6rem;">
+            <span class="badge badge-gold" style="font-size: 0.75rem;">{{ q.seccion }}</span>
+            <span style="font-weight: 700; font-size: 0.95rem;">Pregunta {{ loop.index }}</span>
+          </div>
+
+          <div>
+            {% if q.es_correcta %}
+              <span class="badge badge-success">+20.0 pts</span>
+            {% elif q.es_blanco %}
+              <span class="badge badge-secondary">0.0 pts (En blanco)</span>
+            {% else %}
+              <span class="badge badge-danger">-1.125 pts</span>
+            {% endif %}
+          </div>
+        </div>
+
+        <p style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 1rem; color: var(--text-main); white-space: pre-line;">
+          {{ q.enunciado }}
+        </p>
+
+        <!-- Alternativas -->
+        <div style="margin-bottom: 0.75rem;">
+          {% for letra, texto in q.opciones.items() %}
+            {% set is_marked = (q.marcada == letra) %}
+            {% set is_official = (q.correcta == letra) %}
+            
+            <div class="review-option-item 
+              {% if is_marked and is_official %}selected-correct
+              {% elif is_marked and not is_official %}selected-wrong
+              {% elif is_official %}official-correct{% endif %}">
+              
+              <div class="review-letter-badge" style="{% if is_marked and is_official %}background: #10b981; color: #fff;{% elif is_marked and not is_official %}background: #ef4444; color: #fff;{% endif %}">
+                {{ letra }}
+              </div>
+              <div style="flex-grow: 1;">
+                {{ texto }}
+              </div>
+              <div>
+                {% if is_marked and is_official %}
+                  <span style="color: #059669; font-weight: 700; font-size: 0.8rem;">✓ Tu respuesta (Correcta)</span>
+                {% elif is_marked and not is_official %}
+                  <span style="color: #dc2626; font-weight: 700; font-size: 0.8rem;">✕ Tu respuesta</span>
+                {% elif is_official %}
+                  <span style="color: #059669; font-weight: 600; font-size: 0.8rem;">Clave Oficial</span>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <!-- Explicación Académica DECO -->
+        {% if q.explicacion %}
+        <div class="explanation-box">
+          <strong style="color: var(--wine);">💡 Fundamento Académico DECO:</strong><br>
+          {{ q.explicacion }}
+        </div>
+        {% endif %}
+
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+  {% endif %}
+
+  <!-- Panel de Auditoría: OBSERVACIONES DE CONDUCTA -->
+  <div class="card" style="margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+      <div>
+        <h3 class="card-title" style="margin-bottom: 0.25rem;">Observaciones de Supervisión (Auditoría Anti-Trampa)</h3>
+        <p class="card-subtitle" style="margin-bottom: 0;">Registro cronológico de incidentes para revisión administrativa</p>
+      </div>
+      <div>
+        {% if conteo.total == 0 %}
+          <span class="badge badge-success">✓ Sin Observaciones</span>
+        {% else %}
+          <span class="badge badge-wine">⚠️ {{ conteo.total }} observaciones registradas</span>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if eventos %}
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th style="width: 110px;">Segundo</th>
+            <th style="width: 140px;">Módulo</th>
+            <th style="width: 140px;">Incidente</th>
+            <th>Detalle de la Observación</th>
+            <th style="width: 140px; text-align: right;">Hora</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ev in eventos %}
+          <tr>
+            <td style="font-family: monospace; font-weight: 700; color: var(--wine);">
+              {{ formatear_tiempo(ev.segundo_examen) }}
+            </td>
+            <td>
+              <span class="badge badge-wine">{{ ev.modulo }}</span>
+            </td>
+            <td>
+              <strong style="font-size: 0.85rem; color: #dc2626;">{{ ev.tipo }}</strong>
+            </td>
+            <td style="font-size: 0.88rem; color: var(--text-main);">
+              {{ ev.descripcion }}
+            </td>
+            <td style="text-align: right; font-size: 0.8rem; color: var(--text-dim);">
+              {{ ev.registrado_en.strftime('%H:%M:%S') if ev.registrado_en else '-' }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+      <div style="font-size: 2rem; color: #10b981; margin-bottom: 0.35rem;">🛡️ ✓</div>
+      <h4 style="color: #059669; font-family: var(--font-heading); margin-bottom: 0.25rem;">
+        Examen completado conforme y sin observaciones
+      </h4>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0;">
+        El postulante mantuvo presencia facial continua, modo de pantalla completa y no registró incidencias durante la prueba.
+      </p>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 1.25rem; font-size: 0.75rem; color: var(--text-dim); word-break: break-all;">
+      Firma Criptográfica / Token de Sesión: <code>{{ resultado.token_sesion }}</code>
+    </div>
+  </div>
+
+  <!-- Botones de Acción -->
+  <div style="display: flex; gap: 1rem; justify-content: flex-end; flex-wrap: wrap;">
+    <a href="{{ url_for('dashboard.dashboard_view') }}" class="btn btn-secondary">
+      Volver al Panel
+    </a>
+    <a href="{{ url_for('resultados.ranking_view', area=resultado.area) }}" class="btn btn-secondary">
+      🏆 Ver Ranking Oficial
+    </a>
+    <a href="{{ url_for('simulacro.preparacion_examen', area=resultado.area) }}" class="btn btn-primary">
+      🚀 Rendir Nuevo Simulacro
+    </a>
+  </div>
+
+</div>
+
+<script>
+  function filterQuestions(status, btn) {
+    document.querySelectorAll('.filter-pill-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const cards = document.querySelectorAll('.question-review-card');
+    cards.forEach(card => {
+      if (status === 'all' || card.getAttribute('data-status') === status) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+</script>
+{% endblock %}

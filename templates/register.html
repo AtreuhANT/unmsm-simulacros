@@ -1,0 +1,183 @@
+{% extends 'base.html' %}
+
+{% block title %}Registro de Postulante — UNMSM{% endblock %}
+
+{% block head_extra %}
+<style>
+  .register-container {
+    max-width: 640px;
+    margin: 2rem auto;
+  }
+  .register-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 2.25rem;
+    box-shadow: var(--shadow-md);
+  }
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+  .notice-banner {
+    background: rgba(146, 105, 27, 0.08);
+    border: 1px solid rgba(146, 105, 27, 0.25);
+    border-radius: var(--radius-sm);
+    padding: 0.85rem 1rem;
+    margin: 1.5rem 0 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: var(--text-main);
+  }
+  .notice-icon {
+    font-size: 1.15rem;
+    line-height: 1;
+  }
+  @media (max-width: 640px) {
+    .register-card {
+      padding: 1.5rem;
+    }
+    .form-row-2 {
+      grid-template-columns: 1fr;
+      gap: 0.85rem;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="register-container">
+  <div class="register-card">
+
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div class="brand-icon" style="margin: 0 auto 0.75rem; width: 48px; height: 48px; font-size: 1.35rem;">UN</div>
+      <h2 class="card-title" style="font-size: 1.5rem; margin-bottom: 0.25rem;">Registro de Postulante</h2>
+      <p class="card-subtitle" style="margin-bottom: 0;">Plataforma Oficial de Simulacros tipo Admisión UNMSM</p>
+    </div>
+
+    <form method="POST" action="{{ url_for('auth.register') }}" id="register-form">
+      
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="nombre" class="form-label">Nombres</label>
+          <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Ej. Juan Carlos" required autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label for="apellido" class="form-label">Apellidos</label>
+          <input type="text" name="apellido" id="apellido" class="form-control" placeholder="Ej. Pérez Silva" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dni" class="form-label">Número de DNI / Documento</label>
+        <input type="text" name="dni" id="dni" class="form-control" placeholder="8 dígitos numéricos" 
+               pattern="[0-9]{8,12}" maxlength="12" required autocomplete="username">
+        <div class="form-hint">Tu DNI será tu identificador único de acceso al sistema.</div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="area" class="form-label">Área Académica</label>
+          <select name="area" id="area" class="form-select" required>
+            <option value="" disabled selected>Selecciona tu Área</option>
+            {% for letra, info in areas.items() %}
+              <option value="{{ letra }}">Área {{ letra }} — {{ info.nombre }}</option>
+            {% endfor %}
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="carrera" class="form-label">Carrera Profesional</label>
+          <select name="carrera" id="carrera" class="form-select" required disabled>
+            <option value="" disabled selected>Primero elige tu Área</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" name="password" id="password" class="form-control" 
+                 placeholder="Mínimo 6 caracteres" minlength="6" required autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label for="password_confirm" class="form-label">Confirmar Contraseña</label>
+          <input type="password" name="password_confirm" id="password_confirm" class="form-control" 
+                 placeholder="Repite tu contraseña" minlength="6" required autocomplete="new-password">
+        </div>
+      </div>
+
+      <div class="notice-banner">
+        <span class="notice-icon">🛡️</span>
+        <div>
+          <strong>Sin cámara para registrarte:</strong> Tu privacidad es primero. La preparación de tu cámara y verificación facial solo se solicitará cuando decidas iniciar un examen supervisado.
+        </div>
+      </div>
+
+      <div style="margin-top: 1.5rem;">
+        <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" id="btn-submit-register">
+          Crear Cuenta de Postulante
+        </button>
+      </div>
+
+    </form>
+
+    <div style="margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--border-color); text-align: center; font-size: 0.88rem;">
+      <span style="color: var(--text-muted);">¿Ya tienes una cuenta registrada?</span>
+      <a href="{{ url_for('auth.login') }}" style="color: var(--unmsm-crimson); font-weight: 600; text-decoration: none; margin-left: 0.35rem;" id="link-login">
+        Iniciar Sesión
+      </a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Selector dinámico de carreras según el Área académica elegida
+  const areaSelect = document.getElementById('area');
+  const carreraSelect = document.getElementById('carrera');
+  const registerForm = document.getElementById('register-form');
+  const passwordInput = document.getElementById('password');
+  const confirmInput = document.getElementById('password_confirm');
+
+  areaSelect.addEventListener('change', async () => {
+    const area = areaSelect.value;
+    if (!area) return;
+    
+    carreraSelect.innerHTML = '<option value="" disabled selected>Cargando carreras...</option>';
+    carreraSelect.disabled = true;
+
+    try {
+      const resp = await fetch(`/api/carreras/${area}`);
+      if (!resp.ok) throw new Error('Respuesta no válida del servidor');
+      const data = await resp.json();
+      
+      carreraSelect.innerHTML = '<option value="" disabled selected>Selecciona tu Carrera</option>';
+      data.carreras.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c;
+        opt.textContent = c;
+        carreraSelect.appendChild(opt);
+      });
+      carreraSelect.disabled = false;
+    } catch (e) {
+      console.error('Error al cargar carreras:', e);
+      carreraSelect.innerHTML = '<option value="" disabled selected>Error al cargar carreras</option>';
+    }
+  });
+
+  // Validación de coincidencia de contraseña en el cliente antes de enviar
+  registerForm.addEventListener('submit', (e) => {
+    if (passwordInput.value !== confirmInput.value) {
+      e.preventDefault();
+      alert('Las contraseñas no coinciden. Por favor revísalas antes de continuar.');
+      confirmInput.focus();
+    }
+  });
+</script>
+{% endblock %}

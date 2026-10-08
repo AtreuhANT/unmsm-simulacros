@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "seccion": "Física - Estática de Estructuras",
+    "enunciado": "Una barra homogénea de longitud L = 4 m y masa m = 12 kg está articulada en su extremo izquierdo sobre una pared vertical y sostenida horizontalmente en el extremo derecho mediante un cable ideal inclinado a 30° respecto a la horizontal. Calcule la tensión del cable (g = 10 m/s²).",
+    "opciones": {
+      "A": "60 N",
+      "B": "120 N",
+      "C": "100 N",
+      "D": "240 N",
+      "E": "80 N"
+    },
+    "correcta": "B",
+    "explicacion": "Torque respecto a la articulación: Peso actúa en L/2 (2 m) hacia abajo: Peso = 12*10 = 120 N. Torque peso = 120 * 2 = 240 N*m. Componente vertical de tensión T*sen(30°) actúa en L = 4 m. T*0.5*4 = 240 => 2T = 240 => T = 120 N."
+  },
+  {
+    "id": 2,
+    "seccion": "Álgebra - Matrices y Determinantes",
+    "enunciado": "Dada la matriz cuadrada A = [[2, 5], [1, 3]], halle la matriz inversa A⁻¹.",
+    "opciones": {
+      "A": "[[3, -5], [-1, 2]]",
+      "B": "[[-3, 5], [1, -2]]",
+      "C": "[[2, -1], [-5, 3]]",
+      "D": "[[1, 0], [0, 1]]",
+      "E": "[[3, 5], [1, 2]]"
+    },
+    "correcta": "A",
+    "explicacion": "Determinante det(A) = 2*3 - 5*1 = 6 - 5 = 1. A⁻¹ = 1/det(A) * [[d, -b], [-c, a]] = [[3, -5], [-1, 2]]."
+  },
+  {
+    "id": 3,
+    "seccion": "Habilidad Lógico-Matemática",
+    "enunciado": "Tres engranajes A, B y C están conectados de forma consecutiva (A engrana con B, y B engrana con C). El número de dientes de A, B y C son 20, 30 y 50 respectivamente. Si el engranaje A da 150 vueltas, ¿cuántas vueltas dará el engranaje C?",
+    "opciones": {
+      "A": "60 vueltas",
+      "B": "50 vueltas",
+      "C": "75 vueltas",
+      "D": "100 vueltas",
+      "E": "90 vueltas"
+    },
+    "correcta": "A",
+    "explicacion": "El número de dientes y vueltas es inversamente proporcional: (Dientes A)*(Vueltas A) = (Dientes C)*(Vueltas C). 20 * 150 = 50 * Vc => 3000 = 50 * Vc => Vc = 60 vueltas."
+  },
+  {
+    "id": 4,
+    "seccion": "Física - Circuitos Eléctricos",
+    "enunciado": "Tres resistores de 6 Ω, 3 Ω y 2 Ω se conectan en paralelo a una fuente ideal de corriente continua de 12 V. La corriente total entregada por la fuente al circuito es:",
+    "opciones": {
+      "A": "12 A",
+      "B": "6 A",
+      "C": "2 A",
+      "D": "1.09 A",
+      "E": "24 A"
+    },
+    "correcta": "A",
+    "explicacion": "Resistencia equivalente en paralelo: 1/Req = 1/6 + 1/3 + 1/2 = 1/6 + 2/6 + 3/6 = 6/6 = 1 Ω => Req = 1 Ω. Por ley de Ohm: I = V / Req = 12 V / 1 Ω = 12 A."
+  },
+  {
+    "id": 5,
+    "seccion": "Geometría del Espacio",
+    "enunciado": "El volumen de un cilindro circular recto es 54π cm³. Si la altura mide el doble del radio de la base, halle el área total de dicho cilindro.",
+    "opciones": {
+      "A": "54π cm²",
+      "B": "36π cm²",
+      "C": "27π cm²",
+      "D": "45π cm²",
+      "E": "72π cm²"
+    },
+    "correcta": "A",
+    "explicacion": "V = π * r² * h. Dado h = 2r: V = 2π * r³ = 54π => r³ = 27 => r = 3 cm, h = 6 cm. Área total = 2π*r*(r + h) = 2π*3*(3 + 6) = 6π * 9 = 54π cm²."
+  },
+  {
+    "id": 6,
+    "seccion": "Química - Electroquímica",
+    "enunciado": "Durante la electrólisis de una salmuera de cloruro de sodio concentrada, el gas desprendido en el ánodo (+) por la oxidación de los iones cloruro es:",
+    "opciones": {
+      "A": "Gas Cloro (Cl2)",
+      "B": "Gas Hidrógeno (H2)",
+      "C": "Gas Oxígeno (O2)",
+      "D": "Dióxido de Carbono (CO2)",
+      "E": "Gas Nitrógeno (N2)"
+    },
+    "correcta": "A",
+    "explicacion": "En el ánodo ocurre la oxidación: 2 Cl⁻ -> Cl2(g) + 2 e⁻. Por tanto, se desprende gas cloro."
+  },
+  {
+    "id": 7,
+    "seccion": "Trigonometría - Resolución de Triángulos",
+    "enunciado": "En un triángulo oblicuángulo ABC, los lados a y b miden 5 cm y 8 cm respectivamente, y el ángulo interior comprendido C mide 60°. Por la ley de cosenos, el lado c mide:",
+    "opciones": {
+      "A": "7 cm",
+      "B": "6 cm",
+      "C": "√89 cm",
+      "D": "√65 cm",
+      "E": "9 cm"
+    },
+    "correcta": "A",
+    "explicacion": "c² = a² + b² - 2ab*cos(60°) = 5² + 8² - 2*5*8*(1/2) = 25 + 64 - 40 = 89 - 40 = 49 => c = 7 cm."
+  },
+  {
+    "id": 8,
+    "seccion": "Habilidad Verbal - Precisión Léxica",
+    "enunciado": "El ingeniero civil tuvo que _______ las grietas del muro de contención utilizando una resina epóxica de alta adherencia.",
+    "opciones": {
+      "A": "tapar",
+      "B": "sellar",
+      "C": "cerrar",
+      "D": "anular",
+      "E": "guardar"
+    },
+    "correcta": "B",
+    "explicacion": "En el ámbito de la ingeniería y construcción, el término técnico y formal preciso para cerrar hendiduras con resina hermética es 'sellar'."
+  },
+  {
+    "id": 9,
+    "seccion": "Aritmética - Razones y Proporciones",
+    "enunciado": "En un servidor de base de datos concurrente, el tiempo de respuesta T es inversamente proporcional a la memoria RAM asignada M y directamente proporcional al número de peticiones simultáneas P. Si con 8 GB y 40 peticiones el tiempo es 10 ms, ¿cuál será el tiempo con 16 GB y 120 peticiones?",
+    "opciones": {
+      "A": "15 ms",
+      "B": "20 ms",
+      "C": "25 ms",
+      "D": "30 ms",
+      "E": "12 ms"
+    },
+    "correcta": "A",
+    "explicacion": "Constante k = (T * M) / P. k = (10 * 8) / 40 = 80 / 40 = 2. Para la nueva condición: (T_nuevo * 16) / 120 = 2 => 16 T_nuevo = 240 => T_nuevo = 15 ms."
+  },
+  {
+    "id": 10,
+    "seccion": "Física - Óptica Geométrica",
+    "enunciado": "Un rayo de luz viaja desde el aire (índice n1 = 1.0) hacia un bloque de vidrio óptico con un ángulo de incidencia de 30°. Si el índice de refracción del vidrio es n2 = 1.5, el seno del ángulo de refracción sen(θr) es:",
+    "opciones": {
+      "A": "1/3",
+      "B": "1/2",
+      "C": "3/4",
+      "D": "2/3",
+      "E": "1/√3"
+    },
+    "correcta": "A",
+    "explicacion": "Por la ley de Snell: n1 * sen(θi) = n2 * sen(θr). 1.0 * sen(30°) = 1.5 * sen(θr) => 1.0 * (1/2) = (3/2) * sen(θr) => 1/2 = 3/2 * sen(θr) => sen(θr) = 1/3."
+  }
+]

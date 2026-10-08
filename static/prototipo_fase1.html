@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="claro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prototipo Visual Fase 1 — Simulacros UNMSM</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ==========================================================================
+       TOKENS DEL SISTEMA DE DISEÑO — FASE 1
+       Propuesta A: Claro Institucional Sobrio
+       Propuesta B: Oscuro Moderno & Concentración
+       ========================================================================== */
+    :root {
+      --font-body: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-heading: 'Playfair Display', Georgia, serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+      --radius-full: 9999px;
+      --transition-fast: 0.18s ease;
+      --transition-normal: 0.25s ease;
+    }
+
+    /* TEMA CLARO: "Alma Mater" */
+    html[data-theme="claro"] {
+      --bg-canvas: #f8fafc;
+      --bg-surface: #ffffff;
+      --bg-subtle: #f1f5f9;
+      --bg-elevated: #ffffff;
+      
+      --border-subtle: #e2e8f0;
+      --border-medium: #cbd5e1;
+      --border-focus: #7b1a2a;
+      
+      --text-primary: #0f172a;
+      --text-secondary: #334155;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      
+      --wine: #7b1a2a;
+      --wine-hover: #631421;
+      --wine-surface: rgba(123, 26, 42, 0.07);
+      --wine-border: rgba(123, 26, 42, 0.22);
+      
+      --gold: #92691b;
+      --gold-surface: rgba(146, 105, 27, 0.09);
+      --gold-border: rgba(146, 105, 27, 0.28);
+      
+      --success: #059669;
+      --success-surface: rgba(5, 150, 105, 0.08);
+      --warning: #d97706;
+      --danger: #dc2626;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.06);
+      --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.06);
+      --shadow-lg: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+
+    /* TEMA OSCURO: "Noche Decana" */
+    html[data-theme="oscuro"] {
+      --bg-canvas: #090d16;
+      --bg-surface: #111827;
+      --bg-subtle: #1a2234;
+      --bg-elevated: #1e283d;
+      
+      --border-subtle: #1f2a40;
+      --border-medium: #2d3b59;
+      --border-focus: #9e2a3b;
+      
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --wine: #9e2a3b;
+      --wine-hover: #b43144;
+      --wine-surface: rgba(158, 42, 59, 0.16);
+      --wine-border: rgba(158, 42, 59, 0.35);
+      
+      --gold: #cba245;
+      --gold-surface: rgba(203, 162, 69, 0.14);
+      --gold-border: rgba(203, 162, 69, 0.32);
+      
+      --success: #10b981;
+      --success-surface: rgba(16, 185, 129, 0.14);
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      
+      --shadow-sm: 0 1px 3px rgba(0,0,0,0.3);
+      --shadow-md: 0 4px 14px rgba(0,0,0,0.4);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.5);
+    }
+
+    /* Reset y base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-canvas);
+      color: var(--text-primary);
+      min-height: 100vh;
+      line-height: 1.55;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* BARRA FLOTANTE DE CONTROL DEL PROTOTIPO */
+    .prototype-bar {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: var(--bg-surface);
+      border-bottom: 2px solid var(--border-subtle);
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--shadow-md);
+    }
+    .proto-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--wine);
+      letter-spacing: 0.02em;
+    }
+    .proto-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    .proto-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .btn-toggle-group {
+      display: flex;
+      background: var(--bg-subtle);
+      padding: 3px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border-subtle);
+    }
+    .proto-btn {
+      padding: 0.35rem 0.85rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+    .proto-btn.active {
+      background: var(--bg-surface);
+      color: var(--wine);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* HEADER INSTITUCIONAL */
+    .brand-header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 0.85rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand-identity {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    .brand-emblem {
+      width: 40px;
+      height: 40px;
+      background: var(--wine);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      font-size: 1.15rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--gold);
+    }
+    .brand-names h1 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1.2;
+    }
+    .brand-names span {
+      font-size: 0.72rem;
+      color: var(--gold);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.35rem 0.75rem;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-full);
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+    .user-avatar-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--wine-surface);
+      color: var(--wine);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    /* CONTENEDOR PRINCIPAL */
+    .app-viewport {
+      max-width: 1240px;
+      margin: 1.75rem auto 3rem;
+      padding: 0 1.5rem;
+    }
+
+    /* VISTAS */
+    .view-screen { display: none; }
+    .view-screen.active { display: block; animation: fadeIn 0.22s ease-out; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* COMPONENTES GENERALES */
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 1.6rem;
+      box-shadow: var(--shadow-sm);
+      transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    }
+    .card:hover {
+      border-color: var(--border-medium);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.65rem;
+      border-radius: var(--radius-full);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .badge-wine { background: var(--wine-surface); color: var(--wine); border: 1px solid var(--wine-border); }
+    .badge-gold { background: var(--gold-surface); color: var(--gold); border: 1px solid var(--gold-border); }
+    .badge-success { background: var(--success-surface); color: var(--success); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.35rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: var(--radius-md);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition-fast);
+      text-decoration: none;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: var(--wine);
+      color: #ffffff;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn-primary:hover {
+      background: var(--wine-hover);
+      box-shadow: var(--shadow-md);
+    }
+    .btn-secondary {
+      background: var(--bg-subtle);
+      color: var(--text-primary);
+      border: 1px solid var(--border-subtle);
+    }
+    .btn-secondary:hover {
+      background: var(--border-subtle);
+      border-color: var(--border-medium);
+    }
+    .btn-outline-gold {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+    }
+    .btn-outline-gold:hover {
+      background: var(--gold-surface);
+    }
+
+    /* ==========================================================================
+       VISTA 1: PANEL DEL POSTULANTE (DASHBOARD)
+       ========================================================================== */
+    .dashboard-hero {
+      background: linear-gradient(135deg, var(--wine-surface) 0%, var(--bg-surface) 65%);
+      border: 1px solid var(--wine-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .hero-greeting h2 {
+      font-family: var(--font-heading);
+      font-size: 1.85rem;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+    .hero-greeting p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2.25rem;
+    }
+    .kpi-card {
+      padding: 1.35rem;
+    }
+    .kpi-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+    .kpi-value {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 0.35rem 0 0.15rem;
+      line-height: 1.1;
+    }
+    .kpi-value small { font-size: 1rem; font-family: var(--font-body); font-weight: 500; color: var(--text-muted); }
+    .kpi-desc { font-size: 0.8rem; color: var(--text-muted); }
+
+    .simulacro-catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .sim-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .sim-card.featured {
+      border: 2px solid var(--wine);
+    }
+    .sim-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.85rem;
+    }
+    .sim-title {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      margin-bottom: 0.35rem;
+    }
+    .sim-meta {
+      display: flex;
+      gap: 1rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* ==========================================================================
+       VISTA 2: SALA DE PREPARACIÓN TÉCNICA PRE-EXAMEN
+       ========================================================================== */
+    .prep-container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .prep-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .prep-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.9rem;
+      color: var(--text-primary);
+      margin-bottom: 0.45rem;
+    }
+    .prep-notice-banner {
+      background: var(--gold-surface);
+      border: 1px solid var(--gold-border);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .prep-stepper {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .prep-step-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+    .prep-step-item.active {
+      color: var(--wine);
+    }
+    .step-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--bg-subtle);
+      border: 2px solid var(--border-medium);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+    }
+    .prep-step-item.active .step-circle {
+      background: var(--wine);
+      color: #ffffff;
+      border-color: var(--wine);
+    }
+    .prep-step-item.completed .step-circle {
+      background: var(--success);
+      color: #ffffff;
+      border-color: var(--success);
+    }
+
+    .prep-box-layout {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1.75rem;
+      align-items: start;
+    }
+    .mock-webcam-card {
+      background: #020617;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      aspect-ratio: 4 / 3;
+      position: relative;
+      border: 2px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mock-face-oval {
+      width: 130px;
+      height: 170px;
+      border: 2px dashed rgba(255,255,255,0.4);
+      border-radius: 50%;
+      position: absolute;
+    }
+    .mock-webcam-status {
+      position: absolute;
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(6px);
+      padding: 0.4rem 0.75rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.95rem;
+      background: var(--bg-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 0.75rem;
+      font-size: 0.88rem;
+    }
+    .checklist-icon {
+      font-size: 1.15rem;
+      color: var(--success);
+    }
+
+    /* ==========================================================================
+       VISTA 3: INTERFAZ DEL EXAMEN EN VIVO
+       ========================================================================== */
+    .exam-hud-bar {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 0.75rem 1.25rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .exam-timer-box {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+    .timer-tag {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+    .timer-clock {
+      font-family: var(--font-mono);
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      letter-spacing: 0.05em;
+    }
+    .save-status-indicator {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--success);
+    }
+    .save-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--success);
+    }
+
+    .exam-split-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 1.75rem;
+      align-items: start;
+    }
+
+    /* Tarjeta principal de la pregunta */
+    .question-panel {
+      padding: 2rem;
+    }
+    .question-badge-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
+      padding-bottom: 0.85rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .reading-passage {
+      background: var(--bg-subtle);
+      border-left: 3px solid var(--wine);
+      padding: 1.15rem 1.35rem;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      font-style: italic;
+    }
+    .question-stem {
+      font-size: 1.08rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+    
+    /* Ecuación o fórmula académica */
+    .academic-formula-box {
+      background: var(--bg-subtle);
+      border: 1px dashed var(--border-medium);
+      padding: 1rem;
+      border-radius: var(--radius-md);
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      color: var(--text-primary);
+    }
+
+    .options-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .option-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.95rem 1.15rem;
+      background: var(--bg-surface);
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: var(--transition-fast);
+      user-select: none;
+    }
+    .option-row:hover {
+      border-color: var(--border-medium);
+      background: var(--bg-subtle);
+    }
+    .option-row.selected {
+      border-color: var(--wine);
+      background: var(--wine-surface);
+    }
+    .option-letter-badge {
+      width: 32px;
+      height: 32px;
+      border-radius: var(--radius-sm);
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+    .option-row.selected .option-letter-badge {
+      background: var(--wine);
+      color: #ffffff;
+      border-color: var(--wine);
+    }
+    .option-text {
+      font-size: 0.94rem;
+      color: var(--text-primary);
+      flex-grow: 1;
+    }
+
+    .exam-nav-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    /* Sidebar de navegación y HUD */
+    .exam-sidebar-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .mini-hud-card {
+      padding: 1rem;
+      text-align: center;
+    }
+    .mini-hud-feed {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background: #020617;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hud-live-badge {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      background: rgba(220, 38, 38, 0.85);
+      color: #ffffff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 0.15rem 0.5rem;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .hud-live-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #ffffff;
+      border-radius: 50%;
+    }
+
+    .matrix-card {
+      padding: 1.25rem;
+    }
+    .matrix-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 0.85rem;
+      padding-bottom: 0.65rem;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.45rem;
+      margin-bottom: 1rem;
+    }
+    .matrix-item {
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: var(--transition-fast);
+    }
+    .matrix-item:hover {
+      border-color: var(--wine);
+    }
+    .matrix-item.answered {
+      background: var(--wine);
+      color: #ffffff;
+      border-color: var(--wine);
+    }
+    .matrix-item.marked {
+      background: var(--gold-surface);
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+    .matrix-item.current {
+      box-shadow: 0 0 0 2px var(--border-focus);
+      font-weight: 800;
+    }
+
+    /* Toast de notificación / error para pruebas */
+    .proto-toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--bg-surface);
+      border: 1px solid var(--wine-border);
+      border-left: 4px solid var(--wine);
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
+      max-width: 360px;
+      font-size: 0.85rem;
+      z-index: 10000;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       BARRA FLOTANTE DE CONTROL DEL PROTOTIPO (PERMITE CAMBIAR TEMA Y PANTALLA)
+       ========================================================================= -->
+  <aside class="prototype-bar" aria-label="Controlador de Prototipo Fase 1">
+    <div class="proto-badge">
+      <span>📐 PROTOTIPO FASE 1</span>
+      <span class="badge badge-gold">UNMSM ADMISIÓN</span>
+    </div>
+
+    <div class="proto-controls">
+      <!-- Selector de Dirección Visual -->
+      <span class="proto-label">Tema:</span>
+      <div class="btn-toggle-group">
+        <button type="button" class="proto-btn active" id="btn-theme-claro" onclick="setTheme('claro')">
+          ☀️ Propuesta A: Claro
+        </button>
+        <button type="button" class="proto-btn" id="btn-theme-oscuro" onclick="setTheme('oscuro')">
+          🌙 Propuesta B: Oscuro
+        </button>
+      </div>
+
+      <div style="width: 1px; height: 20px; background: var(--border-subtle); margin: 0 0.25rem;"></div>
+
+      <!-- Selector de Pantallas -->
+      <span class="proto-label">Pantalla:</span>
+      <div class="btn-toggle-group">
+        <button type="button" class="proto-btn active" id="btn-view-dash" onclick="setView('dashboard')">
+          1. Panel
+        </button>
+        <button type="button" class="proto-btn" id="btn-view-prep" onclick="setView('prep')">
+          2. Preparación
+        </button>
+        <button type="button" class="proto-btn" id="btn-view-exam" onclick="setView('exam')">
+          3. Examen
+        </button>
+        <button type="button" class="proto-btn" id="btn-view-res" onclick="setView('resultado')">
+          4. Resultado
+        </button>
+        <button type="button" class="proto-btn" id="btn-view-rank" onclick="setView('ranking')">
+          5. Ranking
+        </button>
+        <button type="button" class="proto-btn" id="btn-view-adm" onclick="setView('admin')">
+          6. Admin
+        </button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       HEADER INSTITUCIONAL COMÚN
+       ========================================================================= -->
+  <header class="brand-header">
+    <a href="#" class="brand-identity">
+      <div class="brand-emblem">UN</div>
+      <div class="brand-names">
+        <h1>Universidad Nacional Mayor de San Marcos</h1>
+        <span>Plataforma Oficial de Simulacros Virtuales</span>
+      </div>
+    </a>
+
+    <div class="user-pill">
+      <div class="user-avatar-circle">CM</div>
+      <span>Carlos Mendoza S.</span>
+      <span class="badge badge-wine" style="font-size: 0.65rem;">Área A</span>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       CONTENIDO PRINCIPAL INTERACTIVO
+       ========================================================================= -->
+  <main class="app-viewport">
+
+    <!-- -----------------------------------------------------------------------
+         PANTALLA 1: PANEL DEL POSTULANTE (DASHBOARD)
+         ----------------------------------------------------------------------- -->
+    <section class="view-screen active" id="screen-dashboard">
+      
+      <div class="dashboard-hero">
+        <div class="hero-greeting">
+          <span class="badge badge-wine" style="margin-bottom: 0.6rem;">Postulante 2026-I</span>
+          <h2>Bienvenido(a), Carlos Mendoza</h2>
+          <p>DNI: <strong>74829103</strong> &nbsp;•&nbsp; Carrera: <strong>Medicina Humana (Área A - Ciencias de la Salud)</strong></p>
+        </div>
+        <div>
+          <button type="button" class="btn btn-primary" onclick="setView('prep')">
+            🚀 Preparar Simulacro Área A
+          </button>
+        </div>
+      </div>
+
+      <!-- KPIs del Alumno -->
+      <div class="kpi-grid">
+        <div class="card kpi-card">
+          <div class="kpi-title">Simulacros Rendidos</div>
+          <div class="kpi-value">4 <small>/ ilimitados</small></div>
+          <div class="kpi-desc">Historial completo registrado</div>
+        </div>
+
+        <div class="card kpi-card">
+          <div class="kpi-title">Mejor Calificación</div>
+          <div class="kpi-value" style="color: var(--success);">1420.5 <small>pts</small></div>
+          <div class="kpi-desc">Puntaje oficial UNMSM (+20 / -1.125)</div>
+        </div>
+
+        <div class="card kpi-card">
+          <div class="kpi-title">Promedio Acumulado</div>
+          <div class="kpi-value" style="color: var(--gold);">1185.0 <small>pts</small></div>
+          <div class="kpi-desc">Rendimiento en 4 intentos válidos</div>
+        </div>
+
+        <div class="card kpi-card">
+          <div class="kpi-title">Estado de Supervisión</div>
+          <div class="kpi-value" style="font-size: 1.6rem; color: var(--success); display: flex; align-items: center; gap: 0.35rem;">
+            ✓ Conforme
+          </div>
+          <div class="kpi-desc">Sin observaciones de conducta graves</div>
+        </div>
+      </div>
+
+      <!-- Catálogo de Simulacros -->
+      <h3 style="font-family: var(--font-heading); font-size: 1.35rem; margin-bottom: 1.25rem;">
+        Simulacros Oficiales Disponibles
+      </h3>
+
+      <div class="simulacro-catalog-grid">
+        <div class="card sim-card featured">
+          <div>
+            <div class="sim-card-header">
+              <span class="badge badge-wine">Área A — Tu Especialidad</span>
+              <span class="badge badge-gold">Oficial DECO</span>
+            </div>
+            <h4 class="sim-title">Simulacro General Ciencias de la Salud</h4>
+            <div class="sim-meta">
+              <span>⏱️ 60 minutos</span>
+              <span>📝 20 preguntas modelo</span>
+              <span>👁️ Supervisión Edge</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.5;">
+              Evaluación adaptada con secciones de Habilidad Verbal, Razonamiento Matemático, Biología Celular y Química Médica.
+            </p>
+          </div>
+          <button type="button" class="btn btn-primary" style="width: 100%;" onclick="setView('prep')">
+            Comenzar Preparación
+          </button>
+        </div>
+
+        <div class="card sim-card">
+          <div>
+            <div class="sim-card-header">
+              <span class="badge badge-secondary">Área C</span>
+              <span style="font-size: 0.8rem; color: var(--text-muted);">Práctica Abierta</span>
+            </div>
+            <h4 class="sim-title">Simulacro Ingenierías</h4>
+            <div class="sim-meta">
+              <span>⏱️ 60 minutos</span>
+              <span>📝 20 preguntas</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem; line-height: 1.5;">
+              Énfasis en Física Aplicada, Álgebra Lineal, Geometría Analítica y Razonamiento Lógico.
+            </p>
+          </div>
+          <button type="button" class="btn btn-secondary" style="width: 100%;" onclick="alert('Práctica de otra área disponible en modo exploratorio.')">
+            Ver Ficha Técnica
+          </button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         PANTALLA 2: SALA DE PREPARACIÓN TÉCNICA PRE-EXAMEN
+         ----------------------------------------------------------------------- -->
+    <section class="view-screen" id="screen-prep">
+      
+      <div class="prep-container">
+        
+        <div class="prep-header">
+          <span class="badge badge-gold" style="margin-bottom: 0.5rem;">Protocolo Pre-Examen</span>
+          <h2>Verificación Técnica y de Identidad</h2>
+          <p style="color: var(--text-muted); font-size: 0.95rem;">
+            Asegura tu entorno y valida tu identidad facial antes de habilitar el cronómetro oficial.
+          </p>
+
+          <div class="prep-notice-banner">
+            <span style="font-size: 1.35rem;">⏱️</span>
+            <div>
+              <strong>El tiempo del examen NO transcurre en esta sala.</strong><br>
+              Tómate el tiempo necesario para ajustar tu iluminación y verificar tu cámara web.
+            </div>
+          </div>
+        </div>
+
+        <!-- Indicador de Pasos -->
+        <div class="prep-stepper">
+          <div class="prep-step-item completed">
+            <div class="step-circle">✓</div>
+            <span>1. Permisos del Navegador</span>
+          </div>
+          <div class="prep-step-item active">
+            <div class="step-circle">2</div>
+            <span>2. Verificación Facial 1:1</span>
+          </div>
+          <div class="prep-step-item">
+            <div class="step-circle">3</div>
+            <span>3. Entorno & Pantalla Completa</span>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 2rem;">
+          <div class="prep-box-layout">
+            
+            <!-- Vista de Cámara Simulada -->
+            <div>
+              <div class="mock-webcam-card">
+                <div class="mock-face-oval"></div>
+                <div style="font-size: 2.5rem; opacity: 0.35;">👤</div>
+                <div class="mock-webcam-status">
+                  <span>● HD Webcam Activa</span>
+                  <span style="color: var(--success); font-weight: 700;">OK</span>
+                </div>
+              </div>
+
+              <div style="margin-top: 0.85rem; font-size: 0.8rem; color: var(--text-muted); text-align: center;">
+                Distancia euclidiana: <strong style="color: var(--success);">0.27</strong> (Umbral &le; 0.55)
+              </div>
+            </div>
+
+            <!-- Panel de Comprobaciones -->
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 1rem;">
+                Comprobaciones Requeridas
+              </h3>
+
+              <div class="checklist-item">
+                <div class="checklist-icon">✓</div>
+                <div>
+                  <strong>Modelos de Visión Artificial locales cargados</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">TinyFaceDetector + FaceLandmark68 (100% en tu dispositivo)</div>
+                </div>
+              </div>
+
+              <div class="checklist-item">
+                <div class="checklist-icon">✓</div>
+                <div>
+                  <strong>Rostro único detectado y centrado</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Identidad validada contra la plantilla facial de tu cuenta</div>
+                </div>
+              </div>
+
+              <div class="checklist-item">
+                <div class="checklist-icon" style="color: var(--gold);">★</div>
+                <div>
+                  <strong>Compromiso de Honestidad Académica</strong>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">Manos sobre el escritorio, sin audífonos ni teléfonos celulares</div>
+                </div>
+              </div>
+
+              <div style="margin-top: 1.75rem; display: flex; gap: 0.85rem;">
+                <button type="button" class="btn btn-secondary" onclick="setView('dashboard')">
+                  Cancelar y Volver
+                </button>
+                <button type="button" class="btn btn-primary" style="flex-grow: 1;" onclick="setView('exam')">
+                  🚀 Comenzar Examen en Pantalla Completa
+                </button>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         PANTALLA 3: INTERFAZ DEL EXAMEN EN VIVO (CON CONTENIDO ACADÉMICO REAL)
+         ----------------------------------------------------------------------- -->
+    <section class="view-screen" id="screen-exam">
+      
+      <!-- HUD Superior del Examen -->
+      <div class="exam-hud-bar">
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span class="badge badge-wine">Área A — Pregunta 3 de 20</span>
+          <div class="save-status-indicator">
+            <span class="save-pulse"></span>
+            <span>Guardado en servidor ✓</span>
+          </div>
+        </div>
+
+        <div class="exam-timer-box">
+          <span class="timer-tag">Tiempo Restante:</span>
+          <div class="timer-clock">00:54:18</div>
+        </div>
+
+        <div style="display: flex; gap: 0.5rem;">
+          <button type="button" class="btn btn-outline-gold btn-sm" id="btn-mark-review" onclick="toggleReview()">
+            ⭐ Marcar para Revisión
+          </button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="alert('Se abriría el modal de confirmación con 12/20 respondidas.')">
+            Entregar Examen
+          </button>
+        </div>
+      </div>
+
+      <!-- Layout Dividido: Pregunta + Navegación/HUD -->
+      <div class="exam-split-layout">
+        
+        <!-- Columna de Pregunta -->
+        <article class="card question-panel">
+          
+          <div class="question-badge-row">
+            <div>
+              <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--gold); letter-spacing: 0.05em;">
+                Habilidad Verbal • Comprensión Lectora DECO
+              </span>
+            </div>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Valor: +20.0 / -1.125</span>
+          </div>
+
+          <!-- Pasaje de Lectura Exigente (Texto DECO) -->
+          <div class="reading-passage">
+            «La resistencia a los antibióticos constituye hoy una de las mayores amenazas para la salud pública mundial y la seguridad alimentaria. Diversos patógenos bacterianos han desarrollado mecanismos genéticos de transferencia horizontal para neutralizar betalactámicos y carbapenémicos. Este fenómeno no es meramente biológico, sino biocultural: la automedicación indiscriminada y la profilaxis pecuaria aceleran la presión de selección evolutiva a tasas insostenibles.»
+          </div>
+
+          <!-- Enunciado de la Pregunta -->
+          <div class="question-stem">
+            A partir de la lectura del texto, ¿cuál de los siguientes enunciados resume medularmente la tesis formulada por el autor?
+          </div>
+
+          <!-- Ecuación de soporte / fórmula académica en bloque -->
+          <div class="academic-formula-box">
+            Tasa de Mutación Bacteriana: &nbsp;&Delta;R(t) = &alpha; &middot; [F&aacute;rmaco] &times; e<sup>&minus;k&middot;t</sup>
+          </div>
+
+          <!-- Opciones A, B, C, D, E -->
+          <div class="options-stack">
+            <div class="option-row" onclick="selectOption(this, 'A')">
+              <div class="option-letter-badge">A</div>
+              <div class="option-text">La automedicación es una práctica confinada exclusivamente a países en vías de desarrollo.</div>
+            </div>
+
+            <div class="option-row selected" onclick="selectOption(this, 'B')">
+              <div class="option-letter-badge">B</div>
+              <div class="option-text">La resistencia bacteriana es un problema biocultural crítico acelerado por el uso excesivo de antimicrobianos.</div>
+            </div>
+
+            <div class="option-row" onclick="selectOption(this, 'C')">
+              <div class="option-letter-badge">C</div>
+              <div class="option-text">Los fármacos betalactámicos son totalmente inocuos para el ganado en medicina veterinaria.</div>
+            </div>
+
+            <div class="option-row" onclick="selectOption(this, 'D')">
+              <div class="option-letter-badge">D</div>
+              <div class="option-text">La selección evolutiva bacteriana opera con independencia de la presencia de agentes químicos.</div>
+            </div>
+
+            <div class="option-row" onclick="selectOption(this, 'E')">
+              <div class="option-letter-badge">E</div>
+              <div class="option-text">Toda infección respiratoria es hoy intratable debido a la neutralización de los carbapenémicos.</div>
+            </div>
+          </div>
+
+          <!-- Barra de navegación del ítem -->
+          <div class="exam-nav-toolbar">
+            <button type="button" class="btn btn-secondary" onclick="alert('Ir a pregunta anterior')">
+              &larr; Anterior
+            </button>
+            
+            <button type="button" class="btn btn-secondary btn-sm" style="color: var(--text-muted);" onclick="clearSelection()">
+              ✕ Dejar en Blanco (0.0 pts)
+            </button>
+
+            <button type="button" class="btn btn-primary" onclick="alert('Guardado automático y avance a pregunta 4')">
+              Siguiente Pregunta &rarr;
+            </button>
+          </div>
+
+        </article>
+
+        <!-- Columna de Navegación y HUD -->
+        <aside class="exam-sidebar-stack">
+          
+          <!-- Mini HUD de Cámara Web -->
+          <div class="card mini-hud-card">
+            <div class="mini-hud-feed">
+              <div class="hud-live-badge">EN VIVO</div>
+              <div style="font-size: 2rem; opacity: 0.35;">👤</div>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.76rem;">
+              <span style="color: var(--text-muted); font-weight: 600;">SUPERVISIÓN IA</span>
+              <span style="color: var(--success); font-weight: 700;">● Rostro Conforme</span>
+            </div>
+          </div>
+
+          <!-- Matriz de 20 Preguntas -->
+          <div class="card matrix-card">
+            <div style="font-size: 0.88rem; font-weight: 700; margin-bottom: 0.65rem; display: flex; justify-content: space-between;">
+              <span>Navegador de Ítems</span>
+              <span style="color: var(--wine); font-weight: 700;">12 / 20</span>
+            </div>
+
+            <div class="matrix-legend">
+              <span>● Respondida (Vino)</span>
+              <span>⭐ Revisión (Oro)</span>
+              <span>○ Pendiente</span>
+            </div>
+
+            <div class="matrix-grid">
+              <div class="matrix-item answered">1</div>
+              <div class="matrix-item answered">2</div>
+              <div class="matrix-item current answered">3</div>
+              <div class="matrix-item marked">4</div>
+              <div class="matrix-item answered">5</div>
+              <div class="matrix-item answered">6</div>
+              <div class="matrix-item answered">7</div>
+              <div class="matrix-item">8</div>
+              <div class="matrix-item answered">9</div>
+              <div class="matrix-item">10</div>
+              <div class="matrix-item answered">11</div>
+              <div class="matrix-item answered">12</div>
+              <div class="matrix-item marked">13</div>
+              <div class="matrix-item">14</div>
+              <div class="matrix-item answered">15</div>
+              <div class="matrix-item">16</div>
+              <div class="matrix-item answered">17</div>
+              <div class="matrix-item">18</div>
+              <div class="matrix-item">19</div>
+              <div class="matrix-item">20</div>
+            </div>
+
+            <button type="button" class="btn btn-secondary btn-sm" style="width: 100%;" onclick="alert('Filtro: Mostrando sólo marcadas para revisión')">
+              Filtrar Pendientes de Revisión (2)
+            </button>
+          </div>
+
+        </aside>
+
+      </div>
+
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         PANTALLA 4: INFORME DE RESULTADOS Y AUDITORÍA DE CONDUCTA
+         ----------------------------------------------------------------------- -->
+    <section class="view-screen" id="screen-resultado">
+      <div style="max-width: 960px; margin: 0 auto;">
+        
+        <!-- Banner de Estado -->
+        <div class="card" style="background: linear-gradient(135deg, var(--success-surface) 0%, var(--bg-surface) 60%); border: 1.5px solid rgba(5, 150, 105, 0.3); margin-bottom: 2rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+            <div>
+              <div style="display: flex; align-items: center; gap: 0.65rem; margin-bottom: 0.35rem;">
+                <h2 style="font-family: var(--font-heading); font-size: 1.65rem; color: var(--success); font-weight: 700;">
+                  ¡Simulacro Completado Exitosamente!
+                </h2>
+                <span class="badge badge-success">Válido en Ranking</span>
+              </div>
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">
+                Tu evaluación fue procesada y registrada en el cuadro oficial de mérito de la UNMSM.
+              </p>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="setView('ranking')">
+              🏆 Ver Posición en Ranking
+            </button>
+          </div>
+        </div>
+
+        <!-- Tarjetas de Puntaje y Desglose -->
+        <div style="display: grid; grid-template-columns: 280px 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+          <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: center; padding: 2rem 1.5rem;">
+            <span style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 0.05em;">Puntaje Oficial Obtenido</span>
+            <div style="font-family: var(--font-heading); font-size: 3.5rem; font-weight: 800; color: var(--wine); margin: 0.4rem 0;">
+              1420.5
+            </div>
+            <span style="font-size: 0.85rem; color: var(--text-muted);">de un máximo de 2000.0 pts</span>
+          </div>
+
+          <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; padding: 1.75rem;">
+            <div>
+              <h4 style="font-family: var(--font-heading); font-size: 1.15rem; color: var(--text-primary); margin-bottom: 1rem;">
+                Desglose Académico de Respuestas
+              </h4>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem;">
+                <div style="background: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                  <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Aciertos (+20)</div>
+                  <div style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--success); margin-top: 0.2rem;">72</div>
+                </div>
+                <div style="background: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                  <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Errores (-1.125)</div>
+                  <div style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--danger); margin-top: 0.2rem;">16</div>
+                </div>
+                <div style="background: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                  <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">En Blanco (0.0)</div>
+                  <div style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--text-muted); margin-top: 0.2rem;">12</div>
+                </div>
+                <div style="background: var(--bg-subtle); padding: 0.85rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                  <div style="font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700;">Tiempo Empleado</div>
+                  <div style="font-family: var(--font-heading); font-size: 1.4rem; font-weight: 700; color: var(--wine); margin-top: 0.2rem;">02h 45m</div>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top: 1rem; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); font-size: 0.82rem; color: var(--text-muted); display: flex; justify-content: space-between;">
+              <span>Postulante: <strong>Carlos Mendoza Silva</strong> (DNI: 74829103)</span>
+              <span>Carrera: <strong>Medicina Humana</strong> (Área A)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Panel de Auditoría de Supervisión -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+            <div>
+              <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+                Observaciones de Conducta (Auditoría Anti-Trampa)
+              </h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted);">
+                Registro de telemetría e incidentes captados durante la evaluación para revisión de transparencia
+              </p>
+            </div>
+            <span class="badge badge-success">✓ 0 Incidentes Graves</span>
+          </div>
+
+          <div style="background: var(--success-surface); border: 1px solid rgba(5, 150, 105, 0.25); border-radius: var(--radius-md); padding: 1.35rem; text-align: center;">
+            <div style="font-size: 1.8rem; color: var(--success); margin-bottom: 0.35rem;">🛡️ ✓</div>
+            <h4 style="color: var(--success); font-family: var(--font-heading); margin-bottom: 0.25rem;">
+              Examen Completado Conforme
+            </h4>
+            <p style="font-size: 0.85rem; color: var(--text-secondary);">
+              El postulante mantuvo presencia facial constante, pantalla completa y no registró anomalías de foco ni capturas indebidas.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         PANTALLA 5: RANKING OFICIAL Y PODIO UNMSM
+         ----------------------------------------------------------------------- -->
+    <section class="view-screen" id="screen-ranking">
+      <div style="max-width: 1040px; margin: 0 auto;">
+        
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.75rem;">
+          <div>
+            <h2 style="font-family: var(--font-heading); font-size: 1.85rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+              Ranking Oficial de Simulacros UNMSM
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Cuadro de mérito académico por estricto orden de puntuación y menor tiempo de resolución
+            </p>
+          </div>
+          <span class="badge badge-gold">★ Admisión 2026-I</span>
+        </div>
+
+        <!-- Barra de Filtros -->
+        <div class="card" style="padding: 1.25rem; margin-bottom: 1.75rem;">
+          <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+            <div style="flex-grow: 1;">
+              <label style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">
+                Filtrar por Área Académica
+              </label>
+              <select style="width: 100%; padding: 0.55rem; border-radius: var(--radius-sm); border: 1px solid var(--border-medium); background: var(--bg-surface); color: var(--text-primary); font-family: inherit;">
+                <option selected>Área A — Ciencias de la Salud</option>
+                <option>Área B — Ciencias Básicas</option>
+                <option>Área C — Ingenierías</option>
+                <option>Área D — Ciencias Económicas y de la Gestión</option>
+                <option>Área E — Humanidades y Ciencias Jurídicas</option>
+              </select>
+            </div>
+            <div style="flex-grow: 1;">
+              <label style="font-size: 0.78rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">
+                Carrera Específica (Opcional)
+              </label>
+              <input type="text" placeholder="Ej. Medicina Humana..." value="Medicina Humana" style="width: 100%; padding: 0.55rem; border-radius: var(--radius-sm); border: 1px solid var(--border-medium); background: var(--bg-surface); color: var(--text-primary); font-family: inherit;">
+            </div>
+            <div style="align-self: flex-end;">
+              <button type="button" class="btn btn-primary btn-sm">Aplicar Filtro</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Podio de Honor (Top 3) -->
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-bottom: 2rem; align-items: end;">
+          <!-- 2do Lugar (Plata) -->
+          <div class="card" style="text-align: center; padding: 1.5rem; border-top: 4px solid #94a3b8;">
+            <div style="font-size: 2rem; margin-bottom: 0.25rem;">🥈</div>
+            <div style="font-weight: 700; font-size: 1.05rem;">Valeria Quispe R.</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.65rem;">Medicina Humana</div>
+            <div style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--wine);">1480.0 pts</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">⏱️ 02h 38m 10s</div>
+          </div>
+
+          <!-- 1er Lugar (Oro) -->
+          <div class="card" style="text-align: center; padding: 2rem 1.5rem; border-top: 4px solid var(--gold); box-shadow: var(--shadow-md);">
+            <div style="font-size: 2.5rem; margin-bottom: 0.25rem;">👑</div>
+            <div style="font-weight: 800; font-size: 1.15rem;">Diego Palacios H.</div>
+            <div style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 0.65rem;">Medicina Humana</div>
+            <div style="font-family: var(--font-heading); font-size: 1.9rem; font-weight: 800; color: var(--wine);">1540.5 pts</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">⏱️ 02h 25m 40s</div>
+          </div>
+
+          <!-- 3er Lugar (Bronce) -->
+          <div class="card" style="text-align: center; padding: 1.5rem; border-top: 4px solid #cd7f32;">
+            <div style="font-size: 2rem; margin-bottom: 0.25rem;">🥉</div>
+            <div style="font-weight: 700; font-size: 1.05rem;">Carlos Mendoza S.</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.65rem;">Medicina Humana (Tú)</div>
+            <div style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 800; color: var(--wine);">1420.5 pts</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">⏱️ 02h 45m 12s</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- -----------------------------------------------------------------------
+         PANTALLA 6: PANEL DE ADMINISTRACIÓN Y SUPERVISIÓN
+         ----------------------------------------------------------------------- -->
+    <section class="view-screen" id="screen-admin">
+      <div>
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem;">
+          <div>
+            <h2 style="font-family: var(--font-heading); font-size: 1.85rem; color: var(--text-primary); margin-bottom: 0.25rem;">
+              Panel de Control del Supervisor
+            </h2>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Monitoreo global de evaluaciones concurrentes, telemetría y auditoría proctoring
+            </p>
+          </div>
+          <span class="badge badge-wine">Modo Administrador Activo</span>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="card kpi-card">
+            <div class="kpi-title">Evaluaciones Totales</div>
+            <div class="kpi-value">128</div>
+            <div class="kpi-desc">Pruebas registradas</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-title">Completadas Válidas</div>
+            <div class="kpi-value" style="color: var(--success);">124</div>
+            <div class="kpi-desc">Conformes con telemetría</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-title">Observadas por IA</div>
+            <div class="kpi-value" style="color: var(--warning);">4</div>
+            <div class="kpi-desc">Pendientes de auditoría</div>
+          </div>
+          <div class="card kpi-card">
+            <div class="kpi-title">Promedio General</div>
+            <div class="kpi-value" style="color: var(--gold);">1124.6 <small>pts</small></div>
+            <div class="kpi-desc">Rendimiento global</div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 1rem;">
+            Últimas Evaluaciones Enviadas
+          </h3>
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 0.88rem; text-align: left;">
+              <thead>
+                <tr style="border-bottom: 2px solid var(--border-subtle); color: var(--text-muted);">
+                  <th style="padding: 0.75rem 0.5rem;">Fecha</th>
+                  <th style="padding: 0.75rem 0.5rem;">Postulante</th>
+                  <th style="padding: 0.75rem 0.5rem;">DNI</th>
+                  <th style="padding: 0.75rem 0.5rem;">Área</th>
+                  <th style="padding: 0.75rem 0.5rem;">Puntaje</th>
+                  <th style="padding: 0.75rem 0.5rem;">Estado</th>
+                  <th style="padding: 0.75rem 0.5rem; text-align: right;">Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                  <td style="padding: 0.75rem 0.5rem; color: var(--text-muted);">19:42:15</td>
+                  <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Carlos Mendoza Silva</td>
+                  <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono);">74829103</td>
+                  <td style="padding: 0.75rem 0.5rem;"><span class="badge badge-wine">Área A</span></td>
+                  <td style="padding: 0.75rem 0.5rem; font-weight: 700; color: var(--wine);">1420.5</td>
+                  <td style="padding: 0.75rem 0.5rem;"><span class="badge badge-success">Conforme</span></td>
+                  <td style="padding: 0.75rem 0.5rem; text-align: right;"><button class="btn btn-secondary btn-sm" onclick="setView('resultado')">Ver Informe</button></td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--border-subtle);">
+                  <td style="padding: 0.75rem 0.5rem; color: var(--text-muted);">19:35:00</td>
+                  <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Valeria Quispe R.</td>
+                  <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono);">71029482</td>
+                  <td style="padding: 0.75rem 0.5rem;"><span class="badge badge-wine">Área A</span></td>
+                  <td style="padding: 0.75rem 0.5rem; font-weight: 700; color: var(--wine);">1480.0</td>
+                  <td style="padding: 0.75rem 0.5rem;"><span class="badge badge-success">Conforme</span></td>
+                  <td style="padding: 0.75rem 0.5rem; text-align: right;"><button class="btn btn-secondary btn-sm" onclick="setView('resultado')">Ver Informe</button></td>
+                </tr>
+                <tr>
+                  <td style="padding: 0.75rem 0.5rem; color: var(--text-muted);">19:12:40</td>
+                  <td style="padding: 0.75rem 0.5rem; font-weight: 600;">Jorge Arana M.</td>
+                  <td style="padding: 0.75rem 0.5rem; font-family: var(--font-mono);">70483921</td>
+                  <td style="padding: 0.75rem 0.5rem;"><span class="badge badge-secondary">Área C</span></td>
+                  <td style="padding: 0.75rem 0.5rem; font-weight: 700; color: var(--wine);">1250.0</td>
+                  <td style="padding: 0.75rem 0.5rem;"><span class="badge badge-gold" title="2 pérdidas de foco leves">Observado</span></td>
+                  <td style="padding: 0.75rem 0.5rem; text-align: right;"><button class="btn btn-secondary btn-sm" onclick="alert('Auditoría: 2 pérdidas de foco leves de 2 seg detectadas.')">Auditar</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Script interactivo de conmutación de propuestas y pantallas -->
+  <script>
+    function setTheme(theme) {
+      document.documentElement.setAttribute('data-theme', theme);
+      document.getElementById('btn-theme-claro').classList.toggle('active', theme === 'claro');
+      document.getElementById('btn-theme-oscuro').classList.toggle('active', theme === 'oscuro');
+    }
+
+    function setView(viewId) {
+      document.querySelectorAll('.view-screen').forEach(el => el.classList.remove('active'));
+      const target = document.getElementById('screen-' + viewId);
+      if (target) target.classList.add('active');
+
+      const mapping = {
+        'dashboard': 'btn-view-dash',
+        'prep': 'btn-view-prep',
+        'exam': 'btn-view-exam',
+        'resultado': 'btn-view-res',
+        'ranking': 'btn-view-rank',
+        'admin': 'btn-view-adm'
+      };
+
+      Object.entries(mapping).forEach(([id, btnId]) => {
+        const btn = document.getElementById(btnId);
+        if (btn) btn.classList.toggle('active', id === viewId);
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function selectOption(el, letter) {
+      document.querySelectorAll('.option-row').forEach(row => row.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function clearSelection() {
+      document.querySelectorAll('.option-row').forEach(row => row.classList.remove('selected'));
+    }
+
+    function toggleReview() {
+      const btn = document.getElementById('btn-mark-review');
+      btn.classList.toggle('btn-primary');
+      btn.classList.toggle('btn-outline-gold');
+      if (btn.classList.contains('btn-primary')) {
+        btn.textContent = '★ Marcada para Revisión';
+      } else {
+        btn.textContent = '⭐ Marcar para Revisión';
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,172 @@
+{% extends 'base.html' %}
+
+{% block title %}Ranking Oficial UNMSM{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ranking.css') }}">
+{% endblock %}
+
+{% block content %}
+<div>
+
+  <!-- Encabezado del Ranking -->
+  <div class="ranking-header">
+    <div class="ranking-title">
+      <h2>Ranking Oficial de Simulacros UNMSM</h2>
+      <p>Clasificación de mérito académico por estricto orden de puntuación y tiempo de resolución</p>
+    </div>
+    <div>
+      <span class="badge badge-gold">★ Sistema de Admisión</span>
+    </div>
+  </div>
+
+  <!-- Barra de Filtros por Área y Carrera -->
+  <div class="filter-bar-card">
+    <form method="GET" action="{{ url_for('resultados.ranking_view') }}" class="filter-form">
+      
+      <div class="filter-field">
+        <label for="area" class="form-label">Filtrar por Área Académica</label>
+        <select name="area" id="area" class="form-select" onchange="this.form.submit()">
+          <option value="">Todas las Áreas (General)</option>
+          {% for letra, info in areas.items() %}
+            <option value="{{ letra }}" {{ 'selected' if area_filtro == letra }}>
+              Área {{ letra }} - {{ info.nombre }}
+            </option>
+          {% endfor %}
+        </select>
+      </div>
+
+      <div class="filter-field">
+        <label for="carrera" class="form-label">Carrera Específica (Opcional)</label>
+        <input type="text" name="carrera" id="carrera" class="form-control" 
+               placeholder="Ej. Medicina Humana, Ing. de Sistemas..." value="{{ carrera_filtro or '' }}">
+      </div>
+
+      <div style="display: flex; gap: 0.5rem;">
+        <button type="submit" class="btn btn-primary">Filtrar</button>
+        <a href="{{ url_for('resultados.ranking_view') }}" class="btn btn-secondary">Limpiar</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- Aviso de Regla Oficial de Desempate UNMSM -->
+  <div class="tie-breaker-notice">
+    <span style="font-size: 1.25rem;">⚖️</span>
+    <div>
+      <strong>Criterio Oficial de Clasificación y Desempate:</strong> 
+      1° Mayor puntaje acumulado &nbsp;|&nbsp; 2° Menor tiempo empleado en segundos en caso de empate de puntaje.
+      (Los exámenes con faltas graves anuladas no clasifican en el ranking).
+    </div>
+  </div>
+
+  <!-- Podio de Honor (Top 3) -->
+  {% if podio and podio|length >= 1 %}
+  <div class="podium-container">
+    
+    <!-- 2do Lugar (Plata) -->
+    {% if podio|length >= 2 %}
+    <div class="podium-step silver">
+      <div class="podium-medal">2</div>
+      <div class="podium-name">{{ podio[1].nombre }} {{ podio[1].apellido }}</div>
+      <div class="podium-carrera">{{ podio[1].carrera }} (Área {{ podio[1].area }})</div>
+      <div class="podium-score">{{ podio[1].puntaje }} <span style="font-size: 0.9rem;">pts</span></div>
+      <div class="podium-time">⏱️ {{ formatear_tiempo(podio[1].tiempo_segundos) }}</div>
+    </div>
+    {% endif %}
+
+    <!-- 1er Lugar (Oro) -->
+    <div class="podium-step gold">
+      <div class="podium-medal">👑</div>
+      <div class="podium-name">{{ podio[0].nombre }} {{ podio[0].apellido }}</div>
+      <div class="podium-carrera">{{ podio[0].carrera }} (Área {{ podio[0].area }})</div>
+      <div class="podium-score">{{ podio[0].puntaje }} <span style="font-size: 1rem;">pts</span></div>
+      <div class="podium-time">⏱️ {{ formatear_tiempo(podio[0].tiempo_segundos) }}</div>
+    </div>
+
+    <!-- 3er Lugar (Bronce) -->
+    {% if podio|length >= 3 %}
+    <div class="podium-step bronze">
+      <div class="podium-medal">3</div>
+      <div class="podium-name">{{ podio[2].nombre }} {{ podio[2].apellido }}</div>
+      <div class="podium-carrera">{{ podio[2].carrera }} (Área {{ podio[2].area }})</div>
+      <div class="podium-score">{{ podio[2].puntaje }} <span style="font-size: 0.9rem;">pts</span></div>
+      <div class="podium-time">⏱️ {{ formatear_tiempo(podio[2].tiempo_segundos) }}</div>
+    </div>
+    {% endif %}
+
+  </div>
+  {% endif %}
+
+  <!-- Tabla Detallada del Ranking Oficial -->
+  <div class="card">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+      <h3 class="card-title" style="margin-bottom: 0;">Cuadro de Mérito General</h3>
+      <span style="font-size: 0.85rem; color: var(--text-dim);">Total clasificados: {{ ranking|length }}</span>
+    </div>
+
+    {% if ranking %}
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th style="width: 80px;">Puesto</th>
+            <th>Postulante</th>
+            <th>Carrera Profesional</th>
+            <th>Área</th>
+            <th>Puntaje Final</th>
+            <th>Aciertos</th>
+            <th>Errores</th>
+            <th>Tiempo (Desempate)</th>
+            <th style="text-align: right;">Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for r in ranking %}
+          <tr>
+            <td>
+              {% if loop.index == 1 %}
+                <span style="font-family: var(--font-heading); font-size: 1.1rem; color: #fbbf24; font-weight: 800;">🥇 #1</span>
+              {% elif loop.index == 2 %}
+                <span style="font-family: var(--font-heading); font-size: 1.05rem; color: #cbd5e1; font-weight: 800;">🥈 #2</span>
+              {% elif loop.index == 3 %}
+                <span style="font-family: var(--font-heading); font-size: 1.05rem; color: #d97706; font-weight: 800;">🥉 #3</span>
+              {% else %}
+                <span style="font-weight: 700; color: var(--text-dim);">#{{ loop.index }}</span>
+              {% endif %}
+            </td>
+            <td>
+              <strong>{{ r.nombre }} {{ r.apellido }}</strong>
+              <div style="font-size: 0.75rem; color: var(--text-dim);">DNI: {{ r.dni[:2] }}****{{ r.dni[-2:] }}</div>
+            </td>
+            <td>{{ r.carrera }}</td>
+            <td>
+              <span class="badge badge-crimson">Área {{ r.area }}</span>
+            </td>
+            <td>
+              <strong style="font-family: var(--font-heading); font-size: 1.25rem; font-weight: 800; color: var(--wine);">
+                {{ r.puntaje }}
+              </strong>
+            </td>
+            <td style="color: #059669; font-weight: 700;">+{{ r.correctas }}</td>
+            <td style="color: #dc2626; font-weight: 700;">-{{ r.incorrectas }}</td>
+            <td style="font-family: monospace; font-size: 0.95rem; color: #0284c7; font-weight: 700;">
+              {{ formatear_tiempo(r.tiempo_segundos) }}
+            </td>
+            <td style="text-align: right; font-size: 0.82rem; color: var(--text-dim);">
+              {{ r.terminado_en.strftime('%d/%m/%Y') if r.terminado_en else '-' }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div style="text-align: center; padding: 3rem 1rem;">
+      <p style="color: var(--text-muted);">No se encontraron resultados para los filtros seleccionados.</p>
+    </div>
+    {% endif %}
+  </div>
+
+</div>
+{% endblock %}

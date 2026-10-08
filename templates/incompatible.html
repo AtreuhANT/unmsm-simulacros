@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dispositivo Incompatible | Simulacros UNMSM</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+  <style>
+    .incompatible-container {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      background: var(--bg-dark);
+    }
+    .incompatible-card {
+      max-width: 520px;
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+    .device-icon {
+      font-size: 3.5rem;
+      color: var(--color-danger);
+      margin-bottom: 1.25rem;
+    }
+    .incompatible-card h2 {
+      font-family: var(--font-heading);
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+    }
+    .incompatible-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .requirement-list {
+      background: #f1f5f9;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1rem 1.25rem;
+      text-align: left;
+      margin-bottom: 1.75rem;
+      font-size: 0.88rem;
+    }
+    .requirement-list li {
+      margin-bottom: 0.5rem;
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--text-main);
+    }
+    .requirement-list li span {
+      color: var(--color-success);
+    }
+  </style>
+</head>
+<body>
+  <div class="incompatible-container">
+    <div class="incompatible-card" id="incompatible-box">
+      <div class="device-icon">💻🚫📱</div>
+      <h2>Dispositivo Móvil No Permitido</h2>
+      <p>
+        El sistema de evaluación y supervisión biométrica de la UNMSM requiere estrictamente una 
+        <strong>computadora de escritorio o laptop</strong> con cámara web activa y teclado físico.
+      </p>
+
+      <ul class="requirement-list">
+        <li><span>✓</span> PC de escritorio o Laptop (Windows, macOS o Linux)</li>
+        <li><span>✓</span> Cámara Web funcional (para reconocimiento facial Edge)</li>
+        <li><span>✓</span> Navegador moderno (Google Chrome, Microsoft Edge o Firefox)</li>
+        <li><span>✓</span> Pantalla completa obligatoria sin interrupciones</li>
+      </ul>
+
+      <p style="font-size: 0.85rem; color: var(--text-dim);">
+        Por favor ingresa desde tu computadora personal para rendir tus simulacros de admisión.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

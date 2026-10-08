@@ -1,0 +1,650 @@
+{% extends 'base.html' %}
+
+{% block title %}Sala de Preparación Técnica — Área {{ area }}{% endblock %}
+
+{% block head_extra %}
+<script src="{{ url_for('static', filename='models/face-api.min.js') }}"></script>
+<style>
+  .prep-container {
+    max-width: 980px;
+    margin: 1.5rem auto 3rem;
+  }
+  .prep-header {
+    margin-bottom: 2rem;
+  }
+  .prep-notice-banner {
+    background: rgba(146, 105, 27, 0.08);
+    border: 1px solid rgba(146, 105, 27, 0.25);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin: 1.25rem 0 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    font-size: 0.92rem;
+    color: var(--text-main);
+  }
+  .prep-stepper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1rem 1.75rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .prep-step-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .prep-step-item.active {
+    color: var(--wine);
+  }
+  .prep-step-item.completed {
+    color: var(--color-success);
+  }
+  .step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--bg-subtle, #f1f5f9);
+    border: 2px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .prep-step-item.active .step-circle {
+    background: var(--wine);
+    color: #ffffff;
+    border-color: var(--wine);
+  }
+  .prep-step-item.completed .step-circle {
+    background: var(--color-success);
+    color: #ffffff;
+    border-color: var(--color-success);
+  }
+  .stepper-divider {
+    flex-grow: 1;
+    height: 2px;
+    background: var(--border-color);
+    margin: 0 1rem;
+  }
+
+  .prep-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  /* Webcam Box */
+  .camera-viewport {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    background: #020617;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 2px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+  }
+  .camera-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scaleX(-1);
+  }
+  .camera-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    transform: scaleX(-1);
+  }
+  .camera-overlay-tag {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(4px);
+    border-radius: var(--radius-sm);
+    padding: 0.45rem 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.76rem;
+    color: #ffffff;
+  }
+
+  .distance-box {
+    margin-top: 1rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.85rem 1rem;
+  }
+  .distance-bar-wrapper {
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-top: 0.45rem;
+  }
+  .distance-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--color-danger);
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+
+  /* Checklist Items */
+  .check-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.15rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    margin-bottom: 1rem;
+    transition: border-color var(--transition-fast);
+  }
+  .check-card.passed {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.03);
+  }
+  .check-icon-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .check-card.passed .check-icon-circle {
+    background: #10b981;
+    color: #ffffff;
+  }
+
+  @media (max-width: 860px) {
+    .prep-grid {
+      grid-template-columns: 1fr;
+    }
+    .prep-stepper {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    .stepper-divider {
+      display: none;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="prep-container">
+  
+  <div class="prep-header">
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+      <span class="badge badge-wine">Área {{ area }} — {{ info_area.nombre }}</span>
+      <span class="badge badge-gold">Protocolo Pre-Examen</span>
+    </div>
+    <h2 class="card-title" style="font-size: 1.75rem; margin-bottom: 0.35rem;">
+      Sala de Preparación Técnica y de Identidad
+    </h2>
+    <p class="card-subtitle" style="margin-bottom: 0;">
+      Asegura tu entorno y valida tu identidad biométrica antes de comenzar.
+    </p>
+
+    <div class="prep-notice-banner">
+      <span style="font-size: 1.5rem; line-height: 1;">⏱️</span>
+      <div>
+        <strong>El tiempo oficial de tu examen NO transcurre en esta sala.</strong><br>
+        Tómate el tiempo necesario para ajustar la luz de tu habitación y comprobar tu cámara. El cronómetro arrancará únicamente cuando pulses «Comenzar Examen Oficial».
+      </div>
+    </div>
+  </div>
+
+  <!-- Stepper Visual -->
+  <div class="prep-stepper">
+    <div class="prep-step-item" id="step-pill-1">
+      <div class="step-circle" id="circle-step-1">1</div>
+      <span>1. Acceso a Cámara</span>
+    </div>
+    <div class="stepper-divider"></div>
+    <div class="prep-step-item" id="step-pill-2">
+      <div class="step-circle" id="circle-step-2">2</div>
+      <span>2. Verificación de Identidad</span>
+    </div>
+    <div class="stepper-divider"></div>
+    <div class="prep-step-item" id="step-pill-3">
+      <div class="step-circle" id="circle-step-3">3</div>
+      <span>3. Entorno y Confirmación</span>
+    </div>
+  </div>
+
+  <!-- Contenido en 2 Columnas -->
+  <div class="prep-grid">
+    
+    <!-- Columna Izquierda: Cámara Web en Vivo -->
+    <div>
+      <div class="camera-viewport">
+        <video id="prep-video" class="camera-video" autoplay playsinline muted></video>
+        <canvas id="prep-canvas" class="camera-canvas"></canvas>
+
+        <div class="camera-overlay-tag">
+          <span id="cam-status-label">● Conectando cámara...</span>
+          <span id="fps-badge" style="font-weight: 700; color: #10b981;">HD</span>
+        </div>
+      </div>
+
+      <div class="distance-box">
+        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 600;">
+          <span id="distance-label">Coincidencia Biométrica</span>
+          <span id="distance-val" style="color: var(--text-muted);">Esperando rostro...</span>
+        </div>
+        <div class="distance-bar-wrapper">
+          <div class="distance-bar-fill" id="distance-bar"></div>
+        </div>
+      </div>
+
+      <div style="margin-top: 1rem; text-align: center;">
+        <button type="button" class="btn btn-secondary btn-sm" id="btn-retest-cam" style="width: 100%;">
+          🔄 Reiniciar Cámara Web
+        </button>
+      </div>
+    </div>
+
+    <!-- Columna Derecha: Checklist de Comprobaciones y Acciones -->
+    <div>
+      
+      <!-- Paso 1: Acceso a Cámara y Modelos Locales -->
+      <div class="check-card" id="check-camera">
+        <div class="check-icon-circle" id="icon-camera">1</div>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem;">
+            Dispositivo de Video y Modelos de IA
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);" id="desc-camera">
+            Cargando modelos biométricos locales y solicitando acceso multimedia...
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 2: Verificación o Enrolamiento Facial -->
+      <div class="check-card" id="check-identity">
+        <div class="check-icon-circle" id="icon-identity">2</div>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.2rem;">
+            Verificación Facial 1:1
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);" id="desc-identity">
+            {% if enrolado %}
+              Centra tu rostro frente a la cámara para validar tu identidad contra tu perfil.
+            {% else %}
+              No tienes plantilla de referencia. Capturaremos tu rostro para enrolarte automáticamente.
+            {% endif %}
+          </div>
+          <div style="margin-top: 0.75rem;">
+            <button type="button" class="btn btn-primary btn-sm" id="btn-verify-face" disabled>
+              {% if enrolado %}
+                🔍 Validar mi Identidad Facial
+              {% else %}
+                📷 Capturar Rostro de Referencia
+              {% endif %}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 3: Compromiso de Honestidad y Entorno -->
+      <div class="check-card" id="check-rules">
+        <div class="check-icon-circle" id="icon-rules">3</div>
+        <div style="flex-grow: 1;">
+          <div style="font-weight: 700; font-size: 0.95rem; margin-bottom: 0.4rem;">
+            Declaración de Entorno y Supervisión
+          </div>
+          <label style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.86rem; color: var(--text-main); cursor: pointer;">
+            <input type="checkbox" id="check-desk-agreement" disabled autocomplete="off" style="margin-top: 0.25rem; accent-color: var(--wine);">
+            <span>
+              Declaro que mi espacio de trabajo está despejado, mis manos permanecerán visibles sobre el escritorio, 
+              no utilizaré dispositivos auxiliares y acepto ingresar en modo de <strong>pantalla completa obligatoria</strong>.
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Barra de Acciones Finales -->
+      <div style="margin-top: 2rem; display: flex; gap: 1rem; align-items: center;">
+        <button type="button" class="btn btn-secondary" id="btn-cancel-prep">
+          ✕ Cancelar y Volver
+        </button>
+        <button type="button" class="btn btn-primary btn-lg" id="btn-launch-exam" style="flex-grow: 1;" disabled>
+          🚀 Comenzar Examen Oficial
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+(function() {
+  const AREA = "{{ area }}";
+  const IS_ENROLLED = {{ 'true' if enrolado else 'false' }};
+  let storedDescriptors = {{ descriptores_faciales_json | safe }};
+
+  // Elementos DOM
+  const video = document.getElementById('prep-video');
+  const canvas = document.getElementById('prep-canvas');
+  const camStatusLabel = document.getElementById('cam-status-label');
+  const distanceLabel = document.getElementById('distance-label');
+  const distanceVal = document.getElementById('distance-val');
+  const distanceBar = document.getElementById('distance-bar');
+
+  const checkCamera = document.getElementById('check-camera');
+  const iconCamera = document.getElementById('icon-camera');
+  const descCamera = document.getElementById('desc-camera');
+
+  const checkIdentity = document.getElementById('check-identity');
+  const iconIdentity = document.getElementById('icon-identity');
+  const descIdentity = document.getElementById('desc-identity');
+  const btnVerifyFace = document.getElementById('btn-verify-face');
+
+  const checkRules = document.getElementById('check-rules');
+  const iconRules = document.getElementById('icon-rules');
+  const checkDeskAgreement = document.getElementById('check-desk-agreement');
+
+  const btnCancelPrep = document.getElementById('btn-cancel-prep');
+  const btnLaunchExam = document.getElementById('btn-launch-exam');
+  const btnRetestCam = document.getElementById('btn-retest-cam');
+
+  const pill1 = document.getElementById('step-pill-1');
+  const pill2 = document.getElementById('step-pill-2');
+  const pill3 = document.getElementById('step-pill-3');
+
+  let cameraStream = null;
+  let modelsReady = false;
+  let identityVerified = false;
+  let detectInterval = null;
+
+  // 1. Cargar modelos locales de face-api
+  async function loadModels() {
+    try {
+      descCamera.textContent = 'Cargando redes neuronales locales...';
+      await faceapi.nets.tinyFaceDetector.loadFromUri('/static/models');
+      await faceapi.nets.faceLandmark68TinyNet.loadFromUri('/static/models');
+      await faceapi.nets.faceRecognitionNet.loadFromUri('/static/models');
+      modelsReady = true;
+      return true;
+    } catch (e) {
+      console.error('Error al cargar modelos de visión:', e);
+      descCamera.textContent = 'Error al cargar modelos locales de IA.';
+      return false;
+    }
+  }
+
+  // 2. Iniciar Cámara Web
+  async function startWebcam() {
+    stopCamera();
+    try {
+      cameraStream = await navigator.mediaDevices.getUserMedia({
+        video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' },
+        audio: false
+      });
+      video.srcObject = cameraStream;
+      camStatusLabel.textContent = '● Cámara conectada';
+
+      // Marcar Paso 1 como superado
+      checkCamera.classList.add('passed');
+      iconCamera.textContent = '✓';
+      descCamera.textContent = 'Cámara y modelos locales operativos.';
+      pill1.classList.add('completed');
+      pill2.classList.add('active');
+
+      btnVerifyFace.disabled = false;
+
+      video.addEventListener('play', () => {
+        canvas.width = video.clientWidth || 380;
+        canvas.height = video.clientHeight || 285;
+        startDetectionLoop();
+      });
+    } catch (err) {
+      console.error('Error de acceso a webcam:', err);
+      camStatusLabel.textContent = '✕ Permiso denegado';
+      descCamera.textContent = 'No se pudo acceder a tu cámara. Por favor autoriza los permisos en tu navegador.';
+    }
+  }
+
+  // Bucle de detección suave para feedback en tiempo real
+  function startDetectionLoop() {
+    if (detectInterval) clearInterval(detectInterval);
+
+    detectInterval = setInterval(async () => {
+      if (!video || video.paused || video.ended || !modelsReady) return;
+
+      const detections = await faceapi.detectAllFaces(
+        video,
+        new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.5 })
+      );
+
+      const displaySize = { width: video.clientWidth, height: video.clientHeight };
+      faceapi.matchDimensions(canvas, displaySize);
+      const resized = faceapi.resizeResults(detections, displaySize);
+
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      if (detections.length === 0) {
+        camStatusLabel.textContent = '⚠️ Sin rostro detectado';
+        camStatusLabel.style.color = '#f87171';
+      } else if (detections.length === 1) {
+        camStatusLabel.textContent = '✓ Rostro centrado';
+        camStatusLabel.style.color = '#34d399';
+        faceapi.draw.drawDetections(canvas, resized);
+      } else {
+        camStatusLabel.textContent = '⚠️ Múltiples personas en cámara';
+        camStatusLabel.style.color = '#f87171';
+      }
+    }, 400);
+  }
+
+  // 3. Verificación o Enrolamiento
+  btnVerifyFace.addEventListener('click', async () => {
+    btnVerifyFace.disabled = true;
+    btnVerifyFace.textContent = 'Analizando biometría...';
+
+    try {
+      const detection = await faceapi
+        .detectSingleFace(video, new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.6 }))
+        .withFaceLandmarks(true)
+        .withFaceDescriptor();
+
+      if (!detection) {
+        alert('No se detectó tu rostro con suficiente nitidez. Ilumina tu espacio y mira de frente.');
+        btnVerifyFace.disabled = false;
+        btnVerifyFace.textContent = IS_ENROLLED ? '🔍 Validar mi Identidad Facial' : '📷 Capturar Rostro de Referencia';
+        return;
+      }
+
+      // Caso A: Primera vez (Enrolamiento de referencia)
+      if (!IS_ENROLLED || !storedDescriptors || storedDescriptors.length === 0) {
+        btnVerifyFace.textContent = 'Guardando referencia biométrica...';
+        const descriptorArray = Array.from(detection.descriptor);
+
+        const resp = await fetch('/api/intento/enrolar-facial', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ descriptores: [descriptorArray] })
+        });
+
+        if (!resp.ok) throw new Error('Error al guardar plantilla');
+
+        storedDescriptors = [descriptorArray];
+        markIdentityPassed(0.0, '¡Plantilla de referencia registrada con éxito!');
+        return;
+      }
+
+      // Caso B: Verificación 1:1 contra descriptores almacenados
+      const storedFloatArrays = storedDescriptors.map(d => new Float32Array(d));
+      let minDistance = 999.0;
+
+      for (const stored of storedFloatArrays) {
+        const dist = faceapi.euclideanDistance(detection.descriptor, stored);
+        if (dist < minDistance) minDistance = dist;
+      }
+
+      const matchPercent = Math.min(100, Math.round((1 - minDistance) * 100));
+      distanceBar.style.width = matchPercent + '%';
+      distanceVal.textContent = `Distancia: ${minDistance.toFixed(3)} (Tolerancia <= 0.55)`;
+
+      if (minDistance <= 0.55) {
+        distanceBar.style.backgroundColor = '#10b981';
+        markIdentityPassed(minDistance, `¡Identidad confirmada! Coincidencia: ${matchPercent}%`);
+      } else {
+        distanceBar.style.backgroundColor = '#ef4444';
+        alert(`La biometría facial no coincide suficientemente (Distancia: ${minDistance.toFixed(3)}). Por favor ajusta tu postura o iluminación y reintenta.`);
+        btnVerifyFace.disabled = false;
+        btnVerifyFace.textContent = '🔍 Reintentar Verificación';
+      }
+
+    } catch (err) {
+      console.error('Error durante verificación facial:', err);
+      alert('Ocurrió un inconveniente al analizar los vectores faciales. Inténtalo nuevamente.');
+      btnVerifyFace.disabled = false;
+      btnVerifyFace.textContent = '🔍 Validar mi Identidad Facial';
+    }
+  });
+
+  function actualizarPaso3() {
+    if (checkDeskAgreement.checked && identityVerified) {
+      checkRules.classList.add('passed');
+      iconRules.textContent = '✓';
+      pill3.classList.add('completed');
+      pill3.classList.remove('active');
+      btnLaunchExam.disabled = false;
+    } else {
+      checkRules.classList.remove('passed');
+      iconRules.textContent = '3';
+      pill3.classList.remove('completed');
+      if (identityVerified) {
+        pill3.classList.add('active');
+      }
+      btnLaunchExam.disabled = true;
+    }
+  }
+
+  function markIdentityPassed(distance, message) {
+    identityVerified = true;
+    checkIdentity.classList.add('passed');
+    iconIdentity.textContent = '✓';
+    descIdentity.textContent = message;
+    descIdentity.style.color = '#10b981';
+    btnVerifyFace.style.display = 'none';
+
+    pill2.classList.add('completed');
+    pill3.classList.add('active');
+
+    // Habilitar checkbox del Paso 3 y sincronizar estado
+    checkDeskAgreement.disabled = false;
+    actualizarPaso3();
+  }
+
+  // 4. Aceptación de Normas y Activación de Lanzamiento
+  checkDeskAgreement.addEventListener('change', actualizarPaso3);
+  checkDeskAgreement.addEventListener('input', actualizarPaso3);
+  checkDeskAgreement.addEventListener('click', actualizarPaso3);
+
+  // 5. Iniciar Examen Oficial (POST /api/intento/iniciar)
+  btnLaunchExam.addEventListener('click', async () => {
+    btnLaunchExam.disabled = true;
+    btnLaunchExam.textContent = 'Iniciando cronómetro oficial...';
+
+    // Detener cámara antes de navegar para liberar el hardware
+    stopCamera();
+
+    try {
+      const resp = await fetch('/api/intento/iniciar', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ area: AREA })
+      });
+
+      if (!resp.ok) throw new Error('Error al iniciar intento oficial');
+
+      // Intentar pantalla completa
+      try {
+        if (document.documentElement.requestFullscreen) {
+          await document.documentElement.requestFullscreen();
+        }
+      } catch (e) {
+        console.warn('Pantalla completa omitida:', e);
+      }
+
+      // Redirigir a la interfaz del examen
+      window.location.replace(`/examen/${AREA}`);
+    } catch (err) {
+      console.error('Error al arrancar examen:', err);
+      alert('Hubo un error al iniciar tu intento oficial en el servidor. Por favor reintenta.');
+      btnLaunchExam.disabled = false;
+      btnLaunchExam.textContent = '🚀 Comenzar Examen Oficial';
+      startWebcam();
+    }
+  });
+
+  // 6. Liberación Estricta de Recursos (FL-04)
+  function stopCamera() {
+    if (detectInterval) clearInterval(detectInterval);
+    if (cameraStream) {
+      cameraStream.getTracks().forEach(track => {
+        track.stop();
+      });
+      cameraStream = null;
+    }
+  }
+
+  btnCancelPrep.addEventListener('click', () => {
+    stopCamera();
+    window.location.replace('/dashboard');
+  });
+
+  btnRetestCam.addEventListener('click', () => {
+    startWebcam();
+  });
+
+  window.addEventListener('beforeunload', stopCamera);
+
+  // Inicialización secuencial
+  window.addEventListener('DOMContentLoaded', async () => {
+    checkDeskAgreement.checked = false;
+    actualizarPaso3();
+    const ok = await loadModels();
+    if (ok) {
+      await startWebcam();
+    }
+  });
+
+})();
+</script>
+{% endblock %}
