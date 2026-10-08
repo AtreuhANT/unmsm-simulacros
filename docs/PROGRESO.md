@@ -95,3 +95,17 @@ ESTADO: Preparada; pendiente de publicar.
 COMPROBACION ADICIONAL:
 - La revisión final encontró 81 archivos publicables; sintaxis Python y exclusión de valores sensibles conocidos: OK.
 - git diff --cached --check detectó espacios finales y líneas vacías heredados del código original. No se reformateó el proyecto para mantener el cambio mínimo.
+
+## Publicación completada — 2026-10-08
+
+ESTADO: Código publicado en https://github.com/AtreuhANT/unmsm-simulacros, rama main.
+
+- Primer commit limpio: 18e33de94e7d3f48290dc033473e2cb002aa8921, con 81 archivos.
+- `git push -u origin main`: `[new branch] main -> main`; seguimiento de origin/main configurado.
+- `git ls-remote origin refs/heads/main`: coincide exactamente con el primer commit publicado.
+- `git fsck --full`: código 0; un blob no referenciado por la actualización previa de documentación, sin fallos de integridad.
+- La primera subida falló por propiedad de la copia bajo la cuenta del sandbox. Se utilizó una excepción safe.directory únicamente en cada comando, sin cambiar la configuración global.
+- El administrador de credenciales habitual falló con BadImageFormatException. La publicación funcionó usando el auxiliar wincred de MinGit y las credenciales de Windows; no se mostraron credenciales ni se guardaron en el repositorio.
+- Criterios cumplidos: publicación real, commit remoto verificado, secretos de respaldo retirados, documentación para colaborar y 8 pruebas unitarias OK.
+- Limitaciones: arranque de la aplicación y Docker no ejecutados; no se completaron fases funcionales ni pruebas de integración. La revisión de espacios finales detectó formato heredado y se dejó documentada.
+- Pendientes: el propietario debe invitar al compañero desde GitHub; continuar desde un clon nuevo o revisar la ausencia de .git/HEAD en la carpeta original antes de trabajar con ese historial.
