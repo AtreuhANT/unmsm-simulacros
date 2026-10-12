@@ -78,7 +78,8 @@ def obtener_usuario_por_dni(dni):
 def obtener_usuario_por_id(usuario_id):
     """Retorna un usuario por su ID interno o None si no existe."""
     sql = """
-        SELECT id, nombre, apellido, dni, password_hash, carrera, area, 
+        SELECT id, nombre, apellido, dni, password_hash, carrera, area,
+               consentimiento_celular_en, consentimiento_celular_version,
                descriptores_faciales, es_admin, creado_en
         FROM usuarios 
         WHERE id = %s;

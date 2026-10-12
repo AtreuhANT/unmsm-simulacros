@@ -1,6 +1,7 @@
 import time
 import json
 import logging
+import secrets
 from flask import Blueprint, render_template, session, redirect, url_for, flash
 from config import Config
 from models.usuario import obtener_usuario_por_id, obtener_plantilla_facial
@@ -42,13 +43,14 @@ def preparacion_examen(area):
 
     # Si ya tiene un intento en curso no vencido, saltar directo al examen
     intento_activo = obtener_intento_activo(usuario_id)
-    if intento_activo:
+    if intento_activo and (not Config.DETECCION_CELULAR_ACTIVA or usuario.get('consentimiento_celular_version') == 'celular-v2-fotos'):
         if intento_activo.get('segundos_restantes', 0) > 0:
             return redirect(url_for('simulacro.rendir_examen', area=intento_activo.get('area', area)))
         else:
             cerrar_intento(intento_activo['id'], estado_academico='VENCIDO', estado_supervision='TIEMPO_AGOTADO')
 
     # Consultar plantilla biométrica de referencia
+    session['csrf_preparacion'] = secrets.token_urlsafe(32)
     plantilla = obtener_plantilla_facial(usuario_id)
     descriptores_faciales = []
     enrolado = False
@@ -73,7 +75,9 @@ def preparacion_examen(area):
         info_area=AREAS_UNMSM[area],
         enrolado=enrolado,
         descriptores_faciales_json=json.dumps(descriptores_faciales),
-        usuario=usuario
+        usuario=usuario,
+        csrf_preparacion=session['csrf_preparacion'],
+        deteccion_celular_activa=Config.DETECCION_CELULAR_ACTIVA
     )
 
 @simulacro_bp.route('/examen/<area>')
@@ -95,6 +99,9 @@ def rendir_examen(area):
     if not usuario:
         session.clear()
         return redirect(url_for('auth.login'))
+
+    if Config.DETECCION_CELULAR_ACTIVA and usuario.get('consentimiento_celular_version') != 'celular-v2-fotos':
+        return redirect(url_for('simulacro.preparacion_examen', area=area))
 
     # Cargar y sanitizar banco de preguntas (EX-01: sin respuestas correctas en cliente)
     preguntas_completas = cargar_preguntas_area(area)
@@ -141,6 +148,7 @@ def rendir_examen(area):
     session['token_sesion'] = token_sesion
     session['intento_id'] = intento_id
     session['examen_area'] = area
+    session['csrf_examen'] = secrets.token_urlsafe(32)
 
     # 2. Descriptores faciales para verificación Edge en el navegador
     plantilla = obtener_plantilla_facial(usuario_id)
@@ -169,5 +177,7 @@ def rendir_examen(area):
         preguntas=preguntas_cliente,
         preguntas_json=json.dumps(preguntas_cliente),
         descriptores_faciales_json=json.dumps(descriptores_faciales),
-        usuario=usuario
+        usuario=usuario,
+        csrf_examen=session['csrf_examen'],
+        deteccion_celular_activa=Config.DETECCION_CELULAR_ACTIVA and usuario.get('consentimiento_celular_version') == 'celular-v2-fotos'
     )

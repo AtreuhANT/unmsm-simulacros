@@ -15,5 +15,6 @@ ENV/
 .env.*
 !.env.example
 .env
+/instance/evidencias/
 *.sql
 *.onnx

@@ -9,7 +9,6 @@
 class FocusMonitor {
   constructor() {
     this.callbacks = null;
-    this.observationsCount = 0;
     this.isActive = false;
     this.isWindowFocused = true;
     this.blurStartTime = 0;
@@ -19,7 +18,6 @@ class FocusMonitor {
 
   init(callbacks) {
     this.callbacks = callbacks || {};
-    this.observationsCount = 0;
     this.isActive = true;
     this.isWindowFocused = !document.hidden;
     this.attachEventListeners();
@@ -38,14 +36,8 @@ class FocusMonitor {
     this.isWindowFocused = false;
     this.blurStartTime = now;
     this.lastReportTime = now;
-    this.observationsCount++;
-
-    if (this.callbacks.onStrikeUpdate) {
-      this.callbacks.onStrikeUpdate(this.observationsCount, 5);
-    }
-
-    if (this.callbacks.onViolation) {
-      this.callbacks.onViolation('focus_monitor', tipo, `${motivo} (Observación #${this.observationsCount})`);
+    if (this.callbacks.onFocusLoss) {
+      this.callbacks.onFocusLoss(tipo, motivo);
     }
   }
 

@@ -1,5 +1,7 @@
 import logging
-from flask import Blueprint, render_template, session, redirect, url_for, flash, request, abort
+import secrets
+from flask import Blueprint, render_template, session, redirect, url_for, flash, request, abort, Response
+from cryptography.fernet import InvalidToken
 from models.resultado import (
     obtener_resultado_por_id, obtener_eventos_resultado, 
     obtener_ranking, obtener_estadisticas_generales
@@ -8,6 +10,8 @@ from models.intento import obtener_intento_por_token, obtener_respuestas_intento
 from models.usuario import listar_usuarios
 from utils.helpers import login_required, admin_required, formatear_tiempo
 from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area
+from models.supervision import IntentoNoDisponible, listar_pendientes, resolver_revision
+from models.evidencia_celular import listar_evidencias_resultado, leer_evidencia
 
 logger = logging.getLogger(__name__)
 resultados_bp = Blueprint('resultados', __name__)
@@ -85,8 +89,25 @@ def ver_resultado(id):
         conteo=conteo_eventos,
         detalles_preguntas=detalles_preguntas,
         formatear_tiempo=formatear_tiempo,
-        areas=AREAS_UNMSM
+        areas=AREAS_UNMSM,
+        evidencias_celular=listar_evidencias_resultado(id) if es_admin else []
     )
+
+
+@resultados_bp.route('/admin/evidencia-celular/<int:evidencia_id>')
+@admin_required
+def ver_evidencia_celular(evidencia_id):
+    try:
+        foto = leer_evidencia(evidencia_id)
+    except (OSError, InvalidToken):
+        abort(404)
+    if foto is None:
+        abort(404)
+    respuesta = Response(foto, mimetype='image/jpeg')
+    respuesta.headers['Cache-Control'] = 'no-store, private'
+    respuesta.headers['X-Content-Type-Options'] = 'nosniff'
+    respuesta.headers['Content-Security-Policy'] = "default-src 'none'"
+    return respuesta
 
 @resultados_bp.route('/ranking')
 @login_required
@@ -124,11 +145,30 @@ def admin_panel():
     """Panel de administración y supervisión global en tiempo real."""
     estadisticas = obtener_estadisticas_generales()
     usuarios = listar_usuarios(limite=50)
+    pendientes = listar_pendientes()
+    if 'csrf_revision' not in session:
+        session['csrf_revision'] = secrets.token_urlsafe(32)
 
     return render_template(
         'admin.html',
         estadisticas=estadisticas,
         usuarios=usuarios,
+        pendientes=pendientes,
         areas=AREAS_UNMSM,
         formatear_tiempo=formatear_tiempo
     )
+
+
+@resultados_bp.route('/admin/revision/<int:resultado_id>', methods=['POST'])
+@admin_required
+def revisar_anulacion(resultado_id):
+    token = session.get('csrf_revision')
+    if not token or not secrets.compare_digest(request.form.get('csrf_revision', ''), token):
+        abort(403)
+    try:
+        resolver_revision(resultado_id, session['usuario_id'],
+                         request.form.get('decision'), request.form.get('nota'))
+        flash('Revisión registrada.', 'success')
+    except (ValueError, IntentoNoDisponible):
+        flash('Revisión inválida o ya resuelta.', 'danger')
+    return redirect(url_for('resultados.admin_panel'))

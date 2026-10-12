@@ -58,6 +58,8 @@ def get_db_cursor(commit=False):
             yield cursor
             if commit:
                 conn.commit()
+            else:
+                conn.rollback()
         except Exception as e:
             conn.rollback()
             logger.error(f"Error en transacción SQL: {e}")
@@ -190,9 +192,35 @@ def init_db():
         "ALTER TABLE usuarios ALTER COLUMN descriptores_faciales SET DEFAULT '[]'::jsonb;",
         "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS carrera TEXT NOT NULL DEFAULT '';",
         "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS area CHAR(1) NOT NULL DEFAULT 'A';",
+        "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS consentimiento_celular_en TIMESTAMPTZ;",
+        "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS consentimiento_celular_version TEXT;",
         "ALTER TABLE resultados ADD COLUMN IF NOT EXISTS estado TEXT NOT NULL DEFAULT 'COMPLETADO';",
         "ALTER TABLE resultados ADD COLUMN IF NOT EXISTS motivo_anulacion TEXT;",
-        "ALTER TABLE eventos_monitoreo ADD COLUMN IF NOT EXISTS intento_id INTEGER REFERENCES intentos(id) ON DELETE CASCADE;"
+        "ALTER TABLE eventos_monitoreo ADD COLUMN IF NOT EXISTS intento_id INTEGER REFERENCES intentos(id) ON DELETE CASCADE;",
+        "ALTER TABLE eventos_monitoreo ADD COLUMN IF NOT EXISTS id_cliente TEXT;",
+        "ALTER TABLE resultados ADD COLUMN IF NOT EXISTS revision TEXT NOT NULL DEFAULT 'NO_REQUERIDA';",
+        "CREATE UNIQUE INDEX IF NOT EXISTS uq_evento_intento_cliente ON eventos_monitoreo(intento_id, id_cliente) WHERE id_cliente IS NOT NULL;",
+        """CREATE TABLE IF NOT EXISTS auditoria_revision (
+            id BIGSERIAL PRIMARY KEY,
+            resultado_id INTEGER NOT NULL REFERENCES resultados(id),
+            admin_id INTEGER NOT NULL REFERENCES usuarios(id),
+            decision TEXT NOT NULL,
+            nota TEXT NOT NULL,
+            creado_en TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
+        );""",
+        """CREATE TABLE IF NOT EXISTS evidencias_celular (
+            id BIGSERIAL PRIMARY KEY,
+            intento_id INTEGER NOT NULL REFERENCES intentos(id) ON DELETE CASCADE,
+            usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+            episodio_id UUID NOT NULL,
+            segundo_objetivo SMALLINT NOT NULL CHECK (segundo_objetivo IN (1, 3, 7, 10)),
+            archivo TEXT NOT NULL UNIQUE,
+            sha256 TEXT NOT NULL,
+            creado_en TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            expira_en TIMESTAMPTZ NOT NULL DEFAULT (CURRENT_TIMESTAMP + INTERVAL '30 days'),
+            UNIQUE (intento_id, episodio_id, segundo_objetivo)
+        );""",
+        "CREATE INDEX IF NOT EXISTS idx_evidencias_celular_intento ON evidencias_celular(intento_id, creado_en);"
     ]
     
     with get_db_cursor(commit=True) as cur:

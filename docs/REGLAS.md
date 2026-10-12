@@ -23,3 +23,17 @@ El **servidor** asigna la severidad según el `tipo` (nunca confíes en la sever
 
 **Tiempo:** `limite_en = inicio_en + duración`, calculado por el servidor al iniciar. Si el intento sigue `EN_CURSO` pasado `limite_en` + 30 s de gracia, el servidor lo finaliza al detectarlo (*finalización perezosa*) con las respuestas ya autoguardadas. `tiempo_segundos` lo calcula siempre el servidor.
 
+## Implementación aprobada de supervisión (2026-10-11)
+
+### Evidencias fotográficas de celular
+
+- Con consentimiento específico `celular-v2-fotos`, el detector intenta capturar una imagen JPEG del video durante cada episodio continuo de detección, aproximadamente en los segundos 1, 3, 7 y 10. No graba video.
+- El servidor vincula cada imagen con un intento, usuario y episodio, y exige observaciones recientes para aceptar la captura del momento indicado. El cliente no decide sanciones ni resultados.
+- Las imágenes se guardan cifradas fuera de los archivos públicos y solo el administrador puede verlas en el informe de revisión. Caducan a los 30 días y requieren ejecutar la purga periódica descrita en [EVIDENCIAS.md](EVIDENCIAS.md).
+- La detección y las fotos son indicios para revisión humana, no prueba concluyente de uso indebido. Un navegador manipulado podría alterar la captura; pueden existir falsos positivos y negativos.
+
+- La tercera salida de foco comunicada al servidor cierra el intento como `ANULADO` provisional, crea un resultado con `revision = PENDIENTE` y muestra al alumno la causa. Las dos primeras muestran una advertencia. Un identificador por episodio evita contar dos veces el mismo envío. El administrador puede confirmar la anulación o reponer el resultado y debe dejar una nota; la decisión queda auditada.
+- La detección opcional de celular usa inferencia de cámara en el navegador y requiere consentimiento antes de iniciar el examen. Si el servidor recibe observaciones continuas durante al menos 10 segundos, marca el intento para revisión humana. No cierra automáticamente el examen por celular. Al entregar, el resultado queda fuera del ranking mientras esté pendiente; el alumno ve el motivo de la revisión.
+- La preparación exige un reto de parpadeo para reducir el uso de fotografías inmóviles. Si falla, muestra una alerta y permite reintentar; no sanciona por sí solo. El reto no demuestra presencia real frente a videos o ataques sofisticados.
+- La API del navegador permite observar pérdida de foco o visibilidad de esta página. No permite enumerar pestañas, páginas ni otros navegadores abiertos; por tanto no se afirma detectar su mera existencia. Los avisos del navegador son señales para revisión y pueden fallar o manipularse.
+

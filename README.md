@@ -4,6 +4,8 @@ Proyecto existente con Flask, PostgreSQL y supervisión mediante cámara en el n
 
 ## Configuración local
 
+Para una instalación desde cero en Windows con base vacía, seguir la [guía completa para otra PC](docs/guia_portabilidad.md). Incluye instalación de Python/PostgreSQL, creación de usuario y base propios, configuración privada y arranque. No se necesita restaurar un respaldo.
+
 ```powershell
 git clone https://github.com/AtreuhANT/unmsm-simulacros.git
 cd unmsm-simulacros
@@ -27,6 +29,8 @@ docker compose up --build
 ```
 
 ## Colaboración
+
+La captura de fotografías durante detecciones de celular, el acceso del administrador y la purga de evidencias se explican en [EVIDENCIAS.md](docs/EVIDENCIAS.md).
 
 Invitar al compañero desde Settings → Collaborators del repositorio. Ambos deben seguir `AGENTS.md` y las fases autorizadas.
 

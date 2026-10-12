@@ -108,6 +108,13 @@ def guardar_respuesta_incremental(intento_id, pregunta_id, opcion_seleccionada=N
         RETURNING id, intento_id, pregunta_id, opcion_seleccionada, es_blanco, marcado_revision, numero_revision, actualizado_en;
     """
     with get_db_cursor(commit=True) as cur:
+        cur.execute(
+            "SELECT 1 FROM intentos WHERE id = %s AND estado_academico = 'EN_CURSO' "
+            "AND fecha_vencimiento > CURRENT_TIMESTAMP FOR UPDATE",
+            (intento_id,),
+        )
+        if cur.fetchone() is None:
+            raise ValueError('El intento no está abierto')
         cur.execute(sql, (
             intento_id,
             int(pregunta_id),

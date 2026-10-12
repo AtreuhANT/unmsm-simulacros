@@ -16,6 +16,9 @@ class MonitorEngine {
     this.storedDescriptors = config.storedDescriptors || [];
     this.segundosRestantes = parseInt(config.segundosRestantes, 10) || (60 * 60);
     this.yaEnCurso = Boolean(config.yaEnCurso);
+    this.csrfToken = config.csrfToken;
+    this.phoneDetectionEnabled = Boolean(config.phoneDetectionEnabled);
+    this.faceModelsReady = false;
 
     this.currentIndex = 0;
     this.respuestas = {}; // { [preguntaId]: 'A' | 'B' | ... }
@@ -49,12 +52,18 @@ class MonitorEngine {
     this.facialMonitor = new FacialPresenceMonitor();
     this.focusMonitor = new FocusMonitor();
     this.screenshotGuard = new ScreenshotGuard();
+    this.phoneMonitor = new PhoneMonitor();
 
     // Elementos del DOM
     this.dom = {
       video: document.getElementById('hud-webcam'),
       canvas: document.getElementById('hud-canvas'),
       statusChip: document.getElementById('hud-status-chip'),
+      cameraMessage: document.getElementById('hud-camera-message'),
+      retryCamera: document.getElementById('hud-retry-camera'),
+      liveLabel: document.getElementById('hud-live-label'),
+      supervisionAlert: document.getElementById('hud-supervision-alert'),
+      phoneStatus: document.getElementById('hud-phone-status'),
       syncBadge: document.getElementById('sync-badge'),
       timerDisplay: document.getElementById('timer-display'),
       questionContainer: document.getElementById('question-container'),
@@ -78,6 +87,8 @@ class MonitorEngine {
     };
 
     this.cameraStream = null;
+    this.connectingCamera = false;
+    this.monitorsStarted = false;
     this.attemptsLeft = 3;
     this.isFaceVerified = false;
   }
@@ -86,6 +97,7 @@ class MonitorEngine {
   init() {
     this.setupNetworkListeners();
     this.renderQuestionMatrix();
+    this.dom.retryCamera?.addEventListener('click', () => this.connectExamCamera(false));
 
     if (this.yaEnCurso) {
       // Examen ya en curso (recuperación ante F5 o reconexión)
@@ -128,9 +140,7 @@ class MonitorEngine {
   async initPreExamModal() {
     try {
       this.dom.preStatusText.textContent = 'Cargando modelos biométricos locales...';
-      await faceapi.nets.tinyFaceDetector.loadFromUri('/static/models');
-      await faceapi.nets.faceLandmark68TinyNet.loadFromUri('/static/models');
-      await faceapi.nets.faceRecognitionNet.loadFromUri('/static/models');
+      await this.loadFaceModels();
 
       // Activar webcam para verificación de identidad
       this.cameraStream = await navigator.mediaDevices.getUserMedia({
@@ -263,38 +273,134 @@ class MonitorEngine {
 
     this.startTimer();
 
-    // Iniciar supervisión
-    if (withWebcamVerification && this.cameraStream) {
-      this.initProctoringModules();
-    } else {
-      // Re-conectar cámara en caso de recarga
-      try {
-        if (!this.cameraStream) {
-          this.cameraStream = await navigator.mediaDevices.getUserMedia({
-            video: { width: 640, height: 480, facingMode: 'user' },
-            audio: false
-          });
-          if (this.dom.video) this.dom.video.srcObject = this.cameraStream;
-        }
-      } catch (e) {
-        console.warn('Cámara en sesión recuperada:', e);
-      }
-      this.initProctoringModules();
+    // Recuperar la cámara si la navegación desde preparación aún no la liberó.
+    if (!withWebcamVerification || !this.cameraStream?.getVideoTracks().some(track => track.readyState === 'live')) {
+      await this.connectExamCamera(true);
     }
+    try {
+      await this.loadFaceModels();
+    } catch (error) {
+      console.warn('No se pudieron cargar los modelos faciales:', error);
+      this.setSupervisionAlert('La verificación facial no está disponible. Recarga el examen cuando la conexión funcione.');
+    }
+    this.initProctoringModules();
 
     this.loadQuestion(0);
     this.bindExamControls();
   }
 
+  async loadFaceModels() {
+    if (this.faceModelsReady) return;
+    await faceapi.nets.tinyFaceDetector.loadFromUri('/static/models');
+    await faceapi.nets.faceLandmark68TinyNet.loadFromUri('/static/models');
+    await faceapi.nets.faceRecognitionNet.loadFromUri('/static/models');
+    this.faceModelsReady = true;
+  }
+
+  async connectExamCamera(autoRetry = false) {
+    if (this.connectingCamera || this.isTerminated) return;
+    this.connectingCamera = true;
+    const button = this.dom.retryCamera;
+    if (button) { button.disabled = true; button.style.display = 'none'; }
+    if (this.dom.cameraMessage) {
+      this.dom.cameraMessage.style.display = 'block';
+      this.dom.cameraMessage.textContent = 'Conectando cámara…';
+    }
+    const maxAttempts = autoRetry ? 3 : 1;
+    try {
+      for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        let stream;
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({
+            video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' },
+            audio: false
+          });
+          if (this.isTerminated) { stream.getTracks().forEach(track => track.stop()); return; }
+          if (this.dom.video) {
+            this.dom.video.srcObject = stream;
+            await this.dom.video.play();
+          }
+          this.cameraStream = stream;
+          if (this.dom.statusChip) {
+            this.dom.statusChip.className = 'status-chip ok';
+            this.dom.statusChip.textContent = 'Cámara conectada';
+          }
+          if (this.dom.liveLabel) this.dom.liveLabel.textContent = 'EN VIVO';
+          if (this.dom.cameraMessage) this.dom.cameraMessage.style.display = 'none';
+          stream.getVideoTracks().forEach(track => track.addEventListener('ended', () => {
+            if (this.cameraStream !== stream || this.isTerminated) return;
+            this.facialMonitor.stop();
+            this.phoneMonitor.stop();
+            if (this.phoneDetectionEnabled) this.setPhoneStatus('Detector de celular detenido: cámara desconectada.');
+            this.cameraStream = null;
+            if (this.dom.statusChip) {
+              this.dom.statusChip.className = 'status-chip danger';
+              this.dom.statusChip.textContent = 'Cámara desconectada';
+            }
+            if (this.dom.liveLabel) this.dom.liveLabel.textContent = 'SIN CÁMARA';
+            if (this.dom.cameraMessage) {
+              this.dom.cameraMessage.style.display = 'block';
+              this.dom.cameraMessage.textContent = 'La cámara dejó de enviar video. Comprueba su conexión y pulsa Reintentar cámara.';
+            }
+            if (button) button.style.display = 'block';
+          }, { once: true }));
+          if (this.monitorsStarted && this.phoneDetectionEnabled && this.dom.video) {
+            this.phoneMonitor.start(this.dom.video, episodio => this.reportPhoneDetection(episodio),
+              mensaje => this.setPhoneStatus(mensaje),
+              (video, episodio, segundo) => this.capturePhoneEvidence(video, episodio, segundo));
+          }
+          if (this.monitorsStarted && this.faceModelsReady && this.dom.video && this.dom.canvas) {
+            this.facialMonitor.init(this.dom.video, this.dom.canvas, this.storedDescriptors, this.proctorCallbacks);
+          }
+          return;
+        } catch (error) {
+          stream?.getTracks().forEach(track => track.stop());
+          if (this.dom.video) this.dom.video.srcObject = null;
+          const retryable = error.name === 'NotReadableError' || error.name === 'AbortError';
+          if (retryable && attempt < maxAttempts) {
+            await new Promise(resolve => setTimeout(resolve, 900));
+            continue;
+          }
+          console.warn('No se pudo conectar la cámara del examen:', error.name);
+          const message = error.name === 'NotAllowedError'
+            ? 'El navegador bloqueó la cámara. Autoriza el permiso para localhost y pulsa Reintentar cámara.'
+            : retryable
+              ? 'La cámara está ocupada o aún no se liberó de la pantalla anterior. Cierra otras pestañas o aplicaciones que la usen y pulsa Reintentar cámara.'
+              : error.name === 'NotFoundError'
+                ? 'No se encontró una cámara. Conéctala y pulsa Reintentar cámara.'
+                : 'No se pudo iniciar el video. Comprueba la cámara y pulsa Reintentar cámara.';
+          if (this.dom.statusChip) {
+            this.dom.statusChip.className = 'status-chip danger';
+            this.dom.statusChip.textContent = 'Cámara desconectada';
+          }
+          if (this.dom.liveLabel) this.dom.liveLabel.textContent = 'SIN CÁMARA';
+          if (this.dom.cameraMessage) {
+            this.dom.cameraMessage.style.display = 'block';
+            this.dom.cameraMessage.textContent = message;
+          }
+          if (this.phoneDetectionEnabled) this.setPhoneStatus('Detector de celular detenido: sin cámara.');
+          if (button) button.style.display = 'block';
+          return;
+        }
+      }
+    } finally {
+      this.connectingCamera = false;
+      if (button) button.disabled = false;
+    }
+  }
+
   initProctoringModules() {
+    this.monitorsStarted = true;
     const callbacks = {
       onViolation: (modulo, tipo, desc) => this.handleViolation(modulo, tipo, desc),
+      onFocusLoss: (tipo, desc) => this.reportFocusLoss(tipo, desc),
       onFatalViolation: (modulo, tipo, desc) => this.handleFatalViolation(modulo, tipo, desc),
       onStatusChange: (status, message) => {
         if (this.dom.statusChip) {
           this.dom.statusChip.className = `status-chip ${status}`;
           this.dom.statusChip.textContent = message;
         }
+        this.setSupervisionAlert(status === 'ok' ? '' : message);
       },
       onStrikeUpdate: (strikes, maxStrikes) => {
         if (this.dom.strikesCount) {
@@ -302,12 +408,72 @@ class MonitorEngine {
         }
       }
     };
+    this.proctorCallbacks = callbacks;
 
-    if (this.dom.video && this.dom.canvas) {
+    if (this.faceModelsReady && this.cameraStream && this.dom.video && this.dom.canvas) {
       this.facialMonitor.init(this.dom.video, this.dom.canvas, this.storedDescriptors, callbacks);
     }
     this.focusMonitor.init(callbacks);
     this.screenshotGuard.init(callbacks);
+    if (this.phoneDetectionEnabled && this.cameraStream && this.dom.video) {
+      this.phoneMonitor.start(
+        this.dom.video,
+        episodio => this.reportPhoneDetection(episodio),
+        (mensaje) => this.setPhoneStatus(mensaje),
+        (video, episodio, segundo) => this.capturePhoneEvidence(video, episodio, segundo)
+      );
+    }
+  }
+
+  async capturePhoneEvidence(video, episodio, segundo) {
+    if (this.isTerminated || video.readyState < 2) return;
+    if (!video.videoWidth || !video.videoHeight) throw new Error('Fotograma de cámara no disponible');
+    const canvas = document.createElement('canvas');
+    const ratio = Math.min(1, 640 / video.videoWidth);
+    canvas.width = Math.round(video.videoWidth * ratio);
+    canvas.height = Math.round(video.videoHeight * ratio);
+    const ctx = canvas.getContext('2d');
+    if (!ctx || !canvas.width || !canvas.height) return;
+    ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const convertir = quality => new Promise(resolve => canvas.toBlob(resolve, 'image/jpeg', quality));
+    let foto = await convertir(0.68);
+    if (foto?.size > 80_000) foto = await convertir(0.45);
+    if (!foto || foto.size > 80_000) throw new Error('Captura demasiado grande');
+    const datos = new FormData();
+    datos.append('token_sesion', this.tokenSesion);
+    datos.append('episodio_id', episodio);
+    datos.append('segundo_objetivo', String(segundo));
+    datos.append('foto', foto, 'captura.jpg');
+    const response = await fetch('/api/intento/evidencia-celular', {
+      method: 'POST',
+      headers: { 'X-CSRF-Token': this.csrfToken },
+      body: datos
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  }
+
+  setSupervisionAlert(message) {
+    if (!this.dom.supervisionAlert) return;
+    this.dom.supervisionAlert.textContent = message;
+    this.dom.supervisionAlert.style.display = message ? 'block' : 'none';
+  }
+
+  setPhoneStatus(message) {
+    if (!this.dom.phoneStatus) return;
+    this.dom.phoneStatus.textContent = message;
+    this.dom.phoneStatus.style.display = message ? 'block' : 'none';
+  }
+
+  async reportPhoneDetection(episodio) {
+    if (this.isTerminated) return null;
+    const response = await fetch('/api/intento/celular', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': this.csrfToken },
+      body: JSON.stringify({ token_sesion: this.tokenSesion,
+        id_cliente: `${episodio}:${crypto.randomUUID()}` })
+    });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    return response.json();
   }
 
   async handleViolation(modulo, tipo, descripcion) {
@@ -329,6 +495,34 @@ class MonitorEngine {
       });
     } catch (err) {
       console.error('Error al enviar evento de monitoreo:', err);
+    }
+  }
+
+  async reportFocusLoss(tipo, descripcion) {
+    if (this.isTerminated) return;
+    const idCliente = crypto.randomUUID();
+    try {
+      const response = await fetch('/api/intento/salida-foco', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': this.csrfToken },
+        keepalive: true,
+        body: JSON.stringify({ token_sesion: this.tokenSesion, tipo, id_cliente: idCliente })
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const estado = await response.json();
+      if (estado.cerrado) {
+        this.isTerminated = true;
+        this.stopAllMonitors();
+        alert(`Tu examen fue anulado provisionalmente. ${estado.motivo || 'Revisa el motivo en tu resultado.'} La decisión será revisada por una persona.`);
+        if (estado.redirect) window.location.replace(estado.redirect);
+        return;
+      }
+      const salidas = estado.salidas || 0;
+      if (this.dom.strikesCount) this.dom.strikesCount.textContent = `${salidas} / 3`;
+      this.showViolationToast(`${descripcion}. Advertencia ${salidas} de 3 salidas de la página.`);
+    } catch (error) {
+      console.warn('No se pudo confirmar la salida de foco con el servidor:', error);
+      this.showViolationToast('No se pudo confirmar el estado de supervisión. Comprueba tu conexión.');
     }
   }
 
@@ -658,6 +852,7 @@ class MonitorEngine {
     this.facialMonitor.stop();
     this.focusMonitor.stop();
     this.screenshotGuard.stop();
+    this.phoneMonitor.stop();
     if (this.cameraStream) {
       this.cameraStream.getTracks().forEach(track => track.stop());
     }
@@ -676,7 +871,7 @@ class MonitorEngine {
     try {
       const response = await fetch('/api/guardar-resultado', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': this.csrfToken },
         body: JSON.stringify({
           token_sesion: this.tokenSesion,
           area: this.area,

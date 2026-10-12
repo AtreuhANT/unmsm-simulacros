@@ -8,6 +8,7 @@
 <script src="{{ url_for('static', filename='models/face-api.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/mobile_guard.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/facial_presence.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modulos/phone_monitor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/focus_monitor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/screenshot_guard.js') }}"></script>
 <script src="{{ url_for('static', filename='js/monitor_engine.js') }}"></script>
@@ -154,7 +155,7 @@
     <!-- Ventana de Supervisión de Cámara Web con Canvas IA -->
     <div class="hud-card" id="hud-proctoring-card">
       <div class="hud-live-tag">
-        <span class="live-dot"></span> EN VIVO
+        <span class="live-dot"></span> <span id="hud-live-label">CONECTANDO</span>
       </div>
 
       <div class="hud-video-wrapper">
@@ -164,8 +165,12 @@
 
       <div class="hud-status-indicator">
         <span style="font-size: 0.72rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim);">Estado IA</span>
-        <span class="status-chip ok" id="hud-status-chip">Supervisión activa</span>
+        <span class="status-chip warning" id="hud-status-chip">Conectando cámara...</span>
       </div>
+      <p id="hud-camera-message" role="status" style="display:none; margin:0.75rem 0 0; font-size:0.8rem;"></p>
+      <button type="button" class="btn btn-secondary btn-sm" id="hud-retry-camera" style="display:none; margin-top:0.5rem; width:100%;">Reintentar cámara</button>
+      <p id="hud-supervision-alert" role="alert" style="display:none; margin:0.75rem 0 0; color:#b91c1c; font-size:0.8rem; font-weight:600;"></p>
+      <p id="hud-phone-status" role="status" style="display:none; margin:0.5rem 0 0; font-size:0.8rem;"></p>
     </div>
 
     <!-- Temporizador Oficial del Examen -->
@@ -216,7 +221,9 @@
       storedDescriptors: {{ descriptores_faciales_json | safe }},
       segundosRestantes: {{ segundos_restantes }},
       respuestasIniciales: {{ respuestas_guardadas_json | safe }},
-      yaEnCurso: {{ 'true' if ya_en_curso else 'false' }}
+      yaEnCurso: {{ 'true' if ya_en_curso else 'false' }},
+      csrfToken: {{ csrf_examen | tojson }},
+      phoneDetectionEnabled: {{ 'true' if deteccion_celular_activa else 'false' }}
     };
 
     const engine = new MonitorEngine(config);

@@ -188,6 +188,9 @@ class FacialPresenceMonitor {
       }
     } catch (err) {
       console.warn('[FACIAL] Excepción en ciclo de inspección:', err);
+      if (this.callbacks.onStatusChange) {
+        this.callbacks.onStatusChange('danger', 'La supervisión facial no pudo analizar la imagen. Comprueba la cámara.');
+      }
     } finally {
       this.isChecking = false;
     }

@@ -34,6 +34,7 @@ class Config:
     
     # Duración oficial de simulacro (en minutos)
     DURACION_EXAMEN_MINUTOS = int(os.environ.get('DURACION_EXAMEN_MINUTOS', 60))
+    DETECCION_CELULAR_ACTIVA = os.environ.get('DETECCION_CELULAR_ACTIVA', '1') == '1'
 
     # Tolerancia máxima para discrepancia temporal de examen (segundos de margen)
     TOLERANCIA_TIEMPO_EXAMEN_SEGUNDOS = 60

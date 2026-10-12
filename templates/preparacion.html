@@ -297,9 +297,9 @@
           </div>
           <div style="font-size: 0.85rem; color: var(--text-muted);" id="desc-identity">
             {% if enrolado %}
-              Centra tu rostro frente a la cámara para validar tu identidad contra tu perfil.
+              Centra tu rostro y sigue el reto de cerrar y abrir ambos ojos dos veces para validar tu identidad.
             {% else %}
-              No tienes plantilla de referencia. Capturaremos tu rostro para enrolarte automáticamente.
+              Centra tu rostro y sigue el reto de cerrar y abrir ambos ojos dos veces antes de capturar tu referencia.
             {% endif %}
           </div>
           <div style="margin-top: 0.75rem;">
@@ -328,6 +328,10 @@
               no utilizaré dispositivos auxiliares y acepto ingresar en modo de <strong>pantalla completa obligatoria</strong>.
             </span>
           </label>
+          {% if deteccion_celular_activa %}<label style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.86rem; margin-top: 0.8rem;">
+            <input type="checkbox" id="check-phone-consent" autocomplete="off" style="margin-top: 0.25rem;">
+            <span>Acepto la detección local de celulares y hasta cuatro fotografías puntuales por episodio detectado (segundos 1, 3, 7 y 10), guardadas cifradas fuera de la web pública y visibles solo para administradores en la revisión. Las imágenes expiran a los 30 días y se eliminan mediante mantenimiento periódico. No se graba video. Una detección sostenida de 10 segundos enviará mi resultado a revisión humana; no lo anulará automáticamente. La biblioteca MediaPipe puede comunicar métricas técnicas a Google.</span>
+          </label>{% endif %}
         </div>
       </div>
 
@@ -352,6 +356,9 @@
 <script>
 (function() {
   const AREA = "{{ area }}";
+  const PREP_CSRF = {{ csrf_preparacion | tojson }};
+  const HAS_PHONE_CONSENT = {{ 'true' if usuario.consentimiento_celular_version == 'celular-v2-fotos' else 'false' }};
+  const PHONE_DETECTION_ENABLED = {{ 'true' if deteccion_celular_activa else 'false' }};
   const IS_ENROLLED = {{ 'true' if enrolado else 'false' }};
   let storedDescriptors = {{ descriptores_faciales_json | safe }};
 
@@ -375,6 +382,7 @@
   const checkRules = document.getElementById('check-rules');
   const iconRules = document.getElementById('icon-rules');
   const checkDeskAgreement = document.getElementById('check-desk-agreement');
+  const checkPhoneConsent = document.getElementById('check-phone-consent');
 
   const btnCancelPrep = document.getElementById('btn-cancel-prep');
   const btnLaunchExam = document.getElementById('btn-launch-exam');
@@ -432,8 +440,16 @@
       });
     } catch (err) {
       console.error('Error de acceso a webcam:', err);
-      camStatusLabel.textContent = '✕ Permiso denegado';
-      descCamera.textContent = 'No se pudo acceder a tu cámara. Por favor autoriza los permisos en tu navegador.';
+      if (err.name === 'NotReadableError') {
+        camStatusLabel.textContent = '✕ Cámara no disponible';
+        descCamera.textContent = 'La cámara puede estar ocupada por otra pestaña o aplicación. Ciérrala allí y pulsa Reiniciar Cámara Web.';
+      } else if (err.name === 'NotAllowedError') {
+        camStatusLabel.textContent = '✕ Permiso denegado';
+        descCamera.textContent = 'Autoriza el acceso a la cámara en tu navegador y vuelve a intentarlo.';
+      } else {
+        camStatusLabel.textContent = '✕ Error de cámara';
+        descCamera.textContent = 'No se pudo iniciar la cámara. Comprueba que esté conectada y pulsa Reiniciar Cámara Web.';
+      }
     }
   }
 
@@ -471,6 +487,20 @@
   }
 
   // 3. Verificación o Enrolamiento
+  async function comprobarParpadeo() {
+    if (detectInterval) clearInterval(detectInterval);
+    btnRetestCam.disabled = true;
+    try {
+      const { runBlinkChallenge } = await import('/static/js/modulos/blink_challenge.mjs');
+      return await runBlinkChallenge(video, mensaje => { descIdentity.textContent = mensaje; });
+    } catch (error) {
+      descIdentity.textContent = error.message || 'No se pudo iniciar el detector de ojos. Recarga la página e inténtalo otra vez.';
+      return false;
+    } finally {
+      btnRetestCam.disabled = false;
+      startDetectionLoop();
+    }
+  }
   btnVerifyFace.addEventListener('click', async () => {
     btnVerifyFace.disabled = true;
     btnVerifyFace.textContent = 'Analizando biometría...';
@@ -485,6 +515,12 @@
         alert('No se detectó tu rostro con suficiente nitidez. Ilumina tu espacio y mira de frente.');
         btnVerifyFace.disabled = false;
         btnVerifyFace.textContent = IS_ENROLLED ? '🔍 Validar mi Identidad Facial' : '📷 Capturar Rostro de Referencia';
+        return;
+      }
+
+      if (!await comprobarParpadeo()) {
+        btnVerifyFace.disabled = false;
+        btnVerifyFace.textContent = 'Reintentar verificación de presencia';
         return;
       }
 
@@ -538,7 +574,7 @@
   });
 
   function actualizarPaso3() {
-    if (checkDeskAgreement.checked && identityVerified) {
+    if (checkDeskAgreement.checked && (!PHONE_DETECTION_ENABLED || checkPhoneConsent.checked) && identityVerified) {
       checkRules.classList.add('passed');
       iconRules.textContent = '✓';
       pill3.classList.add('completed');
@@ -575,16 +611,23 @@
   checkDeskAgreement.addEventListener('change', actualizarPaso3);
   checkDeskAgreement.addEventListener('input', actualizarPaso3);
   checkDeskAgreement.addEventListener('click', actualizarPaso3);
+  if (checkPhoneConsent) checkPhoneConsent.addEventListener('change', actualizarPaso3);
 
   // 5. Iniciar Examen Oficial (POST /api/intento/iniciar)
   btnLaunchExam.addEventListener('click', async () => {
     btnLaunchExam.disabled = true;
     btnLaunchExam.textContent = 'Iniciando cronómetro oficial...';
 
-    // Detener cámara antes de navegar para liberar el hardware
-    stopCamera();
-
     try {
+      if (PHONE_DETECTION_ENABLED) {
+        const consentimiento = await fetch('/api/intento/consentimiento-celular', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': PREP_CSRF },
+          body: JSON.stringify({ acepta: checkPhoneConsent.checked })
+        });
+        if (!consentimiento.ok) throw new Error('No se pudo registrar el consentimiento');
+      }
+      stopCamera();
       const resp = await fetch('/api/intento/iniciar', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -638,6 +681,7 @@
   // Inicialización secuencial
   window.addEventListener('DOMContentLoaded', async () => {
     checkDeskAgreement.checked = false;
+    if (checkPhoneConsent) checkPhoneConsent.checked = HAS_PHONE_CONSENT;
     actualizarPaso3();
     const ok = await loadModels();
     if (ok) {

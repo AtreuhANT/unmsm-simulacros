@@ -1,6 +1,7 @@
 import time
 import json
 import logging
+import secrets
 from flask import Blueprint, request, jsonify, session, url_for
 from config import Config
 from models.resultado import (
@@ -15,9 +16,28 @@ from models.intento import (
 from models.usuario import guardar_plantilla_facial, obtener_plantilla_facial
 from utils.helpers import login_required
 from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area, calcular_puntaje
+from models.supervision import IntentoNoDisponible, entregar_examen, registrar_salida_foco, registrar_celular
+from models.database import get_db_cursor
+from models.evidencia_celular import guardar_evidencia
 
 logger = logging.getLogger(__name__)
 api_bp = Blueprint('api', __name__, url_prefix='/api')
+
+
+@api_bp.route('/intento/consentimiento-celular', methods=['POST'])
+@login_required
+def guardar_consentimiento_celular():
+    csrf = session.get('csrf_preparacion')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), csrf):
+        return jsonify({'error': 'CSRF inválido'}), 403
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict) or data.get('acepta') is not True:
+        return jsonify({'error': 'Consentimiento explícito requerido'}), 400
+    with get_db_cursor(commit=True) as cur:
+        cur.execute("UPDATE usuarios SET consentimiento_celular_en = CURRENT_TIMESTAMP, "
+                    "consentimiento_celular_version = 'celular-v2-fotos' WHERE id = %s",
+                    (session['usuario_id'],))
+    return jsonify({'status': 'ok', 'version': 'celular-v2-fotos'})
 
 @api_bp.route('/carreras/<area>')
 def obtener_carreras(area):
@@ -65,134 +85,111 @@ def reportar_evento_monitoreo():
 @api_bp.route('/guardar-resultado', methods=['POST'])
 @login_required
 def api_guardar_resultado():
-    """
-    Recibe las respuestas del examen, ejecuta las validaciones de seguridad temporal
-    e idempotencia, computa el puntaje oficial UNMSM y persiste los resultados.
-    """
+    """Cierra y califica desde el intento, las respuestas y el reloj del servidor."""
     data = request.get_json(silent=True)
-    if not data:
+    if not isinstance(data, dict):
         return jsonify({'error': 'Payload JSON inválido'}), 400
-
-    usuario_id = session['usuario_id']
-    token_sesion = data.get('token_sesion', '').strip()
-    area = data.get('area', '').upper().strip()
-    respuestas = data.get('respuestas', {})
-    tiempo_cliente = int(data.get('tiempo_segundos', 0))
-    estado = data.get('estado', 'COMPLETADO').strip()
-    motivo_anulacion = data.get('motivo_anulacion', None)
-
-    # 1. Validación de Token e Idempotencia (anti-replay)
-    if not token_sesion:
+    csrf = session.get('csrf_examen')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), csrf):
+        return jsonify({'error': 'CSRF inválido'}), 403
+    token_sesion = data.get('token_sesion')
+    if not isinstance(token_sesion, str) or not token_sesion or len(token_sesion) > 80:
         return jsonify({'error': 'Token de sesión ausente'}), 400
-
-    resultado_existente = obtener_resultado_por_token(token_sesion)
-    if resultado_existente:
-        logger.warning(f"Reenvío detectado para token {token_sesion}. Retornando resultado existente.")
-        return jsonify({
-            'status': 'duplicado',
-            'resultado_id': resultado_existente['id'],
-            'redirect': url_for('resultados.ver_resultado', id=resultado_existente['id'])
-        })
-
-    token_sesion_activa = session.get('token_sesion')
-    if token_sesion_activa and token_sesion_activa != token_sesion:
-        logger.warning(f"Discrepancia de token: session={token_sesion_activa}, payload={token_sesion}")
-
-    # 2. Validación y vinculación con el intento oficial en PostgreSQL
-    intento = obtener_intento_por_token(token_sesion)
-    tiempo_final = tiempo_cliente
-
-    if intento:
-        # Recuperar y fusionar respuestas persistidas en la BD con las enviadas en el payload
-        respuestas_db = obtener_respuestas_intento(intento['id'])
-        for pid_str, r_info in respuestas_db.items():
-            if pid_str not in respuestas and r_info.get('opcion'):
-                respuestas[pid_str] = r_info['opcion']
-
-        # Cálculo de tiempo en base a la hora oficial de inicio del intento
-        if intento.get('fecha_inicio'):
-            from datetime import datetime, timezone
-            duracion_real = int((datetime.now(timezone.utc) - intento['fecha_inicio']).total_seconds())
-            tolerancia = Config.TOLERANCIA_TIEMPO_EXAMEN_SEGUNDOS
-            if abs(duracion_real - tiempo_cliente) > tolerancia:
-                logger.warning(f"Discrepancia temporal: Servidor={duracion_real}s, Cliente={tiempo_cliente}s")
-                tiempo_final = max(0, duracion_real)
-            else:
-                tiempo_final = max(0, tiempo_cliente)
-    else:
-        # Fallback al reloj en sesión
-        examen_inicio = session.get('examen_inicio')
-        if examen_inicio:
-            tiempo_servidor = int(time.time() - examen_inicio)
-            tolerancia = Config.TOLERANCIA_TIEMPO_EXAMEN_SEGUNDOS
-            if abs(tiempo_servidor - tiempo_cliente) > tolerancia:
-                tiempo_final = max(0, tiempo_servidor)
-            else:
-                tiempo_final = max(0, tiempo_cliente)
-
-    # 3. Cargar preguntas y computar calificación oficial UNMSM
-    preguntas_area = cargar_preguntas_area(area)
-    if not preguntas_area:
-        return jsonify({'error': f'No existen preguntas para el área {area}'}), 400
-
-    calc = calcular_puntaje(respuestas, preguntas_area)
-
-    # Si fue ANULADO por falta grave anti-trampa, puntaje es 0.0
-    if estado == 'ANULADO':
-        puntaje_final = 0.0
-        if not motivo_anulacion:
-            motivo_anulacion = 'Infracción a las normas de supervisión biométrica.'
-    else:
-        estado = 'COMPLETADO'
-        puntaje_final = calc['puntaje']
-        motivo_anulacion = None
-
-    # 4. Cerrar intento oficial y persistir en Base de Datos PostgreSQL
     try:
-        if intento:
-            estado_acad = 'ENTREGADO' if estado == 'COMPLETADO' else 'ANULADO'
-            cerrar_intento(
-                intento_id=intento['id'],
-                estado_academico=estado_acad,
-                estado_supervision=motivo_anulacion or 'SIN_OBSERVACIONES'
-            )
-
-        nuevo_resultado = guardar_resultado(
-            usuario_id=usuario_id,
-            area=area,
-            puntaje=puntaje_final,
-            correctas=calc['correctas'],
-            incorrectas=calc['incorrectas'],
-            blanco=calc['blanco'],
-            tiempo_segundos=tiempo_final,
-            token_sesion=token_sesion,
-            estado=estado,
-            motivo_anulacion=motivo_anulacion
-        )
-
-        if not nuevo_resultado:
-            return jsonify({'error': 'No se pudo guardar el resultado'}), 500
-
-        resultado_id = nuevo_resultado['id']
-
-        # 5. Asociar eventos de monitoreo generados durante la prueba
-        asociar_eventos_a_resultado(usuario_id, resultado_id)
-
-        # 6. Limpiar variables de sesión del examen
+        resultado = entregar_examen(token_sesion, session['usuario_id'])
         session.pop('token_sesion', None)
         session.pop('intento_id', None)
         session.pop('examen_inicio', None)
         session.pop('examen_area', None)
-
         return jsonify({
             'status': 'ok',
-            'resultado_id': resultado_id,
-            'redirect': url_for('resultados.ver_resultado', id=resultado_id)
+            'resultado_id': resultado['id'],
+            'motivo': resultado['motivo_anulacion'],
+            'redirect': url_for('resultados.ver_resultado', id=resultado['id'])
         })
-
+    except IntentoNoDisponible:
+        return jsonify({'error': 'Intento inexistente o ajeno'}), 404
     except Exception as e:
-        logger.error(f"Error al guardar resultado de examen: {e}")
+        logger.error('Error al cerrar resultado: %s', type(e).__name__)
         return jsonify({'error': 'Error de base de datos al guardar examen'}), 500
+
+
+@api_bp.route('/intento/salida-foco', methods=['POST'])
+@login_required
+def reportar_salida_foco():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({'error': 'Payload inválido'}), 400
+    csrf = session.get('csrf_examen')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), csrf):
+        return jsonify({'error': 'CSRF inválido'}), 403
+    token = data.get('token_sesion')
+    if not isinstance(token, str) or not token or len(token) > 80:
+        return jsonify({'error': 'Token inválido'}), 400
+    try:
+        estado = registrar_salida_foco(token, session['usuario_id'], data.get('id_cliente'), data.get('tipo'))
+        if estado.get('resultado_id'):
+            estado['redirect'] = url_for('resultados.ver_resultado', id=estado['resultado_id'])
+        return jsonify(estado)
+    except ValueError:
+        return jsonify({'error': 'Evento inválido'}), 400
+    except IntentoNoDisponible:
+        return jsonify({'error': 'Intento inexistente o ajeno'}), 404
+    except Exception as e:
+        logger.error('Error al registrar salida de foco: %s', type(e).__name__)
+        return jsonify({'error': 'No se pudo registrar la salida'}), 500
+
+
+@api_bp.route('/intento/celular', methods=['POST'])
+@login_required
+def reportar_celular():
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({'error': 'Payload inválido'}), 400
+    csrf = session.get('csrf_examen')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), csrf):
+        return jsonify({'error': 'CSRF inválido'}), 403
+    token = data.get('token_sesion')
+    if not isinstance(token, str) or not token or len(token) > 80:
+        return jsonify({'error': 'Token inválido'}), 400
+    try:
+        return jsonify(registrar_celular(token, session['usuario_id'], data.get('id_cliente')))
+    except ValueError:
+        return jsonify({'error': 'Evento inválido'}), 400
+    except IntentoNoDisponible:
+        return jsonify({'error': 'Intento inexistente o ajeno'}), 404
+    except Exception as e:
+        logger.error('Error al registrar celular: %s', type(e).__name__)
+        return jsonify({'error': 'No se pudo registrar el evento'}), 500
+
+
+@api_bp.route('/intento/evidencia-celular', methods=['POST'])
+@login_required
+def recibir_evidencia_celular():
+    csrf = session.get('csrf_examen')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), csrf):
+        return jsonify({'error': 'CSRF inválido'}), 403
+    if request.content_length is None or request.content_length > 100_000:
+        return jsonify({'error': 'Captura demasiado grande'}), 413
+    token = request.form.get('token_sesion')
+    if not isinstance(token, str) or not token or len(token) > 80:
+        return jsonify({'error': 'Token inválido'}), 400
+    foto = request.files.get('foto')
+    if not foto or foto.mimetype != 'image/jpeg':
+        return jsonify({'error': 'Imagen JPEG requerida'}), 400
+    datos = foto.read(80_001)
+    try:
+        evidencia_id = guardar_evidencia(token, session['usuario_id'],
+                                          request.form.get('episodio_id'),
+                                          request.form.get('segundo_objetivo'), datos)
+        return jsonify({'status': 'guardada', 'evidencia_id': evidencia_id})
+    except ValueError:
+        return jsonify({'error': 'Captura inválida o fuera de límite'}), 400
+    except PermissionError:
+        return jsonify({'error': 'Intento o consentimiento no disponibles'}), 403
+    except Exception as e:
+        logger.error('Error al guardar evidencia: %s', type(e).__name__)
+        return jsonify({'error': 'No se pudo guardar la evidencia'}), 500
 
 
 # =============================================================================
@@ -331,6 +328,8 @@ def persistir_respuesta_incremental():
             'status': 'guardado',
             'respuesta': _serializar_respuesta(fila)
         })
+    except ValueError as e:
+        return jsonify({'error': str(e)}), 409
     except Exception as e:
         logger.error(f"Error al guardar respuesta incremental: {e}")
         return jsonify({'error': 'Error al persistir respuesta'}), 500

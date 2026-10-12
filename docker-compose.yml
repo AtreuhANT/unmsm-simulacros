@@ -33,7 +33,11 @@ services:
       PORT: 5000
     ports:
       - "5000:5000"
+    volumes:
+      - evidencias:/app/instance/evidencias
 
 volumes:
   pgdata:
+    driver: local
+  evidencias:
     driver: local

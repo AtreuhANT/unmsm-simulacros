@@ -82,6 +82,27 @@
     </div>
   </div>
 
+  <div class="card" style="margin-bottom: 2.5rem;">
+    <h3 class="card-title">Casos pendientes de revisión humana</h3>
+    {% if pendientes %}
+      {% for r in pendientes %}
+      <div style="border-top: 1px solid var(--border-color); padding: 1rem 0;">
+        <strong>{{ r.nombre }} {{ r.apellido }}</strong> — {{ r.motivo_anulacion }}
+        <a href="{{ url_for('resultados.ver_resultado', id=r.id) }}">Ver informe</a>
+        <form method="post" action="{{ url_for('resultados.revisar_anulacion', resultado_id=r.id) }}">
+          <input type="hidden" name="csrf_revision" value="{{ session.csrf_revision }}">
+          <label for="nota-{{ r.id }}">Justificación de la decisión</label>
+          <input id="nota-{{ r.id }}" name="nota" maxlength="1000" required>
+          <button type="submit" name="decision" value="confirmar" class="btn btn-secondary btn-sm">Confirmar anulación</button>
+          <button type="submit" name="decision" value="reponer" class="btn btn-primary btn-sm">Reponer examen</button>
+        </form>
+      </div>
+      {% endfor %}
+    {% else %}
+      <p>No hay anulaciones pendientes.</p>
+    {% endif %}
+  </div>
+
   <!-- Últimos Simulacros y Auditoría de Faltas -->
   <div class="card" style="margin-bottom: 2.5rem;">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">

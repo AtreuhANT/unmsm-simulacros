@@ -120,7 +120,7 @@ def obtener_ranking(area=None, carrera=None, limite=100):
     2° Menor tiempo transcurrido en segundos
     Filtra exámenes válidos ('COMPLETADO').
     """
-    clauses = ["r.estado = 'COMPLETADO'"]
+    clauses = ["r.estado = 'COMPLETADO'", "r.revision <> 'PENDIENTE'"]
     params = []
     
     if area:

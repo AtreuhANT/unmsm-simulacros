@@ -154,15 +154,22 @@
       <div>
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <h2 style="font-family: var(--font-heading); font-size: 1.45rem; color: #dc2626; font-weight: 800; margin-bottom: 0;">
-            Examen Anulado por Infracción de Conducta
+            Examen anulado provisionalmente
           </h2>
           <span class="badge badge-danger">Anulado</span>
         </div>
         <p style="color: #b91c1c; font-size: 0.92rem; margin: 0.35rem 0 0;">
-          <strong>Motivo Oficial:</strong> {{ resultado.motivo_anulacion or 'Infracción grave a las normas de supervisión.' }}
+          <strong>Motivo registrado:</strong> {{ resultado.motivo_anulacion or 'Incidencia de supervisión.' }}
+          {% if resultado.revision == 'PENDIENTE' %} Un supervisor revisará esta decisión.{% endif %}
         </p>
       </div>
     </div>
+  </div>
+  {% elif resultado.revision == 'PENDIENTE' %}
+  <div class="card" style="background: rgba(245, 158, 11, 0.08); border: 2px solid #f59e0b; margin-bottom: 2rem;">
+    <h2>Resultado pendiente de revisión humana</h2>
+    <p>{{ resultado.motivo_anulacion }}</p>
+    <p>Tu examen quedó entregado. Un supervisor decidirá si confirma o descarta la observación; por ahora no aparece en el ranking.</p>
   </div>
   {% else %}
   <div class="card" style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.35); margin-bottom: 2rem;">
@@ -347,6 +354,24 @@
   {% endif %}
 
   <!-- Panel de Auditoría: OBSERVACIONES DE CONDUCTA -->
+  {% if session.get('es_admin') and evidencias_celular %}
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 class="card-title">Fotografías de detección de celular</h3>
+    <p class="card-subtitle">Capturas puntuales para revisión humana. La detección y la foto por sí solas no prueban una infracción; revisa contexto, hora y continuidad.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;">
+      {% for evidencia in evidencias_celular %}
+      <figure style="margin:0;">
+        <img src="{{ url_for('resultados.ver_evidencia_celular', evidencia_id=evidencia.id) }}"
+             alt="Captura del segundo {{ evidencia.segundo_objetivo }} del episodio de detección"
+             loading="lazy" style="width:100%; border-radius:8px; border:1px solid var(--border-color);">
+        <figcaption style="font-size:0.78rem; margin-top:0.35rem;">
+          Objetivo {{ evidencia.segundo_objetivo }} s · {{ evidencia.creado_en.strftime('%d/%m/%Y %H:%M:%S') }}
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
   <div class="card" style="margin-bottom: 2rem;">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
       <div>
