@@ -21,10 +21,9 @@
   <header class="main-header">
     <div class="header-container">
       <a href="{{ url_for('dashboard.dashboard_view') if session.get('usuario_id') else url_for('auth.login') }}" class="brand-logo" id="nav-brand">
-        <div class="brand-icon">UN</div>
         <div class="brand-text">
-          <h1>SIMULACROS UNMSM</h1>
-          <span>Supervisión Proctoring IA</span>
+          <h1>UNMSM</h1>
+          <span>Simulacro tipo admisión</span>
         </div>
       </a>
 

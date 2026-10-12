@@ -484,3 +484,19 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.liveness-check {
+  position: fixed;
+  z-index: 70;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(90vw, 520px);
+  padding: 0.9rem 1.1rem;
+  border: 1px solid var(--wine-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  box-shadow: var(--shadow-lg);
+  color: var(--text-main);
+  font-size: 0.9rem;
+}
+.liveness-check[hidden] { display: none; }

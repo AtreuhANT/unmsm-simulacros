@@ -104,6 +104,7 @@
      VIEWPORT PRINCIPAL DEL EXAMEN (PREGUNTAS + HUD EN TIEMPO REAL)
      ========================================================================= -->
 <div class="exam-viewport">
+  <div id="liveness-check" class="liveness-check" role="status" aria-live="polite" hidden></div>
   
   <!-- Columna Izquierda: Tarjeta de la Pregunta Actual -->
   <div class="exam-main" id="question-container">
@@ -214,8 +215,8 @@
   // Inicialización de la sesión de examen con seguridad híbrida y persistencia continua
   window.addEventListener('DOMContentLoaded', () => {
     const config = {
-      intentoId: {{ intento_id }},
-      tokenSesion: "{{ token_sesion }}",
+      intentoId: {{ intento_id | tojson }},
+      tokenSesion: {{ token_sesion | tojson }},
       area: "{{ area }}",
       preguntas: {{ preguntas_json | safe }},
       storedDescriptors: {{ descriptores_faciales_json | safe }},

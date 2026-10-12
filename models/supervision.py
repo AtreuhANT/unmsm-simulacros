@@ -10,7 +10,8 @@ from utils.preguntas import cargar_preguntas_area, calcular_puntaje
 
 MOTIVO_FOCO = 'Tres salidas de la página del examen; anulación provisional pendiente de revisión humana.'
 TIPOS_FOCO = {'cambio_pestana', 'desenfoque_ventana', 'salida_pantalla_completa'}
-MOTIVO_CELULAR = 'Detección de celular durante al menos 10 segundos; pendiente de revisión humana.'
+MOTIVO_CELULAR = 'Detecciones de celular registradas; pendiente de revisión humana.'
+MOTIVO_PRESENCIA = 'No se confirmó el reto ocular de presencia; pendiente de revisión humana.'
 
 
 class IntentoNoDisponible(Exception):
@@ -48,7 +49,16 @@ def _cerrar(cur, intento, estado, motivo=None):
     pendiente = estado == 'ANULADO' or cur.fetchone()['estado_supervision'] == 'PENDIENTE'
     supervision = 'PENDIENTE' if pendiente else 'SIN_OBSERVACIONES'
     if pendiente and not motivo:
-        motivo = MOTIVO_CELULAR
+        cur.execute("SELECT DISTINCT tipo FROM eventos_monitoreo WHERE intento_id = %s "
+                    "AND tipo IN ('celular_detectado', 'presencia_no_confirmada')",
+                    (intento['id'],))
+        tipos = {fila['tipo'] for fila in cur.fetchall()}
+        razones = []
+        if 'celular_detectado' in tipos:
+            razones.append(MOTIVO_CELULAR)
+        if 'presencia_no_confirmada' in tipos:
+            razones.append(MOTIVO_PRESENCIA)
+        motivo = ' '.join(razones) if razones else 'Observaciones de supervisión pendientes de revisión humana.'
     cur.execute(
         "UPDATE intentos SET estado_academico = %s, estado_supervision = %s, "
         "fecha_cierre = CURRENT_TIMESTAMP WHERE id = %s AND estado_academico = 'EN_CURSO'",
@@ -160,6 +170,23 @@ def registrar_celular(token, usuario_id, id_cliente):
         cur.execute('SELECT estado_supervision FROM intentos WHERE id = %s', (intento['id'],))
         return {'revision_pendiente': cur.fetchone()['estado_supervision'] == 'PENDIENTE',
                 'duracion_observada': round(duracion, 1)}
+
+
+def registrar_presencia_no_confirmada(token, usuario_id, id_cliente):
+    """Registra un reto no superado como indicio; nunca anula automáticamente."""
+    if not isinstance(id_cliente, str) or not id_cliente or len(id_cliente) > 80:
+        raise ValueError('Identificador de reto inválido')
+    with get_db_connection() as conn, conn, conn.cursor(cursor_factory=RealDictCursor) as cur:
+        intento = _bloquear_intento(cur, token, usuario_id)
+        if intento['estado_academico'] != 'EN_CURSO':
+            return {'cerrado': True}
+        cur.execute("INSERT INTO eventos_monitoreo (usuario_id,intento_id,modulo,tipo,descripcion,id_cliente) "
+                    "VALUES (%s,%s,'facial_presence','presencia_no_confirmada',%s,%s) "
+                    "ON CONFLICT (intento_id,id_cliente) WHERE id_cliente IS NOT NULL DO NOTHING",
+                    (usuario_id, intento['id'], 'Reto de movimiento ocular no confirmado', id_cliente))
+        cur.execute("UPDATE intentos SET estado_supervision = 'PENDIENTE' "
+                    "WHERE id = %s AND estado_supervision = 'SIN_OBSERVACIONES'", (intento['id'],))
+        return {'revision_pendiente': True}
 
 
 def listar_pendientes():

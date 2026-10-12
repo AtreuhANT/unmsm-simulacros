@@ -154,9 +154,9 @@
       <div>
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <h2 style="font-family: var(--font-heading); font-size: 1.45rem; color: #dc2626; font-weight: 800; margin-bottom: 0;">
-            Examen anulado provisionalmente
+            {{ 'Anulación confirmada' if resultado.revision == 'ANULACION_CONFIRMADA' else 'Examen anulado provisionalmente' }}
           </h2>
-          <span class="badge badge-danger">Anulado</span>
+          <span class="badge badge-danger">{{ 'Decisión final' if resultado.revision == 'ANULACION_CONFIRMADA' else 'Anulado' }}</span>
         </div>
         <p style="color: #b91c1c; font-size: 0.92rem; margin: 0.35rem 0 0;">
           <strong>Motivo registrado:</strong> {{ resultado.motivo_anulacion or 'Incidencia de supervisión.' }}
@@ -177,9 +177,9 @@
       <div>
         <div style="display: flex; align-items: center; gap: 0.75rem;">
           <h2 style="font-family: var(--font-heading); font-size: 1.55rem; color: #059669; font-weight: 800; margin-bottom: 0;">
-            ¡Simulacro Completado Exitosamente!
+            {{ 'Examen repuesto tras revisión' if resultado.revision == 'REPUESTO' else '¡Simulacro Completado Exitosamente!' }}
           </h2>
-          <span class="badge badge-success">Válido</span>
+          <span class="badge badge-success">{{ 'Repuesto' if resultado.revision == 'REPUESTO' else 'Válido' }}</span>
         </div>
         <p style="color: var(--text-muted); font-size: 0.92rem; margin: 0.35rem 0 0;">
           Tu evaluación fue procesada y clasificada en el ranking oficial de la UNMSM.
@@ -191,6 +191,16 @@
         </a>
       </div>
     </div>
+  </div>
+  {% endif %}
+
+  {% if decision_revision %}
+  <div class="card" style="margin-bottom: 2rem; border-left: 4px solid var(--wine);">
+    <h3 class="card-title">Decisión de la revisión humana</h3>
+    <p style="margin-bottom: 0.5rem;">
+      <strong>{{ 'Anulación confirmada' if decision_revision.decision == 'confirmar' else 'Examen repuesto' }}</strong>
+    </p>
+    <p style="margin-bottom: 0; white-space: pre-wrap; overflow-wrap: anywhere;"><strong>Justificación:</strong> {{ decision_revision.nota }}</p>
   </div>
   {% endif %}
 
@@ -254,6 +264,92 @@
       </div>
     </div>
 
+  </div>
+
+  <!-- Panel de Auditoría: OBSERVACIONES DE CONDUCTA -->
+  {% if session.get('es_admin') and evidencias_celular %}
+  <div class="card" style="margin-bottom: 2rem;">
+    <h3 class="card-title">Fotografías de detección de celular</h3>
+    <p class="card-subtitle">Capturas puntuales para revisión humana. La detección y la foto por sí solas no prueban una infracción; revisa contexto, hora y continuidad.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;">
+      {% for evidencia in evidencias_celular %}
+      <figure style="margin:0;">
+        <img src="{{ url_for('resultados.ver_evidencia_celular', evidencia_id=evidencia.id) }}"
+             alt="Captura del segundo {{ evidencia.segundo_objetivo }} del episodio de detección"
+             loading="lazy" style="width:100%; border-radius:8px; border:1px solid var(--border-color);">
+        <figcaption style="font-size:0.78rem; margin-top:0.35rem;">
+          {{ 'Primera detección' if evidencia.segundo_objetivo == 1 else 'Objetivo ' ~ evidencia.segundo_objetivo ~ ' s' }} · {{ evidencia.creado_en.strftime('%d/%m/%Y %H:%M:%S') }}
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+  <div class="card" style="margin-bottom: 2rem;">
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+      <div>
+        <h3 class="card-title" style="margin-bottom: 0.25rem;">Observaciones de Supervisión (Auditoría Anti-Trampa)</h3>
+        <p class="card-subtitle" style="margin-bottom: 0;">Registro cronológico de incidentes para revisión administrativa</p>
+      </div>
+      <div>
+        {% if conteo.total == 0 %}
+          <span class="badge badge-success">✓ Sin Observaciones</span>
+        {% else %}
+          <span class="badge badge-wine">⚠️ {{ conteo.total }} observaciones registradas</span>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if eventos %}
+    <div class="table-responsive">
+      <table class="table-custom">
+        <thead>
+          <tr>
+            <th style="width: 110px;">Segundo</th>
+            <th style="width: 140px;">Módulo</th>
+            <th style="width: 140px;">Incidente</th>
+            <th>Detalle de la Observación</th>
+            <th style="width: 140px; text-align: right;">Hora</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ev in eventos %}
+          <tr>
+            <td style="font-family: monospace; font-weight: 700; color: var(--wine);">
+              {{ formatear_tiempo(ev.segundo_examen) }}
+            </td>
+            <td>
+              <span class="badge badge-wine">{{ ev.modulo }}</span>
+            </td>
+            <td>
+              <strong style="font-size: 0.85rem; color: #dc2626;">{{ ev.tipo }}</strong>
+            </td>
+            <td style="font-size: 0.88rem; color: var(--text-main);">
+              {{ ev.descripcion }}
+            </td>
+            <td style="text-align: right; font-size: 0.8rem; color: var(--text-dim);">
+              {{ ev.registrado_en.strftime('%H:%M:%S') if ev.registrado_en else '-' }}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% else %}
+    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
+      <div style="font-size: 2rem; color: #10b981; margin-bottom: 0.35rem;">🛡️ ✓</div>
+      <h4 style="color: #059669; font-family: var(--font-heading); margin-bottom: 0.25rem;">
+        Examen completado conforme y sin observaciones
+      </h4>
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0;">
+        El postulante mantuvo presencia facial continua, modo de pantalla completa y no registró incidencias durante la prueba.
+      </p>
+    </div>
+    {% endif %}
+
+    <div style="margin-top: 1.25rem; font-size: 0.75rem; color: var(--text-dim); word-break: break-all;">
+      Firma Criptográfica / Token de Sesión: <code>{{ resultado.token_sesion }}</code>
+    </div>
   </div>
 
   <!-- SECCIÓN: REVISIÓN ACADÉMICA DE PREGUNTAS Y EXPLICACIONES DECO -->
@@ -352,92 +448,6 @@
 
   </div>
   {% endif %}
-
-  <!-- Panel de Auditoría: OBSERVACIONES DE CONDUCTA -->
-  {% if session.get('es_admin') and evidencias_celular %}
-  <div class="card" style="margin-bottom: 2rem;">
-    <h3 class="card-title">Fotografías de detección de celular</h3>
-    <p class="card-subtitle">Capturas puntuales para revisión humana. La detección y la foto por sí solas no prueban una infracción; revisa contexto, hora y continuidad.</p>
-    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:1rem;">
-      {% for evidencia in evidencias_celular %}
-      <figure style="margin:0;">
-        <img src="{{ url_for('resultados.ver_evidencia_celular', evidencia_id=evidencia.id) }}"
-             alt="Captura del segundo {{ evidencia.segundo_objetivo }} del episodio de detección"
-             loading="lazy" style="width:100%; border-radius:8px; border:1px solid var(--border-color);">
-        <figcaption style="font-size:0.78rem; margin-top:0.35rem;">
-          Objetivo {{ evidencia.segundo_objetivo }} s · {{ evidencia.creado_en.strftime('%d/%m/%Y %H:%M:%S') }}
-        </figcaption>
-      </figure>
-      {% endfor %}
-    </div>
-  </div>
-  {% endif %}
-  <div class="card" style="margin-bottom: 2rem;">
-    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
-      <div>
-        <h3 class="card-title" style="margin-bottom: 0.25rem;">Observaciones de Supervisión (Auditoría Anti-Trampa)</h3>
-        <p class="card-subtitle" style="margin-bottom: 0;">Registro cronológico de incidentes para revisión administrativa</p>
-      </div>
-      <div>
-        {% if conteo.total == 0 %}
-          <span class="badge badge-success">✓ Sin Observaciones</span>
-        {% else %}
-          <span class="badge badge-wine">⚠️ {{ conteo.total }} observaciones registradas</span>
-        {% endif %}
-      </div>
-    </div>
-
-    {% if eventos %}
-    <div class="table-responsive">
-      <table class="table-custom">
-        <thead>
-          <tr>
-            <th style="width: 110px;">Segundo</th>
-            <th style="width: 140px;">Módulo</th>
-            <th style="width: 140px;">Incidente</th>
-            <th>Detalle de la Observación</th>
-            <th style="width: 140px; text-align: right;">Hora</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for ev in eventos %}
-          <tr>
-            <td style="font-family: monospace; font-weight: 700; color: var(--wine);">
-              {{ formatear_tiempo(ev.segundo_examen) }}
-            </td>
-            <td>
-              <span class="badge badge-wine">{{ ev.modulo }}</span>
-            </td>
-            <td>
-              <strong style="font-size: 0.85rem; color: #dc2626;">{{ ev.tipo }}</strong>
-            </td>
-            <td style="font-size: 0.88rem; color: var(--text-main);">
-              {{ ev.descripcion }}
-            </td>
-            <td style="text-align: right; font-size: 0.8rem; color: var(--text-dim);">
-              {{ ev.registrado_en.strftime('%H:%M:%S') if ev.registrado_en else '-' }}
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-    {% else %}
-    <div style="background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: var(--radius-md); padding: 1.5rem; text-align: center;">
-      <div style="font-size: 2rem; color: #10b981; margin-bottom: 0.35rem;">🛡️ ✓</div>
-      <h4 style="color: #059669; font-family: var(--font-heading); margin-bottom: 0.25rem;">
-        Examen completado conforme y sin observaciones
-      </h4>
-      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0;">
-        El postulante mantuvo presencia facial continua, modo de pantalla completa y no registró incidencias durante la prueba.
-      </p>
-    </div>
-    {% endif %}
-
-    <div style="margin-top: 1.25rem; font-size: 0.75rem; color: var(--text-dim); word-break: break-all;">
-      Firma Criptográfica / Token de Sesión: <code>{{ resultado.token_sesion }}</code>
-    </div>
-  </div>
 
   <!-- Botones de Acción -->
   <div style="display: flex; gap: 1rem; justify-content: flex-end; flex-wrap: wrap;">

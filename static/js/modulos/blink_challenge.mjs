@@ -37,7 +37,7 @@ export class BlinkSequence {
   }
 }
 
-export async function runBlinkChallenge(video, onUpdate) {
+export async function runBlinkChallenge(video, onUpdate, requiredCount = 2) {
   let detector;
   const sequence = new BlinkSequence();
   onUpdate('Cargando detector de ojos…');
@@ -56,7 +56,7 @@ export async function runBlinkChallenge(video, onUpdate) {
     const deadline = performance.now() + 30000;
     let lastVideoTime = -1;
     let lastFrameAt = performance.now();
-    while (performance.now() < deadline && sequence.count < 2) {
+    while (performance.now() < deadline && sequence.count < requiredCount) {
       await new Promise(resolve => requestAnimationFrame(resolve));
       const now = performance.now();
       if (video.paused || video.ended || !video.srcObject?.active) {
@@ -79,12 +79,12 @@ export async function runBlinkChallenge(video, onUpdate) {
       const lectura = Number.isFinite(left) && Number.isFinite(right)
         ? ` · cierre izquierdo ${Math.round(left * 100)}%, derecho ${Math.round(right * 100)}%`
         : '';
-      onUpdate(`Ojos: ${state}${lectura} · ${sequence.count}/2 completados · ${Math.max(0, Math.ceil((deadline - now) / 1000))} s. ${instruction}`);
+      onUpdate(`Ojos: ${state}${lectura} · ${sequence.count}/${requiredCount} completados · ${Math.max(0, Math.ceil((deadline - now) / 1000))} s. ${instruction}`);
     }
-    if (sequence.count < 2) {
-      onUpdate(`Se registraron ${sequence.count}/2 cierres completos. Reintenta con los ojos visibles y luz frontal. Esto no indica que hayas usado una foto.`);
+    if (sequence.count < requiredCount) {
+      onUpdate(`Se registraron ${sequence.count}/${requiredCount} cierres completos. Comprueba luz y posición de los ojos. Esto no demuestra uso de una foto.`);
     }
-    return sequence.count >= 2;
+    return sequence.count >= requiredCount;
   } finally {
     detector?.close();
   }

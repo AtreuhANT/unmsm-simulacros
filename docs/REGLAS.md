@@ -25,9 +25,15 @@ El **servidor** asigna la severidad según el `tipo` (nunca confíes en la sever
 
 ## Implementación aprobada de supervisión (2026-10-11)
 
+### Inicio oficial y comprobación periódica de presencia
+
+- Abrir la página del examen sin un intento activo muestra la interfaz de verificación, sin preguntas ni cronómetro oficial. Tras verificar identidad, entorno, cámara y modelos, una petición protegida por CSRF crea o recupera el intento y entrega las preguntas. El servidor fija inicio y vencimiento de forma atómica. Un examen ya iniciado sigue consumiendo tiempo durante recargas o problemas técnicos posteriores.
+- Aproximadamente 45 segundos después de entrar y luego cada 8 minutos se propone un reto breve de cierres oculares con cantidad variable. Si no se confirma, se registra `presencia_no_confirmada` y se solicita revisión humana, sin anulación automática. Fallos técnicos del detector se reintentan y se muestran como tales.
+- La coincidencia biométrica no demuestra presencia real. Un video reproducido, una cámara virtual o un cliente modificado pueden superar o evadir retos del navegador. El reto es un indicio adicional, no una garantía anti-suplantación.
+
 ### Evidencias fotográficas de celular
 
-- Con consentimiento específico `celular-v2-fotos`, el detector intenta capturar una imagen JPEG del video durante cada episodio continuo de detección, aproximadamente en los segundos 1, 3, 7 y 10. No graba video.
+- Con consentimiento específico `celular-v2-fotos`, el detector congela el primer fotograma positivo antes de esperar la respuesta del servidor; luego intenta capturas aproximadamente a los 3, 7 y 10 segundos del episodio. Son cuatro JPEG como máximo por episodio. No graba video.
 - El servidor vincula cada imagen con un intento, usuario y episodio, y exige observaciones recientes para aceptar la captura del momento indicado. El cliente no decide sanciones ni resultados.
 - Las imágenes se guardan cifradas fuera de los archivos públicos y solo el administrador puede verlas en el informe de revisión. Caducan a los 30 días y requieren ejecutar la purga periódica descrita en [EVIDENCIAS.md](EVIDENCIAS.md).
 - La detección y las fotos son indicios para revisión humana, no prueba concluyente de uso indebido. Un navegador manipulado podría alterar la captura; pueden existir falsos positivos y negativos.

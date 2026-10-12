@@ -219,3 +219,39 @@ ESTADO: Implementado y probado con imágenes simuladas; pendiente de comprobaci�
 - Archivos de esta ampliación: `models/evidencia_celular.py`, `models/database.py`, `routes/api.py`, `routes/resultados.py`, `routes/simulacro.py`, `templates/preparacion.html`, `templates/resultado.html`, `templates/admin.html`, `static/js/monitor_engine.js`, `static/js/modulos/phone_monitor.js`, `scripts/purgar_evidencias.py`, `tests/test_supervision.py`, `requirements.txt`, `docker-compose.yml`, `.gitignore`, `README.md`, `docs/REGLAS.md` y `docs/EVIDENCIAS.md`.
 - Verificación: `tests.test_supervision` en `unmsm_proctor_test` de `127.0.0.1:5432`, cuya identidad se comprobó antes de importar `app.py`: 9 pruebas OK. Incluyen cifrado, carga repetida, acceso exclusivo de admin, CSRF, JPEG inválido y rechazo de una captura de 10 s prematura. Pruebas aisladas en navegador: secuencia 1/3/7/10 y envío multipart JPEG OK. La primera ejecución de la prueba de navegador requirió simular `crypto.randomUUID` por ejecutarse en `about:blank`; con ese entorno corregido pasó.
 - Pendientes: medir con cámara real si las capturas y la revisión se ven como se espera; programar la purga diaria; validar política de privacidad antes de uso público. Las imágenes proceden del navegador y pueden alterarse; son indicios para revisión humana, no prueba concluyente. No se creó commit ni se hizo push.
+
+## Ajuste visual de preparación e informe — 2026-10-11
+
+ESTADO: Cambios de presentación implementados; pendiente de inspección manual en navegador.
+
+- El encabezado muestra “UNMSM” y “Simulacro tipo admisión” sin el monograma anterior. Se ajustó la tipografía del encabezado sin cambiar navegación ni rutas.
+- La declaración conserva dos aceptaciones separadas y los textos completos de entorno y detección de celular, ahora en un panel desplegable de lectura. No cambian las condiciones, el consentimiento registrado ni los controles del examen.
+- Las fotografías y observaciones de supervisión aparecen antes de la revisión académica en el informe. La galería sigue siendo exclusiva del administrador.
+- Archivos: `templates/base.html`, `static/css/base.css`, `templates/preparacion.html` y `templates/resultado.html`. Verificación: tres plantillas Jinja compiladas, diagnósticos del editor sin errores y `git diff --check` sin errores. Falta revisar la presentación con diferentes tamaños de pantalla y el flujo con cámara real.
+
+## Inicio justo del tiempo y comprobación de presencia — 2026-10-11
+
+ESTADO: Implementado; pruebas automatizadas en base aislada, pendiente de ensayo con cámara y teléfono reales.
+
+- Antes, la preparación o el GET del examen creaban el intento y fijaban su vencimiento mientras cámara/modelos y preguntas aún cargaban. Ahora el GET sin intento activo solo muestra verificación; no crea intento ni entrega preguntas. La API protegida con CSRF fija el reloj y entrega preguntas sanitizadas cuando la preparación está lista; ignora la duración enviada por el cliente. Se bloquea el usuario en PostgreSQL para que peticiones simultáneas recuperen el mismo intento. Una recarga de un intento activo conserva su vencimiento.
+- Una foto estática del rostro puede coincidir biométricamente. El monitor ahora distingue coincidencia de presencia y propone retos oculares variables durante el examen. Un reto no confirmado registra un evento idempotente y deja el resultado para revisión humana, sin anulación automática. El informe muestra el motivo correcto.
+- Archivos funcionales: `models/intento.py`, `models/supervision.py`, `routes/api.py`, `routes/simulacro.py`, `templates/preparacion.html`, `templates/examen.html`, `static/js/monitor_engine.js`, `static/js/modulos/blink_challenge.mjs`, `static/js/modulos/facial_presence.js`, `static/css/examen.css`, `tests/test_supervision.py`. Reglas en `docs/REGLAS.md`.
+- Pruebas: `tests.test_supervision` con identidad verificada de `unmsm_proctor_test`: 12 pruebas OK, incluidas activación simultánea, CSRF, ausencia de preguntas antes del inicio y motivo de revisión ocular. Plantillas Jinja `examen.html` y `preparacion.html` compilaron. Node no está instalado en este equipo, así que no se ejecutó `node --check`; se revisaron diagnósticos del editor.
+- Pendientes: validar webcam, tiempos de carga, recarga y falsos rechazos del reto con usuarios reales. La prueba ocular no es un sistema PAD certificado y no garantiza detectar video o una cámara virtual. No se hizo commit ni push.
+
+## Justificación visible al alumno tras revisión — 2026-10-11
+
+ESTADO: Implementado y probado con base aislada.
+
+- El alumno puede ver en su propio resultado la decisión definitiva del administrador y la justificación escrita, tanto al confirmar una anulación como al reponer el examen. La consulta se hace después del control de propiedad del resultado y no expone identificadores del administrador. El texto se escapa en la plantilla.
+- El título de una anulación confirmada ya no dice «provisionalmente»; un examen repuesto se identifica expresamente. Durante una revisión pendiente no se muestra una nota que aún no existe.
+- Archivos: `models/resultado.py`, `routes/resultados.py`, `templates/resultado.html`, `tests/test_supervision.py`. Pruebas: `tests.test_supervision` en `unmsm_proctor_test`, 12 casos OK, incluida la comprobación de escape HTML. No se hizo commit ni push.
+
+## Primera foto al detectar celular — 2026-10-11
+
+ESTADO: Captura adelantada al fotograma positivo; pendiente de prueba con teléfono real.
+
+- Antes, el monitor esperaba la respuesta de `/api/intento/celular` y solo entonces tomaba la foto; el teléfono podía salir del cuadro durante esa espera. Ahora congela el fotograma de la primera detección antes de esperar a la red y sube la imagen después de confirmar el evento. La alerta, la evidencia y el conteo parten de la misma observación. Conserva las otras tres capturas y el consentimiento actual.
+- Archivos: `static/js/modulos/phone_monitor.js`, `static/js/monitor_engine.js`, `templates/resultado.html`, `docs/EVIDENCIAS.md`, `docs/REGLAS.md`. El informe identifica la primera imagen como «Primera detección». No se modificaron esquema ni permisos.
+- Verificación aislada en navegador: el callback de captura se ejecutó entre el envío del evento y su confirmación (`event`, `snapshot-1`, `confirmed`, `upload-1`). En una prueba con un lienzo rojo cambiado a azul antes de la confirmación, el JPEG enviado conservó el fotograma rojo inicial y no se envió antes de confirmar. No se usó la webcam real.
+- Pendiente: comprobar con webcam y teléfono reales si el detector reconoce el dispositivo y si el fotograma inicial lo muestra. La inferencia ocurre aproximadamente cada segundo y puede omitir detecciones breves; una captura nunca demuestra por sí sola una infracción. No se hizo commit ni push.

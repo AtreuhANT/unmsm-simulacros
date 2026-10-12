@@ -182,7 +182,7 @@ class FacialPresenceMonitor {
           this.mismatchStreak = 0;
           this.mismatchReported = false;
           if (this.callbacks.onStatusChange) {
-            this.callbacks.onStatusChange('ok', 'Supervisión activa: Rostro verificado');
+            this.callbacks.onStatusChange('ok', 'Coincidencia facial; presencia sujeta a comprobación');
           }
         }
       }

@@ -9,14 +9,14 @@ from models.resultado import (
     registrar_evento, asociar_eventos_a_resultado
 )
 from models.intento import (
-    crear_intento, obtener_intento_activo, obtener_intento_por_id,
+    crear_intento, iniciar_o_recuperar_intento_atomico, obtener_intento_activo, obtener_intento_por_id,
     obtener_intento_por_token, guardar_respuesta_incremental, 
     obtener_respuestas_intento, cerrar_intento
 )
 from models.usuario import guardar_plantilla_facial, obtener_plantilla_facial
 from utils.helpers import login_required
-from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area, calcular_puntaje
-from models.supervision import IntentoNoDisponible, entregar_examen, registrar_salida_foco, registrar_celular
+from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area, calcular_puntaje, sanitizar_preguntas_para_cliente
+from models.supervision import IntentoNoDisponible, entregar_examen, registrar_salida_foco, registrar_celular, registrar_presencia_no_confirmada
 from models.database import get_db_cursor
 from models.evidencia_celular import guardar_evidencia
 
@@ -163,6 +163,29 @@ def reportar_celular():
         return jsonify({'error': 'No se pudo registrar el evento'}), 500
 
 
+@api_bp.route('/intento/presencia-no-confirmada', methods=['POST'])
+@login_required
+def reportar_presencia_no_confirmada():
+    csrf = session.get('csrf_examen')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), csrf):
+        return jsonify({'error': 'CSRF inválido'}), 403
+    data = request.get_json(silent=True)
+    if not isinstance(data, dict):
+        return jsonify({'error': 'Payload inválido'}), 400
+    token = data.get('token_sesion')
+    if not isinstance(token, str) or not token or len(token) > 80:
+        return jsonify({'error': 'Token inválido'}), 400
+    try:
+        return jsonify(registrar_presencia_no_confirmada(token, session['usuario_id'], data.get('id_cliente')))
+    except ValueError:
+        return jsonify({'error': 'Evento inválido'}), 400
+    except IntentoNoDisponible:
+        return jsonify({'error': 'Intento inexistente o ajeno'}), 404
+    except Exception as exc:
+        logger.error('Error al registrar presencia no confirmada: %s', type(exc).__name__)
+        return jsonify({'error': 'No se pudo registrar el evento'}), 500
+
+
 @api_bp.route('/intento/evidencia-celular', methods=['POST'])
 @login_required
 def recibir_evidencia_celular():
@@ -225,35 +248,37 @@ def iniciar_o_recuperar_intento():
     Inicia un nuevo intento de examen o recupera el intento activo existente.
     Garantiza que una recarga (F5) o reconexión no cree intentos duplicados.
     """
+    csrf = session.get('csrf_examen')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token', ''), csrf):
+        return jsonify({'error': 'CSRF inválido'}), 403
     usuario_id = session['usuario_id']
-    data = request.get_json(silent=True) or {}
-    area = data.get('area') or session.get('area') or 'A'
-    area = str(area).upper().strip()
-    duracion = int(data.get('duracion_minutos') or getattr(Config, 'DURACION_EXAMEN_MINUTOS', 180))
+    area = session.get('examen_area')
+    if area not in AREAS_UNMSM:
+        return jsonify({'error': 'Abre primero la página del examen'}), 403
+    preguntas = cargar_preguntas_area(area)
+    if not preguntas:
+        return jsonify({'error': 'No hay preguntas disponibles'}), 409
+    if Config.DETECCION_CELULAR_ACTIVA:
+        with get_db_cursor() as cur:
+            cur.execute("SELECT 1 FROM usuarios WHERE id = %s AND consentimiento_celular_version = 'celular-v2-fotos'",
+                        (usuario_id,))
+            if not cur.fetchone():
+                return jsonify({'error': 'Consentimiento requerido'}), 403
+    duracion = getattr(Config, 'DURACION_EXAMEN_MINUTOS', 60)
 
     try:
-        intento_activo = obtener_intento_activo(usuario_id)
-        if intento_activo:
-            respuestas = obtener_respuestas_intento(intento_activo['id'])
-            session['token_sesion'] = intento_activo['token_sesion']
-            session['intento_id'] = intento_activo['id']
-            return jsonify({
-                'status': 'recuperado',
-                'intento': _serializar_intento(intento_activo),
-                'respuestas': respuestas,
-                'segundos_restantes': intento_activo.get('segundos_restantes', 0)
-            })
-
-        nuevo_intento = crear_intento(usuario_id=usuario_id, area=area, duracion_minutos=duracion)
-        session['token_sesion'] = nuevo_intento['token_sesion']
-        session['intento_id'] = nuevo_intento['id']
-
+        intento, nuevo = iniciar_o_recuperar_intento_atomico(usuario_id, area, duracion)
+        session['token_sesion'] = intento['token_sesion']
+        session['intento_id'] = intento['id']
         return jsonify({
-            'status': 'iniciado',
-            'intento': _serializar_intento(nuevo_intento),
-            'respuestas': {},
-            'segundos_restantes': duracion * 60
+            'status': 'iniciado' if nuevo else 'recuperado',
+            'intento': _serializar_intento(intento),
+            'respuestas': {} if nuevo else obtener_respuestas_intento(intento['id']),
+            'segundos_restantes': intento['segundos_restantes'],
+            'preguntas': sanitizar_preguntas_para_cliente(preguntas),
         })
+    except ValueError as exc:
+        return jsonify({'error': str(exc)}), 409
     except Exception as e:
         logger.error(f"Error al iniciar/recuperar intento para usuario {usuario_id}: {e}")
         return jsonify({'error': 'Error de base de datos al gestionar el intento'}), 500

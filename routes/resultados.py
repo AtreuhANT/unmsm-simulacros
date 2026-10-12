@@ -3,7 +3,7 @@ import secrets
 from flask import Blueprint, render_template, session, redirect, url_for, flash, request, abort, Response
 from cryptography.fernet import InvalidToken
 from models.resultado import (
-    obtener_resultado_por_id, obtener_eventos_resultado, 
+    obtener_resultado_por_id, obtener_decision_revision, obtener_eventos_resultado,
     obtener_ranking, obtener_estadisticas_generales
 )
 from models.intento import obtener_intento_por_token, obtener_respuestas_intento
@@ -40,6 +40,7 @@ def ver_resultado(id):
         return redirect(url_for('dashboard.dashboard_view'))
 
     eventos = obtener_eventos_resultado(id)
+    decision_revision = obtener_decision_revision(id)
 
     # Conteo y categorización de eventos de telemetría
     conteo_eventos = {
@@ -85,6 +86,7 @@ def ver_resultado(id):
     return render_template(
         'resultado.html',
         resultado=resultado,
+        decision_revision=decision_revision,
         eventos=eventos,
         conteo=conteo_eventos,
         detalles_preguntas=detalles_preguntas,

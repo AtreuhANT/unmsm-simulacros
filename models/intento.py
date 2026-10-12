@@ -34,6 +34,32 @@ def crear_intento(usuario_id, area, duracion_minutos=60, examen_version_id=None)
         ))
         return cur.fetchone()
 
+
+def iniciar_o_recuperar_intento_atomico(usuario_id, area, duracion_minutos=60):
+    """Fija el reloj una sola vez, incluso ante peticiones de inicio concurrentes."""
+    area = area.upper().strip()
+    with get_db_cursor(commit=True) as cur:
+        cur.execute('SELECT id FROM usuarios WHERE id = %s FOR UPDATE', (usuario_id,))
+        if cur.fetchone() is None:
+            raise ValueError('Usuario no disponible')
+        cur.execute("SELECT id, usuario_id, area, token_sesion, fecha_inicio, fecha_vencimiento, "
+                    "EXTRACT(EPOCH FROM (fecha_vencimiento - CURRENT_TIMESTAMP))::INTEGER AS segundos_restantes "
+                    "FROM intentos WHERE usuario_id = %s AND estado_academico = 'EN_CURSO' "
+                    "AND fecha_vencimiento > CURRENT_TIMESTAMP ORDER BY fecha_inicio DESC LIMIT 1",
+                    (usuario_id,))
+        intento = cur.fetchone()
+        if intento:
+            if intento['area'] != area:
+                raise ValueError('Ya existe un examen activo en otra área')
+            return intento, False
+        cur.execute("INSERT INTO intentos (usuario_id,area,token_sesion,fecha_inicio,fecha_vencimiento,"
+                    "estado_academico,estado_supervision) VALUES (%s,%s,%s,CURRENT_TIMESTAMP,"
+                    "CURRENT_TIMESTAMP + (%s * INTERVAL '1 minute'),'EN_CURSO','SIN_OBSERVACIONES') "
+                    "RETURNING id, usuario_id, area, token_sesion, fecha_inicio, fecha_vencimiento, "
+                    "EXTRACT(EPOCH FROM (fecha_vencimiento - CURRENT_TIMESTAMP))::INTEGER AS segundos_restantes",
+                    (usuario_id, area, str(uuid.uuid4()), duracion_minutos))
+        return cur.fetchone(), True
+
 def obtener_intento_activo(usuario_id):
     """
     Retorna el intento actualmente 'EN_CURSO' y no vencido del usuario, o None.

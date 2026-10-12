@@ -52,17 +52,20 @@ class PhoneMonitor {
             this.missedCycles = 0;
             if (!this.visibleLastCycle) onStatus('Posible celular detectado. Si permanece visible durante 10 segundos, el caso irá a revisión humana.');
             this.visibleLastCycle = true;
-            const estado = await onDetection(this.episodeId);
+            // Congelar el fotograma antes de esperar la respuesta del servidor.
+            // El envío espera la confirmación de la detección asociada al episodio.
+            const deteccion = onDetection(this.episodeId);
             // Primera foto en la primera observación (~1 s); después a los 3, 7 y 10 s.
             for (const [slot, elapsed] of [[1, 0], [3, 2000], [7, 6000], [10, 9000]]) {
               if (now - this.episodeStart >= elapsed && !this.capturedSlots.has(slot)) {
                 this.capturedSlots.add(slot);
-                if (onCapture) onCapture(video, this.episodeId, slot).catch(error => {
+                if (onCapture) onCapture(video, this.episodeId, slot, deteccion).catch(error => {
                   console.warn('No se pudo guardar una captura de celular:', error.name);
                   onStatus('Posible celular detectado, pero una fotografía no pudo guardarse.');
                 });
               }
             }
+            const estado = await deteccion;
             if (estado?.revision_pendiente) {
               this.pendingReview = true;
               onStatus('Detección sostenida de celular: resultado pendiente de revisión humana.');

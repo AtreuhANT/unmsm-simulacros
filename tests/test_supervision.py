@@ -31,7 +31,7 @@ _validar_base_de_pruebas()  # Obligatorio antes de importar app: su importación
 
 from app import app  # noqa: E402
 from models.database import get_db_cursor  # noqa: E402
-from models.intento import crear_intento, guardar_respuesta_incremental  # noqa: E402
+from models.intento import crear_intento, iniciar_o_recuperar_intento_atomico, guardar_respuesta_incremental  # noqa: E402
 from models.supervision import entregar_examen  # noqa: E402
 import models.evidencia_celular as evidencia_celular  # noqa: E402
 from utils.preguntas import cargar_preguntas_area  # noqa: E402
@@ -107,6 +107,29 @@ class TestSupervision(unittest.TestCase):
         })
         self.assertEqual(response.status_code, 403)
 
+    def test_reto_ocular_no_confirmado_solo_pide_revision(self):
+        payload = {'token_sesion': self.intento['token_sesion'], 'id_cliente': str(uuid.uuid4())}
+        self.assertEqual(self.client.post('/api/intento/presencia-no-confirmada', json=payload).status_code, 403)
+        respuesta = self.client.post('/api/intento/presencia-no-confirmada', json=payload, headers=self.headers)
+        self.assertEqual(respuesta.status_code, 200)
+        self.assertTrue(respuesta.json['revision_pendiente'])
+        self.client.post('/api/intento/presencia-no-confirmada', json=payload, headers=self.headers)
+        with get_db_cursor() as cur:
+            cur.execute("SELECT estado_academico, estado_supervision FROM intentos WHERE id = %s", (self.intento['id'],))
+            intento = cur.fetchone()
+            cur.execute("SELECT count(*) AS total FROM eventos_monitoreo WHERE intento_id = %s "
+                        "AND tipo = 'presencia_no_confirmada'", (self.intento['id'],))
+            total = cur.fetchone()['total']
+        self.assertEqual((intento['estado_academico'], intento['estado_supervision']),
+                         ('EN_CURSO', 'PENDIENTE'))
+        self.assertEqual(total, 1)
+        cierre = entregar_examen(self.intento['token_sesion'], self.uid)
+        with get_db_cursor() as cur:
+            cur.execute('SELECT revision, motivo_anulacion FROM resultados WHERE id = %s', (cierre['id'],))
+            resultado = cur.fetchone()
+        self.assertEqual(resultado['revision'], 'PENDIENTE')
+        self.assertIn('reto ocular', resultado['motivo_anulacion'])
+
     def test_pantalla_examen_entrega_csrf_y_detector_local(self):
         preparacion = self.client.get('/preparacion/A')
         self.assertEqual(preparacion.status_code, 200)
@@ -119,6 +142,41 @@ class TestSupervision(unittest.TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn(b'phone_monitor.js', response.data)
         self.assertIn(b'csrfToken:', response.data)
+
+    def test_reloj_y_preguntas_comienzan_al_activar_examen(self):
+        with get_db_cursor(commit=True) as cur:
+            cur.execute("UPDATE intentos SET estado_academico = 'ENTREGADO' WHERE id = %s", (self.intento['id'],))
+            cur.execute("UPDATE usuarios SET consentimiento_celular_version = 'celular-v2-fotos' WHERE id = %s",
+                        (self.uid,))
+        pantalla = self.client.get('/examen/A')
+        self.assertEqual(pantalla.status_code, 200)
+        self.assertNotIn(cargar_preguntas_area('A')[0]['enunciado'].encode(), pantalla.data)
+        with get_db_cursor() as cur:
+            cur.execute("SELECT count(*) AS total FROM intentos WHERE usuario_id = %s AND estado_academico = 'EN_CURSO'",
+                        (self.uid,))
+            self.assertEqual(cur.fetchone()['total'], 0)
+        self.assertEqual(self.client.post('/api/intento/iniciar', json={'area': 'A'}).status_code, 403)
+        with self.client.session_transaction() as sesion:
+            headers_inicio = {'X-CSRF-Token': sesion['csrf_examen']}
+        primero = self.client.post('/api/intento/iniciar', headers=headers_inicio,
+                                   json={'area': 'A', 'duracion_minutos': 999})
+        self.assertEqual(primero.status_code, 200)
+        self.assertTrue(primero.json['preguntas'])
+        self.assertEqual(primero.json['status'], 'iniciado')
+        self.assertLessEqual(primero.json['segundos_restantes'], 60 * 60)
+        repetido = self.client.post('/api/intento/iniciar', headers=headers_inicio, json={'area': 'A'})
+        self.assertEqual(repetido.json['status'], 'recuperado')
+        self.assertEqual(repetido.json['intento']['id'], primero.json['intento']['id'])
+
+    def test_activacion_simultanea_conserva_un_solo_reloj(self):
+        with get_db_cursor(commit=True) as cur:
+            cur.execute("UPDATE intentos SET estado_academico = 'ENTREGADO' WHERE id = %s", (self.intento['id'],))
+        with ThreadPoolExecutor(max_workers=2) as ejecutor:
+            futuros = [ejecutor.submit(iniciar_o_recuperar_intento_atomico, self.uid, 'A', 60)
+                       for _ in range(2)]
+            inicios = [f.result(timeout=10) for f in futuros]
+        self.assertEqual(inicios[0][0]['id'], inicios[1][0]['id'])
+        self.assertEqual(sorted(nuevo for _, nuevo in inicios), [False, True])
 
     def test_entregas_simultaneas_son_idempotentes(self):
         with ThreadPoolExecutor(max_workers=2) as ejecutor:
@@ -168,7 +226,7 @@ class TestSupervision(unittest.TestCase):
             sesion['csrf_revision'] = 'revision-celular'
         revision = self.client.post(f"/admin/revision/{entrega.json['resultado_id']}", data={
             'csrf_revision': 'revision-celular', 'decision': 'confirmar',
-            'nota': 'Revisión humana del incidente documentado.'
+            'nota': 'Revisión humana del incidente documentado. <script>alert(1)</script>'
         })
         self.assertEqual(revision.status_code, 302)
         with get_db_cursor() as cur:
@@ -177,6 +235,16 @@ class TestSupervision(unittest.TestCase):
             confirmado = cur.fetchone()
         self.assertEqual((confirmado['estado'], confirmado['revision'], confirmado['puntaje']),
                          ('ANULADO', 'ANULACION_CONFIRMADA', 0.0))
+        with self.client.session_transaction() as sesion:
+            sesion['usuario_id'] = self.uid
+            sesion['es_admin'] = False
+        vista_alumno = self.client.get(f"/resultado/{entrega.json['resultado_id']}")
+        self.assertEqual(vista_alumno.status_code, 200)
+        self.assertIn('Revisión humana del incidente documentado.'.encode(), vista_alumno.data)
+        self.assertIn(b'&lt;script&gt;alert(1)&lt;/script&gt;', vista_alumno.data)
+        self.assertNotIn(b'<script>alert(1)</script>', vista_alumno.data)
+        self.assertIn('Anulación confirmada'.encode(), vista_alumno.data)
+        self.assertNotIn('Examen anulado provisionalmente'.encode(), vista_alumno.data)
 
     def test_evidencia_fotografica_cifrada_y_solo_admin(self):
         with get_db_cursor(commit=True) as cur:
@@ -282,6 +350,13 @@ class TestSupervision(unittest.TestCase):
         self.assertEqual((resultado['estado'], resultado['revision'], resultado['puntaje']),
                          ('COMPLETADO', 'REPUESTO', 20.0))
         self.assertEqual(auditoria['decision'], 'reponer')
+        with self.client.session_transaction() as sesion:
+            sesion['usuario_id'] = self.uid
+            sesion['es_admin'] = False
+        vista_alumno = self.client.get(f'/resultado/{resultado_id}')
+        self.assertEqual(vista_alumno.status_code, 200)
+        self.assertIn('El episodio se debió a un fallo comprobado de la cámara.'.encode(), vista_alumno.data)
+        self.assertIn('Examen repuesto tras revisión'.encode(), vista_alumno.data)
 
 
 if __name__ == '__main__':

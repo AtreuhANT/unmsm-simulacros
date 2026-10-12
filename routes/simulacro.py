@@ -6,7 +6,7 @@ from flask import Blueprint, render_template, session, redirect, url_for, flash
 from config import Config
 from models.usuario import obtener_usuario_por_id, obtener_plantilla_facial
 from models.intento import (
-    crear_intento, obtener_intento_activo, obtener_respuestas_intento, cerrar_intento
+    obtener_intento_activo, obtener_respuestas_intento, cerrar_intento
 )
 from utils.helpers import login_required
 from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area, sanitizar_preguntas_para_cliente
@@ -109,8 +109,6 @@ def rendir_examen(area):
         flash(f'Aún no hay preguntas disponibles para el Área {area}.', 'warning')
         return redirect(url_for('dashboard.dashboard_view'))
 
-    preguntas_cliente = sanitizar_preguntas_para_cliente(preguntas_completas)
-
     # 1. Gestión del ciclo de vida del intento (EX-02: Reloj oficial de PostgreSQL)
     intento = obtener_intento_activo(usuario_id)
     
@@ -131,22 +129,22 @@ def rendir_examen(area):
         intento_id = intento['id']
         token_sesion = intento['token_sesion']
         respuestas_guardadas = obtener_respuestas_intento(intento_id)
+        preguntas_cliente = sanitizar_preguntas_para_cliente(preguntas_completas)
         ya_en_curso = True
         logger.info(f"Recuperando intento {intento_id} en curso para usuario {usuario_id}. Segundos restantes: {segundos_restantes}")
     else:
-        # Iniciar nuevo intento oficial
-        duracion_min = getattr(Config, 'DURACION_EXAMEN_MINUTOS', 60)
-        intento = crear_intento(usuario_id=usuario_id, area=area, duracion_minutos=duracion_min)
-        intento_id = intento['id']
-        token_sesion = intento['token_sesion']
-        segundos_restantes = duracion_min * 60
+        # El reloj y las preguntas se habilitan juntos tras confirmar preparación.
+        intento_id = None
+        token_sesion = None
+        segundos_restantes = getattr(Config, 'DURACION_EXAMEN_MINUTOS', 60) * 60
         respuestas_guardadas = {}
+        preguntas_cliente = []
         ya_en_curso = False
-        logger.info(f"Nuevo intento {intento_id} iniciado para usuario {usuario_id} en área {area}.")
 
     # Sincronizar en sesión de Flask
-    session['token_sesion'] = token_sesion
-    session['intento_id'] = intento_id
+    if intento:
+        session['token_sesion'] = token_sesion
+        session['intento_id'] = intento_id
     session['examen_area'] = area
     session['csrf_examen'] = secrets.token_urlsafe(32)
 

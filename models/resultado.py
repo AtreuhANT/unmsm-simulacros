@@ -48,6 +48,19 @@ def obtener_resultado_por_id(resultado_id):
         cur.execute(sql, (resultado_id,))
         return cur.fetchone()
 
+
+def obtener_decision_revision(resultado_id):
+    """Devuelve la decisión final y su justificación, sin datos del administrador."""
+    with get_db_cursor(commit=False) as cur:
+        cur.execute(
+            "SELECT a.decision, a.nota FROM auditoria_revision a "
+            "JOIN resultados r ON r.id = a.resultado_id "
+            "WHERE a.resultado_id = %s AND r.revision IN ('REPUESTO', 'ANULACION_CONFIRMADA') "
+            "ORDER BY a.id DESC LIMIT 1",
+            (resultado_id,),
+        )
+        return cur.fetchone()
+
 def obtener_resultado_por_token(token_sesion):
     """Verifica si ya existe un resultado con el token_sesion UUIDv4."""
     sql = """

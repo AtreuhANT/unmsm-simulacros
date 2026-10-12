@@ -64,6 +64,7 @@ class MonitorEngine {
       liveLabel: document.getElementById('hud-live-label'),
       supervisionAlert: document.getElementById('hud-supervision-alert'),
       phoneStatus: document.getElementById('hud-phone-status'),
+      livenessCheck: document.getElementById('liveness-check'),
       syncBadge: document.getElementById('sync-badge'),
       timerDisplay: document.getElementById('timer-display'),
       questionContainer: document.getElementById('question-container'),
@@ -91,6 +92,9 @@ class MonitorEngine {
     this.monitorsStarted = false;
     this.attemptsLeft = 3;
     this.isFaceVerified = false;
+    this.presenceTimer = null;
+    this.presenceRunning = false;
+    this.presenceNeedsReview = false;
   }
 
   // Inicialización del motor
@@ -259,14 +263,45 @@ class MonitorEngine {
   // INICIO OFICIAL DEL EXAMEN Y MONITOREO CONTINUO
   // =========================================================================
   async startExamSession(withWebcamVerification = true) {
-    try {
-      if (document.documentElement.requestFullscreen) {
-        await document.documentElement.requestFullscreen();
+    if (!this.yaEnCurso) {
+      if (!withWebcamVerification || !this.isFaceVerified || !this.dom.checkHands?.checked ||
+          !this.cameraStream?.getVideoTracks().some(track => track.readyState === 'live') ||
+          this.dom.videoPreExam?.readyState < 2 || !this.faceModelsReady) {
+        this.dom.preStatusText.textContent = 'Completa la verificación y conecta la cámara antes de iniciar.';
+        return;
       }
-    } catch (e) {
-      console.warn('Pantalla completa no disponible o rechazada:', e);
+      try {
+        if (document.documentElement.requestFullscreen && !document.fullscreenElement) {
+          await document.documentElement.requestFullscreen();
+        }
+      } catch (error) {
+        this.dom.preStatusText.textContent = 'Permite la pantalla completa para iniciar el examen.';
+        return;
+      }
+      this.dom.btnStartExamFull.disabled = true;
+      this.dom.preStatusText.textContent = 'Iniciando tiempo oficial y cargando preguntas...';
+      try {
+        const response = await fetch('/api/intento/iniciar', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': this.csrfToken },
+          body: JSON.stringify({ area: this.area })
+        });
+        if (!response.ok) throw new Error('No se pudo iniciar el intento');
+        const data = await response.json();
+        if (!Array.isArray(data.preguntas) || !data.preguntas.length) throw new Error('No se recibieron preguntas');
+        this.intentoId = data.intento.id;
+        this.tokenSesion = data.intento.token_sesion;
+        this.preguntas = data.preguntas;
+        this.segundosRestantes = data.segundos_restantes;
+        this.yaEnCurso = true;
+        this.storageKey = `unmsm_intento_${this.intentoId}`;
+        this.renderQuestionMatrix();
+      } catch (error) {
+        this.dom.preStatusText.textContent = 'No se pudo iniciar el examen. Revisa la conexión y vuelve a intentarlo.';
+        this.dom.btnStartExamFull.disabled = false;
+        return;
+      }
     }
-
     if (this.dom.modalPreExam) {
       this.dom.modalPreExam.style.display = 'none';
     }
@@ -284,6 +319,7 @@ class MonitorEngine {
       this.setSupervisionAlert('La verificación facial no está disponible. Recarga el examen cuando la conexión funcione.');
     }
     this.initProctoringModules();
+    this.schedulePresenceCheck(45000);
 
     this.loadQuestion(0);
     this.bindExamControls();
@@ -295,6 +331,52 @@ class MonitorEngine {
     await faceapi.nets.faceLandmark68TinyNet.loadFromUri('/static/models');
     await faceapi.nets.faceRecognitionNet.loadFromUri('/static/models');
     this.faceModelsReady = true;
+  }
+
+  schedulePresenceCheck(delay) {
+    if (this.presenceTimer) clearTimeout(this.presenceTimer);
+    if (!this.isTerminated) this.presenceTimer = setTimeout(() => this.runPresenceCheck(), delay);
+  }
+
+  async runPresenceCheck() {
+    if (this.isTerminated || this.presenceRunning) return;
+    if (!this.cameraStream?.getVideoTracks().some(track => track.readyState === 'live') ||
+        document.hidden || this.dom.video?.readyState < 2) {
+      this.schedulePresenceCheck(30000);
+      return;
+    }
+    this.presenceRunning = true;
+    let nextDelay = 8 * 60 * 1000;
+    const notice = this.dom.livenessCheck;
+    if (notice) {
+      notice.hidden = false;
+      notice.textContent = 'Comprobación de presencia: mira a la cámara y sigue las instrucciones de los ojos.';
+    }
+    try {
+      const { runBlinkChallenge } = await import('/static/js/modulos/blink_challenge.mjs');
+      const required = 1 + (crypto.getRandomValues(new Uint8Array(1))[0] % 3);
+      const passed = await runBlinkChallenge(this.dom.video,
+        message => { if (notice) notice.textContent = `Comprobación de presencia: ${message}`; }, required);
+      if (!this.isTerminated && !passed) {
+        const response = await fetch('/api/intento/presencia-no-confirmada', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-CSRF-Token': this.csrfToken },
+          body: JSON.stringify({ token_sesion: this.tokenSesion, id_cliente: crypto.randomUUID() })
+        });
+        if (!response.ok) throw new Error('No se pudo registrar la comprobación');
+        this.presenceNeedsReview = true;
+        this.setSupervisionAlert('No se confirmó la presencia en el reto ocular; el examen quedará para revisión humana.');
+      }
+      if (passed && notice) notice.textContent = 'Presencia confirmada. Puedes continuar.';
+    } catch (error) {
+      console.warn('No se completó la comprobación ocular:', error.name);
+      if (notice) notice.textContent = 'No se pudo completar la comprobación técnica. Se reintentará.';
+      nextDelay = 30000;
+    } finally {
+      this.presenceRunning = false;
+      setTimeout(() => { if (notice) notice.hidden = true; }, 8000);
+      this.schedulePresenceCheck(nextDelay);
+    }
   }
 
   async connectExamCamera(autoRetry = false) {
@@ -347,7 +429,7 @@ class MonitorEngine {
           if (this.monitorsStarted && this.phoneDetectionEnabled && this.dom.video) {
             this.phoneMonitor.start(this.dom.video, episodio => this.reportPhoneDetection(episodio),
               mensaje => this.setPhoneStatus(mensaje),
-              (video, episodio, segundo) => this.capturePhoneEvidence(video, episodio, segundo));
+              (video, episodio, segundo, deteccion) => this.capturePhoneEvidence(video, episodio, segundo, deteccion));
           }
           if (this.monitorsStarted && this.faceModelsReady && this.dom.video && this.dom.canvas) {
             this.facialMonitor.init(this.dom.video, this.dom.canvas, this.storedDescriptors, this.proctorCallbacks);
@@ -400,7 +482,9 @@ class MonitorEngine {
           this.dom.statusChip.className = `status-chip ${status}`;
           this.dom.statusChip.textContent = message;
         }
-        this.setSupervisionAlert(status === 'ok' ? '' : message);
+        this.setSupervisionAlert(status === 'ok'
+          ? (this.presenceNeedsReview ? 'Reto ocular no confirmado: resultado pendiente de revisión humana.' : '')
+          : message);
       },
       onStrikeUpdate: (strikes, maxStrikes) => {
         if (this.dom.strikesCount) {
@@ -420,12 +504,12 @@ class MonitorEngine {
         this.dom.video,
         episodio => this.reportPhoneDetection(episodio),
         (mensaje) => this.setPhoneStatus(mensaje),
-        (video, episodio, segundo) => this.capturePhoneEvidence(video, episodio, segundo)
+        (video, episodio, segundo, deteccion) => this.capturePhoneEvidence(video, episodio, segundo, deteccion)
       );
     }
   }
 
-  async capturePhoneEvidence(video, episodio, segundo) {
+  async capturePhoneEvidence(video, episodio, segundo, deteccion) {
     if (this.isTerminated || video.readyState < 2) return;
     if (!video.videoWidth || !video.videoHeight) throw new Error('Fotograma de cámara no disponible');
     const canvas = document.createElement('canvas');
@@ -439,6 +523,10 @@ class MonitorEngine {
     let foto = await convertir(0.68);
     if (foto?.size > 80_000) foto = await convertir(0.45);
     if (!foto || foto.size > 80_000) throw new Error('Captura demasiado grande');
+    if (deteccion) {
+      const estado = await deteccion;
+      if (estado?.cerrado) return;
+    }
     const datos = new FormData();
     datos.append('token_sesion', this.tokenSesion);
     datos.append('episodio_id', episodio);
@@ -847,6 +935,7 @@ class MonitorEngine {
   // FINALIZACIÓN E IDEMPOTENCIA ESTRICTA (EX-05)
   // =========================================================================
   stopAllMonitors() {
+    if (this.presenceTimer) clearTimeout(this.presenceTimer);
     if (this.timerInterval) clearInterval(this.timerInterval);
     if (this.heartbeatInterval) clearInterval(this.heartbeatInterval);
     this.facialMonitor.stop();

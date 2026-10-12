@@ -195,6 +195,30 @@
       display: none;
     }
   }
+  .consent-details {
+    margin-top: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    background: #fff;
+  }
+  .consent-details summary {
+    padding: 0.8rem 1rem;
+    color: var(--wine);
+    font-size: 0.86rem;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .consent-details summary:focus-visible { outline: 2px solid var(--wine); outline-offset: 2px; }
+  .consent-details-body {
+    border-top: 1px solid var(--border-color);
+    padding: 1rem 1.15rem;
+    font-size: 0.94rem;
+    line-height: 1.7;
+    color: var(--text-main);
+  }
+  .consent-details-body h4 { margin: 0 0 0.35rem; font-size: 0.98rem; }
+  .consent-details-body p { margin: 0 0 0.9rem; }
+  .consent-details-body p:last-child { margin-bottom: 0; }
 </style>
 {% endblock %}
 
@@ -323,15 +347,23 @@
           </div>
           <label style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.86rem; color: var(--text-main); cursor: pointer;">
             <input type="checkbox" id="check-desk-agreement" disabled autocomplete="off" style="margin-top: 0.25rem; accent-color: var(--wine);">
-            <span>
-              Declaro que mi espacio de trabajo está despejado, mis manos permanecerán visibles sobre el escritorio, 
-              no utilizaré dispositivos auxiliares y acepto ingresar en modo de <strong>pantalla completa obligatoria</strong>.
-            </span>
+            <span>Declaro que preparé mi entorno y acepto las condiciones del examen.</span>
           </label>
           {% if deteccion_celular_activa %}<label style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.86rem; margin-top: 0.8rem;">
             <input type="checkbox" id="check-phone-consent" autocomplete="off" style="margin-top: 0.25rem;">
-            <span>Acepto la detección local de celulares y hasta cuatro fotografías puntuales por episodio detectado (segundos 1, 3, 7 y 10), guardadas cifradas fuera de la web pública y visibles solo para administradores en la revisión. Las imágenes expiran a los 30 días y se eliminan mediante mantenimiento periódico. No se graba video. Una detección sostenida de 10 segundos enviará mi resultado a revisión humana; no lo anulará automáticamente. La biblioteca MediaPipe puede comunicar métricas técnicas a Google.</span>
+            <span>Acepto la detección de celulares y las fotografías puntuales para revisión humana.</span>
           </label>{% endif %}
+          <details class="consent-details" id="consent-details">
+            <summary>Leer las condiciones completas de supervisión</summary>
+            <div class="consent-details-body">
+              <h4>Entorno y examen</h4>
+              <p>Declaro que mi espacio de trabajo está despejado, mis manos permanecerán visibles sobre el escritorio, no utilizaré dispositivos auxiliares y acepto ingresar en modo de <strong>pantalla completa obligatoria</strong>.</p>
+              {% if deteccion_celular_activa %}
+              <h4>Detección de celular y fotografías</h4>
+              <p>Acepto la detección local de celulares y hasta cuatro fotografías puntuales por episodio detectado (segundos 1, 3, 7 y 10), guardadas cifradas fuera de la web pública y visibles solo para administradores en la revisión. Las imágenes expiran a los 30 días y se eliminan mediante mantenimiento periódico. No se graba video. Una detección sostenida de 10 segundos enviará mi resultado a revisión humana; no lo anulará automáticamente. La biblioteca MediaPipe puede comunicar métricas técnicas a Google.</p>
+              {% endif %}
+            </div>
+          </details>
         </div>
       </div>
 
@@ -613,10 +645,10 @@
   checkDeskAgreement.addEventListener('click', actualizarPaso3);
   if (checkPhoneConsent) checkPhoneConsent.addEventListener('change', actualizarPaso3);
 
-  // 5. Iniciar Examen Oficial (POST /api/intento/iniciar)
+  // 5. Abrir la interfaz; el servidor inicia el reloj cuando todo esté listo.
   btnLaunchExam.addEventListener('click', async () => {
     btnLaunchExam.disabled = true;
-    btnLaunchExam.textContent = 'Iniciando cronómetro oficial...';
+    btnLaunchExam.textContent = 'Abriendo examen...';
 
     try {
       if (PHONE_DETECTION_ENABLED) {
@@ -628,14 +660,6 @@
         if (!consentimiento.ok) throw new Error('No se pudo registrar el consentimiento');
       }
       stopCamera();
-      const resp = await fetch('/api/intento/iniciar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ area: AREA })
-      });
-
-      if (!resp.ok) throw new Error('Error al iniciar intento oficial');
-
       // Intentar pantalla completa
       try {
         if (document.documentElement.requestFullscreen) {
