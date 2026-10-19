@@ -1,6 +1,6 @@
 # Simulacros UNMSM
 
-Proyecto existente con Flask, PostgreSQL y supervisión mediante cámara en el navegador. La implementación es parcial: consultar `docs/AUDITORIA_INICIAL.md`, `docs/PROGRESO.md` y `AGENTS.md` antes de continuar.
+En el proyecto usamos Flask, PostgreSQL y supervisión mediante cámara en el navegador. La implementación es parcial: consultar `docs/AUDITORIA_INICIAL.md`, `docs/PROGRESO.md` y `AGENTS.md` antes de continuar.
 
 ## Configuración local
 
