@@ -1,5 +1,14 @@
 # Progreso
 
+## Fondo institucional en ingreso y registro — 2026-10-20
+
+ESTADO: Cambio visual implementado; pendiente de revisión manual en el navegador.
+
+- Se incorporó la fotografía del campus proporcionada por el usuario como fondo de ingreso y registro, con una capa oscura para conservar el contraste de las tarjetas blancas. Se mantuvo la paleta vino, blanco y gris y se retiró el monograma «UN» de ambas tarjetas.
+- Archivos: `static/campus-unmsm.png`, `static/css/auth.css`, `templates/base.html`, `templates/login.html` y `templates/register.html`. No se alteraron formularios, rutas, esquema ni lógica de autenticación.
+- Verificación: la imagen existe (1 217 395 bytes) y los diagnósticos del editor no reportaron errores en plantillas ni CSS. No se importó `app.py`, no se arrancó Flask y no se accedió a PostgreSQL.
+- Pendiente: inspección visual de ingreso y registro en navegador, también en pantallas de menor ancho.
+
 ## Cuenta administradora local — 2026-10-11
 
 - Creada la cuenta administradora solicitada por el usuario en `simulacro_local`, con contraseña aleatoria almacenada como hash de Werkzeug. Credenciales y datos de identificación omitidos en esta documentación.

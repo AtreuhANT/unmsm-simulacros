@@ -2,12 +2,17 @@
 
 {% block title %}Iniciar Sesión{% endblock %}
 
+{% block body_class %}auth-page{% endblock %}
+
+{% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
 {% block content %}
-<div style="max-width: 440px; margin: 2rem auto;">
-  <div class="card" style="box-shadow: var(--shadow-lg);">
+<div class="auth-container auth-container-login">
+  <div class="card auth-card">
     
     <div style="text-align: center; margin-bottom: 2rem;">
-      <div class="brand-icon" style="margin: 0 auto 1rem; width: 54px; height: 54px; font-size: 1.5rem;">UN</div>
       <h2 class="card-title" style="font-size: 1.6rem;">Ingreso a Simulacros</h2>
       <p class="card-subtitle">Universidad Nacional Mayor de San Marcos</p>
     </div>
