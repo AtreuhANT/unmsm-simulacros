@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
   {% block head_extra %}{% endblock %}
 </head>
-<body>
+<body class="{% block body_class %}{% endblock %}">
 
   <!-- Barra de Navegación Principal -->
   <header class="main-header">

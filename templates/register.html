@@ -2,11 +2,14 @@
 
 {% block title %}Registro de Postulante — UNMSM{% endblock %}
 
+{% block body_class %}auth-page{% endblock %}
+
 {% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
 <style>
   .register-container {
     max-width: 640px;
-    margin: 2rem auto;
+    margin: 0 auto;
   }
   .register-card {
     background: var(--bg-surface);
@@ -53,7 +56,6 @@
   <div class="register-card">
 
     <div style="text-align: center; margin-bottom: 2rem;">
-      <div class="brand-icon" style="margin: 0 auto 0.75rem; width: 48px; height: 48px; font-size: 1.35rem;">UN</div>
       <h2 class="card-title" style="font-size: 1.5rem; margin-bottom: 0.25rem;">Registro de Postulante</h2>
       <p class="card-subtitle" style="margin-bottom: 0;">Plataforma Oficial de Simulacros tipo Admisión UNMSM</p>
     </div>

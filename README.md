@@ -1,10 +1,10 @@
 # Simulacros UNMSM
 
-Proyecto existente con Flask, PostgreSQL y supervisión mediante cámara en el navegador. La implementación es parcial: consultar `docs/AUDITORIA_INICIAL.md`, `docs/PROGRESO.md` y `AGENTS.md` antes de continuar.
+En el proyecto usamos Flask, PostgreSQL y supervisión mediante cámara en el navegador. La implementación es parcial: consultar `docs/AUDITORIA_INICIAL.md`, `docs/PROGRESO.md` y `AGENTS.md` antes de continuar.
 
 ## Configuración local
 
-Para una instalación desde cero en Windows con base vacía, seguir la [guía completa para otra PC](docs/guia_portabilidad.md). Incluye instalación de Python/PostgreSQL, creación de usuario y base propios, configuración privada y arranque. No se necesita restaurar un respaldo.
+Para que lo instales en tu laptop te dejo la guía y ya sigues los pasos nomás, cualquier cosa me escribes al wsp para seguir desarrollando o hacer los cambios correspondientes, la base de datos ya hacemos una nueva para la exposición y si es para el profe, haremos que el de registre para que vea el funcionamiento de la pág. Seguir la [guía completa para otra PC](docs/guia_portabilidad.md). Incluye instalación de Python/PostgreSQL, creación de usuario y base propios, configuración privada y arranque. No se necesita restaurar un respaldo.
 
 ```powershell
 git clone https://github.com/AtreuhANT/unmsm-simulacros.git
