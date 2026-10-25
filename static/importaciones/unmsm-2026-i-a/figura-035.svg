@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="235.0 279.0 188.0 152.0" role="img" aria-label="Esquema de la pregunta 35">
+<title>Esquema de la pregunta 35</title>
+<defs><clipPath id="limite"><rect x="235.0" y="279.0" width="188.0" height="152.0"/></clipPath></defs>
+<g clip-path="url(#limite)">
+<path d="M 391.7321 353.7399 C 391.7321 316.8099 361.7951 286.8729 324.8651 286.8729 C 287.9351 286.8729 257.9981 316.8099 257.9981 353.7399 C 257.9981 390.6699 287.9351 420.6069 324.8651 420.6069 C 361.7951 420.6069 391.7321 390.6699 391.7321 353.7399" fill="none" stroke="#0076b9" stroke-width="0.5669999718666077" fill-rule="nonzero" fill-opacity="1" stroke-opacity="1.0" stroke-linecap="butt" stroke-linejoin="miter"/>
+<path d="M 261.9643 331.0457 L 387.7653 376.4787 L 373.1263 307.4587 L 261.9643 376.4787 L 324.8643 353.7397" fill="none" stroke="#0076b9" stroke-width="0.42500001192092896" fill-rule="nonzero" fill-opacity="1" stroke-opacity="1.0" stroke-linecap="butt" stroke-linejoin="miter"/>
+<path d="M 261.9643 376.4786 L 387.7653 376.4786" fill="none" stroke="#0076b9" stroke-width="0.42500001192092896" fill-rule="nonzero" fill-opacity="1" stroke-opacity="1.0" stroke-linecap="butt" stroke-linejoin="miter"/>
+<path d="M 326.4877 353.7399 C 326.4877 352.8439 325.7607 352.1169 324.8647 352.1169 C 323.9677 352.1169 323.2417 352.8439 323.2417 353.7399 C 323.2417 354.6359 323.9677 355.3629 324.8647 355.3629 C 325.7607 355.3629 326.4877 354.6359 326.4877 353.7399" fill="#0076b9" stroke="none" stroke-width="0.5" fill-rule="nonzero" fill-opacity="1.0" stroke-opacity="1" stroke-linecap="butt" stroke-linejoin="round"/>
+<text x="374.0707092285156" y="306.3938903808594" font-family="Georgia,serif" font-size="9.0" font-style="italic" fill="#000000" textLength="5.894989013671875" lengthAdjust="spacingAndGlyphs">B</text>
+<text x="390.10870361328125" y="379.2398986816406" font-family="Georgia,serif" font-size="9.0" font-style="italic" fill="#000000" textLength="6.43499755859375" lengthAdjust="spacingAndGlyphs">C</text>
+<text x="256.1257019042969" y="384.52288818359375" font-family="Georgia,serif" font-size="9.0" font-style="italic" fill="#000000" textLength="5.894989013671875" lengthAdjust="spacingAndGlyphs">A</text>
+<text x="255.1717071533203" y="329.2088928222656" font-family="Georgia,serif" font-size="9.0" font-style="italic" fill="#000000" textLength="7.7939910888671875" lengthAdjust="spacingAndGlyphs">M</text>
+<text x="304.97772216796875" y="343.68988037109375" font-family="Georgia,serif" font-size="9.0" font-style="italic" fill="#000000" textLength="6.43499755859375" lengthAdjust="spacingAndGlyphs">N</text>
+<text x="327.4057312011719" y="350.0528869628906" font-family="Georgia,serif" font-size="9.0" font-style="italic" fill="#000000" textLength="6.957000732421875" lengthAdjust="spacingAndGlyphs">O</text>
+</g></svg>

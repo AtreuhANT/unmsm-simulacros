@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Área A 2026-I · Vista previa | UNMSM</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/importacion.css">
+  <script defer src="importaciones/unmsm-2026-i-a/datos.js"></script>
+  <script defer src="js/formato_academico.js"></script>
+  <script defer src="js/vista_previa_area_a.js"></script>
+</head>
+<body>
+  <header class="preview-header"><a href="/dashboard" class="preview-brand">UNMSM <small>Simulacro tipo admisión</small></a><span class="badge badge-gold">Vista previa</span></header>
+  <main class="preview-layout">
+    <div class="preview-intro">
+      <p class="preview-eyebrow">ADMISIÓN 2026-I · ÁREA A</p>
+      <h1>Ciencias de la Salud</h1>
+      <p>Excepto Medicina Humana · Examen del 11 de octubre de 2025</p>
+      <p class="preview-notice">100 preguntas: las 1 a 10 son situaciones actitudinales originales para práctica; las 11 a 100 provienen del PDF. Se incorporaron las claves en el servidor, con dos casos pendientes de revisión. Esta vista permite marcar alternativas y no genera una nota ni un intento oficial.</p>
+    </div>
+    <section class="card preview-question" aria-label="Pregunta actual">
+      <div class="preview-toolbar"><span class="badge badge-crimson" id="numero"></span><span id="posicion"></span></div>
+      <p class="preview-hint" id="origen-pregunta"></p>
+      <section id="lectura-compartida" class="shared-reading" aria-label="Lectura compartida" hidden></section>
+      <section class="question-response-block" aria-labelledby="titulo-pregunta">
+      <h2 id="titulo-pregunta" class="question-prompt-title"></h2>
+      <p class="question-prompt-instruction">Lee la pregunta y marca una sola alternativa.</p>
+      <p id="enunciado-original" class="question-prompt-text" hidden></p>
+      <div id="figuras-pregunta" class="question-figures"></div>
+      <div id="tabla-pregunta" class="question-table-wrapper" hidden></div>
+      <p id="texto-despues-figura" class="question-prompt-text" hidden></p>
+      <div id="ampliar"><img id="pregunta-imagen" alt="" class="preview-crop"></div>
+      <div id="continuaciones"></div>
+      <fieldset class="preview-answer"><legend>Selecciona tu respuesta</legend><div id="alternativas"></div></fieldset>
+      <p id="seleccion" role="status" aria-live="polite"></p>
+      </section>
+      <details id="referencia"><summary>Ver página completa y textos de lectura</summary>
+        <div class="preview-reference-controls"><button type="button" id="pagina-anterior" class="btn btn-secondary">← Página</button><label>Página del PDF <select id="pagina"></select></label><button type="button" id="pagina-siguiente" class="btn btn-secondary">Página →</button></div>
+        <div id="ampliar-pagina"><img id="pagina-imagen" alt="" class="preview-page" loading="lazy"></div>
+      </details>
+      <div class="preview-navigation"><button type="button" id="anterior" class="btn btn-secondary">← Anterior</button><button type="button" id="limpiar" class="btn btn-secondary">Limpiar selección</button><button type="button" id="siguiente" class="btn btn-primary">Siguiente →</button></div>
+    </section>
+    <aside class="card preview-sidebar"><div class="navigator-heading"><h2>Navegador de preguntas</h2><p id="contador" aria-live="polite"></p></div><nav id="matriz" class="course-navigator" aria-label="Preguntas por curso y lectura"></nav><p class="preview-hint">Enunciados y alternativas en texto; figuras solo donde se necesitan. Las selecciones se conservan mientras esta página está abierta.</p><p class="preview-hint">Fuente: Lumbreras Editores / Academia ADUNI.</p></aside>
+  </main>
+</body>
+</html>

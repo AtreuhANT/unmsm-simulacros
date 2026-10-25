@@ -1,0 +1,1639 @@
+{
+  "etapa": "Figuras SVG y fórmulas MathML nativas",
+  "grupos": [
+    {
+      "nombre": "Actitudinales",
+      "preguntas": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "nombre": "HV",
+      "preguntas": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "nombre_completo": "Habilidad Verbal",
+      "lecturas": [
+        "hv-1",
+        "hv-2",
+        "hv-3"
+      ]
+    },
+    {
+      "nombre": "H.L.M.",
+      "preguntas": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ],
+      "nombre_completo": "Habilidad Lógico-Matemática"
+    },
+    {
+      "nombre": "Aritmética",
+      "preguntas": [
+        31,
+        32,
+        33,
+        34
+      ]
+    },
+    {
+      "nombre": "Geometría",
+      "preguntas": [
+        35,
+        36,
+        37
+      ]
+    },
+    {
+      "nombre": "Álgebra",
+      "preguntas": [
+        38,
+        39,
+        40
+      ]
+    },
+    {
+      "nombre": "Trigonometría",
+      "preguntas": [
+        41,
+        42
+      ]
+    },
+    {
+      "nombre": "Lenguaje",
+      "preguntas": [
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49
+      ]
+    },
+    {
+      "nombre": "Literatura",
+      "preguntas": [
+        50,
+        51,
+        52,
+        53
+      ]
+    },
+    {
+      "nombre": "Psicología",
+      "preguntas": [
+        54,
+        55,
+        56,
+        57,
+        58,
+        59
+      ]
+    },
+    {
+      "nombre": "Educación Cívica",
+      "preguntas": [
+        60,
+        61,
+        62,
+        63
+      ]
+    },
+    {
+      "nombre": "Historia del Perú",
+      "preguntas": [
+        64,
+        65,
+        66
+      ]
+    },
+    {
+      "nombre": "Historia Universal",
+      "preguntas": [
+        67,
+        68
+      ]
+    },
+    {
+      "nombre": "Geografía",
+      "preguntas": [
+        69,
+        70,
+        71,
+        72
+      ]
+    },
+    {
+      "nombre": "Economía",
+      "preguntas": [
+        73,
+        74,
+        75,
+        76
+      ]
+    },
+    {
+      "nombre": "Filosofía",
+      "preguntas": [
+        77,
+        78,
+        79,
+        80
+      ]
+    },
+    {
+      "nombre": "Física",
+      "preguntas": [
+        81,
+        82,
+        83,
+        84,
+        85
+      ]
+    },
+    {
+      "nombre": "Química",
+      "preguntas": [
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92
+      ]
+    },
+    {
+      "nombre": "Biología",
+      "preguntas": [
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ]
+    }
+  ],
+  "lecturas": [
+    {
+      "id": "hv-1",
+      "titulo": "Texto N.º 1",
+      "preguntas": [
+        11,
+        12,
+        13
+      ],
+      "bloques": [
+        {
+          "parrafos": [
+            "Las noticias falsas, o “infodemia”, son informaciones de interés público que se publican o difunden a sabiendas de su falsedad, con la intención de engañar o confundir, desinformar, crear pánico en las personas, implantar angustia y promover conductas incorrectas.",
+            "Son percibidas por los usuarios como ciertas y en muchas ocasiones se van modificando mientras se difunden. Tienen una gran capacidad de propagación, principalmente por medio de las redes sociales y en las aplicaciones de mensajería instantánea.",
+            "Tres son los elementos que las componen: a) que la información sea de interés público y su divulgación sea masiva; b) que haya conocimiento de la falsedad de la información que se divulga, y c) que exista la intención de engañar o confundir.",
+            "Una encuesta realizada por la Universidad Nacional Autónoma de México (UNAM) señaló que el 90 % de los encuestados recibieron noticias falsas sobre la COVID - 19 por medio de WhatsApp, mientras que el 88% las obtuvo a través de Facebook. En México, el 91,5% de las personas usuarias de Internet utilizan WhatsApp y el 82,8%, Facebook, por lo que están constantemente expuestas a recibir información falsa. En la mayoría de casos, no tienen tiempo para investigar ni determinar la veracidad de la información.",
+            "Las noticias falsas implican riesgos para la sociedad, ya que, al convertirse en una poderosa herramienta de influencia, pueden tener como consecuencias la desinformación de las personas, así como la propagación de rumores que pueden afectar el estado de ánimo, crear pánico, restar la credibilidad de una persona o empresa, crear cuadros de histeria colectiva y generar riesgos para la salud."
+          ]
+        }
+      ],
+      "figuras": [
+        {
+          "imagen": "lectura-1-infografia-legible.png",
+          "descripcion": "Cómo detectar noticias falsas: infografía compartida por las preguntas 11, 12 y 13."
+        }
+      ],
+      "fuente": "Ubillos, J. (30 de agosto, 2023). Las noticias falsas en México: la otra pandemia. Periódico Claridad.",
+      "url": "https://www.gob.mx/profeco/articulos/noticias-falsas-la-otra-pandemia?idiom=es"
+    },
+    {
+      "id": "hv-2",
+      "titulo": "Texto N.º 2",
+      "preguntas": [
+        14,
+        15,
+        16,
+        17
+      ],
+      "bloques": [
+        {
+          "titulo": "Texto A",
+          "parrafos": [
+            "Los beneficios de las tarjetas de crédito son múltiples. Permiten ahorrar tiempo y evitan problemas: no hay que buscar un cajero automático o llevar dinero en efectivo. Además, los estados de cuenta de las tarjetas de crédito pueden ayudar a dar seguimiento a los gastos. Algunas tarjetas proveen, incluso, un resumen anual que es muy útil a la hora de verificar el pago de los impuestos. Asimismo, facilitan la obtención de préstamos a bajo costo mediante el crédito rotativo (por ejemplo, en la venta especial de un día), siempre que, por alguna razón, no se tenga dinero disponible hasta dentro de unos días.",
+            "Las tarjetas de crédito también son convenientes por los adelantos de dinero en caso de que se necesite con urgencia para algún pago extra o un gasto fuera de la planificación mensual o anual. Generan un historial de calificación positiva de crédito, dado que el uso controlado de una tarjeta de crédito puede ayudar a establecer crédito por primera vez o a reconstruir su crédito si ha tenido problemas en el pasado. Esto siempre y cuando una persona se mantenga dentro de sus posibilidades y pague sus cuentas a tiempo.",
+            "Otro beneficio es que protege las compras de los avatares cibernéticos, dado que la mayoría de las compañías de tarjetas de crédito manejarán las disputas legales."
+          ]
+        },
+        {
+          "titulo": "Texto B",
+          "parrafos": [
+            "Usar tarjetas de crédito puede ser pernicioso en diversos sentidos. El crédito rotativo genera que la persona gaste más de lo que sus medios le permiten. Es necesario guardar los recibos (vouchers) con el fin de verificar los movimientos con el reporte de estado de cuenta mensual. Así, se tendría la seguridad de que no haya un cobro extra. La tarjeta de crédito también genera un elevado costo de los cargos; de igual modo, si se dejara de hacer un pago, una compra podría salir demasiado cara. A veces, incluso, aparecen cargos inesperados: típicamente, se pagará un porcentaje adicional solo por obtener un adelanto de dinero en efectivo; además, los adelantos normalmente conllevan altas tasas de interés. Estas altas tasas y los cargos anuales asociados a las tarjetas de crédito, con frecuencia, superan los beneficios que se reciben.",
+            "Se debe recordar que los ahorros que ofrecen las tarjetas de crédito se pueden obtener por otros medios no tan onerosos. Por otro lado, existen consumidores que suelen utilizar el crédito sin control, lo que acarrea una grave dificultad. Si se hace cargos a la tarjeta de manera libre, muy pronto se notará que la situación está por encima de las posibilidades reales, al ver que el balance aumenta y también el pago mínimo mensual. Finalmente, aunque las tasas bajas introductorias pueden ser una opción atractiva, duran un tiempo muy limitado. Cuando la tasa señuelo vence, la tasa de interés cargada al balance puede aumentar drásticamente."
+          ]
+        }
+      ],
+      "figuras": [],
+      "fuente": "AICPA & CIMA (14 de septiembre, 2023). Ventajas y desventajas de las tarjetas de crédito.",
+      "url": "https://www.aicpa-cima.com/resources/article/ventajas-y-desventajas-de-las-tarjetas-de-credito"
+    },
+    {
+      "id": "hv-3",
+      "titulo": "Texto N.º 3",
+      "preguntas": [
+        18,
+        19,
+        20
+      ],
+      "idioma": "en",
+      "bloques": [
+        {
+          "parrafos": [
+            "The latest Education at a glance report by the Organization for Economic Cooperation and Development (OECD) reveals sharp contrasts across the European Union (EU), with Ireland at the top and Italy and Hungary at the bottom. In Ireland, two in three people aged 25 to 34 held a university degree, such as a bachelor’s, master’s or PhD degree, in 2024. This is followed by Luxembourg, at 65%, and Lithuania, at 58%. By contrast, at the bottom are Czechia with 33% and Hungary and Italy with 32%.",
+            "The report also highlights that young people’s education level remains closely tied to that of their parents. In all EU countries surveyed, children of disadvantaged backgrounds are far less likely to go to university or college than those from more advantaged backgrounds. The gap between the share of young adults with parents holding a university degree (70%) and that of young adults whose parents do not have one (49%) is the lowest in Denmark. On the other hand, this gap is the widest in Poland (79% among young adults whose parents have a degree and 11% among those whose parents do not).",
+            "The OECD also stresses the benefits of higher education. A degree is linked to better chances of employment, higher salaries, and improved health. Education is not only about knowledge but also about the quality of life."
+          ]
+        }
+      ],
+      "figuras": [],
+      "fuente": "Adapted from Where in the EU Do Most Young Adults Have a University Degree? Euronews. 12 September 2025.",
+      "url": "https://www.euronews.com/my-europe/2025/09/12/where-in-the-eu-do-most-young-adults-have-a-university-degree"
+    }
+  ],
+  "preguntas": [
+    {
+      "id": 11,
+      "formato": "texto",
+      "enunciado": "Según los datos presentados, ¿qué se puede inferir sobre la relación entre las plataformas digitales y las noticias falsas?",
+      "opciones": {
+        "A": "La alta penetración de WhatsApp y Facebook en México facilita la exposición masiva a información falsa.",
+        "B": "Las redes sociales no implementan sistemas efectivos que eliminen automáticamente noticias falsas.",
+        "C": "La mayoría de usuarios mexicanos evita las noticias falsas, pues prefiere los medios tradicionales de información.",
+        "D": "WhatsApp y Facebook son utilizados principalmente por personas que no conceden valor a las noticias verdaderas.",
+        "E": "Solo los mayores, quienes aún siguen usando plataformas “viejas”, reciben y comparten noticias falsas."
+      },
+      "lectura_id": "hv-1"
+    },
+    {
+      "id": 12,
+      "formato": "texto",
+      "enunciado": "¿Cuál es el mejor resumen del texto?",
+      "opciones": {
+        "A": "La “infodemia” consiste en publicar información de interés público, pero falsa, lo que afecta a millones de personas usuarias de las redes sociales.",
+        "B": "Las noticias falsas propagan información perjudicial, fomentan la desconfianza entre los internautas y generan sistemáticamente pánico social.",
+        "C": "Las noticias falsas tienen un gran poder de difusión, pueden generar una serie de riesgos a la sociedad y poseen tres elementos constitutivos.",
+        "D": "La divulgación de información falsa daña el tejido social pues los internautas no poseen el tiempo necesario para poder comprobar su veracidad.",
+        "E": "La difusión de noticias falsas en las redes sociales genera alarma, principalmente, entre los usuarios de redes, como Facebook y WhatsApp."
+      },
+      "lectura_id": "hv-1"
+    },
+    {
+      "id": 13,
+      "formato": "texto",
+      "enunciado": "Sin duda, son acertados los pasos que se proponen en la infografía para comprobar si una noticia es falsa; no obstante, presentan un problema que se comenta en el texto:",
+      "opciones": {
+        "A": "los usuarios de las redes sociales, como Facebook o WhatsApp, están más expuestos a las noticias falsas.",
+        "B": "la mayoría de personas no dispone de tiempo para determinar la veracidad de las noticias que leen.",
+        "C": "las personas que navegan en la red tienen dificultades para determinar las autoridades académicas.",
+        "D": "los prejuicios que tienen las personas constituyen el principal óbice para descartar una noticia falsa.",
+        "E": "los lectores están dispuestos a creer en aquellas noticias que confirman sus particulares puntos de vista."
+      },
+      "lectura_id": "hv-1"
+    },
+    {
+      "id": 14,
+      "formato": "texto",
+      "enunciado": "En el texto B, la palabra ONEROSO guarda sinonimia con",
+      "opciones": {
+        "A": "irregular.",
+        "B": "costoso.",
+        "C": "ínfimo.",
+        "D": "extenso.",
+        "E": "diluido."
+      },
+      "lectura_id": "hv-2"
+    },
+    {
+      "id": 15,
+      "formato": "texto",
+      "enunciado": "Dialécticamente, ambos textos giran en torno a",
+      "opciones": {
+        "A": "la necesidad del uso exiguo de las tarjetas de crédito.",
+        "B": "las consecuencias financieras de las tarjetas de crédito.",
+        "C": "las ventajas o desventajas de las tarjetas de crédito.",
+        "D": "la utilidad práctica de la tarjeta de crédito para el cliente.",
+        "E": "la urgencia de conocer el uso de las tarjetas de crédito."
+      },
+      "lectura_id": "hv-2"
+    },
+    {
+      "id": 16,
+      "formato": "texto",
+      "enunciado": "Analice los siguientes enunciados y determine cuál o cuáles de ellos son compatibles con la posición defendida en el texto B.\n\nI. Hay que tener mucha cautela con los cobros adicionales de las tarjetas de crédito.\n\nII. Las atractivas tasas de interés solamente tienen aplicación por un tiempo limitado.\n\nIII. Las tarjetas de crédito son muy recomendables para disponer de dinero en efectivo.",
+      "opciones": {
+        "A": "I y II",
+        "B": "I y III",
+        "C": "solo I",
+        "D": "solo II",
+        "E": "II y III"
+      },
+      "lectura_id": "hv-2"
+    },
+    {
+      "id": 17,
+      "formato": "texto",
+      "enunciado": "En virtud de lo que sostiene el texto A, si una persona usara su tarjeta de crédito más allá de lo que puede pagar,",
+      "opciones": {
+        "A": "podría adquirir productos comerciales de baja calidad.",
+        "B": "gozaría de los beneficios crediticios por un buen tiempo.",
+        "C": "calificaría como potencial inversor en el rubro de bienes.",
+        "D": "habría una repercusión negativa en su perfil crediticio.",
+        "E": "la tasa de interés podría reducirse de modo significativo."
+      },
+      "lectura_id": "hv-2"
+    },
+    {
+      "id": 18,
+      "formato": "texto",
+      "enunciado": "What is the main topic of the text?",
+      "opciones": {
+        "A": "An OECD report on historic changes in university population",
+        "B": "European countries with similarities in university education",
+        "C": "Differences in family backgrounds across two generations",
+        "D": "Major contrasts across the EU in higher education access",
+        "E": "Higher levels of education and increased employment rates"
+      },
+      "lectura_id": "hv-3"
+    },
+    {
+      "id": 19,
+      "formato": "texto",
+      "enunciado": "From the text, what is the antonym for the word SHARP?",
+      "opciones": {
+        "A": "Attractive",
+        "B": "Critical",
+        "C": "Noticeable",
+        "D": "Obvious",
+        "E": "Unclear"
+      },
+      "lectura_id": "hv-3"
+    },
+    {
+      "id": 20,
+      "formato": "texto",
+      "enunciado": "According to the text, it is inconsistent to say that",
+      "opciones": {
+        "A": "Ireland leads with two-thirds of young adults aged 25 to 34 holding a degree in 2024.",
+        "B": "family background plays an important role in higher education access across the EU.",
+        "C": "young people whose parents studied at university are far less likely to obtain a degree.",
+        "D": "higher levels of education are strongly associated to higher earnings and better health.",
+        "E": "Hungary presented fewer young adults with a university degree than Czechia in 2024."
+      },
+      "lectura_id": "hv-3"
+    },
+    {
+      "id": 21,
+      "formato": "texto",
+      "enunciado": "Diego ubicó ocho fichas de un juego completo de dominó (28 fichas), respetando la regla del juego (casillas adyacentes de fichas contiguas tienen el mismo número de puntos). Luego, su hermana Mayra se llevó cuatro fichas de los lugares punteados, como muestra la figura. Si la suma de la cantidad total de puntos de las ocho fichas era 57, ¿cuál es el mínimo número de puntos que había en la ficha ubicada en el lugar sombreado?",
+      "opciones": {
+        "A": "9",
+        "B": "7",
+        "C": "6",
+        "D": "5",
+        "E": "8"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-021.svg",
+          "descripcion": "Esquema vectorial de la pregunta 21",
+          "formato": "svg"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "formato": "texto",
+      "enunciado": "Luciano, Mario, Ernesto y Roberto son cuatro amigos que terminaron sus estudios de Medicina, Ingeniería, Matemática y Economía, no necesariamente en ese orden. Tienen la costumbre de decir siempre una verdad y una mentira, no necesariamente en ese orden. Se formularon dos preguntas\n\na cada uno acerca de su profesión y las de sus amigos, y respondieron lo siguiente:\n\n• Luciano: “Ernesto es médico. Mario es ingeniero”.\n\n• Mario: “Ernesto no es médico. Roberto es economista”.\n\n• Ernesto: “Roberto es matemático. Luciano es economista”.\n\n• Roberto: “Yo soy médico. Mario es matemático”. ¿Quién es médico y quién matemático, en ese orden?",
+      "opciones": {
+        "A": "Roberto y Ernesto",
+        "B": "Roberto y Luciano",
+        "C": "Mario y Ernesto",
+        "D": "Ernesto y Roberto",
+        "E": "Luciano y Mario"
+      },
+      "figuras": []
+    },
+    {
+      "id": 23,
+      "formato": "texto",
+      "enunciado": "En un plano coordenado XY, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. El punto simétrico de A(–2; 3) con respecto a la recta x=3 es (7; 3).\n\nII. El punto simétrico de B(–3; –5) con respecto a la recta y=x es (–5; –3)\n\nIII. El punto simétrico de C(3; 5) con respecto a la recta y=2 es (3; –1)",
+      "opciones": {
+        "A": "FFF",
+        "B": "FFV",
+        "C": "VFF",
+        "D": "FVV",
+        "E": "VVV"
+      },
+      "figuras": [],
+      "enunciado_rico": "En un plano coordenado $XY$, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. El punto simétrico de $A(-2;3)$ con respecto a la recta $x=3$ es $(7;3)$.\n\nII. El punto simétrico de $B(-3;-5)$ con respecto a la recta $y=x$ es $(-5;-3)$\n\nIII. El punto simétrico de $C(3;5)$ con respecto a la recta $y=2$ es $(3;-1)$"
+    },
+    {
+      "id": 24,
+      "formato": "texto",
+      "enunciado": "Carlos quiere escribir números enteros del 1 al 16 en las casillas cuadradas de la figura adjunta, un número en cada casilla, sin repetición. Además, quiere que la suma de los números escritos en cada una de las cinco casillas de cada lado del cuadrado resulten en la misma cantidad. Halle el mayor valor que puede tomar dicha suma y dé como respuesta la suma de las cifras de dicha cantidad.",
+      "opciones": {
+        "A": "10",
+        "B": "12",
+        "C": "14",
+        "D": "13",
+        "E": "16"
+      },
+      "figuras": [
+        {
+          "tipo": "cuadricula-borde",
+          "descripcion": "Cuadrado con cinco casillas por lado y dieciséis casillas en su borde."
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "formato": "texto",
+      "enunciado": "Una profesora tiene un aula con menos de 100 estudiantes y dispone de 1976 caramelos para repartirlos entre ellos. Ella quiere dar una cantidad igual de caramelos a cada estudiante, de modo que no le sobre ni le falte ninguno. Para lo cual, se da cuenta de que necesita comprar, como mínimo, 37 caramelos para lograrlo. ¿Cuántos estudiantes tiene la profesora en su aula?",
+      "opciones": {
+        "A": "45",
+        "B": "66",
+        "C": "61",
+        "D": "39",
+        "E": "33"
+      },
+      "figuras": []
+    },
+    {
+      "id": 26,
+      "formato": "texto",
+      "enunciado": "En una hoja cuadriculada suficientemente grande, Killa escribe las cifras de la secuencia 1 2 3 4 1 2 3 4 1 2 3 4 1 2 3 4 ... En cada celda de la cuadrícula, escribe un número empezando en la celda central más sombreada, en la que está la cifra 1 y sigue en espiral, sin obviar ninguna celda, tal como se observa en la figura. ¿Cuál es la suma de las cifras escritas en las celdas no sombreadas 50 y 100 por encima de la celda central más sombreada? Considere que las celdas por encima de la celda central más sombreada significan lo siguiente: en la celda no sombreada 1 está la cifra 4, en la celda no sombreada 2 está la cifra 3, en la celda no sombreada 3 está la cifra 2 y así sucesivamente.",
+      "opciones": {
+        "A": "3",
+        "B": "6",
+        "C": "7",
+        "D": "5",
+        "E": "4"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-026.svg",
+          "descripcion": "Esquema vectorial de la pregunta 26",
+          "formato": "svg"
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "formato": "texto",
+      "enunciado": "Asiri desea colorear los cuadrados y triángulos de la figura mostrada de modo que dos polígonos vecinos que comparten lado o vértice no sean del mismo color. ¿Cuál es la menor cantidad de colores distintos que necesitará? Nota: Polígonos vecinos son aquellos que comparten un lado o un vértice.",
+      "opciones": {
+        "A": "7",
+        "B": "5",
+        "C": "3",
+        "D": "4",
+        "E": "6"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-027.svg",
+          "descripcion": "Esquema vectorial de la pregunta 27",
+          "formato": "svg"
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "formato": "texto",
+      "enunciado": "Arturo y Benito lanzan pelotas a dos pirámides idénticas (forma y numeración) de 36 latas cada una. Arturo tumbó 12 latas y obtuvo 49 puntos en las latas que tumbó; además, su pirámide quedó como se ve a la izquierda. Benito tumbó 10 latas y su pirámide quedó como se ve a la derecha. ¿Cuántos puntos obtuvo Benito con las latas que tumbó?",
+      "opciones": {
+        "A": "36",
+        "B": "44",
+        "C": "42",
+        "D": "40",
+        "E": "34"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-028.svg",
+          "descripcion": "Esquema vectorial de la pregunta 28",
+          "formato": "svg"
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "formato": "texto",
+      "enunciado": "De un tronco de madera, se ha construido un cilindro circular recto compacto de 5 cm de radio y 40π cm de altura. Los puntos M y N del cilindro están en la misma linea vertical. Una partícula se encuentra en el punto N y, para llegar al punto M, dio tres vueltas por la superficie lateral del cilindro, tal como se muestra en la figura. Determine la longitud mínima del recorrido de la partícula.",
+      "opciones": {
+        "A": "50π cm",
+        "B": "56π cm",
+        "C": "48π cm",
+        "D": "60π cm",
+        "E": "58π cm"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-029.svg",
+          "descripcion": "Esquema vectorial de la pregunta 29",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "De un tronco de madera, se ha construido un cilindro circular recto compacto de 5 cm de radio y $40\\pi$ cm de altura. Los puntos $M$ y $N$ del cilindro están en la misma linea vertical. Una partícula se encuentra en el punto N y, para llegar al punto M, dio tres vueltas por la superficie lateral del cilindro, tal como se muestra en la figura. Determine la longitud mínima del recorrido de la partícula.",
+      "opciones_rico": {
+        "A": "$50\\pi\\mathrm{cm}$",
+        "B": "$56\\pi\\mathrm{cm}$",
+        "C": "$48\\pi\\mathrm{cm}$",
+        "D": "$60\\pi\\mathrm{cm}$",
+        "E": "$58\\pi\\mathrm{cm}$"
+      }
+    },
+    {
+      "id": 30,
+      "formato": "texto",
+      "enunciado": "Diana ha colocado 24 fichas cuadradas congruentes sobre un tablero plano y ha trazado una línea recta L, tal como muestra la figura. Sin mover ninguna de las fichas colocadas, ¿cuántas fichas cuadradas idénticas a las anteriores debe agregar a la derecha de la recta L, como mínimo, para que esta sea un eje de simetría?",
+      "opciones": {
+        "A": "9",
+        "B": "11",
+        "C": "10",
+        "D": "12",
+        "E": "13"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-030.svg",
+          "descripcion": "Esquema vectorial de la pregunta 30",
+          "formato": "svg"
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "formato": "texto",
+      "enunciado": "Determine, en cada caso y en el orden indicado, si las siguientes proposiciones son tautología (T), contradicción (⊥) o contingencia (C):\n\nI. David trabaja, ya que no estudia. Además, estudia.\n\nII. Betty no viaja en bus, entonces viaja en avión. Sin embargo, no es cierto que; viaja en bus o que viaja en avión.\n\nIII. Luis juega tenis o no juega fútbol; puesto que, juega tenis dado que juega fútbol.",
+      "opciones": {
+        "A": "C, C, ⊥",
+        "B": "C, T, ⊥",
+        "C": "C, ⊥, ⊥",
+        "D": "C, T, T",
+        "E": "C, ⊥, T"
+      },
+      "figuras": []
+    },
+    {
+      "id": 32,
+      "formato": "texto",
+      "enunciado": "Cuatro amigas tienen propinas, en soles, que son cantidades enteras. Con dichas cantidades se pueden formar dos fracciones impropias e irreducibles cuya suma es 3. Si la suma de los numeradores de dichas fracciones es 18, ¿cuántos soles de diferencia hay entre la mayor y la menor propina?",
+      "opciones": {
+        "A": "5",
+        "B": "6",
+        "C": "7",
+        "D": "4",
+        "E": "9"
+      },
+      "figuras": []
+    },
+    {
+      "id": 33,
+      "formato": "texto",
+      "enunciado": "María recibe la visita de una familia formada por dos esposos y cinco niños. Si todos ellos, incluida María, deben ubicarse alrededor de una mesa circular de ocho asientos, con la condición de que ambos esposos se ubiquen juntos al igual que los niños, ¿de cuántas formas diferentes podrán ubicarse todas estas personas alrededor de dicha mesa?",
+      "opciones": {
+        "A": "1440",
+        "B": "720",
+        "C": "960",
+        "D": "480",
+        "E": "1260"
+      },
+      "figuras": []
+    },
+    {
+      "id": 34,
+      "formato": "texto",
+      "enunciado": "El precio de un automóvil es a̅a̅0̅b̅5̅ soles. Si dicha cantidad es la menor posible, y tiene 4 divisores positivos simples y 18 divisores positivos múltiplos de 21, determine la suma de las cifras del número que representa el precio del automóvil en soles.",
+      "opciones": {
+        "A": "21",
+        "B": "15",
+        "C": "18",
+        "D": "24",
+        "E": "27"
+      },
+      "figuras": [],
+      "enunciado_rico": "El precio de un automóvil es $\\overline{\\text{aa0b5}}$ soles. Si dicha cantidad es la menor posible, y tiene 4 divisores positivos simples y 18 divisores positivos múltiplos de 21, determine la suma de las cifras del número que representa el precio del automóvil en soles."
+    },
+    {
+      "id": 35,
+      "formato": "texto",
+      "enunciado": "La figura representa una región de cultivo que tiene la forma de un círculo dividido en zonas de sembríos. Si la medida del arco BC es 50°, m∠BNC = 40° y O es circuncentro del triángulo ABC, halle la medida del ángulo AOC que forman los linderos AO y OC.",
+      "opciones": {
+        "A": "120°",
+        "B": "140°",
+        "C": "150°",
+        "D": "160°",
+        "E": "130°"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-035.svg",
+          "descripcion": "Esquema vectorial de la pregunta 35",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "La figura representa una región de cultivo que tiene la forma de un círculo dividido en zonas de sembríos. Si la medida del arco BC es $50°$, $\\angle BNC=40°$ y O es circuncentro del triángulo ABC, halle la medida del ángulo $AOC$ que forman los linderos AO y OC."
+    },
+    {
+      "id": 36,
+      "formato": "texto",
+      "enunciado": "La figura representa un adorno transparente en elaboración, que, inicialmente, parte de la forma de una esfera. Luego de retirar el segmento esférico inferior de altura HM, el adorno queda terminado y con una base. Si en una sección circular máxima de la esfera se inscribe una región triangular equilátera ABC de área 12√3 cm³ y HM = 1 cm, halle el volumen, en centímetros cúbicos, del sólido que fue retirado para terminar el adorno.\n\nNota: Considere O como centro de la esfera.",
+      "opciones": {
+        "A": "11π/2",
+        "B": "11π/6",
+        "C": "22π/3",
+        "D": "11π/3",
+        "E": "33π/2"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-036.svg",
+          "descripcion": "Esquema vectorial de la pregunta 36",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "La figura representa un adorno transparente en elaboración, que, inicialmente, parte de la forma de una esfera. Luego de retirar el segmento esférico inferior de altura HM, el adorno queda terminado y con una base. Si en una sección circular máxima de la esfera se inscribe una región triangular equilátera ABC de área $12\\sqrt{3} \\mathrm{cm}^{3}$ y $\\overline{HM}=1\\mathrm{cm}$, halle el volumen, en centímetros cúbicos, del sólido que fue retirado para terminar el adorno.\n\nNota: Considere O como centro de la esfera.",
+      "opciones_rico": {
+        "A": "$\\frac{11\\pi}{2}$",
+        "B": "$\\frac{11\\pi}{6}$",
+        "C": "$\\frac{22\\pi}{3}$",
+        "D": "$\\frac{11\\pi}{3}$",
+        "E": "$\\frac{33\\pi}{2}$"
+      }
+    },
+    {
+      "id": 37,
+      "formato": "texto",
+      "enunciado": "La figura muestra parte de una estructura metálica en la que AB = 60 cm, BC = 30√2 cm, AD = 30√3 cm y DC = 30 cm. Halle la medida del ángulo BAD que forman las varillas AB y AD.",
+      "opciones": {
+        "A": "60º",
+        "B": "30º",
+        "C": "45º",
+        "D": "53º",
+        "E": "37º"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-037.svg",
+          "descripcion": "Esquema vectorial de la pregunta 37",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "La figura muestra parte de una estructura metálica en la que $AB=60\\mathrm{cm}$, $BC=30\\sqrt{2}\\mathrm{cm}$, $AD=30\\sqrt{3}\\mathrm{cm}$ y $DC=30\\mathrm{cm}$. Halle la medida del ángulo BAD que forman las varillas AB y AD."
+    },
+    {
+      "id": 38,
+      "formato": "texto",
+      "enunciado": "Dados los números complejos z₁ = 3 + 2i y z₂ = 4 + i, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. El producto de ambos es z₁ · z₂ = 10 + 11i.\n\nII. El módulo de la diferencia de ellos es |z₂ − z₁| = |−1 − i| = √2.\n\nIII. La suma de sus conjugados es z̅₁ + z̅₂ = −7 − 3i.\n\nIV. El cociente de ambos es z₁/z₂ = 3/4 + 2i.",
+      "opciones": {
+        "A": "FVFF",
+        "B": "VFVF",
+        "C": "FFVV",
+        "D": "VVFF",
+        "E": "VVVF"
+      },
+      "figuras": [],
+      "enunciado_rico": "Dados los números complejos $z_1=3+2i$ y $z_2=4+i$, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. El producto de ambos es $z_1\\cdot z_2=10+11i$.\n\nII. El módulo de la diferencia de ellos es $\\lVert z_2-z_1\\rVert=\\lVert-1-i\\rVert=\\sqrt{2}$.\n\nIII. La suma de sus conjugados es $\\overline{z_1}+\\overline{z_2}=-7-3i$.\n\nIV. El cociente de ambos es $\\frac{z_1}{z_2}=\\frac{3}{4}+2i$."
+    },
+    {
+      "id": 39,
+      "formato": "texto",
+      "enunciado": "En un día de descanso, Luis Alberto se sometió a una prueba para registrar la metabolización del azúcar en su sangre, la que se llevó a cabo en un intervalo de tiempo de seis a doce horas.\n\nSe observó que la cantidad de azúcar en la sangre (medida en mg/dL) podía ser modelada en función del tiempo t (medido en horas) por:\n\nF(t) = −0,5t² + 6t + 104, t ∈ [6; 12].\n\nDetermine la disminución de azúcar en la sangre, en mg/dL, que experimentó Luis Alberto, exactamente, cuatro horas después de iniciada la prueba.",
+      "opciones": {
+        "A": "8",
+        "B": "9",
+        "C": "10",
+        "D": "7",
+        "E": "6"
+      },
+      "figuras": [],
+      "enunciado_rico": "En un día de descanso, Luis Alberto se sometió a una prueba para registrar la metabolización del azúcar en su sangre, la que se llevó a cabo en un intervalo de tiempo de seis a doce horas.\n\nSe observó que la cantidad de azúcar en la sangre (medida en mg/dL) podía ser modelada en función del tiempo t (medido en horas) por:\n\n$F(t)=-0,5t^{2}+6t+104,  t\\in[6;12]$\n\nDetermine la disminución de azúcar en la sangre, en mg/dL, que experimentó Luis Alberto, exactamente, cuatro horas después de iniciada la prueba."
+    },
+    {
+      "id": 40,
+      "formato": "texto",
+      "enunciado": "Alberto y Benito son hermanos. Sus edades, en años, están representadas por dos números enteros cuyo producto es 48. Además, la diferencia de las cuartas potencias de la suma y diferencia de ambos números es 38 400. Determine la suma de los cuadrados de los dos números que representan dichas edades.",
+      "opciones": {
+        "A": "800",
+        "B": "160",
+        "C": "265",
+        "D": "580",
+        "E": "100"
+      },
+      "figuras": []
+    },
+    {
+      "id": 41,
+      "formato": "texto",
+      "enunciado": "Juan Carlos le regaló a su hija un terreno, el cual tiene forma de sector circular con radio r = 20√7 m, tal como se muestra en la figura. Si Juan Carlos compró el terreno a razón de $10 por metro cuadrado, ¿cuántos dólares pagó en total?\n\nDato: π = 3,14.",
+      "opciones": {
+        "A": "21 980",
+        "B": "21 540",
+        "C": "22 340",
+        "D": "20 280",
+        "E": "22 120"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-041.svg",
+          "descripcion": "Esquema vectorial de la pregunta 41",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "Juan Carlos le regaló a su hija un terreno, el cual tiene forma de sector circular con radio $r=20\\sqrt{7}\\mathrm{m}$, tal como se muestra en la figura. Si Juan Carlos compró el terreno a razón de \\$10 por metro cuadrado, ¿cuántos dólares pagó en total?\n\nDato: $\\pi=3,14$."
+    },
+    {
+      "id": 42,
+      "formato": "texto",
+      "enunciado": "Un profesor de Matemática dijo a sus alumnos de la Escuela de Tecnología Médica que el precio, en soles, de un microscopio está dado por (40M + 1200), donde M es el valor que toma la función\n\nf(x) = (4 sec x − 2) / (1 − 4 sec² x), 2π/3 ≤ x ≤ 5π/4,\n\ncuando la sec(x) toma su máximo valor. Halle el valor, en soles, del microscopio.",
+      "opciones": {
+        "A": "1300",
+        "B": "1280",
+        "C": "1250",
+        "D": "1420",
+        "E": "1380"
+      },
+      "figuras": [],
+      "enunciado_rico": "Un profesor de Matemática dijo a sus alumnos de la Escuela de Tecnología Médica que el precio, en soles, de un microscopio está dado por $(40M+1200)$, donde M es el valor que toma la función\n\n$f(x)=\\frac{4\\sec x-2}{1-4\\sec^{2}x}$, $\\frac{2\\pi}{3}\\le x\\le\\frac{5\\pi}{4}$,\n\ncuando la $\\sec(x)$ toma su máximo valor. Halle el valor, en soles, del microscopio."
+    },
+    {
+      "id": 43,
+      "formato": "texto",
+      "enunciado": "Marque la alternativa en la que el significado depende del contexto lingüístico o verbal.",
+      "opciones": {
+        "A": "Teodoro, muéstranos la carta que recibiste.",
+        "B": "Usaré la cola para encuadernar estas hojas.",
+        "C": "David, ¿has visto la fotografía de la planta?",
+        "D": "Leonela dijo que le agrada esta estación.",
+        "E": "¿Cuál es la ficha que has seleccionado?"
+      },
+      "figuras": []
+    },
+    {
+      "id": 44,
+      "formato": "texto",
+      "enunciado": "Las letras mayúsculas son empleadas en los nombres y apellidos de personas, instituciones, marcas comerciales, topónimos, signos zodiacales, etc. Según ello, marque la opción en la que se presenta uso correcto de las letras mayúsculas.",
+      "opciones": {
+        "A": "El hijo del Alcalde trabaja en INDECOPI",
+        "B": "Investigaremos sobre Alfonso X El Sabio.",
+        "C": "Leeré un libro sobre la Revolución rusa.",
+        "D": "El primo de Rolando visitará mar del Plata.",
+        "E": "Visitaré el Museo de arte italiano mañana."
+      },
+      "figuras": []
+    },
+    {
+      "id": 45,
+      "formato": "texto",
+      "enunciado": "Algunas expresiones lingüísticas de un amplio sector de la población peruana no se ciñen a los preceptos de la gramática normativa. De acuerdo con ello, ¿cuál o cuáles de los siguientes enunciados ejemplifican la afirmación precedente?\n\nI. Ella está media dormida.\n\nII. Hubo muchas protestas.\n\nIII. Tenía una medalla pequeña.",
+      "opciones": {
+        "A": "Solo I y II",
+        "B": "Solo II y III",
+        "C": "I, II y III",
+        "D": "Solo I",
+        "E": "Solo II"
+      },
+      "figuras": []
+    },
+    {
+      "id": 46,
+      "formato": "texto",
+      "enunciado": "De acuerdo con las clases de la frase verbal, relacione correctamente cada verbo con su respectiva clase.\n\nI. Ellos viajarán mañana a Huancavelica.\n\nII. Anoche llovió demasiado en Ayacucho.\n\nIII. Fui compañero de aula de Alejandrina.\n\nIV. Ya comuniqué la noticia a mis amigos.\n\na. Transitivo\n\nb. Copulativo\n\nc. Intransitivo\n\nd. Impersonal",
+      "opciones": {
+        "A": "Ic, IId, IIIb, IVa",
+        "B": "Ic, IIa, IIId, IVb",
+        "C": "Ic, IId, IIIa, IVb",
+        "D": "Id, IIb, IIIc, IVa",
+        "E": "Ib, IId, IIIa, IVc"
+      },
+      "figuras": []
+    },
+    {
+      "id": 47,
+      "formato": "texto",
+      "enunciado": "Según las normas establecidas por la RAE, las palabras polisilábicas reciben tilde en la sílaba tónica. Algunos monosíłabos reciben tilde diacrítica. De acuerdo con lo expresado, determine las palabras que completan apropiadamente el siguiente enunciado: No ............... si este viaje sea importante para ti, ............... te asegura que ............... lo es para ...............",
+      "opciones": {
+        "A": "sé - mas - si - mí",
+        "B": "sé - mas - sí - mi",
+        "C": "sé - más - sí - mí",
+        "D": "sé - mas - si - mí",
+        "E": "se - mas - si - mi"
+      },
+      "figuras": []
+    },
+    {
+      "id": 48,
+      "formato": "texto",
+      "enunciado": "Las funciones de los signos de puntuación no se limitan únicamente a la sintaxis, sino que son igualmente relevantes en la semántica textual. Así, la puntuación facilita la interpretación del texto. En concordancia con lo señalado, ¿cuáles de los siguientes enunciados presentan uso correcto de los signos de puntuación?\n\nI. La obra Los miserables, de Victor Hugo, describe la injusticia social de Francia.\n\nII. La tutora del salón de Ana estudia una maestría, en Literatura Hispanoamericana.\n\nIII. Su cita con el otorrino es mañana: siente un dolor muy agudo en la garganta.\n\nIV. Las consonantes (nasales, y laterales) poseen vibración de las cuerdas vocales.",
+      "opciones": {
+        "A": "I y III",
+        "B": "II y IV",
+        "C": "I y IV",
+        "D": "III y IV",
+        "E": "I y II"
+      },
+      "figuras": []
+    },
+    {
+      "id": 49,
+      "formato": "texto",
+      "enunciado": "Relacione las palabras subrayadas de cada enunciado con el tipo de relación semántica que se establece entre ellas.\n\nI. Sobre una superficie lisa, el pescador dejó una lisa que pescó.\n\nII. El peón de la hacienda movió inicialmente el peón del ajedrez.\n\nIII. Esa raya de mar tiene una pequeña raya negra en su cuerpo.\n\nIV. Cuando yo servía en el Ejército, la bomba de agua no servía.\n\na. Homonimia absoluta\n\nb. Homonimia paradigmática\n\nc. Homonimia parcial\n\nd. Polisemia",
+      "opciones": {
+        "A": "Ic, IIb, IIIa, IVd",
+        "B": "Id, IIc, IIIb, IVa",
+        "C": "Ia, IIb, IIId, IVc",
+        "D": "Ib, IId, IIIc, IVa",
+        "E": "Ic, IId, IIIa, IVb"
+      },
+      "figuras": [],
+      "subrayados": [
+        "lisa",
+        "peón",
+        "raya",
+        "servía"
+      ]
+    },
+    {
+      "id": 50,
+      "formato": "texto",
+      "enunciado": "Ya aguijan a los caballos, ya les soltaron las [riendas.\nCuando salen de Vivar ven la corneja a la diestra,\npero al ir a entrar en Burgos la llevaban a su [izquierda.\nMovió Mio Cid los hombros y sacudió la cabeza:\n“¡Ánimo, Állvar Fáñez, ánimo, de nuestra tierra [nos echan,\npero cargados de honra hemos de volver a ella!”.\n\nEn los versos anteriores del Poema de Mio Cid se distinguen su carácter esencialmente heroico y la alusión a hechos pasados, lo cual enmarca al extracto citado en el género",
+      "opciones": {
+        "A": "expositivo.",
+        "B": "lírico.",
+        "C": "dramático.",
+        "D": "épico.",
+        "E": "argumentativo."
+      },
+      "figuras": []
+    },
+    {
+      "id": 51,
+      "formato": "texto",
+      "enunciado": "“[...] Y fue la confusión y el estruendo. Los guardias se lanzaron, a culatazos, sobre la negrada aullante, que ya no parecía caber entre las casas y trepaba hacia los balcones. Y a tanto llegó el estrépito y la grita y la turbamulta, que muy pocos vieron que Mackandal, agarrado por diez soldados, era metido de cabeza en el fuego, y que una llama crecida por el pelo encendido ahogaba su último grito”. Luego de leer el fragmento de la novela El reino de este mundo, de Alejo Carpentier, y teniendo en cuenta el argumento de la obra, se puede afirmar que",
+      "opciones": {
+        "A": "los colonos franceses habían impuesto, basados en la tiranía, su cultura.",
+        "B": "la muerte de su guía aplacaría, en el pueblo, las ansias de libertad.",
+        "C": "el esclavo Ti Noel promoverá la segunda rebelión en las tierras haitianas.",
+        "D": "la encarnación de los mitos y la magia africana había llegado a su fin.",
+        "E": "la revolución negra en Haití va a continuar con el esclavo Bouckman"
+      },
+      "figuras": []
+    },
+    {
+      "id": 52,
+      "formato": "texto",
+      "enunciado": "De acuerdo con Poemas humanos, de César Vallejo, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. Hace uso de un lenguaje que refleja la conversación cotidiana.\n\nII. Presenta una visión escéptica hacia un futuro de dicha colectiva.\n\nIII. Propone la búsqueda de un sincretismo, donde el eje es lo andino.",
+      "opciones": {
+        "A": "VVF",
+        "B": "VFV",
+        "C": "VFF",
+        "D": "FFV",
+        "E": "FVV"
+      },
+      "figuras": []
+    },
+    {
+      "id": 53,
+      "formato": "texto",
+      "enunciado": "En relación con las características de la Generación del 50, seleccione la alternativa que contiene los enunciados correctos.\n\nI. Los narradores privilegian la nueva visión de las barriadas.\n\nII. El migrante provinciano se transforma en el personaje principal.\n\nIII. Se presenta una visión benevolente de la capital peruana.",
+      "opciones": {
+        "A": "solo I",
+        "B": "I y III",
+        "C": "II y III",
+        "D": "I y II",
+        "E": "solo II"
+      },
+      "figuras": []
+    },
+    {
+      "id": 54,
+      "formato": "texto",
+      "enunciado": "Rodrigo, un niño de 7 años, causa preocupación a su profesor al mostrar bajo rendimiento y escasa competencia social por falta de límites en su conducta. Luego de entrevistar a la madre para explicarle el comportamiento de su hijo, el psicólogo del colegio llega a la siguiente conclusión:",
+      "opciones": {
+        "A": "los padres someten al niño a un fuerte control.",
+        "B": "los padres orientan al niño en su comportamiento.",
+        "C": "el niño es sobreprotegido y desobediente.",
+        "D": "los padres siempre cuidan y ayudan al niño.",
+        "E": "el niño crece bajo un estilo de crianza permisivo."
+      },
+      "figuras": []
+    },
+    {
+      "id": 55,
+      "formato": "texto",
+      "enunciado": "Rocío experimenta ansiedad cuando asiste a las entrevistas de trabajo y ha descubierto que, al inspirar y espirar lentamente, su malestar disminuye. Rocío, consciente o inconscientemente, está aplicando el",
+      "opciones": {
+        "A": "refuerzo positivo.",
+        "B": "uso de recompensas.",
+        "C": "refuerzo negativo.",
+        "D": "principio de omisión.",
+        "E": "principio de extinción."
+      },
+      "figuras": []
+    },
+    {
+      "id": 56,
+      "formato": "texto",
+      "enunciado": "Respecto de las estructuras y funciones de los mecanismos neurobiológicos de la experiencia emocional, correlacione adecuadamente ambas columnas.\n\nI. Hipocampo\n\nII. Amígdala\n\nIII. Sistema Nervioso Autónomo Vegetativo\n\na. Recuerdo emocional\n\nb. Información contextual\n\nc. Reacciones emocionales",
+      "opciones": {
+        "A": "Ib, IIc, IIIa",
+        "B": "Ia, IIc, IIIb",
+        "C": "Ia, IIb, IIIc",
+        "D": "Ic, IIa, IIIb",
+        "E": "Ib, IIa, IIIc"
+      },
+      "figuras": []
+    },
+    {
+      "id": 57,
+      "formato": "texto",
+      "enunciado": "Respecto de las características del estadio de las operaciones formales de los adolescentes, relacione correctamente ambas columnas.\n\nI. Pensamiento hipotético deductivo\n\nII. Fabulación personal\n\nIII. Conceptos abstractos\n\na. Carlos es estudiante destacado que considera que sabe más que todos sus profesores y que rara vez se equivoca.\n\nb. Luego de una reflexión sistemática, Urpi llega a elaborar una idea clara de dignidad personal.\n\nc. Javier se prepara para la eventualidad de recibir clientes difíciles y ha ideado soluciones al respecto.",
+      "opciones": {
+        "A": "Ic, IIb, IIIa",
+        "B": "Ic, IIa, IIIb",
+        "C": "Ib, IIa, IIIc",
+        "D": "Ia, IIc, IIIb",
+        "E": "Ia, IIb, IIIc"
+      },
+      "figuras": []
+    },
+    {
+      "id": 58,
+      "formato": "texto",
+      "enunciado": "Respecto de la pérdida de la vigencia de la escuela psicológica del estructuralismo, determine los enunciados correctos.\n\nI. La mente humana puede ser analizada por partes, así se favorece la comprensión de sus procesos.\n\nII. La mente humana podría ser entendida de manera superficial, si se abocara solo al estudio de sus elementos.\n\nIII. El método de la introspección resulta poco fiable, pues los juicios de los observadores no siempre coinciden.",
+      "opciones": {
+        "A": "solo I",
+        "B": "solo III",
+        "C": "II y III",
+        "D": "I y III",
+        "E": "I y II"
+      },
+      "figuras": []
+    },
+    {
+      "id": 59,
+      "formato": "texto",
+      "enunciado": "Camila realiza una planificación estratégica de su vida, por lo que plantea acciones para alcanzar sus metas. Estas acciones tienen un grado de prioridad y complejidad que ha ordenado según su preeminencia. ¿Qué paso de la planificación estratégica del proyecto de vida y qué consideración del uso adecuado del tiempo está empleando?",
+      "opciones": {
+        "A": "Formula su misión personal y jerarquiza sus actividades en base a su importancia.",
+        "B": "Elabora su visión personal y combina actividades que requieren esfuerzo mental.",
+        "C": "Ejecuta las acciones planteadas y ordena sus actividades en base a prioridades.",
+        "D": "Evalúa los efectos de sus acciones y organiza sus actividades en una agenda.",
+        "E": "Plantea un análisis de sus desaciertos y maneja adecuadamente sus pendientes."
+      },
+      "figuras": []
+    },
+    {
+      "id": 60,
+      "formato": "texto",
+      "enunciado": "En el curso histórico del desarrollo de los derechos humanos, los derechos de tercera generación, posteriores a la Segunda Guerra Mundial, son aquellos que tienen como fin proteger la integridad de la humanidad. En dicho contexto, se considera el derecho",
+      "opciones": {
+        "A": "a la sindicalización.",
+        "B": "del ciudadano.",
+        "C": "al trabajo.",
+        "D": "a la paz.",
+        "E": "a la igualdad."
+      },
+      "figuras": []
+    },
+    {
+      "id": 61,
+      "formato": "texto",
+      "enunciado": "Las características complicadas de la vida contemporánea acarrean conflictos. Ante estas situaciones, en las sociedades democráticas, se activan mecanismos de armonía, como el de",
+      "opciones": {
+        "A": "conciliación.",
+        "B": "opresión.",
+        "C": "coerción.",
+        "D": "permutación.",
+        "E": "coacción."
+      },
+      "figuras": []
+    },
+    {
+      "id": 62,
+      "formato": "texto",
+      "enunciado": "En las sociedades complejas, como la peruana, el ordenamiento social está basado en",
+      "opciones": {
+        "A": "el Poder Ejecutivo y el Poder Legislativo.",
+        "B": "la Constitución, llamada Carta Magna.",
+        "C": "los gobiernos regionales y municipales.",
+        "D": "los poderes tanto Judicial como Electoral.",
+        "E": "el defensor del pueblo y los ministerios."
+      },
+      "figuras": []
+    },
+    {
+      "id": 63,
+      "formato": "texto",
+      "enunciado": "En el proceso de cumplimiento de sus funciones, el Estado peruano cuenta con diversos organismos constitucionales autónomos como la ..............., encargada de ejercer el seguimiento de las operaciones de la deuda pública.",
+      "opciones": {
+        "A": "Defensoría del Pueblo",
+        "B": "Contraloría General de la República",
+        "C": "Junta Nacional de Justicia",
+        "D": "Fiscalía de la Nación",
+        "E": "Superintendencia de Banca y Seguros"
+      },
+      "figuras": []
+    },
+    {
+      "id": 64,
+      "formato": "texto",
+      "enunciado": "Perteneciente al periodo final del precerámico y periodo inicial (2500 a. C. – 100 d. C.), el centro ceremonial ............... fue un conjunto de templos superpuestos cuyas construcciones rectangulares de barro y piedra tenían en el centro un patio hundido y que corresponde a la fase Mito.",
+      "opciones": {
+        "A": "El Paraíso (valle del Chillón, Lima)",
+        "B": "Toquepala (Tacna)",
+        "C": "Huaca Prieta (La Libertad)",
+        "D": "La Paloma (Chilca, Lima)",
+        "E": "Kotosh (Huánuco)"
+      },
+      "figuras": []
+    },
+    {
+      "id": 65,
+      "formato": "texto",
+      "enunciado": "El descontento contra el sistema colonial a inicios del siglo xix, en las provincias del virreinato peruano, fue generalizado y armado; y contó con la participación de criollos curacas e indígenas. En la localidad de Chincheros, su curaca principal lideró la rebelión que se inició cuando",
+      "opciones": {
+        "A": "publicaron pasquines realistas en Lima.",
+        "B": "expulsaron al corregidor Arriaga en Puno.",
+        "C": "capturaron a los oidores del Cusco.",
+        "D": "fusilaron a Mariano Melgar en Umachin.",
+        "E": "promulgaron la Constitución de Cádiz."
+      },
+      "figuras": []
+    },
+    {
+      "id": 66,
+      "formato": "texto",
+      "enunciado": "El presidente Augusto B. Leguía comenzó su segundo gobierno (1919 - 1930) sin oposición institucionalizada e interfirió en la instalación del Congreso. Su gobierno, conocido como la “Patria Nueva”, se caracterizó por generar nuevos vínculos de dependencia. Respecto de su política de grandes obras, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. Entregó en monopolio las obras de salubridad a la Fundation Company.\n\nII. Entregó a la Cía. Portland Peruana el monopolio del cemento.\n\nIII. Celebró el centenario de la Independencia de modo austero.\n\nIV. Concedió el servicio de correo y telégrafo a la British Marconi Wireless Co.",
+      "opciones": {
+        "A": "VVFV",
+        "B": "VVFF",
+        "C": "VFFV",
+        "D": "VFFF",
+        "E": "FVFV"
+      },
+      "figuras": []
+    },
+    {
+      "id": 67,
+      "formato": "texto",
+      "enunciado": "Respecto de los imperios coloniales de la segunda mitad del siglo XIX que ocuparon territorios del África, Asia y Oceanía, relacione las formas de dominación colonial con su principal característica.\n\nI. Estatuto de dominio\n\nII. Protectorado\n\nIII. Colonias de explotación\n\na. La potencia industrial anexionaba el territorio para una mejor explotación de los recursos naturales y la mano de obra. No había autonomía política: la metrópoli ejercía un gobierno directo.\n\nb. Utilizado por los ingleses, fue el mecanismo preferido por sus inmigrantes debido a que disfrutaban de cierta autonomía de gobierno local, contando con sus propios organismos que los representaban.\n\nc. Fue usado por los franceses; las autoridades políticas locales podían mantener un gobierno propio, aunque administrado indirectamente por la metrópoli.",
+      "opciones": {
+        "A": "Ic, IIa, IIIb",
+        "B": "Ia, IIb, IIIc",
+        "C": "Ib, IIa, IIIc",
+        "D": "Ib, IIc, IIIa",
+        "E": "Ia, IIc, IIIb"
+      },
+      "figuras": []
+    },
+    {
+      "id": 68,
+      "formato": "texto",
+      "enunciado": "Relacione correctamente las formas arquitectónicas de la civilización islámica con el uso que tuvieron.\n\nI. Alcazaba\n\nII. Alcázar\n\nIII. Mezquita\n\na. Construcción sobria destinada a la oración en comunidad\n\nb. Estructura militar ubicada al interior de una fortaleza amurallada\n\nc. Palacio o residencia real de estructura cuadrangular amurallada",
+      "opciones": {
+        "A": "Ib, IIc, IIIa",
+        "B": "Ia, IIb, IIIc",
+        "C": "Ib, IIa, IIIc",
+        "D": "Ic, IIb, IIIa",
+        "E": "Ia, IIc, IIIb"
+      },
+      "figuras": []
+    },
+    {
+      "id": 69,
+      "formato": "texto",
+      "enunciado": "............... son representaciones parciales de la superficie terrestre, elaboradas a escala ..............., de tal manera que brindan un nivel de información ............... .",
+      "opciones": {
+        "A": "Los mapas climáticos - grande - tridimensional del terreno",
+        "B": "Las cartas - pequeña - bidimensional del terreno",
+        "C": "Los planos - muy grande - muy detallado y preciso del terreno",
+        "D": "Los mapas topográficos - muy pequeña - técnico y de relieve del terreno",
+        "E": "Las curvas de nivel - mediana - topográfica del terreno"
+      },
+      "figuras": []
+    },
+    {
+      "id": 70,
+      "formato": "texto",
+      "enunciado": "Las áreas protegidas por el Estado (ANP) son espacios destinados a la protección y conservación de la biodiversidad, de paisajes naturales y culturales de trascendencia. ¿Cuál es la ANP tangible donde se permite el uso directo de los recursos?",
+      "opciones": {
+        "A": "Parque nacional Sierra del Divisor",
+        "B": "Reserva paisajística Nor Yauyos-Cochas",
+        "C": "Santuario nacional los manglares de Tumbes",
+        "D": "Santuario histórico de la Pampa de Ayacucho",
+        "E": "Parque nacional Cordillera Azul"
+      },
+      "figuras": []
+    },
+    {
+      "id": 71,
+      "formato": "texto",
+      "enunciado": "............... es el fenómeno natural que regula la temperatura de la atmósfera terrestre.",
+      "opciones": {
+        "A": "La variabilidad climática",
+        "B": "Reserva paisajística Nor Yauyos-Cochas",
+        "C": "El cambio climático",
+        "D": "El ciclo biogeoquímico del carbono",
+        "E": "La inversión térmica"
+      },
+      "figuras": []
+    },
+    {
+      "id": 72,
+      "formato": "texto",
+      "enunciado": "La topografía de la cordillera de los Andes ejerce una marcada influencia sobre los sistemas meteorológicos: la incursión de masas de aire frío y seco procedentes de la región polar hacia latitudes tropicales genera fenómenos climáticos como heladas en la región andina y friajes en la selva. Respecto de lo expresado, ¿cuáles de los siguientes enunciados son correctos?\n\nI. Los centros poblados altoandinos del sur del Perú experimentan heladas durante el invierno. Il. Como frente seco, el friaje avanza por valles interandinos aumentando la sensación térmica de frío.\n\nIII. La clasificación de heladas a partir de su origen puede ser por advección y por radiación.\n\nIV. La donación de frazadas y el asistencialismo contribuyen a reducir el impacto socioeconómico.",
+      "opciones": {
+        "A": "II, III y IV",
+        "B": "Solo II y IV",
+        "C": "I y III",
+        "D": "Solo III y IV",
+        "E": "I y II"
+      },
+      "figuras": []
+    },
+    {
+      "id": 73,
+      "formato": "texto",
+      "enunciado": "El país vencedor de un conflicto armado le ha impuesto al país vencido una condición: la contracción de los niveles tecnológicos de su industria armamentística para evitar conflictos en los próximos años. Según lo expuesto, la oferta en el mercado de armamento del país derrotado experimentará un ............... de su curva hacia la ...............",
+      "opciones": {
+        "A": "movimiento a lo largo - izquierda",
+        "B": "desplazamiento - izquierda",
+        "C": "desplazamiento - derecha",
+        "D": "movimiento a lo largo - derecha",
+        "E": "equilibrio - derecha"
+      },
+      "figuras": []
+    },
+    {
+      "id": 74,
+      "formato": "texto",
+      "enunciado": "La llegada masiva de trabajadores emigrantes al mercado laboral textil y el encarecimiento de los insumos prioritarios para la producción acarrean un descenso en los salarios. En este contexto, el dueño de una empresa vacila entre reducir los salarios de sus trabajadores o despedir a una parte de ellos. Sin embargo, tras una presión sindical, decide mantener los salarios por un periodo propuesto. ¿Qué factor determinó la fijación del salario?",
+      "opciones": {
+        "A": "La oferta de trabajo",
+        "B": "La productividad",
+        "C": "El costo de vida",
+        "D": "El poder de negociación",
+        "E": "El arbitraje estatal"
+      },
+      "figuras": []
+    },
+    {
+      "id": 75,
+      "formato": "texto",
+      "enunciado": "La teoría cuantitativa del dinero se formaliza mediante la ecuación de cambios o ecuación de Fisher, MV = PQ. En relación con dicha ecuación, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. MV representa la demanda de dinero presente en el mercado monetario.\n\nII. PQ representa el valor total de bienes y servicios conocido como sector real.\n\nIII. Una política monetaria expansiva llamada «maquinita» causa un descenso en M.\n\nIV. La cantidad de dinero y su poder adquisitivo están en relación inversa.",
+      "opciones": {
+        "A": "FVFV",
+        "B": "FFFV",
+        "C": "VFFF",
+        "D": "VVVV",
+        "E": "FFVF"
+      },
+      "figuras": []
+    },
+    {
+      "id": 76,
+      "formato": "texto",
+      "enunciado": "El ..............., fundado en 1991 en Asunción y conformado por Argentina, Brasil, Paraguay y Uruguay, tiene como objetivo principal la liberalización del comercio y la armonización de políticas comerciales, aduaneras, agrícolas y de inversión de sus países miembros.",
+      "opciones": {
+        "A": "ALBA-TCP",
+        "B": "ASEAN",
+        "C": "UNASUR",
+        "D": "TLCAN",
+        "E": "MERCOSUR"
+      },
+      "figuras": []
+    },
+    {
+      "id": 77,
+      "formato": "texto",
+      "enunciado": "En filosofía, las preguntas sobre el ser de lo real y la diferencia entre esencia y existencia corresponden a la ...............; mientras que la pregunta sobre el puesto del hombre en el cosmos pertenece al campo de la ...............",
+      "opciones": {
+        "A": "gnoseología - estética",
+        "B": "metafísica - axiología",
+        "C": "ontología - antropología",
+        "D": "deontología - epistemología",
+        "E": "estética - cosmología"
+      },
+      "figuras": []
+    },
+    {
+      "id": 78,
+      "formato": "texto",
+      "enunciado": "El enunciado “Alemania fue el principal perdedor de la Segunda Guerra Mundial” se determina mediante diversas fuentes históricas como artículos periodísticos, grabaciones de transmisiones radiales o televisivas, documentos oficiales, entre otras. Lo descrito implica que el conocimiento científico se caracteriza, entre otros rasgos, por ser",
+      "opciones": {
+        "A": "metódico.",
+        "B": "racional.",
+        "C": "necesario.",
+        "D": "universal.",
+        "E": "comprobable."
+      },
+      "figuras": []
+    },
+    {
+      "id": 79,
+      "formato": "texto",
+      "enunciado": "Si un político pretendiera justificar la eliminación de una etnia de su país, apelando a que la mayoría de sus conciudadanos se siente amenazada por las costumbres de dicha etnia, estaría fundando su discurso en una falacia denominada argumentum ad",
+      "opciones": {
+        "A": "hominem.",
+        "B": "ignorantiam.",
+        "C": "verecundiam.",
+        "D": "populum.",
+        "E": "baculum."
+      },
+      "figuras": []
+    },
+    {
+      "id": 80,
+      "formato": "texto",
+      "enunciado": "En la Nueva corónica y buen gobierno, Felipe Guamán Poma de Ayala incluyó un conjunto de imágenes con el que buscó representar las actividades y la organización del mundo andino. Para el filósofo Ernst Cassirer, esos dibujos constituyen",
+      "opciones": {
+        "A": "la superación de la naturaleza andina por parte del arte pictórico de las crónicas.",
+        "B": "la materialización de la idea o concepto que se expresa mediante determinado arte.",
+        "C": "el camino artístico por el cual las crónicas coloniales devinieron expresiones culturales.",
+        "D": "la conformación de un sistema simbólico del conjunto social al que pertenece el autor.",
+        "E": "el florecimiento del arte pictórico virreinal, que recibió influencia renacentista tardía."
+      },
+      "figuras": []
+    },
+    {
+      "id": 81,
+      "formato": "texto",
+      "enunciado": "Un carrito a control remoto, con masa de 1 kg, se mueve a una rapidez constante de v = 8 m/s en un círculo vertical dentro de un cilindro hueco metálico de radio R = 2 m, como se muestra en la figura. Determine la magnitud que tiene la fuerza normal ejercida sobre el carrito por la pared del cilindro en la parte superior del círculo vertical, posición B (altura máxima). Dato: g = 10 m/s²",
+      "opciones": {
+        "A": "18 N",
+        "B": "28 N",
+        "C": "32 N",
+        "D": "42 N",
+        "E": "22 N"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-081.svg",
+          "descripcion": "Esquema vectorial de la pregunta 81",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "Un carrito a control remoto, con masa de 1 kg, se mueve a una rapidez constante de $v=8\\mathrm{m/s}$ en un círculo vertical dentro de un cilindro hueco metálico de radio $R=2\\mathrm{m}$, como se muestra en la figura. Determine la magnitud que tiene la fuerza normal ejercida sobre el carrito por la pared del cilindro en la parte superior del círculo vertical, posición B (altura máxima). Dato: $g=10\\mathrm{m/s}^{2}$"
+    },
+    {
+      "id": 82,
+      "formato": "texto",
+      "enunciado": "El automóvil que se desplaza sobre una superficie horizontal rugosa es detenido en una distancia D por una fuerza de fricción constante independiente de la rapidez del auto. Determine la distancia a la que se detiene el móvil en términos de D, cuando se cuadruplica su rapidez inicial.",
+      "opciones": {
+        "A": "12 D",
+        "B": "9 D",
+        "C": "16 D",
+        "D": "14 D",
+        "E": "18 D"
+      },
+      "figuras": []
+    },
+    {
+      "id": 83,
+      "formato": "texto",
+      "enunciado": "Un tanque abierto, con paredes verticales, contiene agua hasta una altura H=12 m, como se muestra en la figura. Si se perfora un agujero en una pared, a una profundidad h=2 m debajo de la superficie libre del agua, determine la velocidad con que impacta el chorro de agua contra la superficie horizontal. Dato: g=10 m/s²",
+      "opciones": {
+        "A": "(2√10 î − 10√2 ĵ) m/s",
+        "B": "(2√2 î − 10√10 ĵ) m/s",
+        "C": "(10√2 î − 2√10 ĵ) m/s",
+        "D": "(2√10 î + 10√2 ĵ) m/s",
+        "E": "(−2√10 î + 10√2 ĵ) m/s"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-083.svg",
+          "descripcion": "Esquema vectorial de la pregunta 83",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "Un tanque abierto, con paredes verticales, contiene agua hasta una altura $H=12\\mathrm{m}$, como se muestra en la figura. Si se perfora un agujero en una pared, a una profundidad $h=2\\mathrm{m}$ debajo de la superficie libre del agua, determine la velocidad con que impacta el chorro de agua contra la superficie horizontal. Dato: $g=10\\mathrm{m/s}^{2}$",
+      "opciones_rico": {
+        "A": "$(2\\sqrt{10}\\hat{i}-10\\sqrt{2}\\hat{j})\\mathrm{m/s}$",
+        "B": "$(2\\sqrt{2}\\hat{i}-10\\sqrt{10}\\hat{j})\\mathrm{m/s}$",
+        "C": "$(10\\sqrt{2}\\hat{i}-2\\sqrt{10}\\hat{j})\\mathrm{m/s}$",
+        "D": "$(2\\sqrt{10}\\hat{i}+10\\sqrt{2}\\hat{j})\\mathrm{m/s}$",
+        "E": "$(-2\\sqrt{10}\\hat{i}+10\\sqrt{2}\\hat{j})\\mathrm{m/s}$"
+      }
+    },
+    {
+      "id": 84,
+      "formato": "texto",
+      "enunciado": "Una espira cuadrada de lados a = 10 cm rota en torno del eje z, que pasa por el centro de ella, con rapidez angular constante igual a ω = 1200 rad/s, como se muestra en la figura. En el espacio en el que se encuentra la espira existe un campo magnético B⃗ = 2 × 10⁻⁵ ĵ T. Teniendo en cuenta la situación anterior, halle el flujo magnético, en cualquier instante, sobre la espira. Considere que inicialmente el campo magnético es paralelo a la superficie de la espira.",
+      "opciones": {
+        "A": "2,0 sen(1200t − π/2) µT · m²",
+        "B": "0,2 cos(1200t + π/2) µT · m²",
+        "C": "20 cos(1200t + π/4) µT · m²",
+        "D": "2,0 cos(1200t − π/2) µT · m²",
+        "E": "20 sen(1200t − π/3) µT · m²"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-084.svg",
+          "descripcion": "Esquema vectorial de la pregunta 84",
+          "formato": "svg"
+        }
+      ],
+      "enunciado_rico": "Una espira cuadrada de lados $a=10\\mathrm{cm}$ rota en torno del eje $z$, que pasa por el centro de ella, con rapidez angular constante igual a $\\omega=1200\\mathrm{rad/s}$, como se muestra en la figura. En el espacio en el que se encuentra la espira existe un campo magnético $\\vec{B}=2\\times10^{-5}\\hat{j}\\mathrm{T}$. Teniendo en cuenta la situación anterior, halle el flujo magnético, en cualquier instante, sobre la espira. Considere que inicialmente el campo magnético es paralelo a la superficie de la espira.",
+      "opciones_rico": {
+        "A": "$2,0\\sen(1200t-\\frac{\\pi}{2})\\mu\\mathrm{T}\\cdot\\mathrm{m}^{2}$",
+        "B": "$0,2\\cos(1200t+\\frac{\\pi}{2})\\mu\\mathrm{T}\\cdot\\mathrm{m}^{2}$",
+        "C": "$20\\cos(1200t+\\frac{\\pi}{4})\\mu\\mathrm{T}\\cdot\\mathrm{m}^{2}$",
+        "D": "$2,0\\cos(1200t-\\frac{\\pi}{2})\\mu\\mathrm{T}\\cdot\\mathrm{m}^{2}$",
+        "E": "$20\\sen(1200t-\\frac{\\pi}{3})\\mu\\mathrm{T}\\cdot\\mathrm{m}^{2}$"
+      }
+    },
+    {
+      "id": 85,
+      "formato": "texto",
+      "enunciado": "Una célula fotoeléctrica controla la puerta de un ascensor. El fabricante de los componentes fotoeléctricos determinó que, al irradiar uno de los electrodos de la célula con fotones de longitudes de ondas igual a 2 µm, el metal comenzó a emitir fotoelectrones. También, observó que, cuando se aplica una diferencia de potencial de 0,3 V entre los electrodos de la célula, la corriente eléctrica se anula. Identifique la función de trabajo que halló el fabricante de los componentes fotoeléctricos del ascensor. Datos: h=4,14×10⁻¹⁵ eV · s; c=3×10⁸ m/s",
+      "opciones": {
+        "A": "318 meV",
+        "B": "320 meV",
+        "C": "321 meV",
+        "D": "322 meV",
+        "E": "323 meV"
+      },
+      "figuras": [],
+      "enunciado_rico": "Una célula fotoeléctrica controla la puerta de un ascensor. El fabricante de los componentes fotoeléctricos determinó que, al irradiar uno de los electrodos de la célula con fotones de longitudes de ondas igual a 2 µm, el metal comenzó a emitir fotoelectrones. También, observó que, cuando se aplica una diferencia de potencial de 0,3 V entre los electrodos de la célula, la corriente eléctrica se anula. Identifique la función de trabajo que halló el fabricante de los componentes fotoeléctricos del ascensor. Datos: $h=4,14\\times10^{-15}\\mathrm{eV}\\cdot\\mathrm{s}$; $c=3\\times10^{8}\\mathrm{m/s}$"
+    },
+    {
+      "id": 86,
+      "formato": "texto",
+      "enunciado": "Algunos peruanos acostumbran a tomar café con leche. La leche es la secreción obtenida de la vaca y contiene grasas, proteínas y lactosa principalmente. El café es el grano tostado y molido, obtenido a partir de la semilla de la planta Coffea arabica y también contiene proteínas grasas, carbohidratos y cafeína, el cual es un alcaloide que tiene actividad estimulante del sistema nervioso central. En relación con lo anterior, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. Solo las proteínas de la leche tienen enlace peptídico.\n\nII. Entre las grasas de la leche encontramos fitosterol.\n\nIII. La lactosa es un disacárido reductor y es una molécula.\n\nIV. La cafeína, por ser un alcaloide, es capaz de causar adicción.",
+      "opciones": {
+        "A": "FFVV",
+        "B": "FVVF",
+        "C": "VFVV",
+        "D": "VVVF",
+        "E": "FVVV"
+      },
+      "figuras": []
+    },
+    {
+      "id": 87,
+      "formato": "texto",
+      "enunciado": "De acuerdo con el proceso de la potabilización del agua, relacione correctamente ambas columnas.\n\nProceso\nI. Represamiento de aguas naturales\nII. Sedimentación de arenas y arcillas\nIII. Desinfección inicial y final\nIV. Eliminación de partículas coloidales\n\nActividad/acción\na. Cl₂(g) + H₂O(ℓ) ↔ HOCl(ac) + H⁺ + Cl⁻\nb. Acción de la gravedad y mayor densidad\nc. Al₂(SO₄)₃ · 14H₂O; FeSO₄ · 7H₂O\nd. Desviación del agua de su canal natural",
+      "opciones": {
+        "A": "Ib, IIa, IIId, IVc",
+        "B": "Id, IIb, IIIa, IVc",
+        "C": "Id, IIa, IIIb, IVc",
+        "D": "Ic, IIb, IIIa, IVd",
+        "E": "Id, IIb, IIIc, IVa"
+      },
+      "figuras": []
+    },
+    {
+      "id": 88,
+      "formato": "texto",
+      "enunciado": "Relacione adecuadamente cada ecuación química con su tipo de reacción.\n\nEcuación química\nI. KOH(ac) + HCl(ac) → KCl(ac) + H₂O(ℓ)\nII. CH₃CH₂CH₂Br(s) + CH₃OH(ℓ) → CH₃CH₂CH₂OH(ℓ) + CH₃Br(ℓ)\nIII. NaHCO₃ + calor → Na₂CO₃(ac) + CO₂(g) + H₂O(ℓ)\nIV. AgNO₃(ac) + HCl(ac) → HNO₃(ac) + AgCl(s)\n\nTipo de reacción\na. Endotérmica\nb. De sustitución\nc. De precipitación\nd. Neutralización",
+      "opciones": {
+        "A": "Id, IIb, IIIa, IVc",
+        "B": "Id, IIb, IIIc, IVa",
+        "C": "Ia, IIc, IIIb, IVd",
+        "D": "Ic, IIa, IIId, IVb",
+        "E": "Ib, IIa, IIId, IVc"
+      },
+      "figuras": []
+    },
+    {
+      "id": 89,
+      "formato": "texto",
+      "enunciado": "Un estudiante del nivel secundario intenta diseñar un dispositivo eléctrico para obtener electricidad. Él dispone de los metales litio y níquel y de las soluciones 1 M de los iones de cada metal. Determine la notación de la celda que debe construir y el voltaje que produciría al realizar la correcta asociación.\n\nPotencial de reducción:\nLi⁺(ac) + e⁻ → Li⁰(s), ε = −3,05 V\nNi²⁺(ac) + 2e⁻ → Ni⁰(s), ε = −0,28 V",
+      "opciones": {
+        "A": "Li⁰(s) / Li⁺(ac) // Ni⁰(s) / Ni²⁺(ac) y +2,77 V",
+        "B": "Li⁺(ac) / Li⁰(s) // Ni²⁺(ac) / Ni⁰(s) y +3,33 V",
+        "C": "Ni²⁺(ac) / Ni⁰(s) // Li⁺(ac) / Li⁰(s) y −2,77 V",
+        "D": "Ni²⁺(ac) / Ni⁰(s) // Li⁰(s) / Li⁺(ac) y +5,72 V",
+        "E": "Li⁰(s) / Li⁺(ac) // Ni²⁺(ac) / Ni⁰(s) y +2,77 V"
+      },
+      "figuras": []
+    },
+    {
+      "id": 90,
+      "formato": "texto",
+      "enunciado": "En la siguiente tabla se muestran sustancias orgánicas con su fórmula molecular y masa molar.",
+      "opciones": {
+        "A": "FFVV",
+        "B": "VFVV",
+        "C": "VFVF",
+        "D": "VVFF",
+        "E": "FVFF"
+      },
+      "figuras": [],
+      "tabla": {
+        "columnas": [
+          "Líquido",
+          "Fórmula molecular",
+          "Masa molar (g/mol)"
+        ],
+        "filas": [
+          [
+            "Acetona",
+            "CH₃−CO−CH₃",
+            "58"
+          ],
+          [
+            "Propionaldehido",
+            "CH₃−CH₂−CHO",
+            "58"
+          ],
+          [
+            "Etanol",
+            "CH₃−CH₂−OH",
+            "46"
+          ],
+          [
+            "Ácido acético",
+            "CH₃−COOH",
+            "60"
+          ],
+          [
+            "n-pentano",
+            "CH₃−CH₂−CH₂−CH₂−CH₃",
+            "72"
+          ],
+          [
+            "isopentano",
+            "CH₃−CH(CH₃)−CH₂−CH₃",
+            "72"
+          ]
+        ]
+      },
+      "texto_despues_figura": "De acuerdo con la tabla anterior, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. La acetona tiene mayor punto de ebullición que el propionaldehido porque presenta una mayor intensidad en las fuerzas dipolo-dipolo.\n\nII. El propionaldehido tiene mayor punto de ebullición que el etanol, debido a que sus fuerzas dipolo-dipolo son más intensas que las fuerzas puente de hidrógeno.\n\nIII. El ácido acético presenta el punto de ebullición más alto, debido a sus intensas fuerzas tipo puentes de hidrógeno, dipolo-dipolo y ion- dipolo entre sus moléculas.\n\nIV. El n-pentano tiene más punto de ebullición que el isopentano debido a su mayor fuerza de London, ya que es una molécula lineal."
+    },
+    {
+      "id": 91,
+      "formato": "texto",
+      "enunciado": "Las vitaminas, componentes importantes para el desarrollo humano, son sustancias de naturaleza orgánica, las cuales pueden ser liposolubles e hidrosolubles; ejemplos de ellas se muestran en el siguiente cuadro:",
+      "opciones": {
+        "A": "VVVV",
+        "B": "VVFF",
+        "C": "VFVF",
+        "D": "VVFV",
+        "E": "FFVF"
+      },
+      "figuras": [
+        {
+          "imagen": "figura-091.svg",
+          "descripcion": "Esquema vectorial de la pregunta 91",
+          "formato": "svg"
+        }
+      ],
+      "texto_despues_figura": "Respecto de lo señalado, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. Las vitaminas hidrosolubles, como la vitamina C, se deben reponer a diario en nuestra dieta; las liposolubles, como la vitamina D, se pueden almacenar en el tejido adiposo.\n\nII. La vitamina C, antioxidante, interviene en la síntesis del colágeno y neuropéptidos, su deficiencia produce el escorbuto y si esta es severa, puede ser potencialmente fatal.\n\nIII. La vitamina A es un compuesto poliisoprenoide, con el anillo cromanol y con una cadena hidrocarbonada saturada e insaturada, y tiene grupos hidroxilos.\n\nIV. La vitamina D regula los niveles de calcio en la sangre, su deficiencia provoca enfermedades en los huesos; la vitamina B1 participa en el metabolismo de carbohidratos."
+    },
+    {
+      "id": 92,
+      "formato": "texto",
+      "enunciado": "El mineral apatita es el fluorfosfato de calcio, Ca₅(PO₄)₃F, o el clorofosfato de calcio, Ca₅(PO₄)₃Cl; mientras que la hidroxiapatita es el Ca₅(PO₄)₃OH. Este último le confiere a los huesos y a los dientes la resistencia y dureza para cumplir sus acciones fisiológicas. Si se mezcla 65 g de apatita, con 80% de pureza, y 10 gramos de hidróxido de calcio, 100% puro, ¿cuál es la masa de hidroxiapatita que se obtiene, en gramos, si el rendimiento de la reacción fue 75%?\n\nConsidere la siguiente ecuación química:\nCa₅(PO₄)₃Cl(s) + Ca(OH)₂(ac) → Ca₅(PO₄)₃OH(s) + Ca(OH)Cl(ac)\n\nDatos: masa molar, g/mol: ₁H = 1; ₈O = 16; ₁₅P = 31; ₁₇Cl = 35,5; ₂₀Ca = 40.",
+      "opciones": {
+        "A": "62,7",
+        "B": "26,6",
+        "C": "37,6",
+        "D": "47,0",
+        "E": "50,2"
+      },
+      "figuras": []
+    },
+    {
+      "id": 93,
+      "formato": "texto",
+      "enunciado": "Dos biólogos observan a unos papagayos sujetados de una pared rocosa en donde frotan sus picos, al parecer, para alimentarse. Ambos están interesados en conocer si las aves abandonan dicha pared individualmente o en grupo. ¿Qué dominio de la biología les permitirá explicar dicho evento?",
+      "opciones": {
+        "A": "Etología",
+        "B": "Ornitología",
+        "C": "Biogeografía",
+        "D": "Etiología",
+        "E": "Ecología"
+      },
+      "figuras": []
+    },
+    {
+      "id": 94,
+      "formato": "texto",
+      "enunciado": "El tejido epitelial que conforma la epidermis está compuesto por células cúbicas en la capa basal que, a medida que van aplanándose hacia los estratos superiores, pierden sus núcleos y terminan descamándose. Dichas células producen una sustancia que les confiere dureza para cumplir su función de barrera natural contra los agentes del medio externo, debido a que este tejido es de tipo escamoso",
+      "opciones": {
+        "A": "de transición cutánea.",
+        "B": "pseudoestratificado cutáneo",
+        "C": "estratificado no queratinizado.",
+        "D": "estratificado queratinizado.",
+        "E": "estratificado epidérmico."
+      },
+      "figuras": []
+    },
+    {
+      "id": 95,
+      "formato": "texto",
+      "enunciado": "Rubén desarrolla una tesis sobre ciertos miembros del reino Plantae. Su propósito es describir ciertos organismos que, aunque hacen fotosíntesis y poseen celulosa, tienen características ajenas a otras divisiones. En particular, su pared celular presenta sílice y tiene aspecto cristalino, diferente a lo descrito en una planta común. Podemos conjeturar que Rubén estudia las",
+      "opciones": {
+        "A": "euglenofitas.",
+        "B": "feofitas.",
+        "C": "crisofitas",
+        "D": "pirrofitas.",
+        "E": "rodofitas."
+      },
+      "figuras": []
+    },
+    {
+      "id": 96,
+      "formato": "texto",
+      "enunciado": "La biocenosis se caracteriza por su dinamismo, ya sea por cambios climáticos, geológicos o bióticos. Esto origina que la sucesión ecológica sea un fenómeno obligatorio que se caracteriza por",
+      "opciones": {
+        "A": "ser un proceso ordenado, con múltiples direcciones y siempre imprevisible.",
+        "B": "alcanzar el máximo valor de la biomasa, pero con pocas relaciones entre organismos.",
+        "C": "existir predominio de una especie que altera las condiciones del medio a su favor.",
+        "D": "cambios que producen desarrollos evolutivos en las especies dominantes.",
+        "E": "modificaciones del medio, influenciadas por las comunidades existentes."
+      },
+      "figuras": []
+    },
+    {
+      "id": 97,
+      "formato": "texto",
+      "enunciado": "El aumento de la permeabilidad vascular, dentro del proceso inflamatorio, permite la conformación del edema y el ingreso de células fagocíticas al área afectada. Con ello, incrementa la temperatura y genera el enrojecimiento local. Este proceso es atribuido a los ..............., debido a la liberación de ............... .",
+      "opciones": {
+        "A": "plasmocitos - interferón",
+        "B": "neutrófilos - interleucina",
+        "C": "linfocitos T - leucotrieno",
+        "D": "linfocitos B - citocina",
+        "E": "mastocitos - histamina"
+      },
+      "figuras": []
+    },
+    {
+      "id": 98,
+      "formato": "texto",
+      "enunciado": "Merlina se encuentra en el día uno de su ciclo menstrual. Presenta sangrado y cólicos debido a las contracciones del músculo uterino, lo que genera el desprendimiento del ............... la disminución brusca de sus niveles de estrógeno y ............... .",
+      "opciones": {
+        "A": "ovocito - progesterona",
+        "B": "miometrio - prostaglandina",
+        "C": "placenta - progesterona",
+        "D": "endometrio - prostaglandina",
+        "E": "endometrio - progesterona"
+      },
+      "figuras": []
+    },
+    {
+      "id": 99,
+      "formato": "texto",
+      "enunciado": "Un productor ha obtenido calabacines alargados de línea pura por varias generaciones. Cuando estos son cruzados con la variedad en forma de disco, también de línea pura, se obtiene calabacines esféricos. Con el cruce de estos híbridos, obtuvo, entre otros, 95 esféricos y 50 en forma de disco. Por lo expuesto, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. Es probable que, del cruce de híbridos, obtenga alrededor de 50 alargados.\n\nII. En un segundo cruce de estos híbridos, obtendrá cerca de 50 esféricos.\n\nIII. Se trata de un fenómeno de codominancia típico en estos vegetales.",
+      "opciones": {
+        "A": "VFF",
+        "B": "VVF",
+        "C": "FVV",
+        "D": "FVF",
+        "E": "FFV"
+      },
+      "figuras": []
+    },
+    {
+      "id": 100,
+      "formato": "texto",
+      "enunciado": "En el hombre, el factor Rh está representado por una molécula presente en la superficie del glóbulo rojo (+ si está presente y – si no lo está). Coincidentemente, el mono del género Rhesus también lo puede presentar. Desde el punto de vista evolutivo, determine el valor de verdad (V o F) de las siguientes proposiciones:\n\nI. Esta es una evidencia bioquímica de la evolución de los primates.\n\nII. Demuestra que ambas especies tienen el mismo lugar de origen.\n\nIII. Demuestra la relación embriológica entre ambos primates.",
+      "opciones": {
+        "A": "FVF",
+        "B": "VFV",
+        "C": "FFV",
+        "D": "VFF",
+        "E": "VVV"
+      },
+      "figuras": []
+    }
+  ]
+}
