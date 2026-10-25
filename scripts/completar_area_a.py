@@ -12,12 +12,12 @@ from pathlib import Path
 
 
 # Número del examen: alternativa correspondiente al texto publicado.
-# La 47 tiene dos alternativas idénticas (A y D), sin letra desambiguada.
+# Las preguntas 47 y 71 incorporan las correcciones acordadas con el usuario.
 CLAVES = {
     11:'A', 12:'C', 13:'B', 14:'B', 15:'C', 16:'A', 17:'D', 18:'D', 19:'E', 20:'C',
     21:'E', 22:'A', 23:'D', 24:'B', 25:'C', 26:'E', 27:'B', 28:'C', 29:'A', 30:'D',
     31:'E', 32:'A', 33:'D', 34:'C', 35:'C', 36:'D', 37:'B', 38:'A', 39:'C', 40:'E',
-    41:'A', 42:'B', 43:'B', 44:'C', 45:'D', 46:'A', 47:None, 48:'A', 49:'E', 50:'D',
+    41:'A', 42:'B', 43:'B', 44:'C', 45:'D', 46:'A', 47:'D', 48:'A', 49:'E', 50:'D',
     51:'E', 52:'B', 53:'D', 54:'E', 55:'C', 56:'E', 57:'B', 58:'D', 59:'A', 60:'D',
     61:'A', 62:'B', 63:'B', 64:'E', 65:'C', 66:'C', 67:'D', 68:'A', 69:'C', 70:'B',
     71:'B', 72:'C', 73:'B', 74:'D', 75:'A', 76:'E', 77:'C', 78:'E', 79:'D', 80:'D',
@@ -53,20 +53,20 @@ def completar(pdf_respuestas: Path) -> None:
             'estado_clave': 'transcrita_del_documento',
         }
         if numero == 47:
-            clave.update(estado_clave='ambigua', alternativas_coincidentes=['A','D'],
-                         observacion='El texto sé - mas - si - mí coincide con A y D; no elegir una letra arbitrariamente.')
+            clave.update(estado_clave='corregida',
+                         observacion='Corrección indicada por el usuario: D) sé - mas - sí - mí. Clave D.')
         if numero == 71:
-            clave.update(estado_clave='requiere_revision',
-                         observacion='El documento repite la respuesta anterior: Reserva paisajística Nor Yauyos-Cochas. Se conserva la B publicada, pendiente de revisión del contenido.')
+            clave.update(estado_clave='corregida',
+                         observacion='Corrección autorizada por el usuario: B) El efecto invernadero. Sustituye la respuesta repetida de la pregunta anterior.')
         privadas.append(dict(pregunta, **{k:v for k,v in clave.items() if k != 'id'}))
         publicas.append(dict(pregunta, origen='PDF del examen · Lumbreras / Academia ADUNI'))
     privado = {
         'titulo': 'Área A 2026-I · Banco de revisión',
         'fuente_respuestas': pdf_respuestas.name,
         'sha256_respuestas': hashlib.sha256(pdf_respuestas.read_bytes()).hexdigest(),
-        'apto_calificacion': False,
-        'pendientes_revision': [47, 71],
-        'nota': 'Claves transcritas del documento, sin auditoría académica independiente. No sustituye el banco activo ni modifica resultados históricos.',
+        'apto_calificacion': True,
+        'pendientes_revision': [],
+        'nota': 'Claves transcritas del documento con correcciones autorizadas en 47 y 71. Fuente del banco activo de 100 preguntas; sin auditoría académica independiente.',
         'preguntas': privadas,
     }
     ruta_edicion = raiz / 'data/examenes/edicion_area_a.json'
@@ -81,7 +81,7 @@ def completar(pdf_respuestas: Path) -> None:
             destino.update(lecturas=edicion['lecturas'], grupos=edicion['grupos'])
     (raiz / 'data/examenes/area_a_2026_i_revision.json').write_text(json.dumps(privado, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     datos.update(preguntas=publicas, faltantes=[], claves_disponibles=True,
-                 estado='Vista previa de 100 preguntas; claves privadas con pendientes de revisión')
+                 estado='Vista previa de 100 preguntas; claves privadas con correcciones en 47 y 71')
     ruta_datos.write_text(json.dumps(datos, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     (carpeta / 'datos.js').write_text('window.EXAMEN_IMPORTADO = ' + json.dumps(datos, ensure_ascii=False) + ';\n', encoding='utf-8')
     lineas = ['# Preguntas actitudinales originales — Área A', '',
@@ -91,7 +91,7 @@ def completar(pdf_respuestas: Path) -> None:
         lineas += [f"- **{letra})** {texto}" for letra,texto in pregunta['opciones'].items()]
         lineas += ['', f"**Respuesta: {pregunta['correcta']}.** {pregunta['explicacion']}", '']
     (raiz / 'docs/PREGUNTAS_ACTITUDINALES_AREA_A.md').write_text('\n'.join(lineas), encoding='utf-8')
-    print('100 preguntas: 10 originales + 90 del PDF. Claves privadas; revisión pendiente: 47 y 71.')
+    print('100 preguntas: 10 originales + 90 del PDF. Claves privadas; 47 y 71 corregidas.')
 
 
 if __name__ == '__main__':

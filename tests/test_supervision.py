@@ -35,9 +35,90 @@ from models.intento import crear_intento, iniciar_o_recuperar_intento_atomico, g
 from models.supervision import entregar_examen  # noqa: E402
 import models.evidencia_celular as evidencia_celular  # noqa: E402
 from utils.preguntas import cargar_preguntas_area  # noqa: E402
+from models.examen import cargar_preguntas_intento  # noqa: E402
 
 
 class TestSupervision(unittest.TestCase):
+    def test_cien_preguntas_tres_horas_todas_las_areas(self):
+        with get_db_cursor(commit=True) as cur:
+            cur.execute("UPDATE intentos SET estado_academico = 'ENTREGADO' WHERE id = %s", (self.intento['id'],))
+            cur.execute("UPDATE usuarios SET consentimiento_celular_version = 'celular-v2-fotos' WHERE id = %s", (self.uid,))
+        for area in 'ABCDE':
+            with self.subTest(area=area):
+                self.assertEqual(self.client.get(f'/examen/{area}').status_code, 200)
+                with self.client.session_transaction() as sesion:
+                    headers = {'X-CSRF-Token': sesion['csrf_examen']}
+                inicio = self.client.post('/api/intento/iniciar', headers=headers,
+                                          json={'area':'E','duracion_minutos':1})
+                self.assertEqual(inicio.status_code, 200)
+                self.assertEqual(inicio.json['intento']['area'], area)
+                self.assertEqual(len(inicio.json['preguntas']), 100)
+                self.assertGreater(inicio.json['segundos_restantes'], 10790)
+                self.assertLessEqual(inicio.json['segundos_restantes'], 10800)
+                self.assertNotIn('"correcta"', inicio.get_data(as_text=True))
+                self.assertNotIn('"explicacion"', inicio.get_data(as_text=True))
+                self.assertTrue(inicio.json['intento']['examen_version_id'])
+                recarga = self.client.get(f'/examen/{area}')
+                self.assertEqual(recarga.status_code, 200)
+                with self.client.session_transaction() as sesion:
+                    headers = {'X-CSRF-Token': sesion['csrf_examen']}
+                repetido = self.client.post('/api/intento/iniciar', headers=headers)
+                self.assertEqual(repetido.json['status'], 'recuperado')
+                self.assertEqual(repetido.json['preguntas'], inicio.json['preguntas'])
+                self.assertEqual(repetido.json['intento']['fecha_vencimiento'], inicio.json['intento']['fecha_vencimiento'])
+                cierre = self.client.post('/api/guardar-resultado', headers=headers,
+                                         json={'token_sesion':inicio.json['intento']['token_sesion']})
+                self.assertEqual(cierre.status_code, 200)
+                with get_db_cursor() as cur:
+                    cur.execute('SELECT blanco, correctas, incorrectas FROM resultados WHERE id = %s', (cierre.json['resultado_id'],))
+                    self.assertEqual(tuple(cur.fetchone().values()), (100,0,0))
+
+    def test_califica_las_cien_respuestas_y_revisa_contenido(self):
+        preguntas = cargar_preguntas_intento(self.intento)
+        with get_db_cursor(commit=True) as cur:
+            cur.executemany('INSERT INTO respuestas_intento (intento_id,pregunta_id,opcion_seleccionada) VALUES (%s,%s,%s)',
+                            [(self.intento['id'], q['id'], q['correcta']) for q in preguntas])
+        respuesta = self.client.post('/api/guardar-resultado', headers=self.headers,
+                                     json={'token_sesion':self.intento['token_sesion']})
+        self.assertEqual(respuesta.status_code, 200)
+        with get_db_cursor() as cur:
+            cur.execute('SELECT puntaje,correctas,blanco FROM resultados WHERE id = %s', (respuesta.json['resultado_id'],))
+            r = cur.fetchone()
+            self.assertEqual((r['puntaje'],r['correctas'],r['blanco']), (2000,100,0))
+        revision = self.client.get(f'/resultado/{respuesta.json["resultado_id"]}')
+        self.assertEqual(revision.status_code,200)
+        self.assertEqual(revision.get_data(as_text=True).count('class="academic-review"'),100)
+        self.assertIn(b'contenido_academico.js',revision.data)
+
+    def test_intento_antiguo_conserva_diez_preguntas_y_su_reloj(self):
+        with get_db_cursor(commit=True) as cur:
+            cur.execute("UPDATE intentos SET examen_version_id = NULL, fecha_vencimiento = fecha_inicio + INTERVAL '60 minutes' WHERE id = %s", (self.intento['id'],))
+            cur.execute("UPDATE usuarios SET consentimiento_celular_version = 'celular-v2-fotos' WHERE id = %s", (self.uid,))
+        self.client.get('/examen/A')
+        with self.client.session_transaction() as sesion:
+            headers = {'X-CSRF-Token':sesion['csrf_examen']}
+        recuperado = self.client.post('/api/intento/iniciar',headers=headers)
+        self.assertEqual(len(recuperado.json['preguntas']),10)
+        self.assertLessEqual(recuperado.json['segundos_restantes'],3600)
+        self.assertGreater(recuperado.json['segundos_restantes'],3590)
+        antigua = cargar_preguntas_area('A',historico=True)[0]
+        guardar_respuesta_incremental(self.intento['id'],antigua['id'],antigua['correcta'])
+        resultado = entregar_examen(self.intento['token_sesion'],self.uid)
+        with get_db_cursor() as cur:
+            cur.execute('SELECT puntaje,correctas,blanco FROM resultados WHERE id = %s',(resultado['id'],))
+            r=cur.fetchone()
+            self.assertEqual((r['puntaje'],r['correctas'],r['blanco']),(20,1,9))
+        pagina=self.client.get(f'/resultado/{resultado["id"]}')
+        self.assertEqual(pagina.status_code,200)
+        self.assertEqual(pagina.get_data(as_text=True).count('class="academic-review"'),10)
+
+    def test_version_del_intento_no_depende_del_banco_actual(self):
+        originales=cargar_preguntas_intento(self.intento)
+        with patch('models.examen.cargar_preguntas_area',side_effect=AssertionError('No debe consultar el banco actual')):
+            self.assertEqual(cargar_preguntas_intento(self.intento),originales)
+            resultado=entregar_examen(self.intento['token_sesion'],self.uid)
+            self.assertTrue(resultado['id'])
+
     @classmethod
     def setUpClass(cls):
         app.config['TESTING'] = True
@@ -163,7 +244,9 @@ class TestSupervision(unittest.TestCase):
         self.assertEqual(primero.status_code, 200)
         self.assertTrue(primero.json['preguntas'])
         self.assertEqual(primero.json['status'], 'iniciado')
-        self.assertLessEqual(primero.json['segundos_restantes'], 60 * 60)
+        self.assertEqual(len(primero.json['preguntas']), 100)
+        self.assertGreater(primero.json['segundos_restantes'], 3 * 60 * 60 - 10)
+        self.assertLessEqual(primero.json['segundos_restantes'], 3 * 60 * 60)
         repetido = self.client.post('/api/intento/iniciar', headers=headers_inicio, json={'area': 'A'})
         self.assertEqual(repetido.json['status'], 'recuperado')
         self.assertEqual(repetido.json['intento']['id'], primero.json['intento']['id'])

@@ -1,0 +1,142 @@
+[
+  {
+    "id": 1,
+    "seccion": "Economía - Microeconomía",
+    "enunciado": "Si ante el incremento del 10% en el precio de un bien de consumo, la cantidad demandada se reduce en un 25%, el coeficiente de elasticidad precio de la demanda y el tipo de bien según su sensibilidad son:",
+    "opciones": {
+      "A": "2.5 y demanda elástica",
+      "B": "0.4 y demanda inelástica",
+      "C": "1.0 y demanda unitaria",
+      "D": "2.5 y demanda perfectamente inelástica",
+      "E": "0.25 y demanda rígida"
+    },
+    "correcta": "A",
+    "explicacion": "Ep = |%ΔQd / %ΔP| = 25% / 10% = 2.5. Como Ep > 1, la demanda se clasifica como elástica."
+  },
+  {
+    "id": 2,
+    "seccion": "Economía - Macroeconomía",
+    "enunciado": "La política monetaria expansiva ejecutada por el Banco Central de Reserva del Perú (BCRP) para dinamizar la liquidez y reactivar la economía en periodos de recesión consiste principalmente en:",
+    "opciones": {
+      "A": "Aumentar la tasa de encaje legal",
+      "B": "Reducir la tasa de interés de referencia interbancaria",
+      "C": "Incrementar los aranceles a bienes de capital",
+      "D": "Emitir bonos soberanos para retirar soles del mercado",
+      "E": "Aumentar el Impuesto General a las Ventas (IGV)"
+    },
+    "correcta": "B",
+    "explicacion": "Una reducción en la tasa de interés de referencia abarata el crédito interbancario, impulsando el préstamo y la inversión agregada."
+  },
+  {
+    "id": 3,
+    "seccion": "Aritmética Financiera",
+    "enunciado": "Un inversionista deposita un capital de S/. 20,000 en una entidad financiera a una tasa de interés simple anual del 6%. ¿Cuál será el monto total acumulado luego de 3 años?",
+    "opciones": {
+      "A": "S/. 23,600",
+      "B": "S/. 22,400",
+      "C": "S/. 24,000",
+      "D": "S/. 21,800",
+      "E": "S/. 26,000"
+    },
+    "correcta": "A",
+    "explicacion": "Interés I = C * r * t = 20,000 * 0.06 * 3 = 3,600 soles. Monto = C + I = 20,000 + 3,600 = S/. 23,600."
+  },
+  {
+    "id": 4,
+    "seccion": "Habilidad Lógico-Matemática",
+    "enunciado": "En una empresa auditora laboran 120 contadores. Se sabe que 70 dominan las Normas Internacionales de Información Financiera (NIIF), 60 dominan Auditoría Forense y 25 dominan ambas especialidades. ¿Cuántos contadores no dominan ninguna de las dos especialidades?",
+    "opciones": {
+      "A": "15",
+      "B": "20",
+      "C": "25",
+      "D": "10",
+      "E": "35"
+    },
+    "correcta": "A",
+    "explicacion": "Por teoría de conjuntos: Unión = NIIF + Forense - Ambas = 70 + 60 - 25 = 105. Ninguna = Total - Unión = 120 - 105 = 15."
+  },
+  {
+    "id": 5,
+    "seccion": "Administración y Comercio Internacional",
+    "enunciado": "En la teoría del comercio exterior y logística aduanera, el término Incoterm FOB (Free On Board) estipula que la transferencia del riesgo y costo de las mercancías del vendedor al comprador se concreta cuando:",
+    "opciones": {
+      "A": "La mercancía se encuentra en el almacén del exportador",
+      "B": "Las mercancías sobrepasan la borda o son cargadas a bordo del buque en el puerto de embarque convenido",
+      "C": "La carga arriba al puerto de destino final convenido",
+      "D": "Se nacionalizan las mercancías pagando los impuestos locales",
+      "E": "El consignatario firma la factura comercial en su bodega"
+    },
+    "correcta": "B",
+    "explicacion": "FOB (Franco a bordo) establece que el vendedor entrega la mercancía a bordo del buque designado por el comprador en el puerto de embarque convenido."
+  },
+  {
+    "id": 6,
+    "seccion": "Geografía Económica del Perú",
+    "enunciado": "El principal proyecto minero polimetálico y productor de cobre ubicado en la región de Áncash que aporta significativamente al PBI y al canon minero nacional es:",
+    "opciones": {
+      "A": "Antamina",
+      "B": "Las Bambas",
+      "C": "Cerro Verde",
+      "D": "Toquepala",
+      "E": "Cuajone"
+    },
+    "correcta": "A",
+    "explicacion": "Compañía Minera Antamina está localizada en el distrito de San Marcos, provincia de Huari, departamento de Áncash."
+  },
+  {
+    "id": 7,
+    "seccion": "Habilidad Verbal - Sentido Contextual",
+    "enunciado": "En la oración: 'El directorio adoptó una política rigurosa para sanear las finanzas institucionales', la palabra 'sanear' adquiere el sentido contextual de:",
+    "opciones": {
+      "A": "desinfectar",
+      "B": "equilibrar",
+      "C": "liquidar",
+      "D": "reducir",
+      "E": "reclamar"
+    },
+    "correcta": "B",
+    "explicacion": "En el contexto económico-financiero, 'sanear' significa regularizar o devolver el equilibrio y solvencia a las cuentas o balance de una entidad."
+  },
+  {
+    "id": 8,
+    "seccion": "Educación Cívica y Tributaria",
+    "enunciado": "El órgano constitucional autónomo encargado de administrar los tributos del gobierno nacional, tales como el Impuesto a la Renta y el IGV, así como combatir la elusión y evasión fiscal en el Perú es:",
+    "opciones": {
+      "A": "La Contraloría General de la República",
+      "B": "La Superintendencia Nacional de Aduanas y de Administración Tributaria (SUNAT)",
+      "C": "El Banco de la Nación",
+      "D": "El Tribunal Constitucional",
+      "E": "La Superintendencia de Banca y Seguros (SBS)"
+    },
+    "correcta": "B",
+    "explicacion": "La SUNAT administra y recauda los tributos internos del gobierno central y los derechos arancelarios aduaneros."
+  },
+  {
+    "id": 9,
+    "seccion": "Estadística Aplicada a los Negocios",
+    "enunciado": "En un estudio sobre sueldos mensuales de cinco administradores: S/. 3200, S/. 3500, S/. 4000, S/. 4500, S/. 18000; la medida de tendencia central más representativa y menos distorsionada por el valor atípico (outlier) es:",
+    "opciones": {
+      "A": "La media aritmética",
+      "B": "La mediana",
+      "C": "La varianza",
+      "D": "El rango intercuartil",
+      "E": "La desviación estándar"
+    },
+    "correcta": "B",
+    "explicacion": "La mediana (S/. 4000) es una medida robusta que no se ve sesgada o distorsionada por datos atípicos extremos como el sueldo de S/. 18000."
+  },
+  {
+    "id": 10,
+    "seccion": "Filosofía y Ética Empresarial",
+    "enunciado": "La postura ética que evalúa la bondad o corrección de una acción corporativa en función de la maximización de la utilidad o bienestar para el mayor número de personas corresponde al:",
+    "opciones": {
+      "A": "Deontologismo kantiano",
+      "B": "Utilitarismo de Bentham y Stuart Mill",
+      "C": "Escepticismo radical",
+      "D": "Relativismo sofista",
+      "E": "Existencialismo sartreano"
+    },
+    "correcta": "B",
+    "explicacion": "El utilitarismo sostiene como principio normativo la mayor felicidad o beneficio para el mayor número de involucrados."
+  }
+]

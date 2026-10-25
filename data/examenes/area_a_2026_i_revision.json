@@ -2,12 +2,9 @@
   "titulo": "Área A 2026-I · Banco de revisión",
   "fuente_respuestas": "RES_Adm_UNMSM 2026-I - area A.pdf",
   "sha256_respuestas": "096ed7b83f62becf3d7702ae0e807580ba85128faaf68c3f2aeb7b83ca890fd6",
-  "apto_calificacion": false,
-  "pendientes_revision": [
-    47,
-    71
-  ],
-  "nota": "Claves transcritas del documento, sin auditoría académica independiente. No sustituye el banco activo ni modifica resultados históricos.",
+  "apto_calificacion": true,
+  "pendientes_revision": [],
+  "nota": "Claves transcritas del documento con correcciones autorizadas en 47 y 71. Fuente del banco activo de 100 preguntas; sin auditoría académica independiente.",
   "preguntas": [
     {
       "id": 1,
@@ -1149,18 +1146,14 @@
         "A": "sé - mas - si - mí",
         "B": "sé - mas - sí - mi",
         "C": "sé - más - sí - mí",
-        "D": "sé - mas - si - mí",
+        "D": "sé - mas - sí - mí",
         "E": "se - mas - si - mi"
       },
       "figuras": [],
-      "correcta": null,
+      "correcta": "D",
       "numero_respuesta_pdf": 48,
-      "estado_clave": "ambigua",
-      "alternativas_coincidentes": [
-        "A",
-        "D"
-      ],
-      "observacion": "El texto sé - mas - si - mí coincide con A y D; no elegir una letra arbitrariamente."
+      "estado_clave": "corregida",
+      "observacion": "Corrección indicada por el usuario: D) sé - mas - sí - mí. Clave D."
     },
     {
       "id": 48,
@@ -1736,7 +1729,7 @@
       "enunciado": "............... es el fenómeno natural que regula la temperatura de la atmósfera terrestre.",
       "opciones": {
         "A": "La variabilidad climática",
-        "B": "Reserva paisajística Nor Yauyos-Cochas",
+        "B": "El efecto invernadero",
         "C": "El cambio climático",
         "D": "El ciclo biogeoquímico del carbono",
         "E": "La inversión térmica"
@@ -1744,8 +1737,8 @@
       "figuras": [],
       "correcta": "B",
       "numero_respuesta_pdf": 72,
-      "estado_clave": "requiere_revision",
-      "observacion": "El documento repite la respuesta anterior: Reserva paisajística Nor Yauyos-Cochas. Se conserva la B publicada, pendiente de revisión del contenido."
+      "estado_clave": "corregida",
+      "observacion": "Corrección autorizada por el usuario: B) El efecto invernadero. Sustituye la respuesta repetida de la pregunta anterior."
     },
     {
       "id": 72,

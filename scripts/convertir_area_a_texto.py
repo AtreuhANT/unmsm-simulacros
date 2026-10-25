@@ -54,6 +54,11 @@ def convertir(pdf: Path) -> None:
         cuerpo, alternativas = texto[:inicio], texto[inicio:]
         partes = re.split(r'([A-E])\)\s*', alternativas)
         opciones = {partes[i]:limpiar(partes[i+1]) for i in range(1,len(partes),2)}
+        # Correcciones editoriales autorizadas; el texto extraído queda intacto.
+        if numero == 47:
+            opciones['D'] = 'sé - mas - sí - mí'
+        if numero == 71:
+            opciones['B'] = 'El efecto invernadero'
         assert list(opciones) == list('ABCDE'), numero
         opciones['E'] = re.sub(r'\s+(Geometría|Álgebra|Trigonometría|Psicología|Historia del Perú|Historia Universal|Geografía|Filosofía|Química|Biología)$', '', opciones['E'])
         # Separar etiquetas y datos de figuras, que se mantienen en el recorte.

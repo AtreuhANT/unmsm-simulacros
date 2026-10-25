@@ -1,0 +1,22 @@
+.academic-content { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+.academic-content p { white-space: pre-line; }
+.academic-reading { margin: 0 0 1.5rem; padding: 1.25rem; border: 1px solid var(--border-color); border-radius: 10px; background: var(--bg-card); }
+.academic-reading p { font-size: 1rem; line-height: 1.85; font-weight: 400; }
+.academic-prompt { font-weight: 600; line-height: 1.8; }
+.academic-source { font-size: .8rem; color: var(--text-muted); font-weight: 400; }
+.academic-image { display: block; max-width: 100%; max-height: 600px; height: auto; margin: 1rem auto; }
+.academic-figures svg { display: block; width: min(100%,360px); height: auto; margin: 1rem auto; }
+.academic-table { overflow-x: auto; margin: 1rem 0; }
+.academic-table table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.academic-table td, .academic-table th { border: 1px solid var(--border-color); padding: .65rem; text-align: left; }
+.academic-content math, .option-text math { max-width: 100%; overflow-x: auto; padding: .15rem; vertical-align: middle; }
+#question-matrix { max-height: 60vh; overflow-y: auto; padding: .25rem; }
+#question-matrix .exam-course { grid-column: 1 / -1; margin-top: 1rem; }
+#question-matrix .exam-course h3 { font-size: .85rem; color: var(--wine); margin: 0 0 .65rem; }
+#question-matrix .exam-course h4 { font-size: .75rem; font-weight: 500; margin: .75rem 0 .5rem; }
+.exam-course-grid { display: grid; grid-template-columns: repeat(5,minmax(0,1fr)); gap: .5rem; }
+.exam-viewport { grid-template-columns: minmax(0,1fr) 340px; }
+.exam-main { min-width: 0; }
+@media (max-width: 1000px) {
+  .exam-viewport { grid-template-columns: minmax(0,1fr); }
+}

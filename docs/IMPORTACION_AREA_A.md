@@ -1,5 +1,11 @@
 # Vista previa del PDF del área A
 
+## Integración al simulacro calificado — 2026-10-25
+
+El banco revisado ya sustituye las diez preguntas antiguas del área A para nuevos intentos: 100 preguntas y 180 minutos, con las claves corregidas de 47 (D) y 71 (B). Se incluyen las lecturas compartidas, la infografía, SVG, fórmulas MathML y tabla. Las claves se conservan en el servidor. La vista previa permanece como consulta sin reloj.
+
+Cada nuevo intento conserva su banco en `examenes_versiones`; la recarga, calificación y revisión usan esa versión. Los intentos anteriores sin versión siguen utilizando el archivo histórico de diez preguntas y su vencimiento original. La publicación se realiza con [activar_bancos_100.py](../scripts/activar_bancos_100.py). Las etapas siguientes documentan el proceso anterior a esta integración.
+
 ## Refinamiento actual: SVG limpios y ecuaciones estructuradas
 
 Las 14 figuras antes recortadas se reconstruyen como SVG con curvas, trazos, etiquetas y detalles vectoriales a partir de la geometría del PDF. Se omite la capa editorial de fondo de color específico, conservando datos y proporciones de los ejercicios. Los puntos inline del dominó se convierten en 26 círculos; pequeños sombreados se trazan como superficies vectoriales y el agua de la 83 usa un relleno geométrico con gradiente. Los archivos SVG no contienen mapas de bits incrustados. La cuadrícula 24 continúa dibujándose en el DOM. La infografía de la primera lectura se recompuso en ocho pasos HTML con su fuente conservada.
@@ -42,12 +48,12 @@ La vista reúne ahora diez [preguntas actitudinales originales con respuesta y j
 
 El documento `RES_Adm_UNMSM 2026-I - area A.pdf` tiene seis páginas y proporciona respuestas en texto. Se revisaron visualmente sus páginas académicas. Contiene una entrada 21 vacía: sus respuestas 22–101 corresponden a las preguntas 21–100 del examen. Se emparejaron por el contenido y no por el número impreso sin corregir.
 
-El [banco privado de revisión](../data/examenes/area_a_2026_i_revision.json) guarda las claves transcritas y el SHA-256 del PDF de respuestas. No está dentro de `static`, no reemplaza el banco activo y no habilita la calificación. Casos pendientes:
+El [banco privado de revisión](../data/examenes/area_a_2026_i_revision.json) guarda las claves transcritas y el SHA-256 del PDF de respuestas. No está dentro de `static`, no reemplaza el banco activo y no habilita la calificación. Correcciones autorizadas por el usuario:
 
-- **47:** las alternativas A y D contienen el mismo texto que la respuesta publicada. Clave única `null`; coincidencias A y D registradas. No se escoge una arbitrariamente.
-- **71:** la respuesta publicada repite la de la pregunta anterior. El mismo texto aparece como alternativa B en el examen; se transcribe B con estado `requiere_revision`, sin afirmar su validez académica.
+- **47:** D se corrige a «sé - mas - sí - mí» y la clave queda en D.
+- **71:** B se corrige a «El efecto invernadero» y la clave queda en B.
 
-Las demás letras corresponden al contenido publicado, sin auditoría académica independiente de la solución. Las claves y justificaciones se excluyen del JSON y JavaScript públicos. La vista conserva su propósito de revisión visual, sin notas ni intentos oficiales. Cambiar el banco activo exige resolver los pendientes y considerar la asociación de intentos y resultados históricos a la versión del examen.
+Las demás letras corresponden al contenido publicado, sin auditoría académica independiente de la solución. Las claves y justificaciones se excluyen del JSON y JavaScript públicos. La vista conserva su propósito de revisión visual, sin notas ni intentos oficiales. Los dos pendientes quedan resueltos; cambiar el banco activo todavía exige considerar la asociación de intentos y resultados históricos a la versión del examen. El texto extraído y las imágenes fuente se conservan sin modificar como referencia del documento original.
 
 Para regenerar esta ampliación después de ejecutar el importador, usar `python scripts/completar_area_a.py 'C:\ruta\RES_Adm_UNMSM 2026-I - area A.pdf'`. El script usa las letras cotejadas de este documento específico; no es un extractor genérico de solucionarios.
 

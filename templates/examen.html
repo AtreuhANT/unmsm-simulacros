@@ -4,6 +4,9 @@
 
 {% block head_extra %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/examen.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contenido_academico.css') }}">
+<script src="{{ url_for('static', filename='js/formato_academico.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contenido_academico.js') }}"></script>
 <!-- Scripts locales de IA e Inferencia Edge -->
 <script src="{{ url_for('static', filename='models/face-api.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/mobile_guard.js') }}"></script>
@@ -177,7 +180,7 @@
     <!-- Temporizador Oficial del Examen -->
     <div class="timer-card">
       <span class="timer-label">Tiempo Restante</span>
-      <div class="timer-display" id="timer-display">60:00</div>
+      <div class="timer-display" id="timer-display">{{ '%02d:%02d:%02d' | format(segundos_restantes // 3600, (segundos_restantes % 3600) // 60, segundos_restantes % 60) }}</div>
     </div>
 
     <!-- Faltas y Strikes de Supervisión -->

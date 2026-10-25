@@ -1,0 +1,161 @@
+{
+  "origen": "Creación original para práctica; no corresponde a un examen oficial",
+  "areas": {
+    "B": [
+      {
+        "titulo": "Texto 1 · Medir y comparar",
+        "parrafos": [
+          "En un taller escolar, un equipo afirma que el agua tibia acelera la disolución de la sal. Para comprobarlo, coloca una cucharada de sal fina en un vaso de agua tibia y dos cucharadas de sal gruesa en otro de agua fría. El primer vaso pierde antes los cristales visibles. Los estudiantes celebran el resultado, pero su profesora les pide revisar el procedimiento: además de la temperatura, cambiaron la cantidad y el tamaño de los granos.",
+          "La observación puede sugerir una explicación, aunque todavía no permite atribuir la diferencia a un solo factor. El equipo repite la comparación con igual volumen de agua, igual cantidad de sal, granos del mismo tamaño y una agitación semejante. También realiza varias repeticiones. La profesora no les pide abandonar su hipótesis, sino construir una comparación que pueda ponerla a prueba. Un resultado favorable gana fuerza cuando se han examinado explicaciones alternativas."
+        ],
+        "preguntas": [
+          ["¿Cuál es la idea principal del texto?", ["Una hipótesis se confirma con cualquier observación favorable.", "La comparación debe controlar otros factores para evaluar una hipótesis.", "La sal gruesa nunca se disuelve en agua fría.", "Repetir una experiencia elimina todas las dudas.", "El trabajo escolar debe prescindir de hipótesis."], "B", "La profesora propone igualar los otros factores para evaluar el efecto de la temperatura."],
+          ["¿Qué debilidad presenta el primer procedimiento?", ["No incluye una profesora.", "Usa recipientes transparentes.", "Formula una pregunta demasiado simple.", "Modifica simultáneamente varias condiciones.", "Compara dos muestras de agua."], "D", "Cambian temperatura, cantidad de sal y tamaño de los granos."],
+          ["En el texto, «atribuir» significa", ["asignar una causa", "repetir una medida", "eliminar un registro", "ocultar una diferencia", "rechazar una observación"], "A", "Se trata de asignar la diferencia observada al efecto de un factor." ]
+        ]
+      },
+      {
+        "titulo": "Texto 2 · Una biblioteca de semillas",
+        "parrafos": [
+          "Una comunidad organiza una biblioteca de semillas. Cada familia deposita una parte de su cosecha y puede retirar semillas de otras variedades. En el registro se anotan la procedencia y las condiciones de cultivo. El propósito no es declarar una semilla superior a todas las demás: una variedad que prospera en un terreno puede rendir poco en otro.",
+          "Con el tiempo, el registro permite comparar experiencias y recuperar variedades que pocas familias conservaban. Sin embargo, guardar sobres no basta. Las semillas deben renovarse mediante el cultivo y los datos necesitan revisarse. La biblioteca se sostiene porque quienes retiran también aportan conocimiento y material. Su valor reside tanto en lo almacenado como en la continuidad de esa colaboración."
+        ],
+        "preguntas": [
+          ["¿Qué propósito central cumple la biblioteca descrita?", ["Imponer una variedad en todos los terrenos.", "Reemplazar el cultivo por el almacenamiento.", "Conservar y compartir diversidad y conocimiento mediante la colaboración.", "Evitar cualquier comparación entre cosechas.", "Prohibir el intercambio entre familias."], "C", "La biblioteca conserva variedades y reúne experiencias mediante aportes continuos."],
+          ["¿Qué se puede inferir del texto?", ["Las semillas guardadas duran indefinidamente.", "Todos los suelos producen lo mismo.", "El registro vuelve innecesario cultivar.", "Una sola familia puede garantizar todo el intercambio.", "La conservación requiere actividades periódicas."], "E", "Se indica que es necesario renovar las semillas y revisar los datos."],
+          ["¿Qué afirmación contradice el texto?", ["La procedencia forma parte del registro.", "Basta guardar sobres para asegurar la conservación.", "Las familias intercambian variedades.", "El terreno influye en el desempeño de una variedad.", "La colaboración permite recuperar variedades."], "B", "El segundo párrafo afirma expresamente que guardar sobres no basta."]
+        ]
+      },
+      {
+        "titulo": "Texto 3 · El mapa y el territorio",
+        "parrafos": [
+          "Un mapa del campus representa aulas, senderos y puertas, pero omite el color de las flores y las conversaciones de quienes lo recorren. Estas ausencias no lo vuelven inútil: el mapa selecciona información de acuerdo con una finalidad. Para encontrar una salida, importa más la conexión entre pasillos que el aroma del jardín.",
+          "El problema aparece cuando alguien usa ese mismo plano para decidir dónde plantar un árbol. Necesitará datos de suelo, luz y disponibilidad de agua que el mapa nunca pretendió ofrecer. Una representación puede ser adecuada para una tarea e insuficiente para otra. Reconocer sus límites permite utilizarla mejor y decidir qué información adicional hace falta."
+        ],
+        "preguntas": [
+          ["¿Cuál es la tesis del texto?", ["Un mapa útil debe representar todos los detalles.", "Todo plano es inservible fuera de un aula.", "Las omisiones siempre son errores.", "La utilidad de una representación depende de su finalidad.", "La jardinería no admite representaciones."], "D", "El texto relaciona la selección de información con la tarea para la cual se utiliza."],
+          ["La mención del aroma del jardín sirve para", ["ejemplificar un dato innecesario para localizar una salida", "demostrar que los jardines son peligrosos", "exigir mapas de olores en todas las aulas", "negar la existencia de los senderos", "proponer eliminar las flores"], "A", "El contraste muestra que no todos los detalles son relevantes para una misma tarea."],
+          ["Si se quisiera usar el plano para elegir un sitio de plantación, habría que", ["borrar las puertas", "ignorar la luz disponible", "complementarlo con datos pertinentes para esa tarea", "dibujar todas las conversaciones", "suponer que todos los terrenos son iguales"], "C", "El segundo párrafo especifica que se requieren datos de suelo, luz y agua."],
+          ["¿Qué actitud promueve el autor ante una representación?", ["Aceptarla como descripción completa.", "Rechazarla por cualquier omisión.", "Usarla siempre del mismo modo.", "Valorar únicamente su apariencia.", "Examinar su propósito y sus límites."], "E", "La conclusión recomienda reconocer los límites para utilizar mejor la representación."]
+        ]
+      }
+    ],
+    "C": [
+      {
+        "titulo": "Texto 1 · El puente del barrio",
+        "parrafos": [
+          "Un equipo diseña un pequeño puente peatonal para unir dos sectores de un barrio. Su primera propuesta reduce el costo de construcción, pero deja un acceso con escalones. Durante una reunión, una vecina explica que no podrá cruzarlo con su silla de ruedas. Un comerciante pregunta cómo se reemplazarán las piezas desgastadas si solo las fabrica un proveedor lejano.",
+          "El equipo revisa el diseño e incorpora una rampa y componentes que puedan repararse localmente. La solución resulta algo más costosa al inicio, aunque facilita el uso y el mantenimiento. La experiencia muestra que un proyecto no termina en el cálculo de su estructura: también debe responder a las condiciones de quienes lo utilizarán y cuidarán. Escuchar a los usuarios permitió reconocer necesidades que el dibujo inicial había dejado fuera."
+        ],
+        "preguntas": [
+          ["¿Cuál es el tema central del texto?", ["La conveniencia de eliminar todos los puentes.", "El precio como único criterio de diseño.", "La importancia de incorporar uso y mantenimiento al diseño.", "La imposibilidad de reparar componentes.", "La superioridad de cualquier proveedor lejano."], "C", "La revisión considera accesibilidad y mantenimiento además del cálculo estructural."],
+          ["¿Qué efecto tuvo la reunión con los vecinos?", ["Sustituyó todos los cálculos por opiniones.", "Permitió identificar necesidades omitidas en la propuesta.", "Demostró que las rampas son innecesarias.", "Eliminó el uso peatonal del proyecto.", "Redujo a cero los costos."], "B", "Los vecinos identificaron las barreras de acceso y las dificultades de reparación."],
+          ["¿Qué se infiere sobre la propuesta de menor costo inicial?", ["Era necesariamente la más conveniente a largo plazo.", "No necesitaba mantenimiento.", "Incluía todos los requisitos de accesibilidad.", "Había sido aprobada por todos los usuarios.", "Podía generar dificultades que el precio no reflejaba."], "E", "El menor costo inicial no incluía las dificultades de acceso y mantenimiento."]
+        ]
+      },
+      {
+        "titulo": "Texto 2 · La alarma que sonaba demasiado",
+        "parrafos": [
+          "En un almacén de práctica, un sensor emite una alarma cada vez que detecta movimiento cerca de una zona restringida. Durante los primeros días, también se activa por cajas que pasan por una cinta próxima. Los encargados reciben tantas alertas irrelevantes que empiezan a atenderlas con retraso. El sistema registra muchos eventos, pero eso no significa que proteja mejor la zona.",
+          "La técnica responsable propone revisar la ubicación del sensor y distinguir el paso normal de materiales del ingreso de una persona. No busca silenciar todas las alarmas: una configuración demasiado permisiva podría omitir entradas reales. El equipo evalúa ambos tipos de error con recorridos de prueba. La eficacia depende de reconocer situaciones relevantes sin convertir cada actividad habitual en una emergencia."
+        ],
+        "preguntas": [
+          ["¿Qué problema describe principalmente el texto?", ["La abundancia de alertas irrelevantes puede reducir la atención a las importantes.", "Los sensores nunca detectan movimientos.", "Todos los almacenes deben cerrar.", "La ausencia de registros garantiza protección.", "Toda alarma exige abandonar el proyecto."], "A", "El exceso de avisos irrelevantes hace que los encargados respondan más tarde."],
+          ["¿Por qué no se propone silenciar todas las alarmas?", ["Porque las cajas no se mueven.", "Porque el registro ya es perfecto.", "Porque ninguna persona usa el almacén.", "Porque podrían pasar inadvertidas entradas reales.", "Porque las pruebas impedirían medir errores."], "D", "La técnica reconoce el riesgo de omitir situaciones que sí requieren atención."],
+          ["En el último párrafo, «permisiva» alude a una configuración que", ["genera alertas por cualquier caja", "admite demasiadas situaciones sin advertirlas", "prohíbe los recorridos de prueba", "reemplaza todos los registros", "mantiene inmóvil la cinta"], "B", "Se refiere a tolerar movimientos que deberían activar una alerta."]
+        ]
+      },
+      {
+        "titulo": "Texto 3 · Aprender de una falla",
+        "parrafos": [
+          "Durante una demostración escolar, un vehículo construido por estudiantes se detiene antes de llegar a la meta. El grupo cambia la batería y las ruedas al mismo tiempo. En el siguiente ensayo, el vehículo avanza más, pero nadie puede precisar cuál de los cambios produjo la mejora. La rapidez de la reparación dejó una pregunta sin respuesta.",
+          "Para el tercer ensayo, los estudiantes registran cada modificación y prueban una por vez en condiciones semejantes. Descubren que una conexión suelta interrumpía la energía. La batería nueva no había resuelto por sí sola el problema. Documentar el proceso les permite explicar la falla y evita que otro grupo repita las mismas conjeturas. El fracaso inicial se vuelve una oportunidad cuando se convierte en información compartida."
+        ],
+        "preguntas": [
+          ["¿Qué título alternativo resume mejor el texto?", ["La batería que nunca se agota", "El valor de registrar y comprobar los cambios", "La inutilidad de toda demostración", "La velocidad como único objetivo", "La prohibición de modificar prototipos"], "B", "La solución se comprende al documentar y evaluar los cambios por separado."],
+          ["¿Por qué el segundo ensayo no explicó la mejora?", ["Porque el vehículo llegó a la meta.", "Porque no hubo cambios.", "Porque se modificaron varios elementos simultáneamente.", "Porque todos los ensayos fueron idénticos.", "Porque la conexión ya se había identificado."], "C", "Cambiar batería y ruedas a la vez impide aislar el efecto de cada modificación."],
+          ["¿Qué causaba la interrupción de energía?", ["La meta distante.", "El registro escrito.", "La presencia de otros grupos.", "Una conexión suelta.", "El tamaño de la hoja de notas."], "D", "El segundo párrafo identifica explícitamente una conexión suelta."],
+          ["¿Qué se infiere sobre compartir el registro?", ["Puede evitar que otros repitan conjeturas ya examinadas.", "Garantiza que ningún vehículo volverá a fallar.", "Hace innecesarias todas las pruebas.", "Impide aprender del prototipo.", "Demuestra que cambiar varias piezas siempre es mejor."], "A", "El registro transmite lo aprendido y evita repetir las mismas conjeturas."]
+        ]
+      }
+    ],
+    "D": [
+      {
+        "titulo": "Texto 1 · El costo de esperar",
+        "parrafos": [
+          "Una cooperativa compara dos proveedores de envases. El primero cobra menos por unidad, pero entrega cantidades variables y suele llegar después de la fecha acordada. El segundo mantiene un precio algo mayor y cumple un calendario estable. Al principio, el comité elige la oferta más barata. Luego descubre que las demoras obligan a detener el envasado y a pagar transportes adicionales.",
+          "Cuando vuelve a comparar las propuestas, el comité incluye los gastos provocados por los retrasos y la dificultad de planificar. No concluye que el proveedor más caro sea siempre el mejor. Aprende que el precio unitario es solo una parte de la decisión. Evaluar una compra exige considerar qué ocurre durante todo el proceso y no únicamente la cifra que aparece en la cotización."
+        ],
+        "preguntas": [
+          ["¿Cuál es la idea central del texto?", ["El precio más alto garantiza calidad.", "Todo proveedor barato debe descartarse.", "Planificar carece de valor.", "Una compra debe evaluarse por sus costos y condiciones en conjunto.", "Las cotizaciones nunca contienen información útil."], "D", "El comité incorpora costos adicionales y confiabilidad, sin convertir el precio alto en regla universal."],
+          ["¿Qué dato omitió inicialmente el comité?", ["El costo de las interrupciones y transportes adicionales.", "La existencia de envases.", "El nombre de la cooperativa.", "La cantidad de miembros del comité.", "El color de los calendarios."], "A", "Esos gastos aparecen después de elegir la oferta de menor precio unitario."],
+          ["¿Qué afirmación sería incompatible con la conclusión?", ["Las entregas influyen en la planificación.", "Una demora puede generar gastos.", "El precio unitario basta para decidir cualquier compra.", "Las condiciones deben compararse.", "Una cotización no describe todo el proceso."], "C", "La conclusión rechaza expresamente reducir la decisión al precio unitario."]
+        ]
+      },
+      {
+        "titulo": "Texto 2 · Más ventas, otra pregunta",
+        "parrafos": [
+          "Una librería vende más cuadernos después de anunciar un descuento. Su administradora atribuye el aumento a la campaña. Un trabajador observa que esa misma semana comenzaron las clases y que, el año anterior, las ventas también habían subido sin promoción. El dato no demuestra que el descuento fuera inútil, pero obliga a revisar una explicación demasiado rápida.",
+          "La administradora compara periodos semejantes y distingue cuadernos rebajados de otros productos. También examina el margen que deja cada venta. Una campaña puede aumentar la cantidad vendida y, aun así, no producir el beneficio esperado. Medir un resultado sirve más cuando la pregunta está bien definida: vender más unidades y obtener mayor beneficio no son necesariamente el mismo objetivo."
+        ],
+        "preguntas": [
+          ["¿Qué busca cuestionar el trabajador?", ["Que se hayan vendido cuadernos.", "Que la campaña sea la única explicación posible del aumento.", "Que exista un inicio de clases.", "Que se puedan comparar periodos.", "Que haya habido ventas el año anterior."], "B", "El inicio de clases ofrece una explicación alternativa que debe examinarse."],
+          ["¿Qué distinción destaca el segundo párrafo?", ["Cuadernos y calendarios son iguales.", "Los descuentos siempre producen pérdidas.", "Las campañas no se pueden medir.", "Comparar periodos elimina toda incertidumbre.", "Vender más unidades no equivale necesariamente a obtener más beneficio."], "E", "El texto distingue expresamente cantidad vendida y beneficio."],
+          ["En el texto, «margen» se refiere a", ["la separación entre estantes", "el espacio en blanco de una hoja", "la duración del año escolar", "la diferencia entre el ingreso y el costo de la venta", "la distancia entre la librería y la escuela"], "D", "El contexto económico vincula el margen de cada venta con el beneficio obtenido."]
+        ]
+      },
+      {
+        "titulo": "Texto 3 · Un presupuesto compartido",
+        "parrafos": [
+          "Una asociación dispone de un fondo limitado para mejorar su local. Un grupo propone renovar la entrada y otro, reparar el techo. Antes de votar, la tesorera presenta el monto disponible y pide calcular cuánto costaría mantener cada mejora. También recoge información sobre las filtraciones que aparecen cuando llueve. Con esos datos, la conversación deja de centrarse únicamente en las preferencias personales.",
+          "La asociación decide atender primero el techo y reservar parte del fondo para imprevistos. La entrada seguirá pendiente, con una fecha de revisión. La decisión no satisface de inmediato todos los deseos, pero establece prioridades y hace explícito lo que se posterga. Un presupuesto compartido permite discutir los límites, justificar las elecciones y comprobar más adelante si los compromisos se cumplieron."
+        ],
+        "preguntas": [
+          ["¿Qué función cumple el presupuesto en el texto?", ["Evitar que los miembros participen.", "Garantizar que el dinero sea ilimitado.", "Organizar y justificar decisiones bajo restricciones.", "Eliminar todas las preferencias.", "Impedir revisar los acuerdos."], "C", "El presupuesto explicita límites, prioridades y compromisos revisables."],
+          ["¿Qué decisión toma la asociación?", ["Reparar primero el techo y reservar recursos para imprevistos.", "Gastar todo en la entrada.", "Repartir el fondo sin registrar gastos.", "Renunciar al local.", "Posponer indefinidamente todas las mejoras."], "A", "El segundo párrafo describe esa decisión y deja una fecha para revisar la entrada."],
+          ["¿Qué significa que se haga «explícito» lo postergado?", ["Que se oculta a los asociados.", "Que se considera terminado.", "Que pierde toda relevancia.", "Que se comunica de manera clara.", "Que no puede volver a discutirse."], "D", "La postergación y su revisión quedan claras para los integrantes."],
+          ["¿Qué se puede inferir del fondo limitado?", ["Permite atender todos los deseos simultáneamente.", "Obliga a establecer prioridades entre usos posibles.", "Impide reunir información.", "Vuelve innecesario calcular costos.", "Prohíbe reservar dinero."], "B", "La restricción hace necesario elegir qué se atiende primero y qué se posterga."]
+        ]
+      }
+    ],
+    "E": [
+      {
+        "titulo": "Texto 1 · Las voces del archivo",
+        "parrafos": [
+          "Una estudiante consulta cartas antiguas para reconstruir la vida de un barrio. Encuentra muchas escritas por comerciantes y pocas por trabajadores que no sabían escribir. Si se limitara a contar los documentos, podría concluir que casi todos los habitantes se dedicaban al comercio. Su profesora le advierte que la conservación de una voz depende también de quién pudo producir un registro y de qué materiales llegaron al archivo.",
+          "La estudiante incorpora testimonios orales, fotografías y registros de oficios. Ninguna fuente ofrece por sí sola una imagen completa; cada una responde preguntas distintas y presenta límites. Contrastar los materiales no borra sus diferencias. Permite reconocer qué experiencias están representadas y cuáles requieren una búsqueda adicional. El silencio de un archivo no equivale necesariamente a la ausencia de quienes no aparecen en él."
+        ],
+        "preguntas": [
+          ["¿Cuál es la tesis principal del texto?", ["Los archivos siempre contienen todas las voces.", "Las cartas carecen de valor histórico.", "Solo los comerciantes viven en los barrios.", "Las fotografías reemplazan cualquier investigación.", "Las fuentes deben contrastarse considerando a quiénes representan y omiten."], "E", "El texto propone contrastar fuentes y examinar sus condiciones de producción y conservación."],
+          ["¿Qué error cometería la estudiante si solo contara las cartas?", ["Preguntar por el pasado del barrio.", "Usar documentos escritos.", "Confundir la presencia documental con la composición de la población.", "Reconocer a los comerciantes.", "Buscar nuevas fuentes."], "C", "El número de cartas refleja quiénes dejaron registros, no necesariamente la proporción de habitantes."],
+          ["La expresión «el silencio de un archivo» alude a", ["la obligación de no conversar en una sala", "la falta de registros sobre ciertas experiencias", "el deterioro de todos los documentos", "la ausencia de cualquier actividad en el barrio", "la prohibición de consultar cartas"], "B", "El silencio representa experiencias que no quedaron documentadas en el archivo."]
+        ]
+      },
+      {
+        "titulo": "Texto 2 · Discutir una norma",
+        "parrafos": [
+          "En un centro cultural se establece que todas las actividades terminen a la misma hora. La regla facilita organizar la limpieza, pero dificulta la asistencia de quienes salen tarde del trabajo. Durante una asamblea, algunos participantes proponen mantenerla sin cambios porque se aplica por igual a todos. Otros señalan que una misma exigencia puede tener efectos diferentes según las condiciones de cada persona.",
+          "La asamblea acuerda probar dos horarios y evaluar la participación antes de adoptar una regla definitiva. No elimina la necesidad de coordinar ni supone que toda preferencia deba convertirse en excepción. Busca una organización que pueda justificarse ante quienes afecta. Examinar una norma implica considerar tanto su propósito como sus consecuencias, en lugar de dar por resuelta la discusión con la mera igualdad de su formulación."
+        ],
+        "preguntas": [
+          ["¿Qué problema plantea el texto?", ["La necesidad de eliminar cualquier organización.", "La imposibilidad de realizar asambleas.", "La identidad entre todas las condiciones personales.", "La diferencia entre aplicar una regla igual y considerar sus efectos.", "La superioridad de las preferencias de un solo grupo."], "D", "La discusión distingue la formulación uniforme de una norma y sus consecuencias para distintos participantes."],
+          ["¿Qué propósito tiene probar dos horarios?", ["Reunir información sobre la participación antes de decidir.", "Evitar que se realice cualquier actividad.", "Dar por terminada la limpieza.", "Aceptar todas las excepciones sin evaluarlas.", "Eliminar la asamblea."], "A", "La prueba permite evaluar la participación antes de adoptar una regla definitiva."],
+          ["¿Qué afirmación coincide con la postura final?", ["Una norma justa no necesita explicaciones.", "El propósito de una regla nunca importa.", "Las consecuencias deben examinarse junto con el propósito.", "Toda preferencia debe convertirse en excepción.", "Una regla uniforme siempre produce efectos idénticos."], "C", "La conclusión señala expresamente propósito y consecuencias como criterios de examen."]
+        ]
+      },
+      {
+        "titulo": "Texto 3 · Leer una traducción",
+        "parrafos": [
+          "Dos traducciones de un mismo relato describen de manera distinta la casa del protagonista. Una conserva una palabra regional de la lengua original y la explica en una nota; la otra emplea un término más familiar para sus lectores. Ninguna decisión es neutra: la primera hace visible una diferencia cultural, mientras que la segunda favorece la fluidez de la lectura.",
+          "Compararlas no exige elegir de inmediato una ganadora. Conviene preguntar qué busca cada versión, a quién se dirige y qué matices conserva o modifica. Traducir no consiste únicamente en sustituir palabras aisladas: requiere decidir cómo trasladar relaciones de sentido a otro contexto. Reconocer esas decisiones amplía la lectura del relato y permite apreciar que una misma obra puede abrir recorridos distintos."
+        ],
+        "preguntas": [
+          ["¿Cuál es la idea principal?", ["Toda traducción debe usar las mismas palabras.", "Traducir implica decisiones de sentido según el contexto y los lectores.", "Las notas hacen imposible leer un relato.", "Solo una versión puede tener valor.", "Las diferencias culturales son irrelevantes."], "B", "El texto presenta la traducción como una serie de decisiones sobre matices, contextos y destinatarios."],
+          ["¿Qué favorece la segunda traducción mencionada?", ["La conservación de toda palabra regional.", "La eliminación del protagonista.", "La inclusión de más notas.", "La comparación de casas reales.", "La fluidez mediante un término familiar."], "E", "El primer párrafo atribuye esa función al uso de un término más familiar."],
+          ["En el texto, «matices» significa", ["errores de impresión", "cantidades de páginas", "nombres de editores", "diferencias sutiles de significado", "medidas de la casa"], "D", "Se refiere a variaciones sutiles del sentido que una versión conserva o modifica."],
+          ["¿Qué actitud recomienda el autor al comparar traducciones?", ["Examinar sus propósitos y decisiones antes de juzgarlas.", "Escoger siempre la más breve.", "Rechazar cualquier nota explicativa.", "Suponer que todas producen una experiencia idéntica.", "Evitar consultar el destinatario de cada versión."], "A", "El segundo párrafo propone preguntar por objetivos, lectores y matices antes de elegir."]
+        ]
+      }
+    ]
+  }
+}

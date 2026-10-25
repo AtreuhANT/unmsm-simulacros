@@ -7,9 +7,10 @@ from models.resultado import (
     obtener_ranking, obtener_estadisticas_generales
 )
 from models.intento import obtener_intento_por_token, obtener_respuestas_intento
+from models.examen import cargar_preguntas_intento
 from models.usuario import listar_usuarios
 from utils.helpers import login_required, admin_required, formatear_tiempo
-from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area
+from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area, sanitizar_preguntas_para_cliente
 from models.supervision import IntentoNoDisponible, listar_pendientes, resolver_revision
 from models.evidencia_celular import listar_evidencias_resultado, leer_evidencia
 
@@ -54,8 +55,9 @@ def ver_resultado(id):
 
     # Desglose de preguntas académicas con retroalimentación DECO
     detalles_preguntas = []
-    preguntas_area = cargar_preguntas_area(resultado['area'])
     intento = obtener_intento_por_token(resultado['token_sesion'])
+    preguntas_area = (cargar_preguntas_intento(intento) if intento else
+                      cargar_preguntas_area(resultado['area'], historico=True))
     respuestas_map = {}
     if intento:
         respuestas_db = obtener_respuestas_intento(intento['id'])
@@ -80,7 +82,9 @@ def ver_resultado(id):
             'es_correcta': es_correcta,
             'es_blanco': es_blanco,
             'puntos': puntos,
-            'explicacion': q.get('explicacion', '')
+            'explicacion': q.get('explicacion', ''),
+            'contenido': sanitizar_preguntas_para_cliente([q])[0],
+            'opciones_rico': q.get('opciones_rico', {})
         })
 
     return render_template(

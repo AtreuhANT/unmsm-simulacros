@@ -1,0 +1,1795 @@
+{
+  "area": "D",
+  "titulo": "Ciencias Económicas y de la Gestión",
+  "version": "practica-original-1",
+  "origen": "Material original de práctica, sin atribución oficial ni validación psicométrica.",
+  "distribucion": "Distribución editorial de práctica; no representa cuotas oficiales de admisión.",
+  "preguntas": [
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Descubres un error de cálculo que favorece la nota de tu equipo. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Comunicar el error y pedir que se revise el cálculo.",
+        "B": "Ocultarlo para conservar la nota.",
+        "C": "Culpar sin pruebas a otro equipo.",
+        "D": "Borrar el registro original.",
+        "E": "Presionar a quien detectó el error para que calle."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Honestidad",
+      "id": 1
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Una compañera explica que no comprendió una indicación y teme preguntar. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Burlarse de su dificultad.",
+        "B": "Escucharla y ayudarla a formular su consulta con respeto.",
+        "C": "Excluirla del equipo.",
+        "D": "Responder por ella sin escucharla.",
+        "E": "Difundir su temor para entretener a otros."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Empatía",
+      "id": 2
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: No podrás entregar a tiempo la parte que asumiste en un trabajo grupal. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Esperar a que venza el plazo sin avisar.",
+        "B": "Inventar que ya entregaste.",
+        "C": "Avisar con anticipación y acordar una solución realista.",
+        "D": "Eliminar los mensajes del equipo.",
+        "E": "Culpar a alguien ajeno al retraso."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Responsabilidad",
+      "id": 3
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Dos integrantes proponen soluciones distintas y la discusión se vuelve personal. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Elegir por amistad sin revisar razones.",
+        "B": "Insultar a quien discrepa.",
+        "C": "Interrumpir toda participación.",
+        "D": "Volver a los criterios del problema y comparar las razones de ambas propuestas.",
+        "E": "Decidir por rumores sobre los integrantes."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Trabajo en equipo",
+      "id": 4
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Alguien se burla del acento de una persona durante una exposición. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Sumarse a la burla.",
+        "B": "Grabarla para difundirla.",
+        "C": "Pedir que no vuelva a exponer.",
+        "D": "Evaluar su trabajo únicamente por su acento.",
+        "E": "Detener la burla con respeto y respaldar el derecho de la persona a participar."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Respeto",
+      "id": 5
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Recibes una crítica que te irrita durante una revisión de tu proyecto. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Hacer una pausa, escuchar el contenido y responder con argumentos.",
+        "B": "Responder con un ataque personal.",
+        "C": "Romper los materiales.",
+        "D": "Difundir información privada de quien critica.",
+        "E": "Cambiar resultados para aparentar éxito."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Autocontrol",
+      "id": 6
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Te ofrecen una copia de las respuestas antes de una evaluación. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Usarla y negar que la recibiste.",
+        "B": "Rechazarla y continuar con tu preparación honesta.",
+        "C": "Venderla a otros estudiantes.",
+        "D": "Ocultarla para usarla durante la prueba.",
+        "E": "Pedir más respuestas a cambio de un favor."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Integridad",
+      "id": 7
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Coordinas un equipo y una integrante todavía no ha podido dar su opinión. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Dar por hecho que está de acuerdo.",
+        "B": "Excluirla por hablar poco.",
+        "C": "Invitarla a participar y escuchar sus aportes antes de cerrar la decisión.",
+        "D": "Asignarle toda la culpa de un problema.",
+        "E": "Impedir preguntas para terminar antes."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Liderazgo",
+      "id": 8
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Encuentras un mensaje alarmante sin fuente sobre un asunto relacionado con tu carrera. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Difundirlo porque causa impresión.",
+        "B": "Cambiarle el autor para que parezca fiable.",
+        "C": "Presentarlo como un hecho sin comprobarlo.",
+        "D": "Comprobar su origen y evidencia antes de compartirlo.",
+        "E": "Inventar datos que lo respalden."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Pensamiento crítico",
+      "id": 9
+    },
+    {
+      "curso": "Actitudinales",
+      "seccion": "Actitudinales",
+      "enunciado": "En una actividad de formación del área de Ciencias Económicas y de la Gestión, ocurre lo siguiente: Una persona necesita orientación sobre un procedimiento que tú no conoces bien. ¿Cuál es la actuación más adecuada?",
+      "opciones": {
+        "A": "Inventar una respuesta con seguridad.",
+        "B": "Culparla por no saber.",
+        "C": "Dar información falsa para terminar rápido.",
+        "D": "Prometer un resultado que no puedes garantizar.",
+        "E": "Reconocer el límite de tu conocimiento y ayudarla a encontrar una fuente adecuada."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "competencia": "Vocación de servicio",
+      "id": 10
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Cuál es la idea central del texto?",
+      "opciones": {
+        "A": "El precio más alto garantiza calidad.",
+        "B": "Todo proveedor barato debe descartarse.",
+        "C": "Planificar carece de valor.",
+        "D": "Una compra debe evaluarse por sus costos y condiciones en conjunto.",
+        "E": "Las cotizaciones nunca contienen información útil."
+      },
+      "lectura_id": "d-hv-1",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 11
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué dato omitió inicialmente el comité?",
+      "opciones": {
+        "A": "El costo de las interrupciones y transportes adicionales.",
+        "B": "La existencia de envases.",
+        "C": "El nombre de la cooperativa.",
+        "D": "La cantidad de miembros del comité.",
+        "E": "El color de los calendarios."
+      },
+      "lectura_id": "d-hv-1",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 12
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué afirmación sería incompatible con la conclusión?",
+      "opciones": {
+        "A": "Las entregas influyen en la planificación.",
+        "B": "Una demora puede generar gastos.",
+        "C": "El precio unitario basta para decidir cualquier compra.",
+        "D": "Las condiciones deben compararse.",
+        "E": "Una cotización no describe todo el proceso."
+      },
+      "lectura_id": "d-hv-1",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 13
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué busca cuestionar el trabajador?",
+      "opciones": {
+        "A": "Que se hayan vendido cuadernos.",
+        "B": "Que la campaña sea la única explicación posible del aumento.",
+        "C": "Que exista un inicio de clases.",
+        "D": "Que se puedan comparar periodos.",
+        "E": "Que haya habido ventas el año anterior."
+      },
+      "lectura_id": "d-hv-2",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 14
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué distinción destaca el segundo párrafo?",
+      "opciones": {
+        "A": "Cuadernos y calendarios son iguales.",
+        "B": "Los descuentos siempre producen pérdidas.",
+        "C": "Las campañas no se pueden medir.",
+        "D": "Comparar periodos elimina toda incertidumbre.",
+        "E": "Vender más unidades no equivale necesariamente a obtener más beneficio."
+      },
+      "lectura_id": "d-hv-2",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 15
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "En el texto, «margen» se refiere a",
+      "opciones": {
+        "A": "la separación entre estantes",
+        "B": "el espacio en blanco de una hoja",
+        "C": "la duración del año escolar",
+        "D": "la diferencia entre el ingreso y el costo de la venta",
+        "E": "la distancia entre la librería y la escuela"
+      },
+      "lectura_id": "d-hv-2",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 16
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué función cumple el presupuesto en el texto?",
+      "opciones": {
+        "A": "Evitar que los miembros participen.",
+        "B": "Garantizar que el dinero sea ilimitado.",
+        "C": "Organizar y justificar decisiones bajo restricciones.",
+        "D": "Eliminar todas las preferencias.",
+        "E": "Impedir revisar los acuerdos."
+      },
+      "lectura_id": "d-hv-3",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 17
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué decisión toma la asociación?",
+      "opciones": {
+        "A": "Reparar primero el techo y reservar recursos para imprevistos.",
+        "B": "Gastar todo en la entrada.",
+        "C": "Repartir el fondo sin registrar gastos.",
+        "D": "Renunciar al local.",
+        "E": "Posponer indefinidamente todas las mejoras."
+      },
+      "lectura_id": "d-hv-3",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 18
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué significa que se haga «explícito» lo postergado?",
+      "opciones": {
+        "A": "Que se oculta a los asociados.",
+        "B": "Que se considera terminado.",
+        "C": "Que pierde toda relevancia.",
+        "D": "Que se comunica de manera clara.",
+        "E": "Que no puede volver a discutirse."
+      },
+      "lectura_id": "d-hv-3",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 19
+    },
+    {
+      "curso": "HV",
+      "seccion": "Habilidad Verbal",
+      "enunciado": "¿Qué se puede inferir del fondo limitado?",
+      "opciones": {
+        "A": "Permite atender todos los deseos simultáneamente.",
+        "B": "Obliga a establecer prioridades entre usos posibles.",
+        "C": "Impide reunir información.",
+        "D": "Vuelve innecesario calcular costos.",
+        "E": "Prohíbe reservar dinero."
+      },
+      "lectura_id": "d-hv-3",
+      "formato": "texto",
+      "origen": "Creación original para práctica; no corresponde a un examen oficial",
+      "id": 20
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "Una sucesión aumenta siempre en 5 unidades: 5, 10, 15, 20, ... ¿Cuál es el sexto término?",
+      "opciones": {
+        "A": "27",
+        "B": "29",
+        "C": "31",
+        "D": "30",
+        "E": "33"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 21
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "Una sucesión aumenta siempre en 7 unidades: 7, 14, 21, 28, ... ¿Cuál es el sexto término?",
+      "opciones": {
+        "A": "39",
+        "B": "41",
+        "C": "43",
+        "D": "45",
+        "E": "42"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 22
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "Una sucesión aumenta siempre en 9 unidades: 9, 18, 27, 36, ... ¿Cuál es el sexto término?",
+      "opciones": {
+        "A": "54",
+        "B": "51",
+        "C": "53",
+        "D": "55",
+        "E": "57"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 23
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "En una fila, Julia ocupa el lugar 11 desde el inicio y el lugar 15 desde el final. ¿Cuántas personas hay en la fila?",
+      "opciones": {
+        "A": "22",
+        "B": "25",
+        "C": "24",
+        "D": "26",
+        "E": "28"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 24
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "En una fila, Julia ocupa el lugar 13 desde el inicio y el lugar 17 desde el final. ¿Cuántas personas hay en la fila?",
+      "opciones": {
+        "A": "26",
+        "B": "28",
+        "C": "29",
+        "D": "30",
+        "E": "32"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 25
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "En una fila, Julia ocupa el lugar 15 desde el inicio y el lugar 19 desde el final. ¿Cuántas personas hay en la fila?",
+      "opciones": {
+        "A": "30",
+        "B": "32",
+        "C": "34",
+        "D": "33",
+        "E": "36"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 26
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "En una reunión de 17 personas, cada una saluda con un apretón de manos a todas las demás una sola vez. ¿Cuántos apretones se realizan?",
+      "opciones": {
+        "A": "133",
+        "B": "135",
+        "C": "137",
+        "D": "139",
+        "E": "136"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 27
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "En una reunión de 19 personas, cada una saluda con un apretón de manos a todas las demás una sola vez. ¿Cuántos apretones se realizan?",
+      "opciones": {
+        "A": "171",
+        "B": "168",
+        "C": "170",
+        "D": "172",
+        "E": "174"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 28
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "Un código consta de dos letras distintas elegidas de un alfabeto de 21 letras. Si importa el orden, ¿cuántos códigos pueden formarse?",
+      "opciones": {
+        "A": "417",
+        "B": "420",
+        "C": "419",
+        "D": "421",
+        "E": "423"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 29
+    },
+    {
+      "curso": "H.L.M.",
+      "seccion": "H.L.M.",
+      "enunciado": "Un código consta de dos letras distintas elegidas de un alfabeto de 23 letras. Si importa el orden, ¿cuántos códigos pueden formarse?",
+      "opciones": {
+        "A": "503",
+        "B": "505",
+        "C": "506",
+        "D": "507",
+        "E": "509"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 30
+    },
+    {
+      "curso": "Aritmética",
+      "seccion": "Aritmética",
+      "enunciado": "Un artículo cuesta S/ 150 y recibe un descuento del 20 %. ¿Cuál es el precio final en soles?",
+      "opciones": {
+        "A": "117",
+        "B": "119",
+        "C": "121",
+        "D": "120",
+        "E": "123"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 31
+    },
+    {
+      "curso": "Aritmética",
+      "seccion": "Aritmética",
+      "enunciado": "El promedio aritmético de 13, 17, 21 y x es 19. Halle x.",
+      "opciones": {
+        "A": "22",
+        "B": "24",
+        "C": "26",
+        "D": "28",
+        "E": "25"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 32
+    },
+    {
+      "curso": "Aritmética",
+      "seccion": "Aritmética",
+      "enunciado": "Un artículo cuesta S/ 190 y recibe un descuento del 20 %. ¿Cuál es el precio final en soles?",
+      "opciones": {
+        "A": "152",
+        "B": "149",
+        "C": "151",
+        "D": "153",
+        "E": "155"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 33
+    },
+    {
+      "curso": "Aritmética",
+      "seccion": "Aritmética",
+      "enunciado": "El promedio aritmético de 17, 21, 25 y x es 23. Halle x.",
+      "opciones": {
+        "A": "26",
+        "B": "29",
+        "C": "28",
+        "D": "30",
+        "E": "32"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 34
+    },
+    {
+      "curso": "Aritmética",
+      "seccion": "Aritmética",
+      "enunciado": "Un artículo cuesta S/ 230 y recibe un descuento del 20 %. ¿Cuál es el precio final en soles?",
+      "opciones": {
+        "A": "181",
+        "B": "183",
+        "C": "184",
+        "D": "185",
+        "E": "187"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 35
+    },
+    {
+      "curso": "Geometría",
+      "seccion": "Geometría",
+      "enunciado": "Un triángulo rectángulo tiene catetos de 18 cm y 24 cm. ¿Cuánto mide la hipotenusa en centímetros?",
+      "opciones": {
+        "A": "27",
+        "B": "29",
+        "C": "31",
+        "D": "33",
+        "E": "30"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 36,
+      "figura": "rectangulo"
+    },
+    {
+      "curso": "Geometría",
+      "seccion": "Geometría",
+      "enunciado": "Un rectángulo tiene base de 10 cm y altura de 7 cm. ¿Cuál es su área en centímetros cuadrados?",
+      "opciones": {
+        "A": "70",
+        "B": "67",
+        "C": "69",
+        "D": "71",
+        "E": "73"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 37,
+      "figura": "rectangulo"
+    },
+    {
+      "curso": "Geometría",
+      "seccion": "Geometría",
+      "enunciado": "Un triángulo rectángulo tiene catetos de 24 cm y 32 cm. ¿Cuánto mide la hipotenusa en centímetros?",
+      "opciones": {
+        "A": "37",
+        "B": "40",
+        "C": "39",
+        "D": "41",
+        "E": "43"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 38,
+      "figura": "rectangulo"
+    },
+    {
+      "curso": "Álgebra",
+      "seccion": "Álgebra",
+      "enunciado": "Resuelva en los reales: 3x + 6 = 24.",
+      "opciones": {
+        "A": "3",
+        "B": "6",
+        "C": "5",
+        "D": "7",
+        "E": "9"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 39
+    },
+    {
+      "curso": "Álgebra",
+      "seccion": "Álgebra",
+      "enunciado": "Las raíces de x² − 19x + 90 = 0 son r y s. Halle r² + s².",
+      "opciones": {
+        "A": "178",
+        "B": "180",
+        "C": "181",
+        "D": "182",
+        "E": "184"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 40
+    },
+    {
+      "curso": "Álgebra",
+      "seccion": "Álgebra",
+      "enunciado": "Resuelva en los reales: 3x + 12 = 48.",
+      "opciones": {
+        "A": "9",
+        "B": "11",
+        "C": "13",
+        "D": "12",
+        "E": "15"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 41
+    },
+    {
+      "curso": "Álgebra",
+      "seccion": "Álgebra",
+      "enunciado": "Las raíces de x² − 31x + 240 = 0 son r y s. Halle r² + s².",
+      "opciones": {
+        "A": "478",
+        "B": "480",
+        "C": "482",
+        "D": "484",
+        "E": "481"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 42
+    },
+    {
+      "curso": "Trigonometría",
+      "seccion": "Trigonometría",
+      "enunciado": "En un triángulo rectángulo, el cateto opuesto a θ mide 18 cm y el adyacente mide 24 cm. Si x = 60 sen(θ), halle x.",
+      "opciones": {
+        "A": "33",
+        "B": "35",
+        "C": "36",
+        "D": "37",
+        "E": "39"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 43
+    },
+    {
+      "curso": "Trigonometría",
+      "seccion": "Trigonometría",
+      "enunciado": "En un triángulo rectángulo, el cateto opuesto a θ mide 21 cm y el adyacente mide 28 cm. Si x = 70 cos(θ), halle x.",
+      "opciones": {
+        "A": "53",
+        "B": "55",
+        "C": "57",
+        "D": "56",
+        "E": "59"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 44
+    },
+    {
+      "curso": "Lenguaje",
+      "seccion": "Lenguaje",
+      "enunciado": "¿Qué palabra contiene un hiato?",
+      "opciones": {
+        "A": "tierra",
+        "B": "causa",
+        "C": "puerta",
+        "D": "país",
+        "E": "ciudad"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 45
+    },
+    {
+      "curso": "Lenguaje",
+      "seccion": "Lenguaje",
+      "enunciado": "¿Qué oración utiliza correctamente la tilde diacrítica?",
+      "opciones": {
+        "A": "El trajo él libro.",
+        "B": "Él trajo él libro.",
+        "C": "El trajo el libro.",
+        "D": "El trájo el libro.",
+        "E": "Él trajo el libro."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 46
+    },
+    {
+      "curso": "Lenguaje",
+      "seccion": "Lenguaje",
+      "enunciado": "En «Las investigadoras analizaron las muestras», ¿cuál es el núcleo del sujeto?",
+      "opciones": {
+        "A": "investigadoras",
+        "B": "Las",
+        "C": "analizaron",
+        "D": "muestras",
+        "E": "las muestras"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 47
+    },
+    {
+      "curso": "Lenguaje",
+      "seccion": "Lenguaje",
+      "enunciado": "En «Entregué el informe a Lucía», ¿qué función cumple «el informe»?",
+      "opciones": {
+        "A": "Sujeto",
+        "B": "Objeto directo",
+        "C": "Objeto indirecto",
+        "D": "Vocativo",
+        "E": "Complemento de lugar"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 48
+    },
+    {
+      "curso": "Lenguaje",
+      "seccion": "Lenguaje",
+      "enunciado": "¿Qué conector expresa oposición?",
+      "opciones": {
+        "A": "Por tanto",
+        "B": "Además",
+        "C": "Sin embargo",
+        "D": "En consecuencia",
+        "E": "Por eso"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 49
+    },
+    {
+      "curso": "Lenguaje",
+      "seccion": "Lenguaje",
+      "enunciado": "¿Qué palabra es esdrújula?",
+      "opciones": {
+        "A": "reloj",
+        "B": "papel",
+        "C": "camino",
+        "D": "música",
+        "E": "pared"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 50
+    },
+    {
+      "curso": "Lenguaje",
+      "seccion": "Lenguaje",
+      "enunciado": "En «Ana compró pan y Luis preparó café», la conjunción «y» establece una relación",
+      "opciones": {
+        "A": "adversativa",
+        "B": "disyuntiva",
+        "C": "copulativa",
+        "D": "condicional",
+        "E": "concesiva"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 51
+    },
+    {
+      "curso": "Literatura",
+      "seccion": "Literatura",
+      "enunciado": "¿Qué recurso aparece en «Tus ojos son dos luceros»?",
+      "opciones": {
+        "A": "Hipérbole",
+        "B": "Anáfora",
+        "C": "Onomatopeya",
+        "D": "Metáfora",
+        "E": "Enumeración"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 52
+    },
+    {
+      "curso": "Literatura",
+      "seccion": "Literatura",
+      "enunciado": "¿Qué recurso aparece en «Te esperé mil años», cuando se quiere enfatizar una espera larga?",
+      "opciones": {
+        "A": "Símil",
+        "B": "Epíteto",
+        "C": "Anáfora",
+        "D": "Aliteración",
+        "E": "Hipérbole"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 53
+    },
+    {
+      "curso": "Literatura",
+      "seccion": "Literatura",
+      "enunciado": "¿Qué tipo de narrador cuenta su propia historia usando «yo»?",
+      "opciones": {
+        "A": "Narrador protagonista",
+        "B": "Narrador omnisciente externo",
+        "C": "Narrador objetivo externo",
+        "D": "Narrador en segunda persona",
+        "E": "Narrador colectivo en tercera persona"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 54
+    },
+    {
+      "curso": "Literatura",
+      "seccion": "Literatura",
+      "enunciado": "¿Quién escribió Los ríos profundos?",
+      "opciones": {
+        "A": "César Vallejo",
+        "B": "José María Arguedas",
+        "C": "Ricardo Palma",
+        "D": "José Santos Chocano",
+        "E": "Manuel González Prada"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 55
+    },
+    {
+      "curso": "Psicología",
+      "seccion": "Psicología",
+      "enunciado": "Una estudiante asocia un sonido con la llegada de alimento después de observarlos juntos varias veces. ¿Qué aprendizaje ejemplifica?",
+      "opciones": {
+        "A": "Aprendizaje por insight exclusivamente",
+        "B": "Habituación sin asociación",
+        "C": "Maduración biológica",
+        "D": "Condicionamiento clásico",
+        "E": "Memoria semántica sin asociación"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 56
+    },
+    {
+      "curso": "Psicología",
+      "seccion": "Psicología",
+      "enunciado": "Un alumno aprende una técnica al observar a su compañera y luego imitarla. ¿Qué proceso destaca?",
+      "opciones": {
+        "A": "Reflejo innato",
+        "B": "Pérdida de memoria",
+        "C": "Adaptación sensorial",
+        "D": "Sueño profundo",
+        "E": "Aprendizaje por observación"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 57
+    },
+    {
+      "curso": "Psicología",
+      "seccion": "Psicología",
+      "enunciado": "¿Qué tipo de memoria permite mantener brevemente un número mientras se realiza una operación con él?",
+      "opciones": {
+        "A": "Memoria de trabajo",
+        "B": "Memoria episódica remota",
+        "C": "Memoria procedimental exclusivamente",
+        "D": "Memoria autobiográfica exclusivamente",
+        "E": "Memoria inmunológica"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 58
+    },
+    {
+      "curso": "Psicología",
+      "seccion": "Psicología",
+      "enunciado": "Una persona reconoce que está irritada y decide hacer una pausa antes de responder. ¿Qué capacidad ejercita?",
+      "opciones": {
+        "A": "Supresión de toda percepción",
+        "B": "Autorregulación emocional",
+        "C": "Reflejo rotuliano",
+        "D": "Amnesia",
+        "E": "Discriminación cromática"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 59
+    },
+    {
+      "curso": "Psicología",
+      "seccion": "Psicología",
+      "enunciado": "En un estudio, se modifica el tiempo de práctica y se mide el número de aciertos. ¿Cuál es la variable dependiente?",
+      "opciones": {
+        "A": "El tiempo de práctica",
+        "B": "El nombre del investigador",
+        "C": "El número de aciertos",
+        "D": "La hipótesis escrita",
+        "E": "La fecha de publicación"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 60
+    },
+    {
+      "curso": "Educación Cívica",
+      "seccion": "Educación Cívica",
+      "enunciado": "En una decisión colectiva, escuchar las razones de quienes discrepan contribuye a",
+      "opciones": {
+        "A": "la censura previa",
+        "B": "la exclusión por opinión",
+        "C": "la deliberación",
+        "D": "la arbitrariedad",
+        "E": "la imposición sin diálogo"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 61
+    },
+    {
+      "curso": "Educación Cívica",
+      "seccion": "Educación Cívica",
+      "enunciado": "Una regla se aplica con criterios públicos y las decisiones pueden justificarse. ¿Qué principio se favorece?",
+      "opciones": {
+        "A": "Secreto absoluto",
+        "B": "Favoritismo",
+        "C": "Discriminación arbitraria",
+        "D": "Transparencia",
+        "E": "Ausencia de rendición de cuentas"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 62
+    },
+    {
+      "curso": "Educación Cívica",
+      "seccion": "Educación Cívica",
+      "enunciado": "¿Qué práctica permite resolver pacíficamente una discrepancia sin imponer amenazas?",
+      "opciones": {
+        "A": "Intimidación",
+        "B": "Difusión de rumores",
+        "C": "Agresión",
+        "D": "Silenciamiento forzado",
+        "E": "Diálogo sustentado en razones"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 63
+    },
+    {
+      "curso": "Educación Cívica",
+      "seccion": "Educación Cívica",
+      "enunciado": "Respetar la dignidad de una persona implica",
+      "opciones": {
+        "A": "reconocer su valor sin condicionarlo a su origen",
+        "B": "atribuirle menos derechos por su idioma",
+        "C": "reducirla a su ingreso económico",
+        "D": "negarle voz por su apariencia",
+        "E": "tratarla únicamente como instrumento"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 64
+    },
+    {
+      "curso": "Historia del Perú",
+      "seccion": "Historia del Perú",
+      "enunciado": "¿Qué civilización tuvo como capital la ciudad del Cusco?",
+      "opciones": {
+        "A": "Moche",
+        "B": "Nazca",
+        "C": "Chimú",
+        "D": "Inca",
+        "E": "Paracas"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 65
+    },
+    {
+      "curso": "Historia del Perú",
+      "seccion": "Historia del Perú",
+      "enunciado": "¿Qué sistema de cuerdas anudadas se utilizó en el mundo andino para registrar información?",
+      "opciones": {
+        "A": "Papiro",
+        "B": "Códice alfabético latino",
+        "C": "Pergamino",
+        "D": "Imprenta de tipos móviles",
+        "E": "Quipu"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 66
+    },
+    {
+      "curso": "Historia del Perú",
+      "seccion": "Historia del Perú",
+      "enunciado": "¿Qué cultura es conocida por los grandes geoglifos trazados en la costa sur peruana?",
+      "opciones": {
+        "A": "Nazca",
+        "B": "Chavín",
+        "C": "Chimú",
+        "D": "Caral",
+        "E": "Wari"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 67
+    },
+    {
+      "curso": "Historia Universal",
+      "seccion": "Historia Universal",
+      "enunciado": "¿Qué proceso histórico se caracterizó por la mecanización de la producción y la expansión del sistema fabril?",
+      "opciones": {
+        "A": "Neolítico exclusivamente",
+        "B": "Reforma gregoriana",
+        "C": "Guerra del Peloponeso",
+        "D": "Caída del Imperio romano de Occidente",
+        "E": "Revolución Industrial"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 68
+    },
+    {
+      "curso": "Historia Universal",
+      "seccion": "Historia Universal",
+      "enunciado": "¿Qué acontecimiento se asocia con el inicio de la Revolución francesa en 1789?",
+      "opciones": {
+        "A": "Toma de la Bastilla",
+        "B": "Caída de Constantinopla",
+        "C": "Congreso de Viena",
+        "D": "Batalla de Waterloo",
+        "E": "Inicio de la Primera Guerra Mundial"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 69
+    },
+    {
+      "curso": "Historia Universal",
+      "seccion": "Historia Universal",
+      "enunciado": "¿Qué invento de Gutenberg favoreció la difusión de libros en Europa en el siglo XV?",
+      "opciones": {
+        "A": "Telégrafo eléctrico",
+        "B": "Imprenta de tipos móviles metálicos",
+        "C": "Máquina de vapor",
+        "D": "Radio",
+        "E": "Motor de combustión interna"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 70
+    },
+    {
+      "curso": "Geografía",
+      "seccion": "Geografía",
+      "enunciado": "¿Qué coordenada expresa la distancia angular de un lugar al ecuador?",
+      "opciones": {
+        "A": "Latitud",
+        "B": "Longitud",
+        "C": "Altitud",
+        "D": "Pendiente",
+        "E": "Profundidad"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 71
+    },
+    {
+      "curso": "Geografía",
+      "seccion": "Geografía",
+      "enunciado": "En un mapa de escala 1:50 000, ¿qué distancia real representan 2 cm?",
+      "opciones": {
+        "A": "100 m",
+        "B": "1 km",
+        "C": "500 m",
+        "D": "5 km",
+        "E": "10 km"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 72
+    },
+    {
+      "curso": "Geografía",
+      "seccion": "Geografía",
+      "enunciado": "¿Cómo se llama el conjunto de tierras cuyas aguas drenan hacia un mismo río o salida?",
+      "opciones": {
+        "A": "Meseta necesariamente",
+        "B": "Istmo",
+        "C": "Cuenca hidrográfica",
+        "D": "Archipiélago",
+        "E": "Duna"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 73
+    },
+    {
+      "curso": "Geografía",
+      "seccion": "Geografía",
+      "enunciado": "¿Qué proceso transforma agua líquida en vapor?",
+      "opciones": {
+        "A": "Condensación",
+        "B": "Solidificación",
+        "C": "Fusión",
+        "D": "Evaporación",
+        "E": "Precipitación"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 74
+    },
+    {
+      "curso": "Economía",
+      "seccion": "Economía",
+      "enunciado": "¿Qué expresa el costo de oportunidad de una decisión?",
+      "opciones": {
+        "A": "La suma de todos los precios históricos",
+        "B": "El valor de la mejor alternativa sacrificada",
+        "C": "Un gasto que siempre es cero",
+        "D": "Solo el dinero ya gastado e irrecuperable",
+        "E": "La cantidad total de billetes existentes"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 75
+    },
+    {
+      "curso": "Economía",
+      "seccion": "Economía",
+      "enunciado": "Si el precio de un bien aumenta y lo demás permanece constante, la ley de la demanda predice una",
+      "opciones": {
+        "A": "expansión obligatoria de la oferta monetaria",
+        "B": "subida de la cantidad demandada",
+        "C": "disminución de la cantidad demandada",
+        "D": "desaparición de la escasez",
+        "E": "igualdad automática entre todos los ingresos"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 76
+    },
+    {
+      "curso": "Economía",
+      "seccion": "Economía",
+      "enunciado": "Un taller vende 20 unidades a S/ 15 cada una. ¿Cuál es su ingreso total?",
+      "opciones": {
+        "A": "S/ 35",
+        "B": "S/ 150",
+        "C": "S/ 200",
+        "D": "S/ 300",
+        "E": "S/ 600"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 77
+    },
+    {
+      "curso": "Economía",
+      "seccion": "Economía",
+      "enunciado": "Una empresa obtiene ingresos de S/ 900 y costos totales de S/ 650. ¿Cuál es su beneficio contable?",
+      "opciones": {
+        "A": "S/ 1550",
+        "B": "S/ 650",
+        "C": "S/ 900",
+        "D": "S/ 150",
+        "E": "S/ 250"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 78
+    },
+    {
+      "curso": "Economía",
+      "seccion": "Economía",
+      "enunciado": "¿Qué caracteriza a un costo fijo dentro de un periodo y rango de producción determinados?",
+      "opciones": {
+        "A": "No cambia con la cantidad producida dentro de ese rango.",
+        "B": "Siempre vale cero.",
+        "C": "Es idéntico al ingreso total.",
+        "D": "Aumenta obligatoriamente por cada unidad.",
+        "E": "Solo existe cuando se vende todo."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 79
+    },
+    {
+      "curso": "Economía",
+      "seccion": "Economía",
+      "enunciado": "¿Qué concepto describe un aumento sostenido y generalizado del nivel de precios?",
+      "opciones": {
+        "A": "Trueque",
+        "B": "Inflación",
+        "C": "Deflación",
+        "D": "Ahorro",
+        "E": "Productividad"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 80
+    },
+    {
+      "curso": "Filosofía",
+      "seccion": "Filosofía",
+      "enunciado": "¿Qué disciplina estudia criterios para distinguir argumentos válidos de inválidos?",
+      "opciones": {
+        "A": "Estética",
+        "B": "Geología",
+        "C": "Botánica",
+        "D": "Lógica",
+        "E": "Fonética"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 81
+    },
+    {
+      "curso": "Filosofía",
+      "seccion": "Filosofía",
+      "enunciado": "De «Todos los mamíferos son vertebrados» y «Todos los delfines son mamíferos», ¿qué se sigue necesariamente?",
+      "opciones": {
+        "A": "Todos los vertebrados son delfines.",
+        "B": "Ningún delfín es vertebrado.",
+        "C": "Todos los mamíferos son delfines.",
+        "D": "Algunos delfines no son mamíferos.",
+        "E": "Todos los delfines son vertebrados."
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 82
+    },
+    {
+      "curso": "Filosofía",
+      "seccion": "Filosofía",
+      "enunciado": "Una persona rechaza un argumento atacando la apariencia de quien lo presenta. ¿Qué falacia comete?",
+      "opciones": {
+        "A": "Ad hominem",
+        "B": "Modus ponens",
+        "C": "Doble negación",
+        "D": "Silogismo válido",
+        "E": "Definición por género"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 83
+    },
+    {
+      "curso": "Filosofía",
+      "seccion": "Filosofía",
+      "enunciado": "¿Qué rama estudia problemas sobre el conocimiento y su justificación?",
+      "opciones": {
+        "A": "Morfología",
+        "B": "Epistemología",
+        "C": "Cartografía",
+        "D": "Mecánica",
+        "E": "Demografía"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 84
+    },
+    {
+      "curso": "Física",
+      "seccion": "Física",
+      "enunciado": "Un objeto recorre 120 m en 20 s con rapidez constante. ¿Cuál es su rapidez?",
+      "opciones": {
+        "A": "2 m/s",
+        "B": "4 m/s",
+        "C": "12 m/s",
+        "D": "6 m/s",
+        "E": "24 m/s"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 85
+    },
+    {
+      "curso": "Física",
+      "seccion": "Física",
+      "enunciado": "Una fuerza neta de 18 N actúa sobre una masa de 3 kg. ¿Qué aceleración produce?",
+      "opciones": {
+        "A": "3 m/s²",
+        "B": "9 m/s²",
+        "C": "15 m/s²",
+        "D": "54 m/s²",
+        "E": "6 m/s²"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 86
+    },
+    {
+      "curso": "Física",
+      "seccion": "Física",
+      "enunciado": "Una resistencia de 4 Ω se conecta a 12 V. ¿Qué corriente circula?",
+      "opciones": {
+        "A": "3 A",
+        "B": "0,3 A",
+        "C": "4 A",
+        "D": "8 A",
+        "E": "48 A"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 87
+    },
+    {
+      "curso": "Física",
+      "seccion": "Física",
+      "enunciado": "¿Qué magnitud se conserva en una colisión de un sistema aislado, aunque la colisión no sea elástica?",
+      "opciones": {
+        "A": "Energía cinética total en todos los casos",
+        "B": "Cantidad de movimiento total",
+        "C": "Rapidez de cada cuerpo",
+        "D": "Temperatura de cada cuerpo",
+        "E": "Volumen de cada cuerpo"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 88
+    },
+    {
+      "curso": "Física",
+      "seccion": "Física",
+      "enunciado": "¿Cuál es la energía cinética de una masa de 2 kg que se mueve a 3 m/s?",
+      "opciones": {
+        "A": "3 J",
+        "B": "6 J",
+        "C": "9 J",
+        "D": "12 J",
+        "E": "18 J"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 89
+    },
+    {
+      "curso": "Química",
+      "seccion": "Química",
+      "enunciado": "Un átomo neutro tiene 8 protones. ¿Cuántos electrones posee?",
+      "opciones": {
+        "A": "4",
+        "B": "6",
+        "C": "8",
+        "D": "10",
+        "E": "16"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 90
+    },
+    {
+      "curso": "Química",
+      "seccion": "Química",
+      "enunciado": "Dos átomos del mismo elemento tienen diferente número de neutrones. Son",
+      "opciones": {
+        "A": "iones de signo opuesto necesariamente",
+        "B": "elementos de distinto número atómico",
+        "C": "moléculas idénticas",
+        "D": "isótopos",
+        "E": "cationes necesariamente"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 91
+    },
+    {
+      "curso": "Química",
+      "seccion": "Química",
+      "enunciado": "Un átomo pierde dos electrones. ¿Qué carga adquiere respecto del átomo neutro?",
+      "opciones": {
+        "A": "−2",
+        "B": "−1",
+        "C": "0",
+        "D": "+4",
+        "E": "+2"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 92
+    },
+    {
+      "curso": "Química",
+      "seccion": "Química",
+      "enunciado": "¿Qué enlace se caracteriza por compartir pares de electrones entre átomos?",
+      "opciones": {
+        "A": "Covalente",
+        "B": "Iónico por transferencia exclusivamente",
+        "C": "Gravitacional",
+        "D": "Nuclear fuerte",
+        "E": "Magnético macroscópico"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 93
+    },
+    {
+      "curso": "Química",
+      "seccion": "Química",
+      "enunciado": "Si la masa molar del agua es 18 g/mol, ¿cuántos moles hay en 36 g de agua?",
+      "opciones": {
+        "A": "0,5 mol",
+        "B": "2 mol",
+        "C": "1 mol",
+        "D": "3 mol",
+        "E": "18 mol"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 94
+    },
+    {
+      "curso": "Biología",
+      "seccion": "Biología",
+      "enunciado": "¿Qué estructura realiza la síntesis de proteínas a partir de la información del ARN mensajero?",
+      "opciones": {
+        "A": "Ribosoma",
+        "B": "Lisosoma",
+        "C": "Centriolo",
+        "D": "Vacuola contráctil",
+        "E": "Pared celular"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 95
+    },
+    {
+      "curso": "Biología",
+      "seccion": "Biología",
+      "enunciado": "¿En qué orgánulo se realiza la fotosíntesis de las células vegetales?",
+      "opciones": {
+        "A": "Mitocondria",
+        "B": "Cloroplasto",
+        "C": "Lisosoma",
+        "D": "Centriolo",
+        "E": "Aparato de Golgi"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 96
+    },
+    {
+      "curso": "Biología",
+      "seccion": "Biología",
+      "enunciado": "¿Qué proceso produce, normalmente, dos células hijas con el mismo número de cromosomas que la célula inicial?",
+      "opciones": {
+        "A": "Meiosis completa",
+        "B": "Fecundación",
+        "C": "Mitosis",
+        "D": "Traducción",
+        "E": "Transcripción"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 97
+    },
+    {
+      "curso": "Biología",
+      "seccion": "Biología",
+      "enunciado": "En un cruce Aa × Aa con dominancia completa, ¿qué proporción de descendientes se espera con genotipo aa?",
+      "opciones": {
+        "A": "1/2",
+        "B": "3/4",
+        "C": "1",
+        "D": "1/4",
+        "E": "0"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 98
+    },
+    {
+      "curso": "Biología",
+      "seccion": "Biología",
+      "enunciado": "En una cadena trófica, un organismo que fabrica materia orgánica a partir de sustancias inorgánicas es un",
+      "opciones": {
+        "A": "consumidor primario necesariamente",
+        "B": "consumidor secundario necesariamente",
+        "C": "depredador exclusivamente",
+        "D": "parásito exclusivamente",
+        "E": "productor"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 99
+    },
+    {
+      "curso": "Biología",
+      "seccion": "Biología",
+      "enunciado": "¿Qué base nitrogenada aparece en el ARN y normalmente no en el ADN?",
+      "opciones": {
+        "A": "Uracilo",
+        "B": "Timina",
+        "C": "Adenina",
+        "D": "Guanina",
+        "E": "Citosina"
+      },
+      "formato": "texto",
+      "origen": "Creación original para práctica",
+      "id": 100
+    }
+  ],
+  "lecturas": [
+    {
+      "id": "d-hv-1",
+      "titulo": "Texto 1 · El costo de esperar",
+      "preguntas": [
+        11,
+        12,
+        13
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Una cooperativa compara dos proveedores de envases. El primero cobra menos por unidad, pero entrega cantidades variables y suele llegar después de la fecha acordada. El segundo mantiene un precio algo mayor y cumple un calendario estable. Al principio, el comité elige la oferta más barata. Luego descubre que las demoras obligan a detener el envasado y a pagar transportes adicionales.",
+            "Cuando vuelve a comparar las propuestas, el comité incluye los gastos provocados por los retrasos y la dificultad de planificar. No concluye que el proveedor más caro sea siempre el mejor. Aprende que el precio unitario es solo una parte de la decisión. Evaluar una compra exige considerar qué ocurre durante todo el proceso y no únicamente la cifra que aparece en la cotización."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d-hv-2",
+      "titulo": "Texto 2 · Más ventas, otra pregunta",
+      "preguntas": [
+        14,
+        15,
+        16
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Una librería vende más cuadernos después de anunciar un descuento. Su administradora atribuye el aumento a la campaña. Un trabajador observa que esa misma semana comenzaron las clases y que, el año anterior, las ventas también habían subido sin promoción. El dato no demuestra que el descuento fuera inútil, pero obliga a revisar una explicación demasiado rápida.",
+            "La administradora compara periodos semejantes y distingue cuadernos rebajados de otros productos. También examina el margen que deja cada venta. Una campaña puede aumentar la cantidad vendida y, aun así, no producir el beneficio esperado. Medir un resultado sirve más cuando la pregunta está bien definida: vender más unidades y obtener mayor beneficio no son necesariamente el mismo objetivo."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d-hv-3",
+      "titulo": "Texto 3 · Un presupuesto compartido",
+      "preguntas": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Una asociación dispone de un fondo limitado para mejorar su local. Un grupo propone renovar la entrada y otro, reparar el techo. Antes de votar, la tesorera presenta el monto disponible y pide calcular cuánto costaría mantener cada mejora. También recoge información sobre las filtraciones que aparecen cuando llueve. Con esos datos, la conversación deja de centrarse únicamente en las preferencias personales.",
+            "La asociación decide atender primero el techo y reservar parte del fondo para imprevistos. La entrada seguirá pendiente, con una fecha de revisión. La decisión no satisface de inmediato todos los deseos, pero establece prioridades y hace explícito lo que se posterga. Un presupuesto compartido permite discutir los límites, justificar las elecciones y comprobar más adelante si los compromisos se cumplieron."
+          ]
+        }
+      ]
+    }
+  ],
+  "grupos": [
+    {
+      "nombre": "Actitudinales",
+      "preguntas": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    },
+    {
+      "nombre": "HV",
+      "preguntas": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20
+      ],
+      "nombre_completo": "Habilidad Verbal",
+      "lecturas": [
+        "d-hv-1",
+        "d-hv-2",
+        "d-hv-3"
+      ]
+    },
+    {
+      "nombre": "H.L.M.",
+      "preguntas": [
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30
+      ]
+    },
+    {
+      "nombre": "Aritmética",
+      "preguntas": [
+        31,
+        32,
+        33,
+        34,
+        35
+      ]
+    },
+    {
+      "nombre": "Geometría",
+      "preguntas": [
+        36,
+        37,
+        38
+      ]
+    },
+    {
+      "nombre": "Álgebra",
+      "preguntas": [
+        39,
+        40,
+        41,
+        42
+      ]
+    },
+    {
+      "nombre": "Trigonometría",
+      "preguntas": [
+        43,
+        44
+      ]
+    },
+    {
+      "nombre": "Lenguaje",
+      "preguntas": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    {
+      "nombre": "Literatura",
+      "preguntas": [
+        52,
+        53,
+        54,
+        55
+      ]
+    },
+    {
+      "nombre": "Psicología",
+      "preguntas": [
+        56,
+        57,
+        58,
+        59,
+        60
+      ]
+    },
+    {
+      "nombre": "Educación Cívica",
+      "preguntas": [
+        61,
+        62,
+        63,
+        64
+      ]
+    },
+    {
+      "nombre": "Historia del Perú",
+      "preguntas": [
+        65,
+        66,
+        67
+      ]
+    },
+    {
+      "nombre": "Historia Universal",
+      "preguntas": [
+        68,
+        69,
+        70
+      ]
+    },
+    {
+      "nombre": "Geografía",
+      "preguntas": [
+        71,
+        72,
+        73,
+        74
+      ]
+    },
+    {
+      "nombre": "Economía",
+      "preguntas": [
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ]
+    },
+    {
+      "nombre": "Filosofía",
+      "preguntas": [
+        81,
+        82,
+        83,
+        84
+      ]
+    },
+    {
+      "nombre": "Física",
+      "preguntas": [
+        85,
+        86,
+        87,
+        88,
+        89
+      ]
+    },
+    {
+      "nombre": "Química",
+      "preguntas": [
+        90,
+        91,
+        92,
+        93,
+        94
+      ]
+    },
+    {
+      "nombre": "Biología",
+      "preguntas": [
+        95,
+        96,
+        97,
+        98,
+        99,
+        100
+      ]
+    }
+  ]
+}

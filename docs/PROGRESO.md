@@ -1,5 +1,27 @@
 # Progreso
 
+## Simplificación de textos de preparación — 2026-10-25
+
+- A petición del usuario, retirado el anuncio «Nuevo simulacro: 100 preguntas · 3 horas…» de `templates/preparacion.html`. El consentimiento ya no expone segundos de captura ni el umbral temporal de detección, y se retiró la frase sobre métricas de MediaPipe a Google.
+- Se conservan el consentimiento para fotografías, cifrado, acceso administrativo, retención y revisión humana. Solo cambia el texto visible; no se modifican detector, capturas ni reloj. Validación de sintaxis Jinja y diagnósticos sin errores; sin importar Flask ni acceder a PostgreSQL.
+
+## Retirada de anuncios de vista previa del panel — 2026-10-25
+
+- Retirados de `templates/dashboard.html` los dos bloques de vista previa A/B–E, sus botones y la etiqueta superior de 100 preguntas/tres horas que aparecen en la captura del usuario. El panel comienza con el contenido habitual de intentos y usuario.
+- Cambio exclusivamente de presentación; bancos, figuras, duración y flujo de simulacros conservados. Validación: sintaxis Jinja y `git diff --check` sin errores, sin importar Flask ni acceder a PostgreSQL.
+
+## Integración de 100 preguntas y tres horas en A–E — 2026-10-25
+
+ESTADO: Implementada y verificada en PostgreSQL de pruebas y navegador.
+
+- Alcance autorizado por el usuario: sustituir los bancos de diez preguntas por los bancos revisados de 100 preguntas en las cinco áreas y fijar tres horas para nuevos intentos. `scripts/activar_bancos_100.py` valida las cinco áreas, incorpora sus lecturas y conserva las diez preguntas originales de cada área en `data/examenes/anteriores/`. A incluye las correcciones de 47/71; B–E mantienen HV sin imágenes.
+- Se reutiliza la tabla existente `examenes_versiones`: cada nuevo intento guarda una versión inmutable de sus preguntas dentro de la transacción de inicio. Recarga, entrega, anulación/revisión y reposición del administrador leen esa versión. Los intentos y resultados antiguos sin versión consultan el banco histórico, sin recalificar ni ampliar su vencimiento. No se añaden tablas ni columnas. La configuración del servidor fija 180 minutos; valores heredados de `.env` no reducen el plazo. No se modificó `.env`.
+- La lista pública de campos incorpora lecturas, fórmulas y figuras sin claves. Nuevo renderer DOM/MathML en `static/js/contenido_academico.js` y estilos en `static/css/contenido_academico.css`, usados por examen y revisión académica. El navegador del examen agrupa los 19 cursos y las tres lecturas; tiene desplazamiento para las 100 preguntas. Se sustituyó el texto estático de 60 minutos por el tiempo real del intento; cero segundos ya no reinicia el contador por un fallback.
+- Archivos funcionales: cinco bancos activos y archivos históricos; `models/examen.py`, `models/intento.py`, `models/supervision.py`, `utils/preguntas.py`, `routes/api.py`, `routes/simulacro.py`, `routes/resultados.py`, `config.py`, referencia DDL de duración en `models/database.py`, motor JS, plantillas de examen, resultado, preparación y dashboard. Documentación y ejemplo de configuración actualizados. Se preservan los cambios previos de contenido y vistas.
+- Pruebas: 43 casos OK con `unittest` (`tests.test_supervision`, `tests.test_puntuacion`, `tests.test_importacion_area_a`, `tests.test_areas_bcde`, `tests.test_bancos_activos`). Antes de importar `app.py` se confirmó por SQL la identidad exclusiva de `unmsm_proctor_test` en `127.0.0.1:5432`; credenciales no registradas. Incluyen inicio en A–E con 100 preguntas y 10 800 segundos, rechazo de duración/área del cliente, recarga sin cambiar banco/vencimiento, 100 aciertos = 2000 puntos, 100 blancos, archivo histórico con diez preguntas y una hora, y calificación independiente de cambios del banco activo. La primera ejecución del ensayo A–E reutilizó un CSRF anterior a la recarga: falló la prueba y se corrigió el ensayo para usar el token renovado por el GET; no se relajó la validación de producción.
+- Navegador sobre plantillas reales renderizadas con datos sanitizados: recorrido de 500 preguntas, cinco opciones por pregunta, 100 botones y 19 cursos en cada área, cero errores JS; imágenes decodificadas. En A se verificaron ocho subrayados de 49, dos fracciones de 38 y seis filas de la tabla de 90. Reloj inicial 03:00:00, siguiente segundo 02:59:59 y entrada cero conservada. El HUD fijo desbordaba la pestaña estrecha; se ajustó la cuadrícula sin desbordamiento a 543 px en 11, 24, 38, 39, 49, 84, 90 y 91. Diagnósticos sin errores y `git diff --check` OK.
+- Las plantillas temporales de comprobación omitieron exclusivamente la activación de cámara/intento y se retiraron al terminar; no se probó webcam ni se dejó una ruta de acceso alternativa en la aplicación. No se accedió a la base de desarrollo/producción, no se alteraron resultados existentes, no se hicieron commits ni push.
+
 ## Fondo institucional en ingreso y registro — 2026-10-20
 
 ESTADO: Cambio visual implementado; pendiente de revisión manual en el navegador.
@@ -264,6 +286,23 @@ ESTADO: Captura adelantada al fotograma positivo; pendiente de prueba con teléf
 - Archivos: `static/js/modulos/phone_monitor.js`, `static/js/monitor_engine.js`, `templates/resultado.html`, `docs/EVIDENCIAS.md`, `docs/REGLAS.md`. El informe identifica la primera imagen como «Primera detección». No se modificaron esquema ni permisos.
 - Verificación aislada en navegador: el callback de captura se ejecutó entre el envío del evento y su confirmación (`event`, `snapshot-1`, `confirmed`, `upload-1`). En una prueba con un lienzo rojo cambiado a azul antes de la confirmación, el JPEG enviado conservó el fotograma rojo inicial y no se envió antes de confirmar. No se usó la webcam real.
 - Pendiente: comprobar con webcam y teléfono reales si el detector reconoce el dispositivo y si el fotograma inicial lo muestra. La inferencia ocurre aproximadamente cada segundo y puede omitir detecciones breves; una captura nunca demuestra por sí sola una infracción. No se hizo commit ni push.
+## Cien preguntas originales por área B, C, D y E — 2026-10-25
+
+ESTADO: Cuatro bancos y vista de revisión implementados y comprobados; integración al examen supervisado pendiente.
+
+- Alcance confirmado: 100 preguntas por área siguiendo la organización del área A. Cada banco contiene 10 actitudinales, 10 de HV y 80 de los demás cursos, organizados en 19 cursos. HV utiliza tres lecturas originales por área, doce textos distintos en total, sin imágenes. Preguntas con cinco opciones, clave y explicación; 15 figuras SVG de apoyo en Geometría entre las cuatro áreas.
+- El material se identifica como práctica original. Las cuotas son editoriales, sin atribución oficial. Hay contenidos generales compartidos entre áreas y problemas numéricos con datos diferentes; no se afirma que sean 400 enunciados independientes ni un instrumento psicométrico validado.
+- Archivos nuevos: `scripts/generar_areas_bcde.py`, `data/examenes/lecturas_originales_bcde.json`, cuatro bancos privados `area_*_practica.json`, cuatro JSON públicos en `static/practica/`, `static/vista_previa_areas.html`, `static/js/vista_previa_areas.js`, `tests/test_areas_bcde.py` y `docs/PRACTICA_AREAS_BCDE.md`. Accesos añadidos al dashboard y guía enlazada en README. Se preservaron los cambios anteriores del área A.
+- Validación: `python -m unittest tests.test_areas_bcde tests.test_importacion_area_a -v`: 19 casos OK. Cobertura 1–100, 19 cursos, opciones únicas, claves privadas, lecturas distintas sin imágenes y cálculos independientes de los problemas numéricos. Regeneración determinista: ocho JSON idénticos por SHA-256. Dashboard analizado con Jinja; diagnósticos de Python, HTML y JS sin errores; `git diff --check` sin errores.
+- Navegador: recorrido programático de las 400 preguntas, cinco opciones y enunciado en todas; 100 botones/19 cursos por área; 4/5/3/3 figuras respectivamente y cero imágenes en HV; sin errores JavaScript durante el recorrido. Selección C conservada al avanzar/volver y cambiar E→B→E. A 390 px no hay desbordamiento en 1, 11, 14, 17, 34, 35 y 100 del área E (ancho útil/scroll: 383/383). El primer acceso ocurrió antes de iniciar el servidor; se reutilizó la tarea estática existente. Un recorrido con clic físico y una espera basada en animación agotaron el tiempo en la pestaña no visible; se repitió con clic DOM y sondeo temporal, sin alterar el producto por ese fallo de prueba.
+- La vista no califica ni crea intentos. Los bancos activos antiguos siguen intactos: el examen califica actualmente por área sin versión, y sustituirlos podría reinterpretar respuestas de intentos en curso. No se importó Flask ni se accedió a PostgreSQL; sin cambios de esquema, supervisión, resultados, commit ni push.
+
+## Correcciones autorizadas de 47 y 71 — 2026-10-25
+
+- Corregidas D de 47 a «sé - mas - sí - mí» (clave D) y B de 71 a «El efecto invernadero» (clave B). Ambas dejan de figurar como pendientes. Se conserva el material extraído original como referencia.
+- Actualizados edición, banco privado, JSON/JS públicos, generadores, aviso de la vista y documentación. El banco activo del simulacro todavía no se sustituye; continúa pendiente su integración con la versión nueva sin reinterpretar intentos históricos.
+- Validación: 14 pruebas de `tests.test_importacion_area_a` OK, incluidos valores exactos de opciones, claves y exclusión de claves públicas; diagnósticos Python sin errores. La primera ejecución detectó pérdida de tildes en la entrada estándar de PowerShell; corregida mediante escapes Unicode antes de repetir las pruebas. Sin importar Flask ni acceder a PostgreSQL.
+
 # Vista previa del PDF del área A — 2026-10-25
 
 ESTADO: Incorporada al proyecto y comprobada en navegador; pendiente de valoración visual del usuario y de recibir claves para una futura versión calificada.

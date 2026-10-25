@@ -33,7 +33,7 @@ class Config:
     PUNTO_BLANCO = 0.0
     
     # Duración oficial de simulacro (en minutos)
-    DURACION_EXAMEN_MINUTOS = int(os.environ.get('DURACION_EXAMEN_MINUTOS', 60))
+    DURACION_EXAMEN_MINUTOS = 180
     DETECCION_CELULAR_ACTIVA = os.environ.get('DETECCION_CELULAR_ACTIVA', '1') == '1'
 
     # Tolerancia máxima para discrepancia temporal de examen (segundos de margen)

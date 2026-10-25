@@ -1,142 +1,1920 @@
 [
   {
-    "id": 1,
-    "seccion": "Habilidad Lógico-Matemática",
-    "enunciado": "Si el ayer del anteayer del mañana del pasado mañana del subsiguiente día de hace 3 días fue lunes, ¿qué día de la semana será el mañana del pasado mañana de hoy?",
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Descubres un error de cálculo que favorece la nota de tu equipo. ¿Cuál es la actuación más adecuada?",
     "opciones": {
-      "A": "Jueves",
-      "B": "Viernes",
-      "C": "Sábado",
-      "D": "Domingo",
-      "E": "Miércoles"
-    },
-    "correcta": "B",
-    "explicacion": "Planteando algebraicamente los días relativos: (-1) + (-2) + (+1) + (+2) + (+2) - 3 = -1 = lunes. Si ayer (-1) fue lunes, hoy (0) es martes. El mañana del pasado mañana (+1 + 2 = +3) será martes + 3 = viernes."
-  },
-  {
-    "id": 2,
-    "seccion": "Álgebra - Polinomios",
-    "enunciado": "Si el polinomio P(x) = x^3 - 6x^2 + 11x - 6 tiene como raíces a los números reales r1, r2 y r3 con r1 < r2 < r3, halle el valor de (r1)^2 + (r2)^2 + (r3)^2.",
-    "opciones": {
-      "A": "14",
-      "B": "18",
-      "C": "36",
-      "D": "24",
-      "E": "11"
+      "A": "Comunicar el error y pedir que se revise el cálculo.",
+      "B": "Ocultarlo para conservar la nota.",
+      "C": "Culpar sin pruebas a otro equipo.",
+      "D": "Borrar el registro original.",
+      "E": "Presionar a quien detectó el error para que calle."
     },
     "correcta": "A",
-    "explicacion": "Por Cardano-Vieta: suma de raíces S = 6, suma de productos binarios Q = 11. Suma de cuadrados = S^2 - 2Q = 6^2 - 2(11) = 36 - 22 = 14."
+    "explicacion": "Reconocer el error permite una evaluación honesta y verificable.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Honestidad",
+    "id": 1
   },
   {
-    "id": 3,
-    "seccion": "Física - Mecánica Clásica",
-    "enunciado": "Un bloque de 5 kg se desliza sobre una superficie horizontal lisa impulsado por una fuerza constante F = 20 N paralela al suelo. Partiendo del reposo, ¿qué distancia recorre en los primeros 4 segundos?",
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Una compañera explica que no comprendió una indicación y teme preguntar. ¿Cuál es la actuación más adecuada?",
     "opciones": {
-      "A": "16 m",
-      "B": "32 m",
-      "C": "64 m",
-      "D": "8 m",
-      "E": "40 m"
+      "A": "Burlarse de su dificultad.",
+      "B": "Escucharla y ayudarla a formular su consulta con respeto.",
+      "C": "Excluirla del equipo.",
+      "D": "Responder por ella sin escucharla.",
+      "E": "Difundir su temor para entretener a otros."
     },
     "correcta": "B",
-    "explicacion": "Aceleración a = F/m = 20/5 = 4 m/s^2. Distancia d = 1/2 * a * t^2 = 0.5 * 4 * (4^2) = 2 * 16 = 32 m."
+    "explicacion": "Escuchar y facilitar una consulta respetuosa apoya su autonomía.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Empatía",
+    "id": 2
   },
   {
-    "id": 4,
-    "seccion": "Química - Estequiometría",
-    "enunciado": "En la combustión completa de 1 mol de propano (C3H8) según la ecuación: C3H8 + 5 O2 -> 3 CO2 + 4 H2O, ¿cuántos gramos de agua (H2O) se producen? (Masa molar H=1 g/mol, O=16 g/mol)",
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: No podrás entregar a tiempo la parte que asumiste en un trabajo grupal. ¿Cuál es la actuación más adecuada?",
     "opciones": {
-      "A": "18 g",
-      "B": "36 g",
-      "C": "72 g",
-      "D": "54 g",
-      "E": "90 g"
+      "A": "Esperar a que venza el plazo sin avisar.",
+      "B": "Inventar que ya entregaste.",
+      "C": "Avisar con anticipación y acordar una solución realista.",
+      "D": "Eliminar los mensajes del equipo.",
+      "E": "Culpar a alguien ajeno al retraso."
     },
     "correcta": "C",
-    "explicacion": "1 mol de C3H8 produce 4 moles de H2O. Masa molar del agua = 18 g/mol. Masa producida = 4 * 18 = 72 g."
+    "explicacion": "La comunicación temprana permite reorganizar el trabajo y asumir la responsabilidad.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Responsabilidad",
+    "id": 3
   },
   {
-    "id": 5,
-    "seccion": "Geometría Analítica",
-    "enunciado": "Halle la ecuación de la recta que pasa por el punto P(2, -3) y es perpendicular a la recta L1: 2x - 3y + 6 = 0.",
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Dos integrantes proponen soluciones distintas y la discusión se vuelve personal. ¿Cuál es la actuación más adecuada?",
     "opciones": {
-      "A": "3x + 2y = 0",
-      "B": "2x + 3y + 5 = 0",
-      "C": "3x - 2y - 12 = 0",
-      "D": "3x + 2y - 1 = 0",
-      "E": "x - y - 5 = 0"
+      "A": "Elegir por amistad sin revisar razones.",
+      "B": "Insultar a quien discrepa.",
+      "C": "Interrumpir toda participación.",
+      "D": "Volver a los criterios del problema y comparar las razones de ambas propuestas.",
+      "E": "Decidir por rumores sobre los integrantes."
+    },
+    "correcta": "D",
+    "explicacion": "Centrarse en razones y criterios evita ataques personales y facilita una decisión fundamentada.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Trabajo en equipo",
+    "id": 4
+  },
+  {
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Alguien se burla del acento de una persona durante una exposición. ¿Cuál es la actuación más adecuada?",
+    "opciones": {
+      "A": "Sumarse a la burla.",
+      "B": "Grabarla para difundirla.",
+      "C": "Pedir que no vuelva a exponer.",
+      "D": "Evaluar su trabajo únicamente por su acento.",
+      "E": "Detener la burla con respeto y respaldar el derecho de la persona a participar."
+    },
+    "correcta": "E",
+    "explicacion": "El respeto exige evitar la discriminación y proteger la participación.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Respeto",
+    "id": 5
+  },
+  {
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Recibes una crítica que te irrita durante una revisión de tu proyecto. ¿Cuál es la actuación más adecuada?",
+    "opciones": {
+      "A": "Hacer una pausa, escuchar el contenido y responder con argumentos.",
+      "B": "Responder con un ataque personal.",
+      "C": "Romper los materiales.",
+      "D": "Difundir información privada de quien critica.",
+      "E": "Cambiar resultados para aparentar éxito."
     },
     "correcta": "A",
-    "explicacion": "La pendiente de L1 es m1 = 2/3. La pendiente perpendicular es m2 = -3/2. Ecuación punto-pendiente: y - (-3) = -3/2 (x - 2) => 2(y + 3) = -3(x - 2) => 2y + 6 = -3x + 6 => 3x + 2y = 0."
+    "explicacion": "Regular la reacción permite evaluar la crítica y responder de manera constructiva.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Autocontrol",
+    "id": 6
   },
   {
-    "id": 6,
-    "seccion": "Biología - Genética Molecular",
-    "enunciado": "La enzima encargada de desenrollar la doble hélice del ADN durante la replicación celular rompiendo los puentes de hidrógeno entre las bases nitrogenadas complementarias es la:",
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Te ofrecen una copia de las respuestas antes de una evaluación. ¿Cuál es la actuación más adecuada?",
     "opciones": {
-      "A": "ADN Polimerasa III",
-      "B": "Helicasa",
-      "C": "Topoisomerasa",
-      "D": "Ligasa",
-      "E": "Primasa"
+      "A": "Usarla y negar que la recibiste.",
+      "B": "Rechazarla y continuar con tu preparación honesta.",
+      "C": "Venderla a otros estudiantes.",
+      "D": "Ocultarla para usarla durante la prueba.",
+      "E": "Pedir más respuestas a cambio de un favor."
     },
     "correcta": "B",
-    "explicacion": "La helicasa rompe los puentes de hidrógeno separando las dos hebras del ADN para formar la horquilla de replicación."
+    "explicacion": "Rechazar una ventaja indebida protege la integridad de la evaluación.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Integridad",
+    "id": 7
   },
   {
-    "id": 7,
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Coordinas un equipo y una integrante todavía no ha podido dar su opinión. ¿Cuál es la actuación más adecuada?",
+    "opciones": {
+      "A": "Dar por hecho que está de acuerdo.",
+      "B": "Excluirla por hablar poco.",
+      "C": "Invitarla a participar y escuchar sus aportes antes de cerrar la decisión.",
+      "D": "Asignarle toda la culpa de un problema.",
+      "E": "Impedir preguntas para terminar antes."
+    },
+    "correcta": "C",
+    "explicacion": "Un liderazgo participativo crea oportunidades de intervención para todos.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Liderazgo",
+    "id": 8
+  },
+  {
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Encuentras un mensaje alarmante sin fuente sobre un asunto relacionado con tu carrera. ¿Cuál es la actuación más adecuada?",
+    "opciones": {
+      "A": "Difundirlo porque causa impresión.",
+      "B": "Cambiarle el autor para que parezca fiable.",
+      "C": "Presentarlo como un hecho sin comprobarlo.",
+      "D": "Comprobar su origen y evidencia antes de compartirlo.",
+      "E": "Inventar datos que lo respalden."
+    },
+    "correcta": "D",
+    "explicacion": "La verificación evita tratar una afirmación no sustentada como un hecho.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Pensamiento crítico",
+    "id": 9
+  },
+  {
+    "curso": "Actitudinales",
+    "seccion": "Actitudinales",
+    "enunciado": "En una actividad de formación del área de Ciencias Básicas, ocurre lo siguiente: Una persona necesita orientación sobre un procedimiento que tú no conoces bien. ¿Cuál es la actuación más adecuada?",
+    "opciones": {
+      "A": "Inventar una respuesta con seguridad.",
+      "B": "Culparla por no saber.",
+      "C": "Dar información falsa para terminar rápido.",
+      "D": "Prometer un resultado que no puedes garantizar.",
+      "E": "Reconocer el límite de tu conocimiento y ayudarla a encontrar una fuente adecuada."
+    },
+    "correcta": "E",
+    "explicacion": "Ayudar responsablemente requiere reconocer límites y orientar hacia información pertinente.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "competencia": "Vocación de servicio",
+    "id": 10
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "¿Cuál es la idea principal del texto?",
+    "opciones": {
+      "A": "Una hipótesis se confirma con cualquier observación favorable.",
+      "B": "La comparación debe controlar otros factores para evaluar una hipótesis.",
+      "C": "La sal gruesa nunca se disuelve en agua fría.",
+      "D": "Repetir una experiencia elimina todas las dudas.",
+      "E": "El trabajo escolar debe prescindir de hipótesis."
+    },
+    "correcta": "B",
+    "explicacion": "La profesora propone igualar los otros factores para evaluar el efecto de la temperatura.",
+    "lectura_id": "b-hv-1",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 11,
+    "lectura": {
+      "id": "b-hv-1",
+      "titulo": "Texto 1 · Medir y comparar",
+      "preguntas": [
+        11,
+        12,
+        13
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "En un taller escolar, un equipo afirma que el agua tibia acelera la disolución de la sal. Para comprobarlo, coloca una cucharada de sal fina en un vaso de agua tibia y dos cucharadas de sal gruesa en otro de agua fría. El primer vaso pierde antes los cristales visibles. Los estudiantes celebran el resultado, pero su profesora les pide revisar el procedimiento: además de la temperatura, cambiaron la cantidad y el tamaño de los granos.",
+            "La observación puede sugerir una explicación, aunque todavía no permite atribuir la diferencia a un solo factor. El equipo repite la comparación con igual volumen de agua, igual cantidad de sal, granos del mismo tamaño y una agitación semejante. También realiza varias repeticiones. La profesora no les pide abandonar su hipótesis, sino construir una comparación que pueda ponerla a prueba. Un resultado favorable gana fuerza cuando se han examinado explicaciones alternativas."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "¿Qué debilidad presenta el primer procedimiento?",
+    "opciones": {
+      "A": "No incluye una profesora.",
+      "B": "Usa recipientes transparentes.",
+      "C": "Formula una pregunta demasiado simple.",
+      "D": "Modifica simultáneamente varias condiciones.",
+      "E": "Compara dos muestras de agua."
+    },
+    "correcta": "D",
+    "explicacion": "Cambian temperatura, cantidad de sal y tamaño de los granos.",
+    "lectura_id": "b-hv-1",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 12,
+    "lectura": {
+      "id": "b-hv-1",
+      "titulo": "Texto 1 · Medir y comparar",
+      "preguntas": [
+        11,
+        12,
+        13
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "En un taller escolar, un equipo afirma que el agua tibia acelera la disolución de la sal. Para comprobarlo, coloca una cucharada de sal fina en un vaso de agua tibia y dos cucharadas de sal gruesa en otro de agua fría. El primer vaso pierde antes los cristales visibles. Los estudiantes celebran el resultado, pero su profesora les pide revisar el procedimiento: además de la temperatura, cambiaron la cantidad y el tamaño de los granos.",
+            "La observación puede sugerir una explicación, aunque todavía no permite atribuir la diferencia a un solo factor. El equipo repite la comparación con igual volumen de agua, igual cantidad de sal, granos del mismo tamaño y una agitación semejante. También realiza varias repeticiones. La profesora no les pide abandonar su hipótesis, sino construir una comparación que pueda ponerla a prueba. Un resultado favorable gana fuerza cuando se han examinado explicaciones alternativas."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "En el texto, «atribuir» significa",
+    "opciones": {
+      "A": "asignar una causa",
+      "B": "repetir una medida",
+      "C": "eliminar un registro",
+      "D": "ocultar una diferencia",
+      "E": "rechazar una observación"
+    },
+    "correcta": "A",
+    "explicacion": "Se trata de asignar la diferencia observada al efecto de un factor.",
+    "lectura_id": "b-hv-1",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 13,
+    "lectura": {
+      "id": "b-hv-1",
+      "titulo": "Texto 1 · Medir y comparar",
+      "preguntas": [
+        11,
+        12,
+        13
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "En un taller escolar, un equipo afirma que el agua tibia acelera la disolución de la sal. Para comprobarlo, coloca una cucharada de sal fina en un vaso de agua tibia y dos cucharadas de sal gruesa en otro de agua fría. El primer vaso pierde antes los cristales visibles. Los estudiantes celebran el resultado, pero su profesora les pide revisar el procedimiento: además de la temperatura, cambiaron la cantidad y el tamaño de los granos.",
+            "La observación puede sugerir una explicación, aunque todavía no permite atribuir la diferencia a un solo factor. El equipo repite la comparación con igual volumen de agua, igual cantidad de sal, granos del mismo tamaño y una agitación semejante. También realiza varias repeticiones. La profesora no les pide abandonar su hipótesis, sino construir una comparación que pueda ponerla a prueba. Un resultado favorable gana fuerza cuando se han examinado explicaciones alternativas."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "¿Qué propósito central cumple la biblioteca descrita?",
+    "opciones": {
+      "A": "Imponer una variedad en todos los terrenos.",
+      "B": "Reemplazar el cultivo por el almacenamiento.",
+      "C": "Conservar y compartir diversidad y conocimiento mediante la colaboración.",
+      "D": "Evitar cualquier comparación entre cosechas.",
+      "E": "Prohibir el intercambio entre familias."
+    },
+    "correcta": "C",
+    "explicacion": "La biblioteca conserva variedades y reúne experiencias mediante aportes continuos.",
+    "lectura_id": "b-hv-2",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 14,
+    "lectura": {
+      "id": "b-hv-2",
+      "titulo": "Texto 2 · Una biblioteca de semillas",
+      "preguntas": [
+        14,
+        15,
+        16
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Una comunidad organiza una biblioteca de semillas. Cada familia deposita una parte de su cosecha y puede retirar semillas de otras variedades. En el registro se anotan la procedencia y las condiciones de cultivo. El propósito no es declarar una semilla superior a todas las demás: una variedad que prospera en un terreno puede rendir poco en otro.",
+            "Con el tiempo, el registro permite comparar experiencias y recuperar variedades que pocas familias conservaban. Sin embargo, guardar sobres no basta. Las semillas deben renovarse mediante el cultivo y los datos necesitan revisarse. La biblioteca se sostiene porque quienes retiran también aportan conocimiento y material. Su valor reside tanto en lo almacenado como en la continuidad de esa colaboración."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "¿Qué se puede inferir del texto?",
+    "opciones": {
+      "A": "Las semillas guardadas duran indefinidamente.",
+      "B": "Todos los suelos producen lo mismo.",
+      "C": "El registro vuelve innecesario cultivar.",
+      "D": "Una sola familia puede garantizar todo el intercambio.",
+      "E": "La conservación requiere actividades periódicas."
+    },
+    "correcta": "E",
+    "explicacion": "Se indica que es necesario renovar las semillas y revisar los datos.",
+    "lectura_id": "b-hv-2",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 15,
+    "lectura": {
+      "id": "b-hv-2",
+      "titulo": "Texto 2 · Una biblioteca de semillas",
+      "preguntas": [
+        14,
+        15,
+        16
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Una comunidad organiza una biblioteca de semillas. Cada familia deposita una parte de su cosecha y puede retirar semillas de otras variedades. En el registro se anotan la procedencia y las condiciones de cultivo. El propósito no es declarar una semilla superior a todas las demás: una variedad que prospera en un terreno puede rendir poco en otro.",
+            "Con el tiempo, el registro permite comparar experiencias y recuperar variedades que pocas familias conservaban. Sin embargo, guardar sobres no basta. Las semillas deben renovarse mediante el cultivo y los datos necesitan revisarse. La biblioteca se sostiene porque quienes retiran también aportan conocimiento y material. Su valor reside tanto en lo almacenado como en la continuidad de esa colaboración."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "¿Qué afirmación contradice el texto?",
+    "opciones": {
+      "A": "La procedencia forma parte del registro.",
+      "B": "Basta guardar sobres para asegurar la conservación.",
+      "C": "Las familias intercambian variedades.",
+      "D": "El terreno influye en el desempeño de una variedad.",
+      "E": "La colaboración permite recuperar variedades."
+    },
+    "correcta": "B",
+    "explicacion": "El segundo párrafo afirma expresamente que guardar sobres no basta.",
+    "lectura_id": "b-hv-2",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 16,
+    "lectura": {
+      "id": "b-hv-2",
+      "titulo": "Texto 2 · Una biblioteca de semillas",
+      "preguntas": [
+        14,
+        15,
+        16
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Una comunidad organiza una biblioteca de semillas. Cada familia deposita una parte de su cosecha y puede retirar semillas de otras variedades. En el registro se anotan la procedencia y las condiciones de cultivo. El propósito no es declarar una semilla superior a todas las demás: una variedad que prospera en un terreno puede rendir poco en otro.",
+            "Con el tiempo, el registro permite comparar experiencias y recuperar variedades que pocas familias conservaban. Sin embargo, guardar sobres no basta. Las semillas deben renovarse mediante el cultivo y los datos necesitan revisarse. La biblioteca se sostiene porque quienes retiran también aportan conocimiento y material. Su valor reside tanto en lo almacenado como en la continuidad de esa colaboración."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "¿Cuál es la tesis del texto?",
+    "opciones": {
+      "A": "Un mapa útil debe representar todos los detalles.",
+      "B": "Todo plano es inservible fuera de un aula.",
+      "C": "Las omisiones siempre son errores.",
+      "D": "La utilidad de una representación depende de su finalidad.",
+      "E": "La jardinería no admite representaciones."
+    },
+    "correcta": "D",
+    "explicacion": "El texto relaciona la selección de información con la tarea para la cual se utiliza.",
+    "lectura_id": "b-hv-3",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 17,
+    "lectura": {
+      "id": "b-hv-3",
+      "titulo": "Texto 3 · El mapa y el territorio",
+      "preguntas": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Un mapa del campus representa aulas, senderos y puertas, pero omite el color de las flores y las conversaciones de quienes lo recorren. Estas ausencias no lo vuelven inútil: el mapa selecciona información de acuerdo con una finalidad. Para encontrar una salida, importa más la conexión entre pasillos que el aroma del jardín.",
+            "El problema aparece cuando alguien usa ese mismo plano para decidir dónde plantar un árbol. Necesitará datos de suelo, luz y disponibilidad de agua que el mapa nunca pretendió ofrecer. Una representación puede ser adecuada para una tarea e insuficiente para otra. Reconocer sus límites permite utilizarla mejor y decidir qué información adicional hace falta."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "La mención del aroma del jardín sirve para",
+    "opciones": {
+      "A": "ejemplificar un dato innecesario para localizar una salida",
+      "B": "demostrar que los jardines son peligrosos",
+      "C": "exigir mapas de olores en todas las aulas",
+      "D": "negar la existencia de los senderos",
+      "E": "proponer eliminar las flores"
+    },
+    "correcta": "A",
+    "explicacion": "El contraste muestra que no todos los detalles son relevantes para una misma tarea.",
+    "lectura_id": "b-hv-3",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 18,
+    "lectura": {
+      "id": "b-hv-3",
+      "titulo": "Texto 3 · El mapa y el territorio",
+      "preguntas": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Un mapa del campus representa aulas, senderos y puertas, pero omite el color de las flores y las conversaciones de quienes lo recorren. Estas ausencias no lo vuelven inútil: el mapa selecciona información de acuerdo con una finalidad. Para encontrar una salida, importa más la conexión entre pasillos que el aroma del jardín.",
+            "El problema aparece cuando alguien usa ese mismo plano para decidir dónde plantar un árbol. Necesitará datos de suelo, luz y disponibilidad de agua que el mapa nunca pretendió ofrecer. Una representación puede ser adecuada para una tarea e insuficiente para otra. Reconocer sus límites permite utilizarla mejor y decidir qué información adicional hace falta."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "Si se quisiera usar el plano para elegir un sitio de plantación, habría que",
+    "opciones": {
+      "A": "borrar las puertas",
+      "B": "ignorar la luz disponible",
+      "C": "complementarlo con datos pertinentes para esa tarea",
+      "D": "dibujar todas las conversaciones",
+      "E": "suponer que todos los terrenos son iguales"
+    },
+    "correcta": "C",
+    "explicacion": "El segundo párrafo especifica que se requieren datos de suelo, luz y agua.",
+    "lectura_id": "b-hv-3",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 19,
+    "lectura": {
+      "id": "b-hv-3",
+      "titulo": "Texto 3 · El mapa y el territorio",
+      "preguntas": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Un mapa del campus representa aulas, senderos y puertas, pero omite el color de las flores y las conversaciones de quienes lo recorren. Estas ausencias no lo vuelven inútil: el mapa selecciona información de acuerdo con una finalidad. Para encontrar una salida, importa más la conexión entre pasillos que el aroma del jardín.",
+            "El problema aparece cuando alguien usa ese mismo plano para decidir dónde plantar un árbol. Necesitará datos de suelo, luz y disponibilidad de agua que el mapa nunca pretendió ofrecer. Una representación puede ser adecuada para una tarea e insuficiente para otra. Reconocer sus límites permite utilizarla mejor y decidir qué información adicional hace falta."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "HV",
+    "seccion": "HV",
+    "enunciado": "¿Qué actitud promueve el autor ante una representación?",
+    "opciones": {
+      "A": "Aceptarla como descripción completa.",
+      "B": "Rechazarla por cualquier omisión.",
+      "C": "Usarla siempre del mismo modo.",
+      "D": "Valorar únicamente su apariencia.",
+      "E": "Examinar su propósito y sus límites."
+    },
+    "correcta": "E",
+    "explicacion": "La conclusión recomienda reconocer los límites para utilizar mejor la representación.",
+    "lectura_id": "b-hv-3",
+    "formato": "texto",
+    "origen": "Creación original para práctica; no corresponde a un examen oficial",
+    "id": 20,
+    "lectura": {
+      "id": "b-hv-3",
+      "titulo": "Texto 3 · El mapa y el territorio",
+      "preguntas": [
+        17,
+        18,
+        19,
+        20
+      ],
+      "idioma": "es",
+      "figuras": [],
+      "bloques": [
+        {
+          "parrafos": [
+            "Un mapa del campus representa aulas, senderos y puertas, pero omite el color de las flores y las conversaciones de quienes lo recorren. Estas ausencias no lo vuelven inútil: el mapa selecciona información de acuerdo con una finalidad. Para encontrar una salida, importa más la conexión entre pasillos que el aroma del jardín.",
+            "El problema aparece cuando alguien usa ese mismo plano para decidir dónde plantar un árbol. Necesitará datos de suelo, luz y disponibilidad de agua que el mapa nunca pretendió ofrecer. Una representación puede ser adecuada para una tarea e insuficiente para otra. Reconocer sus límites permite utilizarla mejor y decidir qué información adicional hace falta."
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "Una sucesión aumenta siempre en 3 unidades: 3, 6, 9, 12, ... ¿Cuál es el sexto término?",
+    "opciones": {
+      "A": "15",
+      "B": "18",
+      "C": "17",
+      "D": "19",
+      "E": "21"
+    },
+    "correcta": "B",
+    "explicacion": "Es una sucesión aritmética de término general a(j) = 3j; a(6) = 18.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 21
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "Una sucesión aumenta siempre en 5 unidades: 5, 10, 15, 20, ... ¿Cuál es el sexto término?",
+    "opciones": {
+      "A": "27",
+      "B": "29",
+      "C": "30",
+      "D": "31",
+      "E": "33"
+    },
+    "correcta": "C",
+    "explicacion": "Es una sucesión aritmética de término general a(j) = 5j; a(6) = 30.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 22
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "Una sucesión aumenta siempre en 7 unidades: 7, 14, 21, 28, ... ¿Cuál es el sexto término?",
+    "opciones": {
+      "A": "39",
+      "B": "41",
+      "C": "43",
+      "D": "42",
+      "E": "45"
+    },
+    "correcta": "D",
+    "explicacion": "Es una sucesión aritmética de término general a(j) = 7j; a(6) = 42.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 23
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "En una fila, Julia ocupa el lugar 9 desde el inicio y el lugar 13 desde el final. ¿Cuántas personas hay en la fila?",
+    "opciones": {
+      "A": "18",
+      "B": "20",
+      "C": "22",
+      "D": "24",
+      "E": "21"
+    },
+    "correcta": "E",
+    "explicacion": "Se suman ambas posiciones y se resta a Julia, contada dos veces: 9 + 13 − 1 = 21.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 24
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "En una fila, Julia ocupa el lugar 11 desde el inicio y el lugar 15 desde el final. ¿Cuántas personas hay en la fila?",
+    "opciones": {
+      "A": "25",
+      "B": "22",
+      "C": "24",
+      "D": "26",
+      "E": "28"
+    },
+    "correcta": "A",
+    "explicacion": "Se suman ambas posiciones y se resta a Julia, contada dos veces: 11 + 15 − 1 = 25.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 25
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "En una fila, Julia ocupa el lugar 13 desde el inicio y el lugar 17 desde el final. ¿Cuántas personas hay en la fila?",
+    "opciones": {
+      "A": "26",
+      "B": "29",
+      "C": "28",
+      "D": "30",
+      "E": "32"
+    },
+    "correcta": "B",
+    "explicacion": "Se suman ambas posiciones y se resta a Julia, contada dos veces: 13 + 17 − 1 = 29.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 26
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "En una reunión de 15 personas, cada una saluda con un apretón de manos a todas las demás una sola vez. ¿Cuántos apretones se realizan?",
+    "opciones": {
+      "A": "102",
+      "B": "104",
+      "C": "105",
+      "D": "106",
+      "E": "108"
+    },
+    "correcta": "C",
+    "explicacion": "Cada pareja se cuenta una vez: 15 × 14/2 = 105.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 27
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "En una reunión de 17 personas, cada una saluda con un apretón de manos a todas las demás una sola vez. ¿Cuántos apretones se realizan?",
+    "opciones": {
+      "A": "133",
+      "B": "135",
+      "C": "137",
+      "D": "136",
+      "E": "139"
+    },
+    "correcta": "D",
+    "explicacion": "Cada pareja se cuenta una vez: 17 × 16/2 = 136.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 28
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "Un código consta de dos letras distintas elegidas de un alfabeto de 19 letras. Si importa el orden, ¿cuántos códigos pueden formarse?",
+    "opciones": {
+      "A": "339",
+      "B": "341",
+      "C": "343",
+      "D": "345",
+      "E": "342"
+    },
+    "correcta": "E",
+    "explicacion": "Hay 19 posibilidades para la primera letra y 18 para la segunda: 342.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 29
+  },
+  {
+    "curso": "H.L.M.",
+    "seccion": "H.L.M.",
+    "enunciado": "Un código consta de dos letras distintas elegidas de un alfabeto de 21 letras. Si importa el orden, ¿cuántos códigos pueden formarse?",
+    "opciones": {
+      "A": "420",
+      "B": "417",
+      "C": "419",
+      "D": "421",
+      "E": "423"
+    },
+    "correcta": "A",
+    "explicacion": "Hay 21 posibilidades para la primera letra y 20 para la segunda: 420.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 30
+  },
+  {
+    "curso": "Aritmética",
+    "seccion": "Aritmética",
+    "enunciado": "Un artículo cuesta S/ 130 y recibe un descuento del 20 %. ¿Cuál es el precio final en soles?",
+    "opciones": {
+      "A": "101",
+      "B": "104",
+      "C": "103",
+      "D": "105",
+      "E": "107"
+    },
+    "correcta": "B",
+    "explicacion": "Se paga el 80 % del precio: 0,8 × 130 = 104.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 31
+  },
+  {
+    "curso": "Aritmética",
+    "seccion": "Aritmética",
+    "enunciado": "El promedio aritmético de 11, 15, 19 y x es 17. Halle x.",
+    "opciones": {
+      "A": "20",
+      "B": "22",
+      "C": "23",
+      "D": "24",
+      "E": "26"
+    },
+    "correcta": "C",
+    "explicacion": "La suma requerida es 4 × 17 = 68; restando 45, resulta x = 23.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 32
+  },
+  {
+    "curso": "Aritmética",
+    "seccion": "Aritmética",
+    "enunciado": "Un artículo cuesta S/ 170 y recibe un descuento del 20 %. ¿Cuál es el precio final en soles?",
+    "opciones": {
+      "A": "133",
+      "B": "135",
+      "C": "137",
+      "D": "136",
+      "E": "139"
+    },
+    "correcta": "D",
+    "explicacion": "Se paga el 80 % del precio: 0,8 × 170 = 136.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 33
+  },
+  {
+    "curso": "Aritmética",
+    "seccion": "Aritmética",
+    "enunciado": "El promedio aritmético de 15, 19, 23 y x es 21. Halle x.",
+    "opciones": {
+      "A": "24",
+      "B": "26",
+      "C": "28",
+      "D": "30",
+      "E": "27"
+    },
+    "correcta": "E",
+    "explicacion": "La suma requerida es 4 × 21 = 84; restando 57, resulta x = 27.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 34
+  },
+  {
+    "curso": "Aritmética",
+    "seccion": "Aritmética",
+    "enunciado": "Un artículo cuesta S/ 210 y recibe un descuento del 20 %. ¿Cuál es el precio final en soles?",
+    "opciones": {
+      "A": "168",
+      "B": "165",
+      "C": "167",
+      "D": "169",
+      "E": "171"
+    },
+    "correcta": "A",
+    "explicacion": "Se paga el 80 % del precio: 0,8 × 210 = 168.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 35
+  },
+  {
+    "curso": "Geometría",
+    "seccion": "Geometría",
+    "enunciado": "Un triángulo rectángulo tiene catetos de 12 cm y 16 cm. ¿Cuánto mide la hipotenusa en centímetros?",
+    "opciones": {
+      "A": "17",
+      "B": "19",
+      "C": "20",
+      "D": "21",
+      "E": "23"
+    },
+    "correcta": "C",
+    "explicacion": "Por Pitágoras, c = √((12)² + (16)²) = 20 cm.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 36,
+    "figura": "rectangulo"
+  },
+  {
+    "curso": "Geometría",
+    "seccion": "Geometría",
+    "enunciado": "Un rectángulo tiene base de 8 cm y altura de 5 cm. ¿Cuál es su área en centímetros cuadrados?",
+    "opciones": {
+      "A": "37",
+      "B": "39",
+      "C": "41",
+      "D": "40",
+      "E": "43"
+    },
+    "correcta": "D",
+    "explicacion": "Área = base × altura = 8 × 5 = 40 cm².",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 37,
+    "figura": "rectangulo"
+  },
+  {
+    "curso": "Geometría",
+    "seccion": "Geometría",
+    "enunciado": "Un triángulo rectángulo tiene catetos de 18 cm y 24 cm. ¿Cuánto mide la hipotenusa en centímetros?",
+    "opciones": {
+      "A": "27",
+      "B": "29",
+      "C": "31",
+      "D": "33",
+      "E": "30"
+    },
+    "correcta": "E",
+    "explicacion": "Por Pitágoras, c = √((18)² + (24)²) = 30 cm.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 38,
+    "figura": "rectangulo"
+  },
+  {
+    "curso": "Geometría",
+    "seccion": "Geometría",
+    "enunciado": "Un rectángulo tiene base de 10 cm y altura de 7 cm. ¿Cuál es su área en centímetros cuadrados?",
+    "opciones": {
+      "A": "70",
+      "B": "67",
+      "C": "69",
+      "D": "71",
+      "E": "73"
+    },
+    "correcta": "A",
+    "explicacion": "Área = base × altura = 10 × 7 = 70 cm².",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 39,
+    "figura": "rectangulo"
+  },
+  {
+    "curso": "Álgebra",
+    "seccion": "Álgebra",
+    "enunciado": "Resuelva en los reales: 3x + 4 = 16.",
+    "opciones": {
+      "A": "1",
+      "B": "3",
+      "C": "5",
+      "D": "7",
+      "E": "4"
+    },
+    "correcta": "E",
+    "explicacion": "3x = 16 − 4 = 12; por tanto x = 4.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 40
+  },
+  {
+    "curso": "Álgebra",
+    "seccion": "Álgebra",
+    "enunciado": "Las raíces de x² − 15x + 56 = 0 son r y s. Halle r² + s².",
+    "opciones": {
+      "A": "113",
+      "B": "110",
+      "C": "112",
+      "D": "114",
+      "E": "116"
+    },
+    "correcta": "A",
+    "explicacion": "r + s = 15, rs = 56. Entonces r²+s² = (r+s)² − 2rs = 113.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 41
+  },
+  {
+    "curso": "Álgebra",
+    "seccion": "Álgebra",
+    "enunciado": "Resuelva en los reales: 3x + 10 = 40.",
+    "opciones": {
+      "A": "7",
+      "B": "10",
+      "C": "9",
+      "D": "11",
+      "E": "13"
+    },
+    "correcta": "B",
+    "explicacion": "3x = 40 − 10 = 30; por tanto x = 10.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 42
+  },
+  {
+    "curso": "Álgebra",
+    "seccion": "Álgebra",
+    "enunciado": "Las raíces de x² − 27x + 182 = 0 son r y s. Halle r² + s².",
+    "opciones": {
+      "A": "362",
+      "B": "364",
+      "C": "365",
+      "D": "366",
+      "E": "368"
+    },
+    "correcta": "C",
+    "explicacion": "r + s = 27, rs = 182. Entonces r²+s² = (r+s)² − 2rs = 365.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 43
+  },
+  {
+    "curso": "Álgebra",
+    "seccion": "Álgebra",
+    "enunciado": "Resuelva en los reales: 3x + 16 = 64.",
+    "opciones": {
+      "A": "13",
+      "B": "15",
+      "C": "17",
+      "D": "16",
+      "E": "19"
+    },
+    "correcta": "D",
+    "explicacion": "3x = 64 − 16 = 48; por tanto x = 16.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 44
+  },
+  {
+    "curso": "Trigonometría",
     "seccion": "Trigonometría",
-    "enunciado": "Simplifique la siguiente expresión trigonométrica: E = (sen 2x) / (1 + cos 2x).",
+    "enunciado": "En un triángulo rectángulo, el cateto opuesto a θ mide 12 cm y el adyacente mide 16 cm. Si x = 40 sen(θ), halle x.",
     "opciones": {
-      "A": "tg x",
-      "B": "ctg x",
-      "C": "sec x",
-      "D": "2 sen x",
-      "E": "cos x"
+      "A": "24",
+      "B": "21",
+      "C": "23",
+      "D": "25",
+      "E": "27"
     },
     "correcta": "A",
-    "explicacion": "sen 2x = 2 sen x cos x. 1 + cos 2x = 2 cos^2 x. E = (2 sen x cos x) / (2 cos^2 x) = sen x / cos x = tg x."
+    "explicacion": "La hipotenusa mide 20 cm. Así, sen(θ) = 3/5 y x = 24.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 45
   },
   {
-    "id": 8,
-    "seccion": "Física - Termodinámica",
-    "enunciado": "En un proceso isobárico a una presión constante de 10^5 Pa, un gas ideal se expande pasando de un volumen inicial de 0.02 m^3 a un volumen final de 0.05 m^3. El trabajo W realizado por el gas en joules es:",
+    "curso": "Trigonometría",
+    "seccion": "Trigonometría",
+    "enunciado": "En un triángulo rectángulo, el cateto opuesto a θ mide 15 cm y el adyacente mide 20 cm. Si x = 50 cos(θ), halle x.",
     "opciones": {
-      "A": "1500 J",
-      "B": "3000 J",
-      "C": "5000 J",
-      "D": "2000 J",
-      "E": "7000 J"
+      "A": "37",
+      "B": "40",
+      "C": "39",
+      "D": "41",
+      "E": "43"
     },
     "correcta": "B",
-    "explicacion": "En proceso isobárico W = P * ΔV = 10^5 * (0.05 - 0.02) = 10^5 * 0.03 = 3000 J."
+    "explicacion": "La hipotenusa mide 25 cm. Así, cos(θ) = 4/5 y x = 40.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 46
   },
   {
-    "id": 9,
-    "seccion": "Habilidad Verbal - Conectores Lógicos",
-    "enunciado": "El experimento arrojó resultados contradictorios, _______ los investigadores decidieron repetir el muestreo sistemático _______ deseaban publicar conclusiones plenamente fehacientes.",
+    "curso": "Trigonometría",
+    "seccion": "Trigonometría",
+    "enunciado": "En un triángulo rectángulo, el cateto opuesto a θ mide 18 cm y el adyacente mide 24 cm. Si x = 24 tan(θ), halle x.",
     "opciones": {
-      "A": "por ello - ya que",
-      "B": "aunque - si bien",
-      "C": "mas - dado que",
-      "D": "pero - puesto que no",
-      "E": "en consecuencia - a pesar de que"
+      "A": "15",
+      "B": "17",
+      "C": "18",
+      "D": "19",
+      "E": "21"
     },
-    "correcta": "A",
-    "explicacion": "La primera relación es consecutiva ('por ello' o 'por tanto') y la segunda es causal ('ya que' / 'porque')."
+    "correcta": "C",
+    "explicacion": "La hipotenusa mide 30 cm. Así, tan(θ) = 3/4 y x = 18.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 47
   },
   {
-    "id": 10,
-    "seccion": "Estadística y Probabilidades",
-    "enunciado": "De una baraja inglesa estándar de 52 cartas se extrae una carta al azar. ¿Cuál es la probabilidad de que la carta sea una figura (J, Q, K) o un As?",
+    "curso": "Trigonometría",
+    "seccion": "Trigonometría",
+    "enunciado": "En un triángulo rectángulo, el cateto opuesto a θ mide 21 cm y el adyacente mide 28 cm. Si x = 21 cot(θ), halle x.",
     "opciones": {
-      "A": "4/13",
-      "B": "1/13",
-      "C": "2/13",
-      "D": "5/13",
-      "E": "16/52"
+      "A": "25",
+      "B": "27",
+      "C": "29",
+      "D": "28",
+      "E": "31"
+    },
+    "correcta": "D",
+    "explicacion": "La hipotenusa mide 35 cm. Así, cot(θ) = 4/3 y x = 28.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 48
+  },
+  {
+    "curso": "Lenguaje",
+    "seccion": "Lenguaje",
+    "enunciado": "¿Qué palabra contiene un hiato?",
+    "opciones": {
+      "A": "tierra",
+      "B": "país",
+      "C": "causa",
+      "D": "puerta",
+      "E": "ciudad"
+    },
+    "correcta": "B",
+    "explicacion": "En país, la vocal cerrada tónica í se separa de la vocal abierta: pa-ís.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 49
+  },
+  {
+    "curso": "Lenguaje",
+    "seccion": "Lenguaje",
+    "enunciado": "¿Qué oración utiliza correctamente la tilde diacrítica?",
+    "opciones": {
+      "A": "El trajo él libro.",
+      "B": "Él trajo él libro.",
+      "C": "Él trajo el libro.",
+      "D": "El trajo el libro.",
+      "E": "El trájo el libro."
+    },
+    "correcta": "C",
+    "explicacion": "Él, pronombre personal, lleva tilde; el, artículo, no la lleva.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 50
+  },
+  {
+    "curso": "Lenguaje",
+    "seccion": "Lenguaje",
+    "enunciado": "En «Las investigadoras analizaron las muestras», ¿cuál es el núcleo del sujeto?",
+    "opciones": {
+      "A": "Las",
+      "B": "analizaron",
+      "C": "muestras",
+      "D": "investigadoras",
+      "E": "las muestras"
+    },
+    "correcta": "D",
+    "explicacion": "El sujeto es Las investigadoras y su núcleo nominal es investigadoras.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 51
+  },
+  {
+    "curso": "Lenguaje",
+    "seccion": "Lenguaje",
+    "enunciado": "En «Entregué el informe a Lucía», ¿qué función cumple «el informe»?",
+    "opciones": {
+      "A": "Sujeto",
+      "B": "Objeto indirecto",
+      "C": "Vocativo",
+      "D": "Complemento de lugar",
+      "E": "Objeto directo"
+    },
+    "correcta": "E",
+    "explicacion": "Es lo entregado y puede sustituirse por lo: Lo entregué a Lucía.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 52
+  },
+  {
+    "curso": "Lenguaje",
+    "seccion": "Lenguaje",
+    "enunciado": "¿Qué conector expresa oposición?",
+    "opciones": {
+      "A": "Sin embargo",
+      "B": "Por tanto",
+      "C": "Además",
+      "D": "En consecuencia",
+      "E": "Por eso"
     },
     "correcta": "A",
-    "explicacion": "Hay 12 figuras (4 J, 4 Q, 4 K) y 4 Ases, sumando 16 cartas favorables. Probabilidad = 16 / 52 = 4 / 13."
+    "explicacion": "Sin embargo introduce una idea que contrasta con la anterior.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 53
+  },
+  {
+    "curso": "Lenguaje",
+    "seccion": "Lenguaje",
+    "enunciado": "¿Qué palabra es esdrújula?",
+    "opciones": {
+      "A": "reloj",
+      "B": "música",
+      "C": "papel",
+      "D": "camino",
+      "E": "pared"
+    },
+    "correcta": "B",
+    "explicacion": "Música tiene la sílaba tónica en la antepenúltima sílaba.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 54
+  },
+  {
+    "curso": "Lenguaje",
+    "seccion": "Lenguaje",
+    "enunciado": "En «Ana compró pan y Luis preparó café», la conjunción «y» establece una relación",
+    "opciones": {
+      "A": "copulativa",
+      "B": "adversativa",
+      "C": "disyuntiva",
+      "D": "condicional",
+      "E": "concesiva"
+    },
+    "correcta": "A",
+    "explicacion": "La conjunción y une o suma proposiciones: coordinación copulativa.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 55
+  },
+  {
+    "curso": "Literatura",
+    "seccion": "Literatura",
+    "enunciado": "¿Qué recurso aparece en «Tus ojos son dos luceros»?",
+    "opciones": {
+      "A": "Hipérbole",
+      "B": "Metáfora",
+      "C": "Anáfora",
+      "D": "Onomatopeya",
+      "E": "Enumeración"
+    },
+    "correcta": "B",
+    "explicacion": "Se identifica figuradamente los ojos con luceros sin usar un nexo comparativo.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 56
+  },
+  {
+    "curso": "Literatura",
+    "seccion": "Literatura",
+    "enunciado": "¿Qué recurso aparece en «Te esperé mil años», cuando se quiere enfatizar una espera larga?",
+    "opciones": {
+      "A": "Símil",
+      "B": "Epíteto",
+      "C": "Hipérbole",
+      "D": "Anáfora",
+      "E": "Aliteración"
+    },
+    "correcta": "C",
+    "explicacion": "La duración se exagera deliberadamente para intensificar la expresión.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 57
+  },
+  {
+    "curso": "Literatura",
+    "seccion": "Literatura",
+    "enunciado": "¿Qué tipo de narrador cuenta su propia historia usando «yo»?",
+    "opciones": {
+      "A": "Narrador omnisciente externo",
+      "B": "Narrador objetivo externo",
+      "C": "Narrador en segunda persona",
+      "D": "Narrador protagonista",
+      "E": "Narrador colectivo en tercera persona"
+    },
+    "correcta": "D",
+    "explicacion": "El narrador protagonista participa como personaje principal y relata su experiencia.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 58
+  },
+  {
+    "curso": "Psicología",
+    "seccion": "Psicología",
+    "enunciado": "Una estudiante asocia un sonido con la llegada de alimento después de observarlos juntos varias veces. ¿Qué aprendizaje ejemplifica?",
+    "opciones": {
+      "A": "Aprendizaje por insight exclusivamente",
+      "B": "Condicionamiento clásico",
+      "C": "Habituación sin asociación",
+      "D": "Maduración biológica",
+      "E": "Memoria semántica sin asociación"
+    },
+    "correcta": "B",
+    "explicacion": "El condicionamiento clásico se basa en la asociación de estímulos.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 59
+  },
+  {
+    "curso": "Psicología",
+    "seccion": "Psicología",
+    "enunciado": "Un alumno aprende una técnica al observar a su compañera y luego imitarla. ¿Qué proceso destaca?",
+    "opciones": {
+      "A": "Reflejo innato",
+      "B": "Pérdida de memoria",
+      "C": "Aprendizaje por observación",
+      "D": "Adaptación sensorial",
+      "E": "Sueño profundo"
+    },
+    "correcta": "C",
+    "explicacion": "Se adquiere una conducta mediante la observación de un modelo.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 60
+  },
+  {
+    "curso": "Psicología",
+    "seccion": "Psicología",
+    "enunciado": "¿Qué tipo de memoria permite mantener brevemente un número mientras se realiza una operación con él?",
+    "opciones": {
+      "A": "Memoria episódica remota",
+      "B": "Memoria procedimental exclusivamente",
+      "C": "Memoria autobiográfica exclusivamente",
+      "D": "Memoria de trabajo",
+      "E": "Memoria inmunológica"
+    },
+    "correcta": "D",
+    "explicacion": "La memoria de trabajo mantiene y manipula información durante una tarea.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 61
+  },
+  {
+    "curso": "Psicología",
+    "seccion": "Psicología",
+    "enunciado": "Una persona reconoce que está irritada y decide hacer una pausa antes de responder. ¿Qué capacidad ejercita?",
+    "opciones": {
+      "A": "Supresión de toda percepción",
+      "B": "Reflejo rotuliano",
+      "C": "Amnesia",
+      "D": "Discriminación cromática",
+      "E": "Autorregulación emocional"
+    },
+    "correcta": "E",
+    "explicacion": "Reconoce la emoción y regula su respuesta en lugar de actuar impulsivamente.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 62
+  },
+  {
+    "curso": "Educación Cívica",
+    "seccion": "Educación Cívica",
+    "enunciado": "En una decisión colectiva, escuchar las razones de quienes discrepan contribuye a",
+    "opciones": {
+      "A": "la deliberación",
+      "B": "la censura previa",
+      "C": "la exclusión por opinión",
+      "D": "la arbitrariedad",
+      "E": "la imposición sin diálogo"
+    },
+    "correcta": "A",
+    "explicacion": "Deliberar supone intercambiar y evaluar razones antes de decidir.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 63
+  },
+  {
+    "curso": "Educación Cívica",
+    "seccion": "Educación Cívica",
+    "enunciado": "Una regla se aplica con criterios públicos y las decisiones pueden justificarse. ¿Qué principio se favorece?",
+    "opciones": {
+      "A": "Secreto absoluto",
+      "B": "Transparencia",
+      "C": "Favoritismo",
+      "D": "Discriminación arbitraria",
+      "E": "Ausencia de rendición de cuentas"
+    },
+    "correcta": "B",
+    "explicacion": "Los criterios accesibles y las razones explícitas favorecen la transparencia.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 64
+  },
+  {
+    "curso": "Educación Cívica",
+    "seccion": "Educación Cívica",
+    "enunciado": "¿Qué práctica permite resolver pacíficamente una discrepancia sin imponer amenazas?",
+    "opciones": {
+      "A": "Intimidación",
+      "B": "Difusión de rumores",
+      "C": "Diálogo sustentado en razones",
+      "D": "Agresión",
+      "E": "Silenciamiento forzado"
+    },
+    "correcta": "C",
+    "explicacion": "El diálogo permite examinar posiciones y buscar acuerdos sin violencia.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 65
+  },
+  {
+    "curso": "Educación Cívica",
+    "seccion": "Educación Cívica",
+    "enunciado": "Respetar la dignidad de una persona implica",
+    "opciones": {
+      "A": "atribuirle menos derechos por su idioma",
+      "B": "reducirla a su ingreso económico",
+      "C": "negarle voz por su apariencia",
+      "D": "reconocer su valor sin condicionarlo a su origen",
+      "E": "tratarla únicamente como instrumento"
+    },
+    "correcta": "D",
+    "explicacion": "La dignidad reconoce el valor de la persona sin discriminación por origen u otras condiciones.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 66
+  },
+  {
+    "curso": "Historia del Perú",
+    "seccion": "Historia del Perú",
+    "enunciado": "¿Qué civilización tuvo como capital la ciudad del Cusco?",
+    "opciones": {
+      "A": "Moche",
+      "B": "Inca",
+      "C": "Nazca",
+      "D": "Chimú",
+      "E": "Paracas"
+    },
+    "correcta": "B",
+    "explicacion": "El Cusco fue la capital del Estado inca.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 67
+  },
+  {
+    "curso": "Historia del Perú",
+    "seccion": "Historia del Perú",
+    "enunciado": "¿Qué sistema de cuerdas anudadas se utilizó en el mundo andino para registrar información?",
+    "opciones": {
+      "A": "Papiro",
+      "B": "Códice alfabético latino",
+      "C": "Quipu",
+      "D": "Pergamino",
+      "E": "Imprenta de tipos móviles"
+    },
+    "correcta": "C",
+    "explicacion": "Los quipus registraban información mediante cuerdas y nudos.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 68
+  },
+  {
+    "curso": "Historia del Perú",
+    "seccion": "Historia del Perú",
+    "enunciado": "¿Qué cultura es conocida por los grandes geoglifos trazados en la costa sur peruana?",
+    "opciones": {
+      "A": "Chavín",
+      "B": "Chimú",
+      "C": "Caral",
+      "D": "Nazca",
+      "E": "Wari"
+    },
+    "correcta": "D",
+    "explicacion": "Las líneas y figuras de Nazca son geoglifos de la costa sur.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 69
+  },
+  {
+    "curso": "Historia Universal",
+    "seccion": "Historia Universal",
+    "enunciado": "¿Qué proceso histórico se caracterizó por la mecanización de la producción y la expansión del sistema fabril?",
+    "opciones": {
+      "A": "Neolítico exclusivamente",
+      "B": "Reforma gregoriana",
+      "C": "Revolución Industrial",
+      "D": "Guerra del Peloponeso",
+      "E": "Caída del Imperio romano de Occidente"
+    },
+    "correcta": "C",
+    "explicacion": "La Revolución Industrial transformó la producción mediante máquinas y fábricas.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 70
+  },
+  {
+    "curso": "Historia Universal",
+    "seccion": "Historia Universal",
+    "enunciado": "¿Qué acontecimiento se asocia con el inicio de la Revolución francesa en 1789?",
+    "opciones": {
+      "A": "Caída de Constantinopla",
+      "B": "Congreso de Viena",
+      "C": "Batalla de Waterloo",
+      "D": "Toma de la Bastilla",
+      "E": "Inicio de la Primera Guerra Mundial"
+    },
+    "correcta": "D",
+    "explicacion": "La toma de la Bastilla ocurrió el 14 de julio de 1789.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 71
+  },
+  {
+    "curso": "Historia Universal",
+    "seccion": "Historia Universal",
+    "enunciado": "¿Qué invento de Gutenberg favoreció la difusión de libros en Europa en el siglo XV?",
+    "opciones": {
+      "A": "Telégrafo eléctrico",
+      "B": "Máquina de vapor",
+      "C": "Radio",
+      "D": "Motor de combustión interna",
+      "E": "Imprenta de tipos móviles metálicos"
+    },
+    "correcta": "E",
+    "explicacion": "La imprenta de Gutenberg permitió reproducir libros mediante tipos móviles metálicos.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 72
+  },
+  {
+    "curso": "Geografía",
+    "seccion": "Geografía",
+    "enunciado": "¿Qué coordenada expresa la distancia angular de un lugar al ecuador?",
+    "opciones": {
+      "A": "Longitud",
+      "B": "Altitud",
+      "C": "Pendiente",
+      "D": "Latitud",
+      "E": "Profundidad"
+    },
+    "correcta": "D",
+    "explicacion": "La latitud se mide al norte o al sur del ecuador.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 73
+  },
+  {
+    "curso": "Geografía",
+    "seccion": "Geografía",
+    "enunciado": "En un mapa de escala 1:50 000, ¿qué distancia real representan 2 cm?",
+    "opciones": {
+      "A": "100 m",
+      "B": "500 m",
+      "C": "5 km",
+      "D": "10 km",
+      "E": "1 km"
+    },
+    "correcta": "E",
+    "explicacion": "2 × 50 000 cm = 100 000 cm = 1 km.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 74
+  },
+  {
+    "curso": "Geografía",
+    "seccion": "Geografía",
+    "enunciado": "¿Cómo se llama el conjunto de tierras cuyas aguas drenan hacia un mismo río o salida?",
+    "opciones": {
+      "A": "Cuenca hidrográfica",
+      "B": "Meseta necesariamente",
+      "C": "Istmo",
+      "D": "Archipiélago",
+      "E": "Duna"
+    },
+    "correcta": "A",
+    "explicacion": "Una cuenca reúne el territorio que aporta agua a una red de drenaje común.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 75
+  },
+  {
+    "curso": "Geografía",
+    "seccion": "Geografía",
+    "enunciado": "¿Qué proceso transforma agua líquida en vapor?",
+    "opciones": {
+      "A": "Condensación",
+      "B": "Evaporación",
+      "C": "Solidificación",
+      "D": "Fusión",
+      "E": "Precipitación"
+    },
+    "correcta": "B",
+    "explicacion": "La evaporación es el paso del estado líquido al gaseoso desde la superficie.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 76
+  },
+  {
+    "curso": "Economía",
+    "seccion": "Economía",
+    "enunciado": "¿Qué expresa el costo de oportunidad de una decisión?",
+    "opciones": {
+      "A": "La suma de todos los precios históricos",
+      "B": "Un gasto que siempre es cero",
+      "C": "Solo el dinero ya gastado e irrecuperable",
+      "D": "La cantidad total de billetes existentes",
+      "E": "El valor de la mejor alternativa sacrificada"
+    },
+    "correcta": "E",
+    "explicacion": "Elegir implica renunciar a la mejor alternativa disponible.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 77
+  },
+  {
+    "curso": "Economía",
+    "seccion": "Economía",
+    "enunciado": "Si el precio de un bien aumenta y lo demás permanece constante, la ley de la demanda predice una",
+    "opciones": {
+      "A": "disminución de la cantidad demandada",
+      "B": "expansión obligatoria de la oferta monetaria",
+      "C": "subida de la cantidad demandada",
+      "D": "desaparición de la escasez",
+      "E": "igualdad automática entre todos los ingresos"
+    },
+    "correcta": "A",
+    "explicacion": "Con los demás factores constantes, precio y cantidad demandada se relacionan inversamente.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 78
+  },
+  {
+    "curso": "Economía",
+    "seccion": "Economía",
+    "enunciado": "Un taller vende 20 unidades a S/ 15 cada una. ¿Cuál es su ingreso total?",
+    "opciones": {
+      "A": "S/ 35",
+      "B": "S/ 300",
+      "C": "S/ 150",
+      "D": "S/ 200",
+      "E": "S/ 600"
+    },
+    "correcta": "B",
+    "explicacion": "Ingreso total = precio × cantidad = 15 × 20 = 300.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 79
+  },
+  {
+    "curso": "Economía",
+    "seccion": "Economía",
+    "enunciado": "Una empresa obtiene ingresos de S/ 900 y costos totales de S/ 650. ¿Cuál es su beneficio contable?",
+    "opciones": {
+      "A": "S/ 1550",
+      "B": "S/ 650",
+      "C": "S/ 250",
+      "D": "S/ 900",
+      "E": "S/ 150"
+    },
+    "correcta": "C",
+    "explicacion": "Beneficio contable = ingresos menos costos = 900 − 650 = 250.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 80
+  },
+  {
+    "curso": "Filosofía",
+    "seccion": "Filosofía",
+    "enunciado": "¿Qué disciplina estudia criterios para distinguir argumentos válidos de inválidos?",
+    "opciones": {
+      "A": "Estética",
+      "B": "Lógica",
+      "C": "Geología",
+      "D": "Botánica",
+      "E": "Fonética"
+    },
+    "correcta": "B",
+    "explicacion": "La lógica estudia formas de inferencia y criterios de validez.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 81
+  },
+  {
+    "curso": "Filosofía",
+    "seccion": "Filosofía",
+    "enunciado": "De «Todos los mamíferos son vertebrados» y «Todos los delfines son mamíferos», ¿qué se sigue necesariamente?",
+    "opciones": {
+      "A": "Todos los vertebrados son delfines.",
+      "B": "Ningún delfín es vertebrado.",
+      "C": "Todos los delfines son vertebrados.",
+      "D": "Todos los mamíferos son delfines.",
+      "E": "Algunos delfines no son mamíferos."
+    },
+    "correcta": "C",
+    "explicacion": "La inclusión de delfines en mamíferos y de mamíferos en vertebrados permite esa conclusión.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 82
+  },
+  {
+    "curso": "Filosofía",
+    "seccion": "Filosofía",
+    "enunciado": "Una persona rechaza un argumento atacando la apariencia de quien lo presenta. ¿Qué falacia comete?",
+    "opciones": {
+      "A": "Modus ponens",
+      "B": "Doble negación",
+      "C": "Silogismo válido",
+      "D": "Ad hominem",
+      "E": "Definición por género"
+    },
+    "correcta": "D",
+    "explicacion": "El ataque personal sustituye el examen de las razones del argumento.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 83
+  },
+  {
+    "curso": "Física",
+    "seccion": "Física",
+    "enunciado": "Un objeto recorre 120 m en 20 s con rapidez constante. ¿Cuál es su rapidez?",
+    "opciones": {
+      "A": "2 m/s",
+      "B": "6 m/s",
+      "C": "4 m/s",
+      "D": "12 m/s",
+      "E": "24 m/s"
+    },
+    "correcta": "B",
+    "explicacion": "La rapidez es distancia entre tiempo: 120/20 = 6 m/s.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 84
+  },
+  {
+    "curso": "Física",
+    "seccion": "Física",
+    "enunciado": "Una fuerza neta de 18 N actúa sobre una masa de 3 kg. ¿Qué aceleración produce?",
+    "opciones": {
+      "A": "3 m/s²",
+      "B": "9 m/s²",
+      "C": "6 m/s²",
+      "D": "15 m/s²",
+      "E": "54 m/s²"
+    },
+    "correcta": "C",
+    "explicacion": "Por la segunda ley de Newton, a = F/m = 18/3 = 6 m/s².",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 85
+  },
+  {
+    "curso": "Física",
+    "seccion": "Física",
+    "enunciado": "Una resistencia de 4 Ω se conecta a 12 V. ¿Qué corriente circula?",
+    "opciones": {
+      "A": "0,3 A",
+      "B": "4 A",
+      "C": "8 A",
+      "D": "3 A",
+      "E": "48 A"
+    },
+    "correcta": "D",
+    "explicacion": "La ley de Ohm da I = V/R = 12/4 = 3 A.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 86
+  },
+  {
+    "curso": "Física",
+    "seccion": "Física",
+    "enunciado": "¿Qué magnitud se conserva en una colisión de un sistema aislado, aunque la colisión no sea elástica?",
+    "opciones": {
+      "A": "Energía cinética total en todos los casos",
+      "B": "Rapidez de cada cuerpo",
+      "C": "Temperatura de cada cuerpo",
+      "D": "Volumen de cada cuerpo",
+      "E": "Cantidad de movimiento total"
+    },
+    "correcta": "E",
+    "explicacion": "Sin impulso externo neto se conserva la cantidad de movimiento del sistema.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 87
+  },
+  {
+    "curso": "Física",
+    "seccion": "Física",
+    "enunciado": "¿Cuál es la energía cinética de una masa de 2 kg que se mueve a 3 m/s?",
+    "opciones": {
+      "A": "9 J",
+      "B": "3 J",
+      "C": "6 J",
+      "D": "12 J",
+      "E": "18 J"
+    },
+    "correcta": "A",
+    "explicacion": "Ec = mv²/2 = 2 × 9/2 = 9 J.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 88
+  },
+  {
+    "curso": "Química",
+    "seccion": "Química",
+    "enunciado": "Un átomo neutro tiene 8 protones. ¿Cuántos electrones posee?",
+    "opciones": {
+      "A": "8",
+      "B": "4",
+      "C": "6",
+      "D": "10",
+      "E": "16"
+    },
+    "correcta": "A",
+    "explicacion": "En un átomo neutro el número de electrones es igual al de protones.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 89
+  },
+  {
+    "curso": "Química",
+    "seccion": "Química",
+    "enunciado": "Dos átomos del mismo elemento tienen diferente número de neutrones. Son",
+    "opciones": {
+      "A": "iones de signo opuesto necesariamente",
+      "B": "isótopos",
+      "C": "elementos de distinto número atómico",
+      "D": "moléculas idénticas",
+      "E": "cationes necesariamente"
+    },
+    "correcta": "B",
+    "explicacion": "Los isótopos comparten número de protones y difieren en neutrones.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 90
+  },
+  {
+    "curso": "Química",
+    "seccion": "Química",
+    "enunciado": "Un átomo pierde dos electrones. ¿Qué carga adquiere respecto del átomo neutro?",
+    "opciones": {
+      "A": "−2",
+      "B": "−1",
+      "C": "+2",
+      "D": "0",
+      "E": "+4"
+    },
+    "correcta": "C",
+    "explicacion": "Perder dos cargas negativas deja una carga neta de +2.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 91
+  },
+  {
+    "curso": "Química",
+    "seccion": "Química",
+    "enunciado": "¿Qué enlace se caracteriza por compartir pares de electrones entre átomos?",
+    "opciones": {
+      "A": "Iónico por transferencia exclusivamente",
+      "B": "Gravitacional",
+      "C": "Nuclear fuerte",
+      "D": "Covalente",
+      "E": "Magnético macroscópico"
+    },
+    "correcta": "D",
+    "explicacion": "El enlace covalente consiste en compartir pares electrónicos.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 92
+  },
+  {
+    "curso": "Química",
+    "seccion": "Química",
+    "enunciado": "Si la masa molar del agua es 18 g/mol, ¿cuántos moles hay en 36 g de agua?",
+    "opciones": {
+      "A": "0,5 mol",
+      "B": "1 mol",
+      "C": "3 mol",
+      "D": "18 mol",
+      "E": "2 mol"
+    },
+    "correcta": "E",
+    "explicacion": "n = m/M = 36/18 = 2 mol.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 93
+  },
+  {
+    "curso": "Biología",
+    "seccion": "Biología",
+    "enunciado": "¿Qué estructura realiza la síntesis de proteínas a partir de la información del ARN mensajero?",
+    "opciones": {
+      "A": "Lisosoma",
+      "B": "Centriolo",
+      "C": "Vacuola contráctil",
+      "D": "Ribosoma",
+      "E": "Pared celular"
+    },
+    "correcta": "D",
+    "explicacion": "Los ribosomas llevan a cabo la traducción del ARN mensajero.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 94
+  },
+  {
+    "curso": "Biología",
+    "seccion": "Biología",
+    "enunciado": "¿En qué orgánulo se realiza la fotosíntesis de las células vegetales?",
+    "opciones": {
+      "A": "Mitocondria",
+      "B": "Lisosoma",
+      "C": "Centriolo",
+      "D": "Aparato de Golgi",
+      "E": "Cloroplasto"
+    },
+    "correcta": "E",
+    "explicacion": "El cloroplasto contiene los sistemas que permiten realizar la fotosíntesis.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 95
+  },
+  {
+    "curso": "Biología",
+    "seccion": "Biología",
+    "enunciado": "¿Qué proceso produce, normalmente, dos células hijas con el mismo número de cromosomas que la célula inicial?",
+    "opciones": {
+      "A": "Mitosis",
+      "B": "Meiosis completa",
+      "C": "Fecundación",
+      "D": "Traducción",
+      "E": "Transcripción"
+    },
+    "correcta": "A",
+    "explicacion": "La mitosis conserva el número cromosómico en las células hijas.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 96
+  },
+  {
+    "curso": "Biología",
+    "seccion": "Biología",
+    "enunciado": "En un cruce Aa × Aa con dominancia completa, ¿qué proporción de descendientes se espera con genotipo aa?",
+    "opciones": {
+      "A": "1/2",
+      "B": "1/4",
+      "C": "3/4",
+      "D": "1",
+      "E": "0"
+    },
+    "correcta": "B",
+    "explicacion": "Las combinaciones equiprobables son AA, Aa, Aa y aa: una de cuatro es aa.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 97
+  },
+  {
+    "curso": "Biología",
+    "seccion": "Biología",
+    "enunciado": "En una cadena trófica, un organismo que fabrica materia orgánica a partir de sustancias inorgánicas es un",
+    "opciones": {
+      "A": "consumidor primario necesariamente",
+      "B": "consumidor secundario necesariamente",
+      "C": "productor",
+      "D": "depredador exclusivamente",
+      "E": "parásito exclusivamente"
+    },
+    "correcta": "C",
+    "explicacion": "Los productores autótrofos sintetizan materia orgánica a partir de fuentes inorgánicas.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 98
+  },
+  {
+    "curso": "Biología",
+    "seccion": "Biología",
+    "enunciado": "¿Qué base nitrogenada aparece en el ARN y normalmente no en el ADN?",
+    "opciones": {
+      "A": "Timina",
+      "B": "Adenina",
+      "C": "Guanina",
+      "D": "Uracilo",
+      "E": "Citosina"
+    },
+    "correcta": "D",
+    "explicacion": "El ARN utiliza uracilo; el ADN utiliza timina.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 99
+  },
+  {
+    "curso": "Biología",
+    "seccion": "Biología",
+    "enunciado": "El movimiento neto de agua a través de una membrana selectivamente permeable por una diferencia de concentración se denomina",
+    "opciones": {
+      "A": "exocitosis",
+      "B": "endocitosis",
+      "C": "traducción",
+      "D": "replicación",
+      "E": "ósmosis"
+    },
+    "correcta": "E",
+    "explicacion": "La ósmosis describe ese movimiento neto del agua.",
+    "formato": "texto",
+    "origen": "Creación original para práctica",
+    "id": 100
   }
 ]

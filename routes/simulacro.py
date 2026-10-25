@@ -5,6 +5,7 @@ import secrets
 from flask import Blueprint, render_template, session, redirect, url_for, flash
 from config import Config
 from models.usuario import obtener_usuario_por_id, obtener_plantilla_facial
+from models.examen import cargar_preguntas_intento
 from models.intento import (
     obtener_intento_activo, obtener_respuestas_intento, cerrar_intento
 )
@@ -129,14 +130,14 @@ def rendir_examen(area):
         intento_id = intento['id']
         token_sesion = intento['token_sesion']
         respuestas_guardadas = obtener_respuestas_intento(intento_id)
-        preguntas_cliente = sanitizar_preguntas_para_cliente(preguntas_completas)
+        preguntas_cliente = sanitizar_preguntas_para_cliente(cargar_preguntas_intento(intento))
         ya_en_curso = True
         logger.info(f"Recuperando intento {intento_id} en curso para usuario {usuario_id}. Segundos restantes: {segundos_restantes}")
     else:
         # El reloj y las preguntas se habilitan juntos tras confirmar preparación.
         intento_id = None
         token_sesion = None
-        segundos_restantes = getattr(Config, 'DURACION_EXAMEN_MINUTOS', 60) * 60
+        segundos_restantes = Config.DURACION_EXAMEN_MINUTOS * 60
         respuestas_guardadas = {}
         preguntas_cliente = []
         ya_en_curso = False

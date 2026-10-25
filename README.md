@@ -47,6 +47,12 @@ Abrir una pull request hacia `main` para revisar el cambio entre ambos. No subir
 
 ## Comprobaciones aisladas
 
+Los simulacros supervisados de las áreas **A, B, C, D y E ya utilizan 100 preguntas y duran 3 horas por nuevo intento**. Se inician desde «Preparar Simulacro» en el dashboard. Las áreas B–E usan [material original de práctica](docs/PRACTICA_AREAS_BCDE.md), con tres lecturas sin imágenes y figuras de apoyo en Geometría; A conserva los textos, fórmulas y figuras revisados del PDF. Los enlaces «Revisar Área» permiten consultar una vista sin iniciar el reloj.
+
+Cada nuevo intento guarda su versión de preguntas en la tabla existente `examenes_versiones`. Recargar mantiene el contenido y vencimiento originales. Los intentos anteriores sin versión conservan los bancos de diez preguntas archivados en `data/examenes/anteriores/` y su plazo previo. La duración del servidor se fija en 180 minutos en `config.py`; valores antiguos en `.env` no la reducen.
+
+Para publicar futuras modificaciones de los bancos revisados, ejecutar `scripts/activar_bancos_100.py` después de regenerarlos. Conserva el archivo histórico y valida las cinco áreas antes de escribir los bancos activos.
+
 Con `SECRET_KEY` y `DATABASE_URL` configuradas:
 
 ```powershell

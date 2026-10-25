@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Áreas B, C, D y E · Práctica original | UNMSM</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/importacion.css">
+  <script defer src="js/vista_previa_areas.js"></script>
+</head>
+<body>
+  <header class="preview-header"><a href="/dashboard" class="preview-brand">UNMSM <small>Simulacro tipo admisión</small></a><span class="badge badge-gold">Práctica original</span></header>
+  <main class="preview-layout">
+    <div class="preview-intro">
+      <label for="area-practica">Selecciona el área</label>
+      <select id="area-practica">
+        <option value="B">B · Ciencias Básicas</option>
+        <option value="C">C · Ingenierías</option>
+        <option value="D">D · Ciencias Económicas y de la Gestión</option>
+        <option value="E">E · Humanidades y Ciencias Jurídicas y Sociales</option>
+      </select>
+      <h1 id="titulo-area">Cargando preguntas…</h1>
+      <p class="preview-notice">100 preguntas por área: 10 actitudinales, 10 de Habilidad Verbal sobre tres lecturas sin imágenes y 80 de otros cursos. Material original de práctica con contenidos generales compartidos entre áreas; la distribución no representa cuotas oficiales. Esta vista permite marcar respuestas y no genera una nota ni un intento oficial.</p>
+      <p id="error-carga" role="alert" hidden></p>
+    </div>
+    <section class="card preview-question" id="pregunta-practica" aria-label="Pregunta actual" hidden>
+      <div class="preview-toolbar"><span class="badge badge-crimson" id="numero"></span><span id="posicion"></span></div>
+      <p class="preview-hint" id="origen-pregunta"></p>
+      <section id="lectura-compartida" class="shared-reading" aria-label="Lectura compartida" hidden></section>
+      <section class="question-response-block" aria-labelledby="titulo-pregunta">
+        <h2 id="titulo-pregunta" class="question-prompt-title"></h2>
+        <p class="question-prompt-instruction">Lee la pregunta y marca una sola alternativa.</p>
+        <p id="enunciado-original" class="question-prompt-text"></p>
+        <div id="figuras-pregunta" class="question-figures"></div>
+        <fieldset class="preview-answer"><legend>Selecciona tu respuesta</legend><div id="alternativas"></div></fieldset>
+        <p id="seleccion" role="status" aria-live="polite"></p>
+      </section>
+      <div class="preview-navigation"><button type="button" id="anterior" class="btn btn-secondary">← Anterior</button><button type="button" id="limpiar" class="btn btn-secondary">Limpiar selección</button><button type="button" id="siguiente" class="btn btn-primary">Siguiente →</button></div>
+    </section>
+    <aside class="card preview-sidebar"><div class="navigator-heading"><h2>Navegador de preguntas</h2><p id="contador" aria-live="polite"></p></div><nav id="matriz" class="course-navigator" aria-label="Preguntas por curso y lectura"></nav><p class="preview-hint">Las selecciones se conservan al navegar y cambiar de área mientras la página permanece abierta. Las claves y justificaciones no se envían al navegador.</p></aside>
+  </main>
+</body>
+</html>

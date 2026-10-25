@@ -14,7 +14,8 @@ class MonitorEngine {
     this.area = config.area;
     this.preguntas = config.preguntas || [];
     this.storedDescriptors = config.storedDescriptors || [];
-    this.segundosRestantes = parseInt(config.segundosRestantes, 10) || (60 * 60);
+    const segundos = Number(config.segundosRestantes);
+    this.segundosRestantes = Number.isFinite(segundos) && segundos >= 0 ? segundos : (3 * 60 * 60);
     this.yaEnCurso = Boolean(config.yaEnCurso);
     this.csrfToken = config.csrfToken;
     this.phoneDetectionEnabled = Boolean(config.phoneDetectionEnabled);
@@ -808,7 +809,7 @@ class MonitorEngine {
 
     document.getElementById('question-number-badge').textContent = `Pregunta ${index + 1} de ${this.preguntas.length}`;
     document.getElementById('question-section-tag').textContent = q.seccion || 'Área General';
-    document.getElementById('question-enunciado').textContent = q.enunciado;
+    ContenidoAcademico.mostrar(document.getElementById('question-enunciado'), q);
 
     const optionsContainer = document.getElementById('options-list');
     optionsContainer.innerHTML = '';
@@ -819,10 +820,10 @@ class MonitorEngine {
       const optDiv = document.createElement('div');
       optDiv.className = `option-item ${seleccionActual === letra ? 'selected' : ''}`;
       optDiv.id = `opt-${qId}-${letra}`;
-      optDiv.innerHTML = `
-        <div class="option-letter">${letra}</div>
-        <div class="option-text">${texto}</div>
-      `;
+      const letraDiv = document.createElement('div'); letraDiv.className = 'option-letter'; letraDiv.textContent = letra;
+      const textoDiv = document.createElement('div'); textoDiv.className = 'option-text';
+      ContenidoAcademico.escribir(textoDiv, (q.opciones_rico || q.opciones)[letra]);
+      optDiv.append(letraDiv, textoDiv);
 
       optDiv.addEventListener('click', () => {
         this.selectOption(qId, letra);
@@ -866,14 +867,28 @@ class MonitorEngine {
 
   renderQuestionMatrix() {
     this.dom.matrixContainer.innerHTML = '';
+    let curso, lectura, rejilla, seccion;
     this.preguntas.forEach((q, idx) => {
+      const nombre = q.curso || q.seccion || 'General';
+      if (nombre !== curso) {
+        curso = nombre; lectura = null;
+        seccion = document.createElement('section'); seccion.className = 'exam-course';
+        const titulo = document.createElement('h3'); titulo.textContent = nombre; seccion.append(titulo);
+        this.dom.matrixContainer.append(seccion); rejilla = null;
+      }
+      if (q.lectura && q.lectura.id !== lectura) {
+        lectura = q.lectura.id;
+        const subtitulo = document.createElement('h4'); subtitulo.textContent = q.lectura.titulo;
+        seccion.append(subtitulo); rejilla = null;
+      }
+      if (!rejilla) { rejilla = document.createElement('div'); rejilla.className = 'exam-course-grid'; seccion.append(rejilla); }
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'matrix-btn';
       btn.id = `matrix-btn-${idx}`;
       btn.textContent = idx + 1;
       btn.addEventListener('click', () => this.loadQuestion(idx));
-      this.dom.matrixContainer.appendChild(btn);
+      rejilla.appendChild(btn);
     });
   }
 

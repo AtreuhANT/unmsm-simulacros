@@ -54,12 +54,14 @@ def obtener_ruta_examen(area):
     area_normalizada = area.upper().strip()
     return os.path.join(base_dir, 'data', 'examenes', f'area_{area_normalizada.lower()}.json')
 
-def cargar_preguntas_area(area):
+def cargar_preguntas_area(area, historico=False):
     """
     Carga el banco de preguntas oficial del área indicada.
     Retorna la lista de preguntas completas (con respuesta correcta).
     """
     ruta = obtener_ruta_examen(area)
+    if historico:
+        ruta = os.path.join(os.path.dirname(ruta), 'anteriores', os.path.basename(ruta))
     if not os.path.exists(ruta):
         logger.warning(f"Archivo de examen no encontrado para el área {area}: {ruta}. Usando fallback.")
         # Retorna lista vacía si no existe
@@ -82,6 +84,12 @@ def sanitizar_preguntas_para_cliente(preguntas):
             'enunciado': q['enunciado'],
             'opciones': q['opciones']
         }
+        # Lista explícita de contenido visual; nunca enviar claves o metadatos de solución.
+        for campo in ('curso', 'enunciado_rico', 'opciones_rico', 'lectura', 'figuras',
+                      'figura', 'tabla', 'texto_despues_figura', 'texto_despues_figura_rico',
+                      'subrayados', 'base_recursos', 'origen'):
+            if campo in q:
+                copia[campo] = q[campo]
         preguntas_cliente.append(copia)
     return preguntas_cliente
 

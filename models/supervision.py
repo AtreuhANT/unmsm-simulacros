@@ -5,7 +5,8 @@ from datetime import datetime, timezone
 from psycopg2.extras import RealDictCursor
 
 from models.database import get_db_connection
-from utils.preguntas import cargar_preguntas_area, calcular_puntaje
+from utils.preguntas import calcular_puntaje
+from models.examen import cargar_preguntas_intento
 
 
 MOTIVO_FOCO = 'Tres salidas de la página del examen; anulación provisional pendiente de revisión humana.'
@@ -20,7 +21,7 @@ class IntentoNoDisponible(Exception):
 
 def _bloquear_intento(cur, token, usuario_id):
     cur.execute(
-        "SELECT id, usuario_id, area, token_sesion, estado_academico, fecha_inicio "
+        "SELECT id, usuario_id, area, examen_version_id, token_sesion, estado_academico, fecha_inicio "
         "FROM intentos WHERE token_sesion = %s AND usuario_id = %s FOR UPDATE",
         (token, usuario_id),
     )
@@ -31,7 +32,7 @@ def _bloquear_intento(cur, token, usuario_id):
 
 
 def _calcular_desde_bd(cur, intento):
-    preguntas = cargar_preguntas_area(intento['area'])
+    preguntas = cargar_preguntas_intento(intento, cur)
     if not preguntas:
         raise ValueError('Banco de preguntas no disponible')
     cur.execute(
@@ -208,7 +209,7 @@ def resolver_revision(resultado_id, admin_id, decision, nota):
         if not resultado or resultado['revision'] != 'PENDIENTE':
             raise IntentoNoDisponible()
         if decision == 'reponer':
-            cur.execute('SELECT id, usuario_id, area, token_sesion, fecha_inicio FROM intentos '
+            cur.execute('SELECT id, usuario_id, area, examen_version_id, token_sesion, fecha_inicio FROM intentos '
                         'WHERE token_sesion = %s AND usuario_id = %s FOR UPDATE',
                         (resultado['token_sesion'], resultado['usuario_id']))
             intento = cur.fetchone()

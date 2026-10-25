@@ -110,7 +110,7 @@ def init_db():
             area             CHAR(1) NOT NULL,
             titulo           TEXT NOT NULL,
             version          INTEGER NOT NULL DEFAULT 1,
-            duracion_minutos INTEGER NOT NULL DEFAULT 60,
+            duracion_minutos INTEGER NOT NULL DEFAULT 180,
             preguntas_json   JSONB NOT NULL,
             activo           BOOLEAN NOT NULL DEFAULT TRUE,
             creado_en        TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP

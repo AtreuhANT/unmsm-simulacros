@@ -18,6 +18,7 @@ from utils.helpers import login_required
 from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area, calcular_puntaje, sanitizar_preguntas_para_cliente
 from models.supervision import IntentoNoDisponible, entregar_examen, registrar_salida_foco, registrar_celular, registrar_presencia_no_confirmada
 from models.database import get_db_cursor
+from models.examen import cargar_preguntas_intento
 from models.evidencia_celular import guardar_evidencia
 
 logger = logging.getLogger(__name__)
@@ -264,10 +265,11 @@ def iniciar_o_recuperar_intento():
                         (usuario_id,))
             if not cur.fetchone():
                 return jsonify({'error': 'Consentimiento requerido'}), 403
-    duracion = getattr(Config, 'DURACION_EXAMEN_MINUTOS', 60)
+    duracion = Config.DURACION_EXAMEN_MINUTOS
 
     try:
         intento, nuevo = iniciar_o_recuperar_intento_atomico(usuario_id, area, duracion)
+        preguntas = cargar_preguntas_intento(intento)
         session['token_sesion'] = intento['token_sesion']
         session['intento_id'] = intento['id']
         return jsonify({

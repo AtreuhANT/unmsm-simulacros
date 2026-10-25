@@ -1015,7 +1015,7 @@
         "A": "sé - mas - si - mí",
         "B": "sé - mas - sí - mi",
         "C": "sé - más - sí - mí",
-        "D": "sé - mas - si - mí",
+        "D": "sé - mas - sí - mí",
         "E": "se - mas - si - mi"
       },
       "figuras": []
@@ -1525,7 +1525,7 @@
       "enunciado": "............... es el fenómeno natural que regula la temperatura de la atmósfera terrestre.",
       "opciones": {
         "A": "La variabilidad climática",
-        "B": "Reserva paisajística Nor Yauyos-Cochas",
+        "B": "El efecto invernadero",
         "C": "El cambio climático",
         "D": "El ciclo biogeoquímico del carbono",
         "E": "La inversión térmica"
@@ -2320,7 +2320,7 @@
   ],
   "faltantes": [],
   "claves_disponibles": true,
-  "estado": "Vista previa de 100 preguntas; claves privadas con pendientes de revisión",
+  "estado": "Vista previa de 100 preguntas; claves privadas con correcciones en 47 y 71",
   "lecturas": [
     {
       "id": "hv-1",

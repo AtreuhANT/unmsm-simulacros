@@ -40,17 +40,21 @@ class TestImportacionAreaA(unittest.TestCase):
             for imagen in pregunta['imagenes']:
                 self.assertTrue((carpeta / imagen).is_file(), imagen)
 
-    def test_desfase_y_claves_ambiguas_explicitos(self):
+    def test_desfase_y_correcciones_acordadas(self):
         for pregunta in self.privado['preguntas'][10:]:
             numero = pregunta['id']
             self.assertEqual(pregunta['numero_respuesta_pdf'], numero if numero <= 20 else numero + 1)
-            if numero != 47:
-                self.assertIn(pregunta['correcta'], 'ABCDE')
-        pregunta_47 = self.privado['preguntas'][46]
-        self.assertIsNone(pregunta_47['correcta'])
-        self.assertEqual(pregunta_47['alternativas_coincidentes'], ['A', 'D'])
-        self.assertEqual(self.privado['pendientes_revision'], [47, 71])
-        self.assertFalse(self.privado['apto_calificacion'])
+            self.assertIn(pregunta['correcta'], 'ABCDE')
+        for datos in (self.publico, self.privado):
+            self.assertEqual(datos['preguntas'][46]['opciones']['D'], 'sé - mas - sí - mí')
+            self.assertEqual(datos['preguntas'][70]['opciones']['B'], 'El efecto invernadero')
+        for numero, clave in ((47, 'D'), (71, 'B')):
+            pregunta = self.privado['preguntas'][numero - 1]
+            self.assertEqual(pregunta['correcta'], clave)
+            self.assertEqual(pregunta['estado_clave'], 'corregida')
+            self.assertNotIn('alternativas_coincidentes', pregunta)
+        self.assertEqual(self.privado['pendientes_revision'], [])
+        self.assertTrue(self.privado['apto_calificacion'])
 
     def test_cursos_cubren_cien_preguntas_una_sola_vez(self):
         numeros = [n for grupo in self.publico['grupos'] for n in grupo['preguntas']]

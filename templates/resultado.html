@@ -3,6 +3,9 @@
 {% block title %}Informe de Resultado — Área {{ resultado.area }}{% endblock %}
 
 {% block head_extra %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contenido_academico.css') }}">
+<script src="{{ url_for('static', filename='js/formato_academico.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contenido_academico.js') }}"></script>
 <style>
   .score-hero-grid {
     display: grid;
@@ -400,9 +403,9 @@
           </div>
         </div>
 
-        <p style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 1rem; color: var(--text-main); white-space: pre-line;">
+        <div class="academic-review" data-academic='{{ q.contenido | tojson }}' style="font-size: 0.98rem; line-height: 1.6; margin-bottom: 1rem; color: var(--text-main);">
           {{ q.enunciado }}
-        </p>
+        </div>
 
         <!-- Alternativas -->
         <div style="margin-bottom: 0.75rem;">
@@ -418,7 +421,7 @@
               <div class="review-letter-badge" style="{% if is_marked and is_official %}background: #10b981; color: #fff;{% elif is_marked and not is_official %}background: #ef4444; color: #fff;{% endif %}">
                 {{ letra }}
               </div>
-              <div style="flex-grow: 1;">
+              <div class="academic-option" data-math='{{ q.opciones_rico.get(letra, texto) | tojson }}' style="flex-grow: 1;">
                 {{ texto }}
               </div>
               <div>
@@ -427,7 +430,7 @@
                 {% elif is_marked and not is_official %}
                   <span style="color: #dc2626; font-weight: 700; font-size: 0.8rem;">✕ Tu respuesta</span>
                 {% elif is_official %}
-                  <span style="color: #059669; font-weight: 600; font-size: 0.8rem;">Clave Oficial</span>
+                  <span style="color: #059669; font-weight: 600; font-size: 0.8rem;">Respuesta correcta</span>
                 {% endif %}
               </div>
             </div>
@@ -437,7 +440,7 @@
         <!-- Explicación Académica DECO -->
         {% if q.explicacion %}
         <div class="explanation-box">
-          <strong style="color: var(--wine);">💡 Fundamento Académico DECO:</strong><br>
+          <strong style="color: var(--wine);">💡 Explicación:</strong><br>
           {{ q.explicacion }}
         </div>
         {% endif %}
@@ -465,6 +468,8 @@
 </div>
 
 <script>
+  document.querySelectorAll('.academic-review').forEach(e => ContenidoAcademico.mostrar(e, JSON.parse(e.dataset.academic)));
+  document.querySelectorAll('.academic-option').forEach(e => ContenidoAcademico.escribir(e, JSON.parse(e.dataset.math)));
   function filterQuestions(status, btn) {
     document.querySelectorAll('.filter-pill-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
