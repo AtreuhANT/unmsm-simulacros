@@ -14,6 +14,9 @@ class FacialPresenceMonitor {
     this.intervalId = null;
     this.callbacks = null;
     this.isChecking = false;
+    this.absenceEpisode = null;
+    this.absenceSequence = 0;
+    this.generation = 0;
 
     // Control de estados por racha consecutiva (evita falsos positivos por parpadeo o inclinación momentánea)
     this.absenceStreak = 0;
@@ -48,6 +51,12 @@ class FacialPresenceMonitor {
   }
 
   stop() {
+    this.generation++;
+    this.closeAbsence('interrumpido');
+    this.multipleFacesStreak = 0;
+    this.multipleReported = false;
+    this.mismatchStreak = 0;
+    this.mismatchReported = false;
     if (this.intervalId) {
       clearInterval(this.intervalId);
       this.intervalId = null;
@@ -56,6 +65,27 @@ class FacialPresenceMonitor {
       const ctx = this.canvas.getContext('2d');
       if (ctx) ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
+  }
+
+  emitAbsence(estado,frame=this.video) {
+    if (!this.callbacks?.onAbsenceObservation) return;
+    if (!this.absenceEpisode) {
+      if (estado !== 'ausente') return;
+      this.absenceEpisode = crypto.randomUUID();
+      this.absenceSequence = 0;
+    }
+    const observacion = { episodioId: this.absenceEpisode, secuencia: ++this.absenceSequence, estado };
+    Promise.resolve(this.callbacks.onAbsenceObservation(observacion,frame))
+      .catch(error => console.warn('[FACIAL] No se pudo comunicar la observación:',error.name));
+  }
+
+  closeAbsence(estado) {
+    if (!this.absenceEpisode) return;
+    this.emitAbsence(estado);
+    this.absenceEpisode = null;
+    this.absenceSequence = 0;
+    this.absenceStreak = 0;
+    this.absenceReported = false;
   }
 
   getMinEuclideanDistance(currentDescriptor) {
@@ -70,15 +100,26 @@ class FacialPresenceMonitor {
   }
 
   async runCheck() {
-    if (!this.video || this.video.paused || this.video.ended || this.isChecking) return;
+    if (!this.video || this.video.paused || this.video.ended) {
+      this.closeAbsence('interrumpido');
+      return;
+    }
+    if (this.isChecking) return;
     this.isChecking = true;
+    const generation = this.generation;
 
     try {
+      if (!this.video.videoWidth || !this.video.videoHeight) throw new Error('Fotograma no disponible');
+      const frame=document.createElement('canvas');
+      frame.width=this.video.videoWidth; frame.height=this.video.videoHeight;
+      frame.getContext('2d').drawImage(this.video,0,0);
       // Detección ligera con TinyFaceDetector
       const detections = await faceapi
-        .detectAllFaces(this.video, new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.5 }))
+        .detectAllFaces(frame, new faceapi.TinyFaceDetectorOptions({ inputSize: 224, scoreThreshold: 0.5 }))
         .withFaceLandmarks(true)
         .withFaceDescriptors();
+      if (generation !== this.generation) return;
+      if (detections.length > 0) this.closeAbsence('presente');
 
       // Renderizar feedback visual en canvas si está disponible
       if (this.canvas && this.video.clientWidth > 0) {
@@ -95,6 +136,7 @@ class FacialPresenceMonitor {
       // CASO A: AUSENCIA DE ROSTRO
       // =======================================================================
       if (detections.length === 0) {
+        this.emitAbsence('ausente',frame);
         this.absenceStreak++;
         this.multipleFacesStreak = 0;
         this.multipleReported = false;
@@ -105,17 +147,17 @@ class FacialPresenceMonitor {
           this.callbacks.onStatusChange('warning', 'Sin rostro detectado');
         }
 
-        // Requiere 2 ciclos consecutivos (12s) para registrar como evento de auditoría
+        // Dos observaciones consecutivas; los segundos los registra el servidor.
         if (this.absenceStreak >= 2 && !this.absenceReported) {
           this.absenceReported = true;
           if (this.callbacks.onStatusChange) {
             this.callbacks.onStatusChange('danger', 'Ausencia facial prolongada');
           }
-          if (this.callbacks.onViolation) {
+          if (this.callbacks.onViolation && !this.callbacks.onAbsenceObservation) {
             this.callbacks.onViolation(
               'facial_presence',
               'ausencia_prolongada',
-              'No se detecta rostro frente a la cámara web (>12 segundos)'
+              'No se detecta rostro frente a la cámara web en observaciones consecutivas'
             );
           }
         }
@@ -187,6 +229,12 @@ class FacialPresenceMonitor {
         }
       }
     } catch (err) {
+      if (generation !== this.generation) return;
+      this.closeAbsence('interrumpido');
+      this.multipleFacesStreak = 0;
+      this.multipleReported = false;
+      this.mismatchStreak = 0;
+      this.mismatchReported = false;
       console.warn('[FACIAL] Excepción en ciclo de inspección:', err);
       if (this.callbacks.onStatusChange) {
         this.callbacks.onStatusChange('danger', 'La supervisión facial no pudo analizar la imagen. Comprueba la cámara.');

@@ -31,6 +31,13 @@ El **servidor** asigna la severidad según el `tipo` (nunca confíes en la sever
 - Aproximadamente 45 segundos después de entrar y luego cada 8 minutos se propone un reto breve de cierres oculares con cantidad variable. Si no se confirma, se registra `presencia_no_confirmada` y se solicita revisión humana, sin anulación automática. Fallos técnicos del detector se reintentan y se muestran como tales.
 - La coincidencia biométrica no demuestra presencia real. Un video reproducido, una cámara virtual o un cliente modificado pueden superar o evadir retos del navegador. El reto es un indicio adicional, no una garantía anti-suplantación.
 
+### Registro aprobado de ausencia facial — 2026-10-25
+
+- Requiere el consentimiento independiente `ausencia-v1-foto`. Registra una fotografía cifrada y duración aproximada por episodio sin rostro detectado; las fotos son exclusivas del administrador. La ausencia deja el resultado pendiente de revisión humana y nunca lo anula automáticamente.
+- El servidor mide intervalos de recepción y deduplica secuencias. Se marca medición incompleta ante interrupciones o huecos sin observaciones; no se cuentan como ausencia confirmada los fallos técnicos. Al cerrar el examen se cierra el registro sin añadir segundos no observados.
+- La detección múltiple existente distingue dos o más rostros visibles y alerta tras observaciones consecutivas. No mide proximidad física ni ve fuera del encuadre; una persona de espaldas o con el rostro oculto puede pasar inadvertida.
+- Fotografías con caducidad de 30 días y purga periódica mediante el procedimiento de [EVIDENCIAS.md](EVIDENCIAS.md). El consentimiento visible explica finalidad, acceso, retención y revisión; no expone los intervalos técnicos del detector.
+
 ### Evidencias fotográficas de celular
 
 - Con consentimiento específico `celular-v2-fotos`, el detector congela el primer fotograma positivo antes de esperar la respuesta del servidor; luego intenta capturas aproximadamente a los 3, 7 y 10 segundos del episodio. Son cuatro JPEG como máximo por episodio. No graba video.

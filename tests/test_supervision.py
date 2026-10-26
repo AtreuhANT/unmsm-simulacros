@@ -133,6 +133,7 @@ class TestSupervision(unittest.TestCase):
                 (self.dni,),
             )
             self.uid = cur.fetchone()['id']
+            cur.execute("UPDATE usuarios SET consentimiento_ausencia_version='ausencia-v1-foto' WHERE id=%s", (self.uid,))
         self.intento = crear_intento(self.uid, 'A')
         with self.client.session_transaction() as sesion:
             sesion['usuario_id'] = self.uid

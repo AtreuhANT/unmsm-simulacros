@@ -10,11 +10,11 @@
 <!-- Scripts locales de IA e Inferencia Edge -->
 <script src="{{ url_for('static', filename='models/face-api.min.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/mobile_guard.js') }}"></script>
-<script src="{{ url_for('static', filename='js/modulos/facial_presence.js') }}"></script>
+<script src="{{ url_for('static', filename='js/modulos/facial_presence.js', v='ausencia-v1') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/phone_monitor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/focus_monitor.js') }}"></script>
 <script src="{{ url_for('static', filename='js/modulos/screenshot_guard.js') }}"></script>
-<script src="{{ url_for('static', filename='js/monitor_engine.js') }}"></script>
+<script src="{{ url_for('static', filename='js/monitor_engine.js', v='ausencia-v1-nav11') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -227,7 +227,8 @@
       respuestasIniciales: {{ respuestas_guardadas_json | safe }},
       yaEnCurso: {{ 'true' if ya_en_curso else 'false' }},
       csrfToken: {{ csrf_examen | tojson }},
-      phoneDetectionEnabled: {{ 'true' if deteccion_celular_activa else 'false' }}
+      phoneDetectionEnabled: {{ 'true' if deteccion_celular_activa else 'false' }},
+      absencePhotoEnabled: {{ 'true' if fotos_ausencia_activas else 'false' }}
     };
 
     const engine = new MonitorEngine(config);

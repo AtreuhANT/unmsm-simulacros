@@ -270,6 +270,29 @@
   </div>
 
   <!-- Panel de Auditoría: OBSERVACIONES DE CONDUCTA -->
+  {% if session.get('es_admin') and ausencias %}
+  <section class="card" style="margin-bottom: 2rem;" aria-label="Ausencias frente a la cámara">
+    <h3 class="card-title">Ausencias frente a la cámara</h3>
+    <p><strong>{{ ausencias|length }} episodio(s) · {{ (ausencias|sum(attribute='duracion_segundos'))|round(1) }} segundos observados en total.</strong></p>
+    <p class="card-subtitle">Duración estimada desde la primera observación sin rostro. El análisis es periódico; no mide el instante exacto de salida o regreso. Las interrupciones técnicas no se cuentan como ausencia confirmada.</p>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem;">
+      {% for ausencia in ausencias %}
+      <figure style="margin:0;">
+        {% if ausencia.tiene_foto %}
+        <img src="{{ url_for('resultados.ver_evidencia_ausencia', evidencia_id=ausencia.id) }}" alt="Fotografía del episodio sin rostro detectado" loading="lazy" style="width:100%; border-radius:8px; border:1px solid var(--border-color);">
+        {% else %}<p>Fotografía no disponible o caducada.</p>{% endif %}
+        <figcaption style="font-size:0.85rem; margin-top:0.5rem;">
+          <strong>Sin rostro detectado: {{ ausencia.duracion_segundos|round(1) }} s estimados.</strong><br>
+          Inicio: {{ ausencia.inicio_en.strftime('%d/%m/%Y %H:%M:%S %Z') }}<br>
+          {% if ausencia.cerrado_en %}Fin del registro: {{ ausencia.cerrado_en.strftime('%d/%m/%Y %H:%M:%S %Z') }}<br>{% endif %}
+          {{ 'Rostro detectado nuevamente.' if ausencia.estado == 'presente' else 'Registro interrumpido o cerrado sin confirmar el regreso.' }}
+          {% if ausencia.incompleto %}<strong>Medición incompleta; revisar la continuidad.</strong>{% endif %}
+        </figcaption>
+      </figure>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
   {% if session.get('es_admin') and evidencias_celular %}
   <div class="card" style="margin-bottom: 2rem;">
     <h3 class="card-title">Fotografías de detección de celular</h3>

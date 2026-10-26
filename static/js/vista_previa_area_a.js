@@ -129,7 +129,7 @@
     el('texto-despues-figura').hidden = !pregunta.texto_despues_figura;
     FormatoAcademico.escribir(el('texto-despues-figura'), pregunta.texto_despues_figura_rico || pregunta.texto_despues_figura || '');
   }
-  function mostrar(posicion) {
+  function mostrar(posicion, desdeNavegacion = false) {
     indice = posicion;
     const pregunta = preguntas[indice];
     el('numero').textContent = `Pregunta ${pregunta.id}`;
@@ -189,13 +189,16 @@
     el('pagina-imagen').removeAttribute('src');
     el('alternativas').classList.toggle('opciones-originales', esTexto);
     actualizarEstado();
+    if (desdeNavegacion && pregunta.id >= 11) {
+      window.scrollTo({top:Math.max(0,el('numero').closest('.preview-question').getBoundingClientRect().top + window.scrollY - 90),behavior:'instant'});
+    }
   }
   function crearBoton(numero, contenedor) {
     const posicion = preguntas.findIndex(p => p.id === numero);
     const boton = document.createElement('button');
     boton.type = 'button'; boton.textContent = numero; boton.dataset.id = numero;
     boton.setAttribute('aria-label', `Ir a pregunta ${numero}`);
-    boton.addEventListener('click', () => mostrar(posicion));
+    boton.addEventListener('click', () => mostrar(posicion,true));
     contenedor.append(boton);
   }
   for (const grupo of datos.grupos) {
@@ -218,8 +221,8 @@
     }
     el('matriz').append(seccion);
   }
-  el('anterior').addEventListener('click', () => { if (indice > 0) mostrar(indice - 1); });
-  el('siguiente').addEventListener('click', () => { if (indice < preguntas.length - 1) mostrar(indice + 1); });
+  el('anterior').addEventListener('click', () => { if (indice > 0) mostrar(indice - 1,true); });
+  el('siguiente').addEventListener('click', () => { if (indice < preguntas.length - 1) mostrar(indice + 1,true); });
   el('limpiar').addEventListener('click', () => { respuestas.delete(preguntas[indice].id); mostrar(indice); });
   el('pagina').addEventListener('change', () => mostrarPagina(Number(el('pagina').value)));
   el('referencia').addEventListener('toggle', () => {

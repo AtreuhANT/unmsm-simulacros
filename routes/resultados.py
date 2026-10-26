@@ -13,6 +13,7 @@ from utils.helpers import login_required, admin_required, formatear_tiempo
 from utils.preguntas import AREAS_UNMSM, cargar_preguntas_area, sanitizar_preguntas_para_cliente
 from models.supervision import IntentoNoDisponible, listar_pendientes, resolver_revision
 from models.evidencia_celular import listar_evidencias_resultado, leer_evidencia
+from models.ausencia import listar_ausencias_resultado, leer_foto_ausencia
 
 logger = logging.getLogger(__name__)
 resultados_bp = Blueprint('resultados', __name__)
@@ -96,7 +97,8 @@ def ver_resultado(id):
         detalles_preguntas=detalles_preguntas,
         formatear_tiempo=formatear_tiempo,
         areas=AREAS_UNMSM,
-        evidencias_celular=listar_evidencias_resultado(id) if es_admin else []
+        evidencias_celular=listar_evidencias_resultado(id) if es_admin else [],
+        ausencias=listar_ausencias_resultado(id) if es_admin else []
     )
 
 
@@ -114,6 +116,22 @@ def ver_evidencia_celular(evidencia_id):
     respuesta.headers['X-Content-Type-Options'] = 'nosniff'
     respuesta.headers['Content-Security-Policy'] = "default-src 'none'"
     return respuesta
+
+@resultados_bp.route('/admin/evidencia-ausencia/<int:evidencia_id>')
+@admin_required
+def ver_evidencia_ausencia(evidencia_id):
+    try:
+        foto = leer_foto_ausencia(evidencia_id)
+    except (OSError,InvalidToken):
+        abort(404)
+    if foto is None:
+        abort(404)
+    respuesta=Response(foto,mimetype='image/jpeg')
+    respuesta.headers['Cache-Control']='no-store, private'
+    respuesta.headers['X-Content-Type-Options']='nosniff'
+    respuesta.headers['Content-Security-Policy']="default-src 'none'"
+    return respuesta
+
 
 @resultados_bp.route('/ranking')
 @login_required

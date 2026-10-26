@@ -353,9 +353,15 @@
             <input type="checkbox" id="check-phone-consent" autocomplete="off" style="margin-top: 0.25rem;">
             <span>Acepto la detección de celulares y las fotografías puntuales para revisión humana.</span>
           </label>{% endif %}
+          <label style="display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.86rem; margin-top: 0.8rem;">
+            <input type="checkbox" id="check-absence-consent" autocomplete="off" style="margin-top: 0.25rem;">
+            <span>Acepto fotografías puntuales cuando no se detecte mi rostro, para revisión humana.</span>
+          </label>
           <details class="consent-details" id="consent-details">
             <summary>Leer las condiciones completas de supervisión</summary>
             <div class="consent-details-body">
+              <h4>Ausencia frente a la cámara</h4>
+              <p>Cuando no se detecte mi rostro se podrá guardar una fotografía por episodio y registrar su duración estimada para revisión humana. Las imágenes se guardan cifradas fuera de la web pública, solo son accesibles al administrador y caducan a los 30 días, con eliminación mediante mantenimiento periódico. No se graba video. Los fallos técnicos se diferencian de la ausencia y la detección no anula automáticamente el examen.</p>
               <h4>Entorno y examen</h4>
               <p>Declaro que mi espacio de trabajo está despejado, mis manos permanecerán visibles sobre el escritorio, no utilizaré dispositivos auxiliares y acepto ingresar en modo de <strong>pantalla completa obligatoria</strong>.</p>
               {% if deteccion_celular_activa %}
@@ -415,6 +421,7 @@
   const iconRules = document.getElementById('icon-rules');
   const checkDeskAgreement = document.getElementById('check-desk-agreement');
   const checkPhoneConsent = document.getElementById('check-phone-consent');
+  const checkAbsenceConsent = document.getElementById('check-absence-consent');
 
   const btnCancelPrep = document.getElementById('btn-cancel-prep');
   const btnLaunchExam = document.getElementById('btn-launch-exam');
@@ -606,7 +613,7 @@
   });
 
   function actualizarPaso3() {
-    if (checkDeskAgreement.checked && (!PHONE_DETECTION_ENABLED || checkPhoneConsent.checked) && identityVerified) {
+    if (checkDeskAgreement.checked && checkAbsenceConsent.checked && (!PHONE_DETECTION_ENABLED || checkPhoneConsent.checked) && identityVerified) {
       checkRules.classList.add('passed');
       iconRules.textContent = '✓';
       pill3.classList.add('completed');
@@ -644,6 +651,7 @@
   checkDeskAgreement.addEventListener('input', actualizarPaso3);
   checkDeskAgreement.addEventListener('click', actualizarPaso3);
   if (checkPhoneConsent) checkPhoneConsent.addEventListener('change', actualizarPaso3);
+  checkAbsenceConsent.addEventListener('change', actualizarPaso3);
 
   // 5. Abrir la interfaz; el servidor inicia el reloj cuando todo esté listo.
   btnLaunchExam.addEventListener('click', async () => {
@@ -651,6 +659,11 @@
     btnLaunchExam.textContent = 'Abriendo examen...';
 
     try {
+      const ausencia = await fetch('/api/intento/consentimiento-ausencia', {
+        method:'POST', headers:{'Content-Type':'application/json','X-CSRF-Token':PREP_CSRF},
+        body:JSON.stringify({acepta:checkAbsenceConsent.checked})
+      });
+      if (!ausencia.ok) throw new Error('No se pudo registrar el consentimiento de fotografías de ausencia');
       if (PHONE_DETECTION_ENABLED) {
         const consentimiento = await fetch('/api/intento/consentimiento-celular', {
           method: 'POST',

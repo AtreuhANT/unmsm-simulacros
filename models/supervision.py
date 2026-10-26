@@ -7,6 +7,7 @@ from psycopg2.extras import RealDictCursor
 from models.database import get_db_connection
 from utils.preguntas import calcular_puntaje
 from models.examen import cargar_preguntas_intento
+from models.ausencia import cerrar_episodios, MOTIVO_AUSENCIA
 
 
 MOTIVO_FOCO = 'Tres salidas de la página del examen; anulación provisional pendiente de revisión humana.'
@@ -44,6 +45,7 @@ def _calcular_desde_bd(cur, intento):
 
 
 def _cerrar(cur, intento, estado, motivo=None):
+    cerrar_episodios(cur,intento['id'])
     calc = _calcular_desde_bd(cur, intento)
     tiempo = max(0, int((datetime.now(timezone.utc) - intento['fecha_inicio']).total_seconds()))
     cur.execute('SELECT estado_supervision FROM intentos WHERE id = %s', (intento['id'],))
@@ -51,7 +53,7 @@ def _cerrar(cur, intento, estado, motivo=None):
     supervision = 'PENDIENTE' if pendiente else 'SIN_OBSERVACIONES'
     if pendiente and not motivo:
         cur.execute("SELECT DISTINCT tipo FROM eventos_monitoreo WHERE intento_id = %s "
-                    "AND tipo IN ('celular_detectado', 'presencia_no_confirmada')",
+                    "AND tipo IN ('celular_detectado', 'presencia_no_confirmada', 'ausencia_rostro')",
                     (intento['id'],))
         tipos = {fila['tipo'] for fila in cur.fetchall()}
         razones = []
@@ -59,6 +61,8 @@ def _cerrar(cur, intento, estado, motivo=None):
             razones.append(MOTIVO_CELULAR)
         if 'presencia_no_confirmada' in tipos:
             razones.append(MOTIVO_PRESENCIA)
+        if 'ausencia_rostro' in tipos:
+            razones.append(MOTIVO_AUSENCIA)
         motivo = ' '.join(razones) if razones else 'Observaciones de supervisión pendientes de revisión humana.'
     cur.execute(
         "UPDATE intentos SET estado_academico = %s, estado_supervision = %s, "

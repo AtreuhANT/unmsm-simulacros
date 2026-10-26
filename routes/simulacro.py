@@ -6,6 +6,7 @@ from flask import Blueprint, render_template, session, redirect, url_for, flash
 from config import Config
 from models.usuario import obtener_usuario_por_id, obtener_plantilla_facial
 from models.examen import cargar_preguntas_intento
+from models.ausencia import CONSENTIMIENTO
 from models.intento import (
     obtener_intento_activo, obtener_respuestas_intento, cerrar_intento
 )
@@ -44,7 +45,8 @@ def preparacion_examen(area):
 
     # Si ya tiene un intento en curso no vencido, saltar directo al examen
     intento_activo = obtener_intento_activo(usuario_id)
-    if intento_activo and (not Config.DETECCION_CELULAR_ACTIVA or usuario.get('consentimiento_celular_version') == 'celular-v2-fotos'):
+    if (intento_activo and usuario.get('consentimiento_ausencia_version') == CONSENTIMIENTO
+            and (not Config.DETECCION_CELULAR_ACTIVA or usuario.get('consentimiento_celular_version') == 'celular-v2-fotos')):
         if intento_activo.get('segundos_restantes', 0) > 0:
             return redirect(url_for('simulacro.rendir_examen', area=intento_activo.get('area', area)))
         else:
@@ -101,7 +103,8 @@ def rendir_examen(area):
         session.clear()
         return redirect(url_for('auth.login'))
 
-    if Config.DETECCION_CELULAR_ACTIVA and usuario.get('consentimiento_celular_version') != 'celular-v2-fotos':
+    if (usuario.get('consentimiento_ausencia_version') != CONSENTIMIENTO or
+            (Config.DETECCION_CELULAR_ACTIVA and usuario.get('consentimiento_celular_version') != 'celular-v2-fotos')):
         return redirect(url_for('simulacro.preparacion_examen', area=area))
 
     # Cargar y sanitizar banco de preguntas (EX-01: sin respuestas correctas en cliente)
@@ -178,5 +181,6 @@ def rendir_examen(area):
         descriptores_faciales_json=json.dumps(descriptores_faciales),
         usuario=usuario,
         csrf_examen=session['csrf_examen'],
+        fotos_ausencia_activas=usuario.get('consentimiento_ausencia_version') == CONSENTIMIENTO,
         deteccion_celular_activa=Config.DETECCION_CELULAR_ACTIVA and usuario.get('consentimiento_celular_version') == 'celular-v2-fotos'
     )

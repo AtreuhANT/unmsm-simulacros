@@ -19,6 +19,8 @@ class MonitorEngine {
     this.yaEnCurso = Boolean(config.yaEnCurso);
     this.csrfToken = config.csrfToken;
     this.phoneDetectionEnabled = Boolean(config.phoneDetectionEnabled);
+    this.absencePhotoEnabled = Boolean(config.absencePhotoEnabled);
+    this.absenceQueue = Promise.resolve();
     this.faceModelsReady = false;
 
     this.currentIndex = 0;
@@ -475,6 +477,8 @@ class MonitorEngine {
   initProctoringModules() {
     this.monitorsStarted = true;
     const callbacks = {
+      onAbsenceObservation: this.absencePhotoEnabled
+        ? (observacion,video) => this.reportAbsence(observacion,video) : undefined,
       onViolation: (modulo, tipo, desc) => this.handleViolation(modulo, tipo, desc),
       onFocusLoss: (tipo, desc) => this.reportFocusLoss(tipo, desc),
       onFatalViolation: (modulo, tipo, desc) => this.handleFatalViolation(modulo, tipo, desc),
@@ -510,13 +514,15 @@ class MonitorEngine {
     }
   }
 
-  async capturePhoneEvidence(video, episodio, segundo, deteccion) {
-    if (this.isTerminated || video.readyState < 2) return;
-    if (!video.videoWidth || !video.videoHeight) throw new Error('Fotograma de cámara no disponible');
+  async freezeEvidenceFrame(video) {
+    if (this.isTerminated || ('readyState' in video && video.readyState < 2)) return;
+    const ancho=video.videoWidth || video.width;
+    const alto=video.videoHeight || video.height;
+    if (!ancho || !alto) throw new Error('Fotograma de cámara no disponible');
     const canvas = document.createElement('canvas');
-    const ratio = Math.min(1, 640 / video.videoWidth);
-    canvas.width = Math.round(video.videoWidth * ratio);
-    canvas.height = Math.round(video.videoHeight * ratio);
+    const ratio = Math.min(1, 640 / ancho);
+    canvas.width = Math.round(ancho * ratio);
+    canvas.height = Math.round(alto * ratio);
     const ctx = canvas.getContext('2d');
     if (!ctx || !canvas.width || !canvas.height) return;
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
@@ -524,6 +530,12 @@ class MonitorEngine {
     let foto = await convertir(0.68);
     if (foto?.size > 80_000) foto = await convertir(0.45);
     if (!foto || foto.size > 80_000) throw new Error('Captura demasiado grande');
+    return foto;
+  }
+
+  async capturePhoneEvidence(video, episodio, segundo, deteccion) {
+    const foto = await this.freezeEvidenceFrame(video);
+    if (!foto) return;
     if (deteccion) {
       const estado = await deteccion;
       if (estado?.cerrado) return;
@@ -539,6 +551,39 @@ class MonitorEngine {
       body: datos
     });
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
+  }
+
+  reportAbsence(observacion,video) {
+    if (this.isTerminated || !this.absencePhotoEnabled) return Promise.resolve();
+    // Congelar el primer fotograma antes de encolar o esperar la red.
+    const foto = observacion.estado === 'ausente' && observacion.secuencia === 1
+      ? this.freezeEvidenceFrame(video).catch(() => null) : Promise.resolve(null);
+    const enviar = async () => {
+      const imagen = await foto;
+      const datos = new FormData();
+      datos.append('token_sesion',this.tokenSesion);
+      datos.append('episodio_id',observacion.episodioId);
+      datos.append('secuencia',String(observacion.secuencia));
+      datos.append('estado',observacion.estado);
+      if (imagen) datos.append('foto',imagen,'ausencia.jpg');
+      let ultimoError;
+      for (let intento=0;intento<2;intento++) {
+        try {
+          const response = await fetch('/api/intento/ausencia', {
+            method:'POST', headers:{'X-CSRF-Token':this.csrfToken}, body:datos,
+            signal:AbortSignal.timeout(10000)
+          });
+          if (response.ok) return await response.json();
+          if (response.status < 500) throw new Error(`No se pudo registrar la ausencia (HTTP ${response.status})`);
+          ultimoError = new Error('El servidor no pudo guardar la observación');
+        } catch (error) { ultimoError=error; }
+      }
+      this.setSupervisionAlert('No se pudo guardar una observación de ausencia. Comprueba la conexión.');
+      throw ultimoError;
+    };
+    const pendiente=this.absenceQueue.then(enviar);
+    this.absenceQueue=pendiente.catch(()=>undefined);
+    return pendiente;
   }
 
   setSupervisionAlert(message) {
@@ -801,7 +846,7 @@ class MonitorEngine {
   // =========================================================================
   // NAVEGACIÓN Y RENDERIZADO DE PREGUNTAS
   // =========================================================================
-  loadQuestion(index) {
+  loadQuestion(index, desdeNavegacion = false) {
     if (index < 0 || index >= this.preguntas.length) return;
     this.currentIndex = index;
     const q = this.preguntas[index];
@@ -836,6 +881,9 @@ class MonitorEngine {
     this.dom.btnNext.textContent = (index === this.preguntas.length - 1) ? 'Revisar Todo' : 'Siguiente Pregunta →';
 
     this.updateMatrixSelection();
+    if (desdeNavegacion && q.id >= 11) {
+      window.scrollTo({top:Math.max(0,this.dom.questionContainer.getBoundingClientRect().top + window.scrollY - 90),behavior:'instant'});
+    }
   }
 
   selectOption(preguntaId, letra) {
@@ -887,7 +935,7 @@ class MonitorEngine {
       btn.className = 'matrix-btn';
       btn.id = `matrix-btn-${idx}`;
       btn.textContent = idx + 1;
-      btn.addEventListener('click', () => this.loadQuestion(idx));
+      btn.addEventListener('click', () => this.loadQuestion(idx,true));
       rejilla.appendChild(btn);
     });
   }
@@ -916,12 +964,12 @@ class MonitorEngine {
 
   bindExamControls() {
     this.dom.btnPrev.onclick = () => {
-      if (this.currentIndex > 0) this.loadQuestion(this.currentIndex - 1);
+      if (this.currentIndex > 0) this.loadQuestion(this.currentIndex - 1,true);
     };
 
     this.dom.btnNext.onclick = () => {
       if (this.currentIndex < this.preguntas.length - 1) {
-        this.loadQuestion(this.currentIndex + 1);
+        this.loadQuestion(this.currentIndex + 1,true);
       }
     };
 

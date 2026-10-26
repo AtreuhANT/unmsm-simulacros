@@ -58,7 +58,7 @@
       boton.setAttribute('aria-current', String(Number(boton.dataset.id) === q.id));
     }
   }
-  function mostrar(indice) {
+  function mostrar(indice, desdeNavegacion = false) {
     estado.indice = indice;
     const q = datos.preguntas[indice];
     el('numero').textContent = `Pregunta ${q.id}`;
@@ -90,6 +90,9 @@
     el('anterior').disabled = indice === 0;
     el('siguiente').disabled = indice === 99;
     actualizar();
+    if (desdeNavegacion && q.id >= 11) {
+      window.scrollTo({top:Math.max(0,el('pregunta-practica').getBoundingClientRect().top + window.scrollY - 90),behavior:'instant'});
+    }
   }
   function crearBotones(numeros, seccion) {
     const rejilla = nodo('div', undefined, 'preview-matrix');
@@ -97,7 +100,7 @@
       const boton = nodo('button', numero);
       boton.type = 'button'; boton.dataset.id = numero;
       boton.setAttribute('aria-label', `Ir a pregunta ${numero}`);
-      boton.addEventListener('click', () => mostrar(numero-1));
+      boton.addEventListener('click', () => mostrar(numero-1,true));
       rejilla.append(boton);
     }
     seccion.append(rejilla);
@@ -142,8 +145,8 @@
     }
   }
   el('area-practica').addEventListener('change', event => cargar(event.target.value));
-  el('anterior').addEventListener('click', () => { if (estado.indice > 0) mostrar(estado.indice-1); });
-  el('siguiente').addEventListener('click', () => { if (estado.indice < 99) mostrar(estado.indice+1); });
+  el('anterior').addEventListener('click', () => { if (estado.indice > 0) mostrar(estado.indice-1,true); });
+  el('siguiente').addEventListener('click', () => { if (estado.indice < 99) mostrar(estado.indice+1,true); });
   el('limpiar').addEventListener('click', () => { estado.respuestas.delete(datos.preguntas[estado.indice].id); mostrar(estado.indice); });
   const solicitada = new URLSearchParams(location.search).get('area')?.toUpperCase();
   const inicial = ['B','C','D','E'].includes(solicitada) ? solicitada : 'B';

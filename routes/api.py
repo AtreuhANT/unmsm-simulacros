@@ -20,9 +20,49 @@ from models.supervision import IntentoNoDisponible, entregar_examen, registrar_s
 from models.database import get_db_cursor
 from models.examen import cargar_preguntas_intento
 from models.evidencia_celular import guardar_evidencia
+from models.ausencia import registrar_observacion, CONSENTIMIENTO
 
 logger = logging.getLogger(__name__)
 api_bp = Blueprint('api', __name__, url_prefix='/api')
+
+
+@api_bp.route('/intento/consentimiento-ausencia', methods=['POST'])
+@login_required
+def guardar_consentimiento_ausencia():
+    csrf = session.get('csrf_preparacion')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token',''),csrf):
+        return jsonify({'error':'CSRF inválido'}),403
+    data = request.get_json(silent=True)
+    if not isinstance(data,dict) or data.get('acepta') is not True:
+        return jsonify({'error':'Consentimiento explícito requerido'}),400
+    with get_db_cursor(commit=True) as cur:
+        cur.execute('UPDATE usuarios SET consentimiento_ausencia_en=CURRENT_TIMESTAMP,'
+                    'consentimiento_ausencia_version=%s WHERE id=%s', (CONSENTIMIENTO,session['usuario_id']))
+    return jsonify({'status':'ok'})
+
+
+@api_bp.route('/intento/ausencia', methods=['POST'])
+@login_required
+def recibir_observacion_ausencia():
+    csrf = session.get('csrf_examen')
+    if not csrf or not secrets.compare_digest(request.headers.get('X-CSRF-Token',''),csrf):
+        return jsonify({'error':'CSRF inválido'}),403
+    if not request.content_length or request.content_length > 100_000:
+        return jsonify({'error':'Solicitud demasiado grande o vacía'}),400
+    try:
+        secuencia = int(request.form.get('secuencia',''))
+        foto = request.files.get('foto')
+        respuesta = registrar_observacion(request.form.get('token_sesion'),session['usuario_id'],
+                    request.form.get('episodio_id'),secuencia,request.form.get('estado'),
+                    foto.read(80_001) if foto else None)
+        return jsonify(respuesta)
+    except PermissionError:
+        return jsonify({'error':'Intento o consentimiento no disponibles'}),403
+    except ValueError as exc:
+        return jsonify({'error':str(exc)}),400
+    except Exception as exc:
+        logger.error('Error al guardar ausencia: %s',type(exc).__name__)
+        return jsonify({'error':'No se pudo guardar la observación'}),500
 
 
 @api_bp.route('/intento/consentimiento-celular', methods=['POST'])
@@ -259,6 +299,11 @@ def iniciar_o_recuperar_intento():
     preguntas = cargar_preguntas_area(area)
     if not preguntas:
         return jsonify({'error': 'No hay preguntas disponibles'}), 409
+    with get_db_cursor() as cur:
+        cur.execute('SELECT 1 FROM usuarios WHERE id=%s AND consentimiento_ausencia_version=%s',
+                    (usuario_id,CONSENTIMIENTO))
+        if not cur.fetchone():
+            return jsonify({'error':'Consentimiento de fotografías de ausencia requerido'}),403
     if Config.DETECCION_CELULAR_ACTIVA:
         with get_db_cursor() as cur:
             cur.execute("SELECT 1 FROM usuarios WHERE id = %s AND consentimiento_celular_version = 'celular-v2-fotos'",

@@ -80,6 +80,7 @@ def obtener_usuario_por_id(usuario_id):
     sql = """
         SELECT id, nombre, apellido, dni, password_hash, carrera, area,
                consentimiento_celular_en, consentimiento_celular_version,
+               consentimiento_ausencia_en, consentimiento_ausencia_version,
                descriptores_faciales, es_admin, creado_en
         FROM usuarios 
         WHERE id = %s;

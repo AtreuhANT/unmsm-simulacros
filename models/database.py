@@ -194,6 +194,8 @@ def init_db():
         "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS area CHAR(1) NOT NULL DEFAULT 'A';",
         "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS consentimiento_celular_en TIMESTAMPTZ;",
         "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS consentimiento_celular_version TEXT;",
+        "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS consentimiento_ausencia_en TIMESTAMPTZ;",
+        "ALTER TABLE usuarios ADD COLUMN IF NOT EXISTS consentimiento_ausencia_version TEXT;",
         "ALTER TABLE resultados ADD COLUMN IF NOT EXISTS estado TEXT NOT NULL DEFAULT 'COMPLETADO';",
         "ALTER TABLE resultados ADD COLUMN IF NOT EXISTS motivo_anulacion TEXT;",
         "ALTER TABLE eventos_monitoreo ADD COLUMN IF NOT EXISTS intento_id INTEGER REFERENCES intentos(id) ON DELETE CASCADE;",
@@ -220,7 +222,24 @@ def init_db():
             expira_en TIMESTAMPTZ NOT NULL DEFAULT (CURRENT_TIMESTAMP + INTERVAL '30 days'),
             UNIQUE (intento_id, episodio_id, segundo_objetivo)
         );""",
-        "CREATE INDEX IF NOT EXISTS idx_evidencias_celular_intento ON evidencias_celular(intento_id, creado_en);"
+        "CREATE INDEX IF NOT EXISTS idx_evidencias_celular_intento ON evidencias_celular(intento_id, creado_en);",
+        """CREATE TABLE IF NOT EXISTS episodios_ausencia (
+            id BIGSERIAL PRIMARY KEY,
+            intento_id INTEGER NOT NULL REFERENCES intentos(id) ON DELETE CASCADE,
+            usuario_id INTEGER NOT NULL REFERENCES usuarios(id) ON DELETE CASCADE,
+            episodio_id UUID NOT NULL,
+            inicio_en TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            ultima_observacion TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+            cerrado_en TIMESTAMPTZ,
+            duracion_segundos DOUBLE PRECISION NOT NULL DEFAULT 0 CHECK (duracion_segundos >= 0),
+            secuencia INTEGER NOT NULL,
+            estado TEXT NOT NULL CHECK (estado IN ('ausente','presente','interrumpido','fin_examen')),
+            incompleto BOOLEAN NOT NULL DEFAULT FALSE,
+            archivo TEXT UNIQUE,
+            expira_en TIMESTAMPTZ NOT NULL DEFAULT (CURRENT_TIMESTAMP + INTERVAL '30 days'),
+            UNIQUE (intento_id, episodio_id)
+        );""",
+        "CREATE INDEX IF NOT EXISTS idx_ausencias_intento ON episodios_ausencia(intento_id, inicio_en);"
     ]
     
     with get_db_cursor(commit=True) as cur:
