@@ -1,4 +1,4 @@
-# Simulacros UNMSM
+# Pag de Simulacros UNMSM para el curso de Cir.ELectronicos I
 
 En el proyecto usamos Flask, PostgreSQL y supervisión mediante cámara en el navegador. La implementación es parcial: consultar `docs/AUDITORIA_INICIAL.md`, `docs/PROGRESO.md` y `AGENTS.md` antes de continuar.
 
